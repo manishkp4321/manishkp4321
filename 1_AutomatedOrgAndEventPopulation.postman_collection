@@ -700,6 +700,46 @@
       ]
     },
     {
+      "name": "Create Waiver Document",
+      "description": "",
+      "item": [
+        {
+          "name": "uploadLocationDocument",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"waiverId\", jsonData.location.waiverDocId);",
+                  "",
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/{{docType}}",
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"accountNumber\": \"123-456\",\r\n  \"document\": \"The use of this website is subject to the following terms of use: \\n\\n The content of the pages of this website is for your general information and use only. It is subject to change without notice.  \\n\\nThis website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].  \\n\\nNeither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.  \\n\\nYour use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.  \\n\\nThis website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.  \\n\\nAll trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.  \\n\\nUnauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.  \\n\\nFrom time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).  \\n\\nYour use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.\",\r\n  \"locationName\": \"Sherwood\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Create Event Category",
       "description": "",
       "item": [
@@ -866,7 +906,7 @@
                   "// var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T16:30:00\";\r",
                   "// var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T17:00:00\";\r",
                   "\r",
-                  "var date = data.dateForEventCreation;\r",
+                  "var date = \"2018-02-14\"\r",
                   "\r",
                   "var eventStartTime = date + \"T16:30:00\";\r",
                   "var eventEndTime = date + \"T17:00:00\";\r",
@@ -890,7 +930,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\"\r\n}"
             },
             "description": ""
           },
@@ -945,6 +985,17 @@
                   "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randomLargeInt = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randomLargeInt\", randomLargeInt);"
+                ]
+              }
             }
           ],
           "request": {
@@ -959,7 +1010,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
+              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}} {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
             },
             "description": ""
           },
@@ -1096,7 +1147,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -1128,7 +1179,7 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "var cardTypes = ['Paypal','Mastercard','VISA','American Express','Discover'];",
+                  "var cardTypes = ['Mastercard','VISA','American Express','Discover'];",
                   "var randCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)];",
                   "",
                   "postman.setEnvironmentVariable(\"randCardType\", randCardType);"
@@ -1148,7 +1199,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : {\r\n    \"id\" : \"src_1BW8fc2eZvKYlo2C9pRNClwF\",\r\n    \"object\" : \"source\",\r\n    \"amount\" : null,\r\n    \"client_secret\" : \"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\",\r\n    \"created\" : 1512588904,\r\n    \"currency\" : null,\r\n    \"flow\" : \"none\",\r\n    \"livemode\" : false,\r\n    \"metadata\" : [ ],\r\n    \"owner\" : {\r\n      \"address\" : {\r\n        \"city\" : null,\r\n        \"country\" : null,\r\n        \"line1\" : null,\r\n        \"line2\" : null,\r\n        \"postal_code\" : \"72032\",\r\n        \"state\" : null\r\n      }\r\n    },\r\n    \"email\" : null,\r\n    \"name\" : null,\r\n    \"phone\" : null,\r\n    \"verified_address\" : null,\r\n    \"verified_email\" : null,\r\n    \"verified_name\" : null,\r\n    \"verified_phone\" : null\r\n  },\r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
             },
             "description": ""
           },
@@ -1206,7 +1257,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n }\r\n}"
             },
             "description": ""
           },
@@ -1220,11 +1271,12 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;",
+                  "",
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
-                  "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  ""
                 ]
               }
             },
@@ -1259,7 +1311,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1030am}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1030am}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"cardId\": \"{{cardId}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CARD\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1030am}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1030am}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -1502,6 +1554,17 @@
                   "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randomLargeInt = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randomLargeInt\", randomLargeInt);"
+                ]
+              }
             }
           ],
           "request": {
@@ -1516,7 +1579,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
+              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}} {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
             },
             "description": ""
           },
@@ -1669,7 +1732,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : {\r\n    \"id\" : \"src_1BW8fc2eZvKYlo2C9pRNClwF\",\r\n    \"object\" : \"source\",\r\n    \"amount\" : null,\r\n    \"client_secret\" : \"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\",\r\n    \"created\" : 1512588904,\r\n    \"currency\" : null,\r\n    \"flow\" : \"none\",\r\n    \"livemode\" : false,\r\n    \"metadata\" : [ ],\r\n    \"owner\" : {\r\n      \"address\" : {\r\n        \"city\" : null,\r\n        \"country\" : null,\r\n        \"line1\" : null,\r\n        \"line2\" : null,\r\n        \"postal_code\" : \"72032\",\r\n        \"state\" : null\r\n      }\r\n    },\r\n    \"email\" : null,\r\n    \"name\" : null,\r\n    \"phone\" : null,\r\n    \"verified_address\" : null,\r\n    \"verified_email\" : null,\r\n    \"verified_name\" : null,\r\n    \"verified_phone\" : null\r\n  },\r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
             },
             "description": ""
           },
@@ -1727,7 +1790,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
             },
             "description": ""
           },
@@ -1780,7 +1843,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"cardId\": \"{{cardId}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CARD\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -2023,6 +2086,17 @@
                   "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randomLargeInt = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randomLargeInt\", randomLargeInt);"
+                ]
+              }
             }
           ],
           "request": {
@@ -2037,7 +2111,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
+              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}} {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
             },
             "description": ""
           },
@@ -2158,7 +2232,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : {\r\n    \"id\" : \"src_1BW8fc2eZvKYlo2C9pRNClwF\",\r\n    \"object\" : \"source\",\r\n    \"amount\" : null,\r\n    \"client_secret\" : \"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\",\r\n    \"created\" : 1512588904,\r\n    \"currency\" : null,\r\n    \"flow\" : \"none\",\r\n    \"livemode\" : false,\r\n    \"metadata\" : [ ],\r\n    \"owner\" : {\r\n      \"address\" : {\r\n        \"city\" : null,\r\n        \"country\" : null,\r\n        \"line1\" : null,\r\n        \"line2\" : null,\r\n        \"postal_code\" : \"72032\",\r\n        \"state\" : null\r\n      }\r\n    },\r\n    \"email\" : null,\r\n    \"name\" : null,\r\n    \"phone\" : null,\r\n    \"verified_address\" : null,\r\n    \"verified_email\" : null,\r\n    \"verified_name\" : null,\r\n    \"verified_phone\" : null\r\n  },\r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
             },
             "description": ""
           },
@@ -2216,7 +2290,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
             },
             "description": ""
           },
@@ -2269,7 +2343,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_100pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_100pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"cardId\": \"{{cardId}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CARD\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_100pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_100pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -2512,6 +2586,17 @@
                   "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randomLargeInt = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randomLargeInt\", randomLargeInt);"
+                ]
+              }
             }
           ],
           "request": {
@@ -2526,7 +2611,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
+              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}} {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
             },
             "description": ""
           },
@@ -2647,7 +2732,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : {\r\n    \"id\" : \"src_1BW8fc2eZvKYlo2C9pRNClwF\",\r\n    \"object\" : \"source\",\r\n    \"amount\" : null,\r\n    \"client_secret\" : \"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\",\r\n    \"created\" : 1512588904,\r\n    \"currency\" : null,\r\n    \"flow\" : \"none\",\r\n    \"livemode\" : false,\r\n    \"metadata\" : [ ],\r\n    \"owner\" : {\r\n      \"address\" : {\r\n        \"city\" : null,\r\n        \"country\" : null,\r\n        \"line1\" : null,\r\n        \"line2\" : null,\r\n        \"postal_code\" : \"72032\",\r\n        \"state\" : null\r\n      }\r\n    },\r\n    \"email\" : null,\r\n    \"name\" : null,\r\n    \"phone\" : null,\r\n    \"verified_address\" : null,\r\n    \"verified_email\" : null,\r\n    \"verified_name\" : null,\r\n    \"verified_phone\" : null\r\n  },\r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
             },
             "description": ""
           },
@@ -2705,7 +2790,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
             },
             "description": ""
           },
@@ -2758,7 +2843,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"cardId\": \"{{cardId}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CARD\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -3001,6 +3086,17 @@
                   "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randomLargeInt = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randomLargeInt\", randomLargeInt);"
+                ]
+              }
             }
           ],
           "request": {
@@ -3015,7 +3111,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
+              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}} {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
             },
             "description": ""
           },
@@ -3136,7 +3232,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : {\r\n    \"id\" : \"src_1BW8fc2eZvKYlo2C9pRNClwF\",\r\n    \"object\" : \"source\",\r\n    \"amount\" : null,\r\n    \"client_secret\" : \"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\",\r\n    \"created\" : 1512588904,\r\n    \"currency\" : null,\r\n    \"flow\" : \"none\",\r\n    \"livemode\" : false,\r\n    \"metadata\" : [ ],\r\n    \"owner\" : {\r\n      \"address\" : {\r\n        \"city\" : null,\r\n        \"country\" : null,\r\n        \"line1\" : null,\r\n        \"line2\" : null,\r\n        \"postal_code\" : \"72032\",\r\n        \"state\" : null\r\n      }\r\n    },\r\n    \"email\" : null,\r\n    \"name\" : null,\r\n    \"phone\" : null,\r\n    \"verified_address\" : null,\r\n    \"verified_email\" : null,\r\n    \"verified_name\" : null,\r\n    \"verified_phone\" : null\r\n  },\r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
             },
             "description": ""
           },
@@ -3194,7 +3290,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
             },
             "description": ""
           },
@@ -3247,7 +3343,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_300pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_300pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"cardId\": \"{{cardId}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CARD\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_300pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_300pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -3490,6 +3586,17 @@
                   "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randomLargeInt = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randomLargeInt\", randomLargeInt);"
+                ]
+              }
             }
           ],
           "request": {
@@ -3504,7 +3611,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
+              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}} {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
             },
             "description": ""
           },
@@ -3785,7 +3892,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : {\r\n    \"id\" : \"src_1BW8fc2eZvKYlo2C9pRNClwF\",\r\n    \"object\" : \"source\",\r\n    \"amount\" : null,\r\n    \"client_secret\" : \"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\",\r\n    \"created\" : 1512588904,\r\n    \"currency\" : null,\r\n    \"flow\" : \"none\",\r\n    \"livemode\" : false,\r\n    \"metadata\" : [ ],\r\n    \"owner\" : {\r\n      \"address\" : {\r\n        \"city\" : null,\r\n        \"country\" : null,\r\n        \"line1\" : null,\r\n        \"line2\" : null,\r\n        \"postal_code\" : \"72032\",\r\n        \"state\" : null\r\n      }\r\n    },\r\n    \"email\" : null,\r\n    \"name\" : null,\r\n    \"phone\" : null,\r\n    \"verified_address\" : null,\r\n    \"verified_email\" : null,\r\n    \"verified_name\" : null,\r\n    \"verified_phone\" : null\r\n  },\r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
             },
             "description": ""
           },
@@ -3843,7 +3950,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
             },
             "description": ""
           },
@@ -3896,7 +4003,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_430pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_430pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"cardId\": \"{{cardId}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CARD\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_430pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_430pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -4139,6 +4246,17 @@
                   "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randomLargeInt = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randomLargeInt\", randomLargeInt);"
+                ]
+              }
             }
           ],
           "request": {
@@ -4153,7 +4271,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
+              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"{{randEvent}} {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
             },
             "description": ""
           },
@@ -4306,7 +4424,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : {\r\n    \"id\" : \"src_1BW8fc2eZvKYlo2C9pRNClwF\",\r\n    \"object\" : \"source\",\r\n    \"amount\" : null,\r\n    \"client_secret\" : \"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\",\r\n    \"created\" : 1512588904,\r\n    \"currency\" : null,\r\n    \"flow\" : \"none\",\r\n    \"livemode\" : false,\r\n    \"metadata\" : [ ],\r\n    \"owner\" : {\r\n      \"address\" : {\r\n        \"city\" : null,\r\n        \"country\" : null,\r\n        \"line1\" : null,\r\n        \"line2\" : null,\r\n        \"postal_code\" : \"72032\",\r\n        \"state\" : null\r\n      }\r\n    },\r\n    \"email\" : null,\r\n    \"name\" : null,\r\n    \"phone\" : null,\r\n    \"verified_address\" : null,\r\n    \"verified_email\" : null,\r\n    \"verified_name\" : null,\r\n    \"verified_phone\" : null\r\n  },\r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
             },
             "description": ""
           },
@@ -4364,7 +4482,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
             },
             "description": ""
           },
@@ -4417,7 +4535,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_500pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_500pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"cardId\": \"{{cardId}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CARD\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_500pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_500pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -4452,46 +4570,6 @@
             "body": {
               "mode": "raw",
               "raw": ""
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Create Waiver Document",
-      "description": "",
-      "item": [
-        {
-          "name": "uploadLocationDocument",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
-                  "",
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "url": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/{{docType}}",
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"accountNumber\": \"123456\",\r\n  \"document\": \"The use of this website is subject to the following terms of use: \\n\\n The content of the pages of this website is for your general information and use only. It is subject to change without notice.  \\n\\nThis website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].  \\n\\nNeither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.  \\n\\nYour use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.  \\n\\nThis website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.  \\n\\nAll trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.  \\n\\nUnauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.  \\n\\nFrom time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).  \\n\\nYour use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.\",\r\n  \"locationName\": \"Sherwood\"\r\n}"
             },
             "description": ""
           },
