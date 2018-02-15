@@ -906,7 +906,7 @@
                   "// var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T16:30:00\";\r",
                   "// var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T17:00:00\";\r",
                   "\r",
-                  "var date = \"2018-02-14\"\r",
+                  "var date = data.dateForEventCreation;\r",
                   "\r",
                   "var eventStartTime = date + \"T16:30:00\";\r",
                   "var eventEndTime = date + \"T17:00:00\";\r",
