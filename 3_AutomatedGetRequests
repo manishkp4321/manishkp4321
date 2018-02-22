@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "3_Automated_SanityChecks_GET_Requests",
+    "_postman_id": "e83fecbe-bfaa-23c2-3ce4-82074b60db83",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Schedule",
+      "description": "",
+      "item": [
+        {
+          "name": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "schedule"
+              ],
+              "query": [
+                {
+                  "key": "startDateTime",
+                  "value": "{{eventStartTime}}",
+                  "equals": true
+                },
+                {
+                  "key": "endDateTime",
+                  "value": "{{eventEndTime}}",
+                  "equals": true
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
