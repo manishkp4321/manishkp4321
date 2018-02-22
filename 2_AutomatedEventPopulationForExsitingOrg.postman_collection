@@ -1,18 +1,18 @@
 {
   "variables": [],
   "info": {
-    "name": "2 Automated Event Population for exsiting Org",
+    "name": "2 Automated Event Population for existing Org",
     "_postman_id": "cb40877e-67eb-b52f-82ea-944d1ecab732",
     "description": "",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
-      "name": "Create Waiver Document",
+      "name": "Create Waiver Document Waiver",
       "description": "",
       "item": [
         {
-          "name": "uploadLocationDocument",
+          "name": "uploadLocationDocumentWaiver",
           "event": [
             {
               "listen": "test",
@@ -22,13 +22,13 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"waiverId\", jsonData.location.waiverDocId);",
                   "",
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/{{docType}}",
+            "url": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/waiver",
             "method": "PUT",
             "header": [
               {
@@ -39,7 +39,47 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"accountNumber\": \"123456\",\r\n  \"document\": \"The use of this website is subject to the following terms of use: \\n\\n The content of the pages of this website is for your general information and use only. It is subject to change without notice.  \\n\\nThis website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].  \\n\\nNeither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.  \\n\\nYour use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.  \\n\\nThis website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.  \\n\\nAll trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.  \\n\\nUnauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.  \\n\\nFrom time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).  \\n\\nYour use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.\",\r\n  \"locationName\": \"Sherwood\"\r\n}"
+              "raw": "{\r\n  \"accountNumber\": \"123-456\",\r\n  \"document\": \"WAIVER - The use of this website is subject to the following terms of use: \\n\\n The content of the pages of this website is for your general information and use only. It is subject to change without notice.  \\n\\nThis website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].  \\n\\nNeither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.  \\n\\nYour use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.  \\n\\nThis website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.  \\n\\nAll trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.  \\n\\nUnauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.  \\n\\nFrom time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).  \\n\\nYour use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.\",\r\n  \"locationName\": \"Sherwood\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Waiver Document TandC",
+      "description": "",
+      "item": [
+        {
+          "name": "uploadLocationDocumentTerms",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"termsId\", jsonData.location.waiverDocId);",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/terms",
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"accountNumber\": \"123-456\",\r\n  \"document\": \"TERMS AND CONDITIONS - The use of this website is subject to the following terms of use: \\n\\n The content of the pages of this website is for your general information and use only. It is subject to change without notice.  \\n\\nThis website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].  \\n\\nNeither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.  \\n\\nYour use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.  \\n\\nThis website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.  \\n\\nAll trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.  \\n\\nUnauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.  \\n\\nFrom time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).  \\n\\nYour use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.\",\r\n  \"locationName\": \"Sherwood\"\r\n}"
             },
             "description": ""
           },
@@ -62,7 +102,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -102,7 +142,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -150,7 +190,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId_1030am\", jsonData.id);\r",
                   "\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -197,7 +237,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -255,7 +295,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -290,7 +330,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -336,7 +376,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -353,7 +393,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package\",\r\n  \"type\": \"Service\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{$randomInt}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -370,7 +410,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -387,7 +427,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -404,7 +444,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -438,7 +478,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -455,7 +495,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -478,7 +518,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -525,7 +565,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -565,7 +605,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "description": ""
           },
@@ -583,7 +623,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -635,7 +675,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -675,7 +715,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -722,7 +762,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -769,7 +809,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -823,7 +863,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -858,7 +898,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -904,7 +944,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -921,7 +961,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package\",\r\n  \"type\": \"Service\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{$randomInt}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -938,7 +978,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -955,7 +995,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -970,7 +1010,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -987,7 +1027,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -1010,7 +1050,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1057,7 +1097,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1097,7 +1137,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "description": ""
           },
@@ -1115,7 +1155,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1167,7 +1207,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1207,7 +1247,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1254,7 +1294,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1301,7 +1341,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1355,7 +1395,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1390,7 +1430,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1436,7 +1476,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1453,7 +1493,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package\",\r\n  \"type\": \"Service\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{$randomInt}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -1470,7 +1510,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1487,7 +1527,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -1510,7 +1550,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1557,7 +1597,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1597,7 +1637,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "description": ""
           },
@@ -1615,7 +1655,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1667,7 +1707,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1707,7 +1747,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1754,7 +1794,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1801,7 +1841,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1855,7 +1895,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1890,7 +1930,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1936,7 +1976,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1953,7 +1993,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package\",\r\n  \"type\": \"Service\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{$randomInt}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -1970,7 +2010,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1987,7 +2027,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -2010,7 +2050,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2057,7 +2097,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2097,7 +2137,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "description": ""
           },
@@ -2115,7 +2155,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2167,7 +2207,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2207,7 +2247,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2254,7 +2294,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2301,7 +2341,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2355,7 +2395,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2390,7 +2430,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2436,7 +2476,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2453,7 +2493,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package\",\r\n  \"type\": \"Service\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{$randomInt}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -2470,7 +2510,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2487,7 +2527,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -2510,7 +2550,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2557,7 +2597,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2597,7 +2637,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "description": ""
           },
@@ -2615,7 +2655,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2667,7 +2707,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2707,7 +2747,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2754,7 +2794,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2801,7 +2841,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2855,7 +2895,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2890,7 +2930,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2936,7 +2976,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2953,7 +2993,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package\",\r\n  \"type\": \"Service\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{$randomInt}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -2970,7 +3010,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2987,7 +3027,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3002,7 +3042,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3019,7 +3059,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3034,7 +3074,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3051,7 +3091,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3066,7 +3106,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3083,7 +3123,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_100pm}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_100pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3098,7 +3138,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3115,7 +3155,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_200pm}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_200pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3130,7 +3170,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3147,7 +3187,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_300pm}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_300pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3170,7 +3210,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3217,7 +3257,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3257,7 +3297,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "description": ""
           },
@@ -3275,7 +3315,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3327,7 +3367,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3367,7 +3407,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3414,7 +3454,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3461,7 +3501,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3515,7 +3555,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3550,7 +3590,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3596,7 +3636,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3613,7 +3653,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package\",\r\n  \"type\": \"Service\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{$randomInt}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3630,7 +3670,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3647,7 +3687,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3662,7 +3702,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3679,7 +3719,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3702,7 +3742,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3749,7 +3789,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3789,7 +3829,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n    \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{waiverId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "description": ""
           },
@@ -3807,7 +3847,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3859,7 +3899,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
