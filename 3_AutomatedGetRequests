@@ -12,6 +12,18 @@
       "item": [
         {
           "name": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ec826aaa-fc9c-49f2-a06a-53ca113c56ef",
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [],
@@ -37,6 +49,297 @@
                   "value": "{{eventEndTime}}",
                   "equals": true
                 }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Registration",
+      "description": "",
+      "item": [
+        {
+          "name": "getEmployeeRegistration",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "995c63be-031f-4fee-b242-2c2823e2e91a",
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/user/token/{{employeeTokenId}}",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "user",
+                "token",
+                "{{employeeTokenId}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Enrollment",
+      "description": "",
+      "item": [
+        {
+          "name": "getEnrollment_1030AM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "18ae73e5-c9d1-4e78-bb29-522238bcd06b",
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_1030am}}",
+                "enrollment"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_1200PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ab4ca685-9466-46bf-9aa6-9378755e51a1",
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_1200pm}}",
+                "enrollment"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_100PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4767b12d-e363-43d2-8dd0-306b8f3a9202",
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_100pm}}",
+                "enrollment"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_200PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0979546a-fbb0-4ef9-b6e4-63e3b8cb4f63",
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_200pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_200pm}}",
+                "enrollment"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_300PM ",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c1f50d14-823c-4673-ad8c-79dbe3bbf050",
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_300pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_300pm}}",
+                "enrollment"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_430PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "67c35e8d-60e5-4bd3-b7b6-659c0b84a1d8",
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_430pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_430pm}}",
+                "enrollment"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_500PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "33065a6f-5709-47d3-a9b9-8d49536ef342",
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_500pm}}",
+                "enrollment"
               ]
             },
             "description": ""
