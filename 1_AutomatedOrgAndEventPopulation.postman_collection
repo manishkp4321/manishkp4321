@@ -136,12 +136,17 @@
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeId\", jsonData.userId);",
-                  "postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
-                  "postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
-                  "postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+									"postman.setEnvironmentVariable(\"employeeId\", jsonData.userId);",
+									"postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
+									"postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
+									"postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
+									"",
+									"tests[\"Response code was 201\"] = responseCode.code === 201;",
+									"",
+									"if (responseCode.code != 201)",
+									"{",
+									"    console.out(responseBody);",
+									"}"
                 ]
               }
             },
@@ -179,7 +184,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"South Dakota\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"\"\r\n}"
             },
             "description": ""
           },
