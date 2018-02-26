@@ -138,6 +138,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId\", jsonData.userId);",
                   "postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
+                  "postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
                   "postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
