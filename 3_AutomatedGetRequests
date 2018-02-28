@@ -1,605 +1,491 @@
 {
-  "info": {
-    "name": "3_Automated_SanityChecks_GET_Requests",
-    "_postman_id": "e83fecbe-bfaa-23c2-3ce4-82074b60db83",
-    "description": "",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Update Location",
-      "description": "",
-      "item": [
-        {
-          "name": "updateLocation",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "43236261-d6ae-43cc-bca9-81ecc594a4c5",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"University Fitness Center #{{orgNumber}}\",\r\n    \"address\" : {\r\n      \"address1\" : \"123 Fitness Lane\",\r\n      \"address2\" : \"PO Box {{$randomInt}}\",\r\n      \"city\" : \"Little Rock\",\r\n      \"state\" : \"{{randState}}\",\r\n      \"country\" : \"United States\",\r\n      \"zipCode\" : \"33935\"\r\n    },\r\n  \"email\" : {\r\n    \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\r\n  },\r\n  \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"411\"\r\n    }\r\n}\r\n\r\n"
-            },
-            "url": {
-              "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
-              "host": [
-                "{{my-organization}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "location",
-                "{{locationId}}"
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ],
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "exec": [
-              ""
-            ],
-            "id": "23aa49a3-c020-4af6-a3a9-40347146089e",
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              ""
-            ],
-            "id": "2f4382f2-bf77-4b5d-b596-b8763804504b",
-            "type": "text/javascript"
-          }
-        }
-      ]
-    },
-    {
-      "name": "Send Reset Password Mail",
-      "description": "Sends Reset Password email with Passcode for Reset Password/Forgot Password",
-      "item": [
-        {
-          "name": "sendPasswordResetMail",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "6cf77b5e-55d5-4814-baf5-83ba25f54267",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 202\"] = responseCode.code === 202;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"email\": \"{{employeeEmail}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{authentication}}/organization/{{organizationId}}/password?reset=true",
-              "host": [
-                "{{authentication}}"
-              ],
-              "path": [
-                "organization",
-                "{{organizationId}}",
-                "password"
-              ],
-              "query": [
-                {
-                  "key": "reset",
-                  "value": "true",
-                  "equals": true
-                }
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Schedule",
-      "description": "",
-      "item": [
-        {
-          "name": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ec826aaa-fc9c-49f2-a06a-53ca113c56ef",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "schedule"
-              ],
-              "query": [
-                {
-                  "key": "startDateTime",
-                  "value": "{{eventStartTime}}",
-                  "equals": true
-                },
-                {
-                  "key": "endDateTime",
-                  "value": "{{eventEndTime}}",
-                  "equals": true
-                }
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Registration",
-      "description": "",
-      "item": [
-        {
-          "name": "getEmployeeRegistration",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "995c63be-031f-4fee-b242-2c2823e2e91a",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "{{registration}}/{{organizationId}}/user/token/{{employeeTokenId}}",
-              "host": [
-                "{{registration}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "user",
-                "token",
-                "{{employeeTokenId}}"
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Enrollment",
-      "description": "",
-      "item": [
-        {
-          "name": "getEnrollment_1030AM",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "18ae73e5-c9d1-4e78-bb29-522238bcd06b",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/enrollment",
-              "host": [
-                "{{enrollment}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_1030am}}",
-                "enrollment"
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "getEnrollment_1200PM",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ab4ca685-9466-46bf-9aa6-9378755e51a1",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/enrollment",
-              "host": [
-                "{{enrollment}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_1200pm}}",
-                "enrollment"
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "getEnrollment_100PM",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "4767b12d-e363-43d2-8dd0-306b8f3a9202",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/enrollment",
-              "host": [
-                "{{enrollment}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_100pm}}",
-                "enrollment"
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "getEnrollment_200PM",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "0979546a-fbb0-4ef9-b6e4-63e3b8cb4f63",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_200pm}}/enrollment",
-              "host": [
-                "{{enrollment}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_200pm}}",
-                "enrollment"
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "getEnrollment_300PM ",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "c1f50d14-823c-4673-ad8c-79dbe3bbf050",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_300pm}}/enrollment",
-              "host": [
-                "{{enrollment}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_300pm}}",
-                "enrollment"
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "getEnrollment_430PM",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "67c35e8d-60e5-4bd3-b7b6-659c0b84a1d8",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_430pm}}/enrollment",
-              "host": [
-                "{{enrollment}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_430pm}}",
-                "enrollment"
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "getEnrollment_500PM",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "33065a6f-5709-47d3-a9b9-8d49536ef342",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/enrollment",
-              "host": [
-                "{{enrollment}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_500pm}}",
-                "enrollment"
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Login",
-      "description": "",
-      "item": [
-        {
-          "name": "OwnerLogin",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "c13450d3-5eaf-48ac-93e1-f97a9885aa13",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
-              },
-              {
-                "key": "",
-                "value": "",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"password\": \"{{ownerPassword}}\",\r\n  \"username\": \"{{ownerEmail}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
-              "host": [
-                "{{authentication}}"
-              ],
-              "path": [
-                "organization",
-                "{{organizationId}}",
-                "login"
-              ],
-              "query": [
-                {
-                  "key": "clientId",
-                  "value": "automated-testing-client",
-                  "equals": true
-                }
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "name": "ABCStaffLogin",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "6ec913f4-4b63-46ee-857d-adbaa84ec464",
-                "type": "text/javascript",
-                "exec": [
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
-              },
-              {
-                "key": "",
-                "value": "",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"password\": \"Sydney@32\",\r\n  \"username\": \"animesh.kumar@abcfinancial.com\"\r\n}"
-            },
-            "url": {
-              "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
-              "host": [
-                "{{authentication}}"
-              ],
-              "path": [
-                "organization",
-                "{{organizationId}}",
-                "login"
-              ],
-              "query": [
-                {
-                  "key": "clientId",
-                  "value": "automated-testing-client",
-                  "equals": true
-                }
-              ]
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"variables": [],
+	"info": {
+		"name": "3_Automated_SanityChecks_GET_Requests",
+		"_postman_id": "cac00c23-f955-13fa-b519-e9ce83d12535",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Update Location",
+			"description": "",
+			"item": [
+				{
+					"name": "updateLocation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\" : \"University Fitness Center #{{orgNumber}}\",\r\n    \"address\" : {\r\n      \"address1\" : \"123 Fitness Lane\",\r\n      \"address2\" : \"PO Box {{$randomInt}}\",\r\n      \"city\" : \"Little Rock\",\r\n      \"state\" : \"{{randState}}\",\r\n      \"country\" : \"United States\",\r\n      \"zipCode\" : \"33935\"\r\n    },\r\n  \"email\" : {\r\n    \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\r\n  },\r\n  \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"411\"\r\n    }\r\n}\r\n\r\n"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Send Reset Password Mail",
+			"description": "Sends Reset Password email with Passcode for Reset Password/Forgot Password",
+			"item": [
+				{
+					"name": "sendPasswordResetMail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 202\"] = responseCode.code === 202;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{authentication}}/organization/{{organizationId}}/password?reset=true",
+							"host": [
+								"{{authentication}}"
+							],
+							"path": [
+								"organization",
+								"{{organizationId}}",
+								"password"
+							],
+							"query": [
+								{
+									"key": "reset",
+									"value": "true",
+									"equals": true
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{employeeEmail}}\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Schedule",
+			"description": "",
+			"item": [
+				{
+					"name": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+							"host": [
+								"{{schedule}}"
+							],
+							"path": [
+								"{{organizationId}}",
+								"{{locationId}}",
+								"schedule"
+							],
+							"query": [
+								{
+									"key": "startDateTime",
+									"value": "{{eventStartTime}}",
+									"equals": true
+								},
+								{
+									"key": "endDateTime",
+									"value": "{{eventEndTime}}",
+									"equals": true
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Registration",
+			"description": "",
+			"item": [
+				{
+					"name": "getEmployeeRegistration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{registration}}/{{organizationId}}/user/token/{{employeeTokenId}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enrollment",
+			"description": "",
+			"item": [
+				{
+					"name": "getEnrollment_1030AM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/enrollment",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getEnrollment_1200PM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/enrollment",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getEnrollment_100PM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/enrollment",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getEnrollment_200PM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_200pm}}/enrollment",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getEnrollment_300PM ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_300pm}}/enrollment",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getEnrollment_430PM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_430pm}}/enrollment",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getEnrollment_500PM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/enrollment",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"description": "",
+			"item": [
+				{
+					"name": "OwnerLogin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
+							"host": [
+								"{{authentication}}"
+							],
+							"path": [
+								"organization",
+								"{{organizationId}}",
+								"login"
+							],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "automated-testing-client",
+									"equals": true
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"{{ownerPassword}}\",\r\n  \"username\": \"{{ownerEmail}}\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ABCStaffLogin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
+							"host": [
+								"{{authentication}}"
+							],
+							"path": [
+								"organization",
+								"{{organizationId}}",
+								"login"
+							],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "automated-testing-client",
+									"equals": true
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"Sydney@32\",\r\n  \"username\": \"animesh.kumar@abcfinancial.com\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
