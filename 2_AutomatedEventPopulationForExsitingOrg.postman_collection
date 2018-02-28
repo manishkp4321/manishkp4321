@@ -594,7 +594,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -1126,7 +1126,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -1626,7 +1626,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -2126,7 +2126,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -2626,7 +2626,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -3286,7 +3286,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -3818,7 +3818,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {

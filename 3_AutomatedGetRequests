@@ -19,7 +19,7 @@
                 "id": "43236261-d6ae-43cc-bca9-81ecc594a4c5",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -88,7 +88,7 @@
                 "id": "6cf77b5e-55d5-4814-baf5-83ba25f54267",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 202\"] = responseCode.code === 202;"
+                  "tests[\"Response code should be 202\"] = responseCode.code === 202;"
                 ]
               }
             }
@@ -146,7 +146,7 @@
                 "id": "ec826aaa-fc9c-49f2-a06a-53ca113c56ef",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -197,7 +197,7 @@
                 "id": "995c63be-031f-4fee-b242-2c2823e2e91a",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -237,7 +237,7 @@
                 "id": "18ae73e5-c9d1-4e78-bb29-522238bcd06b",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -272,7 +272,7 @@
                 "id": "ab4ca685-9466-46bf-9aa6-9378755e51a1",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -307,7 +307,7 @@
                 "id": "4767b12d-e363-43d2-8dd0-306b8f3a9202",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -342,7 +342,7 @@
                 "id": "0979546a-fbb0-4ef9-b6e4-63e3b8cb4f63",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -377,7 +377,7 @@
                 "id": "c1f50d14-823c-4673-ad8c-79dbe3bbf050",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -412,7 +412,7 @@
                 "id": "67c35e8d-60e5-4bd3-b7b6-659c0b84a1d8",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -447,7 +447,7 @@
                 "id": "33065a6f-5709-47d3-a9b9-8d49536ef342",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -488,7 +488,7 @@
                 "id": "c13450d3-5eaf-48ac-93e1-f97a9885aa13",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -548,7 +548,7 @@
                 "id": "6ec913f4-4b63-46ee-857d-adbaa84ec464",
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
