@@ -181,7 +181,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"South Dakota\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"\"\r\n}"
             },
             "description": ""
           },
