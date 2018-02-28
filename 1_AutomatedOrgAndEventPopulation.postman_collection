@@ -27,7 +27,7 @@
                   "postman.setEnvironmentVariable(\"ownerPassword\", jsonData.password);",
                   "postman.setEnvironmentVariable(\"appURL\", appURL);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -82,7 +82,7 @@
                   "postman.setEnvironmentVariable(\"addressId\", jsonData.location.address.id);",
                   "postman.setEnvironmentVariable(\"locationId\", jsonData.location.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -139,8 +139,14 @@
                   "postman.setEnvironmentVariable(\"employeeId\", jsonData.userId);",
                   "postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
+                  "postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    console.out(responseBody);",
+                  "}"
                 ]
               }
             },
@@ -178,7 +184,437 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"North Dakota\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{registration}}/{{organizationId}}/employee",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{registration}}/{{organizationId}}/employee",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 4",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{registration}}/{{organizationId}}/employee",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 5",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{registration}}/{{organizationId}}/employee",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 6",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{registration}}/{{organizationId}}/employee",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 7",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{registration}}/{{organizationId}}/employee",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 8",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{registration}}/{{organizationId}}/employee",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 9",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{registration}}/{{organizationId}}/employee",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"userType\" : \"Customer\"\r\n}"
             },
             "description": ""
           },
@@ -194,7 +630,7 @@
                 "exec": [
                   "",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -255,7 +691,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"waiverId\", jsonData.location.waiverDocId);",
                   "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -295,7 +731,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"termsId\", jsonData.location.waiverDocId);",
                   "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code was 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -335,7 +771,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -375,7 +811,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -423,7 +859,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId_1030am\", jsonData.id);\r",
                   "\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -470,7 +906,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -528,7 +964,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -563,7 +999,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -609,7 +1045,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -643,7 +1079,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -677,7 +1113,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -711,7 +1147,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -751,7 +1187,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -798,7 +1234,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -827,7 +1263,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -852,7 +1288,7 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;",
                   "",
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
@@ -909,7 +1345,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -949,7 +1385,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -996,7 +1432,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1043,7 +1479,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1097,7 +1533,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1132,7 +1568,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1178,7 +1614,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1212,7 +1648,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1244,7 +1680,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1284,7 +1720,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1331,7 +1767,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1360,7 +1796,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -1389,7 +1825,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1441,7 +1877,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1481,7 +1917,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1528,7 +1964,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1575,7 +2011,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1629,7 +2065,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1664,7 +2100,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1710,7 +2146,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1744,7 +2180,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1784,7 +2220,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1831,7 +2267,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1860,7 +2296,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -1889,7 +2325,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1941,7 +2377,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1981,7 +2417,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2028,7 +2464,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2075,7 +2511,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2129,7 +2565,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2164,7 +2600,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2210,7 +2646,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2244,7 +2680,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2284,7 +2720,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2331,7 +2767,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2360,7 +2796,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -2389,7 +2825,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2441,7 +2877,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2481,7 +2917,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2528,7 +2964,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2575,7 +3011,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2629,7 +3065,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2664,7 +3100,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2710,7 +3146,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2744,7 +3180,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2784,7 +3220,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2831,7 +3267,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2860,7 +3296,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -2889,7 +3325,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2941,7 +3377,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2981,7 +3417,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3028,7 +3464,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3075,7 +3511,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3129,7 +3565,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3164,7 +3600,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3210,7 +3646,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3244,7 +3680,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3276,7 +3712,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3308,7 +3744,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3340,7 +3776,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3372,7 +3808,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3404,7 +3840,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3444,7 +3880,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3491,7 +3927,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3520,7 +3956,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -3549,7 +3985,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3601,7 +4037,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3641,7 +4077,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3688,7 +4124,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3735,7 +4171,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3789,7 +4225,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3824,7 +4260,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3870,7 +4306,7 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3904,7 +4340,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3936,7 +4372,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3976,7 +4412,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4023,7 +4459,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4052,7 +4488,7 @@
             }
           ],
           "request": {
-            "url": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/member",
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
             "method": "POST",
             "header": [
               {
@@ -4081,7 +4517,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4133,7 +4569,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
                 ]
               }
             }
