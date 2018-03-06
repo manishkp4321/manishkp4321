@@ -1487,9 +1487,10 @@
 							"script": {
 								"type": "text/javascript",
 								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"console.out(responseBody);",
 									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
 									"",
-									"var jsonData = JSON.parse(responseBody);",
 									"postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
 									"postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
 									""
