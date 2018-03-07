@@ -151,9 +151,7 @@
 									"postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
 									"postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
 									"",
-									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
-									"",
-									"//console.out(responseBody);"
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;"
 								]
 							}
 						},
@@ -1488,7 +1486,6 @@
 								"type": "text/javascript",
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
-									"console.out(responseBody);",
 									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
 									"",
 									"postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
