@@ -2,7 +2,7 @@
   "variables": [],
   "info": {
     "name": "2 Automated Event Population for existing Org",
-    "_postman_id": "daa4d2b4-d1b0-df93-b205-1cbde95fb22b",
+    "_postman_id": "ad4494ef-07b1-d1f4-775b-4477b1bfbf51",
     "description": "",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
@@ -61,8 +61,9 @@
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventLevelId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -110,7 +111,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId_1030am\", jsonData.id);\r",
                   "\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -157,7 +158,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -174,7 +175,8 @@
                   "// var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T16:30:00\";\r",
                   "// var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T17:00:00\";\r",
                   "\r",
-                  "var date = data.dateForEventCreation;\r",
+                  "//var date = data.dateForEventCreation;\r",
+                  "var date = \"2018-03-13\";\r",
                   "\r",
                   "var eventStartTime = date + \"T16:30:00\";\r",
                   "var eventEndTime = date + \"T17:00:00\";\r",
@@ -198,7 +200,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_1030am}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\"\r\n}"
             },
             "description": ""
           },
@@ -215,13 +217,13 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId}}/host",
+            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/host",
             "method": "POST",
             "header": [
               {
@@ -250,7 +252,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -285,40 +287,6 @@
           "response": []
         },
         {
-          "name": "CreatePromoCode",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
-                  "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/promotion",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"promotionCode\" : \"SAVE10\",\r\n  \"description\" : \"New Offer\",\r\n  \"promotionAmount\" : 10,\r\n  \"promotionMaxQuantity\" : 10,\r\n  \"itemCategoryId\" : \"{{itemCatId_1030am}}\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
           "name": "createItem",
           "event": [
             {
@@ -330,13 +298,13 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
+            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_1030am}}/item",
             "method": "POST",
             "header": [
               {
@@ -364,7 +332,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -381,7 +349,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_1030am}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -396,15 +364,15 @@
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"itemId_1030am\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
+            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_1030am}}/item",
             "method": "POST",
             "header": [
               {
@@ -432,7 +400,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -449,7 +417,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_1030am}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -472,7 +440,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -519,7 +487,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -559,7 +527,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n  \t\"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "description": ""
           },
@@ -573,7 +541,7 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   "",
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
@@ -630,7 +598,285 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/enrollment/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "updateEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "var attendStatus = postman.getEnvironmentVariable(\"attendStatus\")",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+                  "if(attendStatus == 'reserved'){",
+                  "    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+                  "}else{",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var attendStatus = ''",
+                  "var attendPercent = postman.getEnvironmentVariable(\"attendPercent\"); //Approximate",
+                  "//Pass \"%\" threshold from Jenkins? -TimothyW 2018-03-05",
+                  "console.log(\"Attend percent:\" + attendPercent)",
+                  "if(Math.random() <=  attendPercent){",
+                  "    attendStatus = \"attended\"",
+                  "}else{",
+                  "    attendStatus = \"reserved\"",
+                  "}",
+                  "postman.setEnvironmentVariable(\"attendStatus\", attendStatus);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/enrollment/{{userId}}?status={{attendStatus}}",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_1030am}}",
+                "enrollment",
+                "{{userId}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "{{attendStatus}}",
+                  "equals": true,
+                  "description": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create and Enroll Member for 10:30AM copy",
+      "description": "",
+      "item": [
+        {
+          "name": "createCard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var cardTypes = ['Mastercard','VISA','American Express','Discover'];",
+                  "var randCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randCardType\", randCardType);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/card",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createUserMember",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kelvin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Goldman','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n  \t\"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createPurchase",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
+                  "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var unitPrice = 22.5;",
+                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "purchaseAmount = +purchaseAmount + +salesTax;",
+                  "",
+                  "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
+                  "postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
+                  "postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
+                  "postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1030am}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1030am}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -748,9 +994,10 @@
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"eventLevelId_1200pm\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -797,7 +1044,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -844,7 +1091,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -881,7 +1128,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_1200pm}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "description": ""
           },
@@ -896,15 +1143,15 @@
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId}}/host",
+            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/host",
             "method": "POST",
             "header": [
               {
@@ -915,7 +1162,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_1200pm}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
             },
             "description": ""
           },
@@ -933,7 +1180,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -968,40 +1215,6 @@
           "response": []
         },
         {
-          "name": "CreatePromoCode",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
-                  "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/promotion",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"promotionCode\" : \"SAVE20\",\r\n  \"description\" : \"New Offer\",\r\n  \"promotionAmount\" : 10,\r\n  \"promotionMaxQuantity\" : 10,\r\n  \"itemCategoryId\" : \"{{itemCatId_1200pm}}\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
           "name": "createItem",
           "event": [
             {
@@ -1013,13 +1226,13 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_1200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
+            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_1200pm}}/item",
             "method": "POST",
             "header": [
               {
@@ -1047,7 +1260,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1064,7 +1277,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_1200pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -1079,7 +1292,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1096,7 +1309,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_1200pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -1119,7 +1332,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1166,7 +1379,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1224,7 +1437,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1276,7 +1489,284 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/enrollment/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "updateEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "var attendStatus = postman.getEnvironmentVariable(\"attendStatus\")",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+                  "if(attendStatus == 'reserved'){",
+                  "    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+                  "}else{",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var attendStatus = ''",
+                  "var attendPercent = postman.getEnvironmentVariable(\"attendPercent\"); //Approximate",
+                  "//Pass \"%\" threshold from Jenkins? -TimothyW 2018-03-05",
+                  "console.log(\"Attend percent:\" + attendPercent)",
+                  "if(Math.random() <=  attendPercent){",
+                  "    attendStatus = \"attended\"",
+                  "}else{",
+                  "    attendStatus = \"reserved\"",
+                  "}",
+                  "postman.setEnvironmentVariable(\"attendStatus\", attendStatus);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/enrollment/{{userId}}?status={{attendStatus}}",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_1200pm}}",
+                "enrollment",
+                "{{userId}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "{{attendStatus}}",
+                  "equals": true,
+                  "description": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create and Enroll Member for 12PM copy",
+      "description": "",
+      "item": [
+        {
+          "name": "createCard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var cardTypes = ['Paypal','Mastercard','VISA','American Express','Discover'];",
+                  "var randCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randCardType\", randCardType);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/card",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createUserMember",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kelvin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Goldman','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createPurchase",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
+                  "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var unitPrice = 22.5;",
+                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "purchaseAmount = +purchaseAmount + +salesTax;",
+                  "",
+                  "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
+                  "postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
+                  "postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
+                  "postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1395,8 +1885,9 @@
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventLevelId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1443,7 +1934,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1490,7 +1981,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1527,7 +2018,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_100pm}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_100pm}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "description": ""
           },
@@ -1542,15 +2033,15 @@
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId}}/host",
+            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/host",
             "method": "POST",
             "header": [
               {
@@ -1561,7 +2052,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_100pm}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
             },
             "description": ""
           },
@@ -1579,7 +2070,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1614,40 +2105,6 @@
           "response": []
         },
         {
-          "name": "CreatePromoCode",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
-                  "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/promotion",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"promotionCode\" : \"SAVE30\",\r\n  \"description\" : \"New Offer\",\r\n  \"promotionAmount\" : 10,\r\n  \"promotionMaxQuantity\" : 10,\r\n  \"itemCategoryId\" : \"{{itemCatId_100pm}}\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
           "name": "createItem",
           "event": [
             {
@@ -1659,13 +2116,13 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_100pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
+            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_100pm}}/item",
             "method": "POST",
             "header": [
               {
@@ -1693,7 +2150,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -1710,7 +2167,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_100pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_100pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -1733,7 +2190,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1780,7 +2237,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1838,7 +2295,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -1890,7 +2347,284 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/enrollment/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "updateEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "var attendStatus = postman.getEnvironmentVariable(\"attendStatus\")",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+                  "if(attendStatus == 'reserved'){",
+                  "    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+                  "}else{",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var attendStatus = ''",
+                  "var attendPercent = postman.getEnvironmentVariable(\"attendPercent\"); //Approximate",
+                  "//Pass \"%\" threshold from Jenkins? -TimothyW 2018-03-05",
+                  "console.log(\"Attend percent:\" + attendPercent)",
+                  "if(Math.random() <=  attendPercent){",
+                  "    attendStatus = \"attended\"",
+                  "}else{",
+                  "    attendStatus = \"reserved\"",
+                  "}",
+                  "postman.setEnvironmentVariable(\"attendStatus\", attendStatus);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/enrollment/{{userId}}?status={{attendStatus}}",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_100pm}}",
+                "enrollment",
+                "{{userId}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "{{attendStatus}}",
+                  "equals": true,
+                  "description": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create and Enroll Member for 1PM copy",
+      "description": "",
+      "item": [
+        {
+          "name": "createCard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var cardTypes = ['Paypal','Mastercard','VISA','American Express','Discover'];",
+                  "var randCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randCardType\", randCardType);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/card",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createUserMember",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kelvin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Goldman','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createPurchase",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
+                  "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var unitPrice = 22.5;",
+                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "purchaseAmount = +purchaseAmount + +salesTax;",
+                  "",
+                  "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
+                  "postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
+                  "postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
+                  "postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_100pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_100pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2009,8 +2743,9 @@
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventLevelId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2057,7 +2792,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2104,7 +2839,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2141,7 +2876,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_200pm}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_200pm}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "description": ""
           },
@@ -2156,15 +2891,15 @@
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId}}/host",
+            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_200pm}}/host",
             "method": "POST",
             "header": [
               {
@@ -2175,7 +2910,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_200pm}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
             },
             "description": ""
           },
@@ -2193,7 +2928,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2228,40 +2963,6 @@
           "response": []
         },
         {
-          "name": "CreatePromoCode",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
-                  "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/promotion",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"promotionCode\" : \"SAVE40\",\r\n  \"description\" : \"New Offer\",\r\n  \"promotionAmount\" : 10,\r\n  \"promotionMaxQuantity\" : 10,\r\n  \"itemCategoryId\" : \"{{itemCatId_200pm}}\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
           "name": "createItem",
           "event": [
             {
@@ -2273,13 +2974,13 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_200pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
+            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_200pm}}/item",
             "method": "POST",
             "header": [
               {
@@ -2307,7 +3008,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2324,7 +3025,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_200pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_200pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -2347,7 +3048,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2394,7 +3095,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2452,7 +3153,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2504,7 +3205,284 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_200pm}}/enrollment/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "updateEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "var attendStatus = postman.getEnvironmentVariable(\"attendStatus\")",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+                  "if(attendStatus == 'reserved'){",
+                  "    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+                  "}else{",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var attendStatus = ''",
+                  "var attendPercent = postman.getEnvironmentVariable(\"attendPercent\"); //Approximate",
+                  "//Pass \"%\" threshold from Jenkins? -TimothyW 2018-03-05",
+                  "console.log(\"Attend percent:\" + attendPercent)",
+                  "if(Math.random() <=  attendPercent){",
+                  "    attendStatus = \"attended\"",
+                  "}else{",
+                  "    attendStatus = \"reserved\"",
+                  "}",
+                  "postman.setEnvironmentVariable(\"attendStatus\", attendStatus);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_200pm}}/enrollment/{{userId}}?status={{attendStatus}}",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_200pm}}",
+                "enrollment",
+                "{{userId}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "{{attendStatus}}",
+                  "equals": true,
+                  "description": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create and Enroll Member for 2PM copy",
+      "description": "",
+      "item": [
+        {
+          "name": "createCard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var cardTypes = ['Paypal','Mastercard','VISA','American Express','Discover'];",
+                  "var randCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randCardType\", randCardType);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/card",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createUserMember",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kelvin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Goldman','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createPurchase",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
+                  "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var unitPrice = 22.5;",
+                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "purchaseAmount = +purchaseAmount + +salesTax;",
+                  "",
+                  "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
+                  "postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
+                  "postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
+                  "postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2623,8 +3601,9 @@
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventLevelId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2671,7 +3650,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2718,7 +3697,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2755,7 +3734,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_300pm}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_300pm}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "description": ""
           },
@@ -2770,15 +3749,15 @@
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId}}/host",
+            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_300pm}}/host",
             "method": "POST",
             "header": [
               {
@@ -2789,7 +3768,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_300pm}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
             },
             "description": ""
           },
@@ -2807,7 +3786,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -2842,40 +3821,6 @@
           "response": []
         },
         {
-          "name": "CreatePromoCode",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
-                  "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/promotion",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"promotionCode\" : \"SAVE50\",\r\n  \"description\" : \"New Offer\",\r\n  \"promotionAmount\" : 10,\r\n  \"promotionMaxQuantity\" : 10,\r\n  \"itemCategoryId\" : \"{{itemCatId_300pm}}\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
           "name": "createItem",
           "event": [
             {
@@ -2887,13 +3832,13 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_300pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
+            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_300pm}}/item",
             "method": "POST",
             "header": [
               {
@@ -2921,7 +3866,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -2938,7 +3883,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_300pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_300pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -2961,7 +3906,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3008,7 +3953,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3066,7 +4011,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3118,7 +4063,284 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_300pm}}/enrollment/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "updateEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "var attendStatus = postman.getEnvironmentVariable(\"attendStatus\")",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+                  "if(attendStatus == 'reserved'){",
+                  "    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+                  "}else{",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var attendStatus = ''",
+                  "var attendPercent = postman.getEnvironmentVariable(\"attendPercent\"); //Approximate",
+                  "//Pass \"%\" threshold from Jenkins? -TimothyW 2018-03-05",
+                  "console.log(\"Attend percent:\" + attendPercent)",
+                  "if(Math.random() <=  attendPercent){",
+                  "    attendStatus = \"attended\"",
+                  "}else{",
+                  "    attendStatus = \"reserved\"",
+                  "}",
+                  "postman.setEnvironmentVariable(\"attendStatus\", attendStatus);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_300pm}}/enrollment/{{userId}}?status={{attendStatus}}",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_300pm}}",
+                "enrollment",
+                "{{userId}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "{{attendStatus}}",
+                  "equals": true,
+                  "description": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create and Enroll Member for 3PM copy",
+      "description": "",
+      "item": [
+        {
+          "name": "createCard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var cardTypes = ['Paypal','Mastercard','VISA','American Express','Discover'];",
+                  "var randCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randCardType\", randCardType);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/card",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createUserMember",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kelvin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Goldman','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createPurchase",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
+                  "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var unitPrice = 22.5;",
+                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "purchaseAmount = +purchaseAmount + +salesTax;",
+                  "",
+                  "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
+                  "postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
+                  "postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
+                  "postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_300pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_300pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3237,8 +4459,9 @@
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventLevelId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3285,7 +4508,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3332,7 +4555,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3369,7 +4592,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_430pm}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_430pm}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "description": ""
           },
@@ -3384,15 +4607,15 @@
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId}}/host",
+            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_430pm}}/host",
             "method": "POST",
             "header": [
               {
@@ -3403,7 +4626,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_430pm}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
             },
             "description": ""
           },
@@ -3421,7 +4644,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3456,40 +4679,6 @@
           "response": []
         },
         {
-          "name": "CreatePromoCode",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
-                  "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/promotion",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"promotionCode\" : \"SAVE60\",\r\n  \"description\" : \"New Offer\",\r\n  \"promotionAmount\" : 10,\r\n  \"promotionMaxQuantity\" : 10,\r\n  \"itemCategoryId\" : \"{{itemCatId_430pm}}\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
           "name": "createItem",
           "event": [
             {
@@ -3501,13 +4690,13 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_430pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
+            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_430pm}}/item",
             "method": "POST",
             "header": [
               {
@@ -3535,7 +4724,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3552,7 +4741,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_430pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_430pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3567,7 +4756,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3584,7 +4773,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_430pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1030am}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3599,7 +4788,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3616,7 +4805,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_430pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3631,7 +4820,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3648,7 +4837,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_100pm}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_430pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_100pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3663,7 +4852,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3680,7 +4869,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_200pm}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_430pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_200pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3695,7 +4884,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -3712,7 +4901,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_300pm}}\"\r\n}"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_430pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_300pm}}\"\r\n}"
             },
             "description": ""
           },
@@ -3735,7 +4924,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3782,7 +4971,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3840,7 +5029,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -3892,7 +5081,284 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_430pm}}/enrollment/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "updateEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "var attendStatus = postman.getEnvironmentVariable(\"attendStatus\")",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+                  "if(attendStatus == 'reserved'){",
+                  "    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+                  "}else{",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var attendStatus = ''",
+                  "var attendPercent = postman.getEnvironmentVariable(\"attendPercent\"); //Approximate",
+                  "//Pass \"%\" threshold from Jenkins? -TimothyW 2018-03-05",
+                  "console.log(\"Attend percent:\" + attendPercent)",
+                  "if(Math.random() <=  attendPercent){",
+                  "    attendStatus = \"attended\"",
+                  "}else{",
+                  "    attendStatus = \"reserved\"",
+                  "}",
+                  "postman.setEnvironmentVariable(\"attendStatus\", attendStatus);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_430pm}}/enrollment/{{userId}}?status={{attendStatus}}",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_430pm}}",
+                "enrollment",
+                "{{userId}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "{{attendStatus}}",
+                  "equals": true,
+                  "description": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create and Enroll Member for 4:30PM copy",
+      "description": "",
+      "item": [
+        {
+          "name": "createCard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var cardTypes = ['Paypal','Mastercard','VISA','American Express','Discover'];",
+                  "var randCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randCardType\", randCardType);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/card",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createUserMember",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kelvin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Goldman','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createPurchase",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
+                  "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var unitPrice = 22.5;",
+                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "purchaseAmount = +purchaseAmount + +salesTax;",
+                  "",
+                  "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
+                  "postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
+                  "postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
+                  "postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_430pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_430pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -4011,8 +5477,9 @@
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventLevelId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"eventLevelId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4059,7 +5526,7 @@
                   "postman.setEnvironmentVariable(\"eventTypeId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventTypeId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4106,7 +5573,7 @@
                   "postman.setEnvironmentVariable(\"eventId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"eventId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4143,7 +5610,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_500pm}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_500pm}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "description": ""
           },
@@ -4160,13 +5627,13 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId}}/host",
+            "url": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/host",
             "method": "POST",
             "header": [
               {
@@ -4177,7 +5644,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_500pm}}\",\r\n  \"employeeId\" : \"{{employeeId}}\"\r\n}"
             },
             "description": ""
           },
@@ -4195,7 +5662,7 @@
                   "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemCatId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4230,40 +5697,6 @@
           "response": []
         },
         {
-          "name": "CreatePromoCode",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
-                  "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/promotion",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"promotionCode\" : \"SAVE70\",\r\n  \"description\" : \"New Offer\",\r\n  \"promotionAmount\" : 10,\r\n  \"promotionMaxQuantity\" : 10,\r\n  \"itemCategoryId\" : \"{{itemCatId_500pm}}\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
           "name": "createItem",
           "event": [
             {
@@ -4275,13 +5708,13 @@
                   "postman.setEnvironmentVariable(\"itemId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"itemId_500pm\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
           ],
           "request": {
-            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
+            "url": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_500pm}}/item",
             "method": "POST",
             "header": [
               {
@@ -4309,7 +5742,7 @@
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"itemEligibilityId\", jsonData.id);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -4326,7 +5759,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_500pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_500pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -4341,7 +5774,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
@@ -4358,7 +5791,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"itemId\" : \"{{itemId_500pm}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_1200pm}}\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -4381,7 +5814,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4428,7 +5861,7 @@
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4486,7 +5919,7 @@
                   "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
                   "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
@@ -4538,7 +5971,284 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
                   "",
-                  "tests[\"Response code was 201\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/enrollment/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "updateEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "var attendStatus = postman.getEnvironmentVariable(\"attendStatus\")",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+                  "if(attendStatus == 'reserved'){",
+                  "    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+                  "}else{",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var attendStatus = ''",
+                  "var attendPercent = postman.getEnvironmentVariable(\"attendPercent\"); //Approximate",
+                  "//Pass \"%\" threshold from Jenkins? -TimothyW 2018-03-05",
+                  "console.log(\"Attend percent:\" + attendPercent)",
+                  "if(Math.random() <=  attendPercent){",
+                  "    attendStatus = \"attended\"",
+                  "}else{",
+                  "    attendStatus = \"reserved\"",
+                  "}",
+                  "postman.setEnvironmentVariable(\"attendStatus\", attendStatus);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/enrollment/{{userId}}?status={{attendStatus}}",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_500pm}}",
+                "enrollment",
+                "{{userId}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "{{attendStatus}}",
+                  "equals": true,
+                  "description": ""
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create and Enroll Member for 5PM copy",
+      "description": "",
+      "item": [
+        {
+          "name": "createCard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"cardId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var cardTypes = ['Paypal','Mastercard','VISA','American Express','Discover'];",
+                  "var randCardType = cardTypes[Math.floor(Math.random() * cardTypes.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randCardType\", randCardType);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/card",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"collectedUserId\" : \"{{employeeId}}\",\r\n  \"lastFour\" : \"1234\",\r\n  \"expiryMonth\" : 2,\r\n  \"expiryYear\" : 22,\r\n  \"gateway\" : \"STRIPE\",\r\n  \"gatewayResponse\" : \"{\\\"id\\\":\\\"src_1BW8fc2eZvKYlo2C9pRNClwF\\\",\\\"object\\\":\\\"source\\\",\\\"client_secret\\\":\\\"src_client_secret_BtwYR1BVfM1hBafiBCcNaoc9\\\",\\\"created\\\":1512588904,\\\"flow\\\":\\\"none\\\",\\\"livemode\\\":false,\\\"metadata\\\":[],\\\"owner\\\":{\\\"address\\\":{\\\"postal_code\\\":\\\"72032\\\"}}}\",\r\n  \r\n  \"cardType\" : \"{{randCardType}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createUserMember",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig', 'Tammy', 'Heaven', 'Kent', 'Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Oren','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Elfriede','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angelo','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Gina','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kelvin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Goldman','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"person\": {\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{phoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createPurchase",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
+                  "postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var unitPrice = 22.5;",
+                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "purchaseAmount = +purchaseAmount + +salesTax;",
+                  "",
+                  "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
+                  "postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
+                  "postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
+                  "postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{employeeId}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_500pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_500pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{$randomInt}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "createEnrollment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             }
