@@ -399,7 +399,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Unlimited Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 1,\r\n  \"unlimited\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Unlimited Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 1,\r\n  \"unlimited\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -490,7 +490,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Premium Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 75,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 4,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Premium Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 75,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -752,7 +752,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"DAYS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_1030am}}\",\n    \"itemCategoryId\" : \"{{itemCatId_1030am}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\n    \"type\": \"CASH\"\n  }\n}"
+              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_1030am}}\",\n    \"itemCategoryId\" : \"{{itemCatId_1030am}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\n    \"type\": \"CASH\"\n  }\n}"
             },
             "description": ""
           },
@@ -1100,7 +1100,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"DAYS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_1030am}}\",\n    \"itemCategoryId\" : \"{{itemCatId_1030am}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\n    \"type\": \"CASH\"\n  }\n}"
+              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_1030am}}\",\n    \"itemCategoryId\" : \"{{itemCatId_1030am}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\n    \"type\": \"CASH\"\n  }\n}"
             },
             "description": ""
           },
@@ -1521,7 +1521,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -1820,7 +1820,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -2167,7 +2167,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_1200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_1200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -2588,7 +2588,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -2849,7 +2849,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_100pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_100pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_100pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_100pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -3196,7 +3196,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_100pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_100pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_100pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_100pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -3617,7 +3617,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -3878,7 +3878,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -4225,7 +4225,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_200pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_200pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -4646,7 +4646,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -4907,7 +4907,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_300pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_300pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_300pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_300pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -5254,7 +5254,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_300pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_300pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_300pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_300pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -5675,7 +5675,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -6126,7 +6126,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_430pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_430pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_430pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_430pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -6473,7 +6473,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_430pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_430pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_430pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_430pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -6894,7 +6894,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"WEEKS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
             },
             "description": ""
           },
@@ -7193,7 +7193,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_500pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_500pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_500pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_500pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
@@ -7540,7 +7540,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 30,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_500pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_500pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_500pm}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId_500pm}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "description": ""
           },
