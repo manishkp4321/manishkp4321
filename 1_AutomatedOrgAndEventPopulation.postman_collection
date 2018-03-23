@@ -763,6 +763,8 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"addressId\", jsonData.location.address.id);",
                   "postman.setEnvironmentVariable(\"locationId\", jsonData.location.id);",
+                  "postman.setEnvironmentVariable(\"locationName\", jsonData.location.name);",
+                  "postman.setEnvironmentVariable(\"orgName\", jsonData.name);",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
@@ -2492,6 +2494,7 @@
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);\r",
                   "postman.setEnvironmentVariable(\"memberId\", jsonData.id);\r",
+                  "postman.setEnvironmentVariable(\"memberId_1030am\", jsonData.id);\r",
                   "postman.setEnvironmentVariable(\"userId\", jsonData.userId);\r",
                   "\r",
                   "if (responseCode.code != 201)\r",
