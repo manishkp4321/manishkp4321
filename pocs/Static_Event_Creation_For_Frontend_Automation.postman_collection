@@ -1,0 +1,1067 @@
+{
+  "info": {
+    "_postman_id": "45e18466-61bd-44b8-bf63-6a4647c75d2a",
+    "name": "Static_Event_Creation_For_Frontend_Automation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Event - Yoga For Beginner",
+      "description": null,
+      "item": [
+        {
+          "name": "CreateEventYogaForBeginners",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "630b4afe-a1fe-4428-9933-7d6228ba9518",
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"eventId_1\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e8e423dc-440a-4a1f-9631-98b01aca1dd4",
+                "type": "text/javascript",
+                "exec": [
+                  "var dayIncrement = Number(data.dayIncrement);",
+                  "var afterHoursIncrement = Number(data.afterHoursIncrement);",
+                  "var startTime = data.startTime;",
+                  "var endTime = data.endTime;",
+                  "",
+                  "var current_timestamp = new Date();",
+                  "var current_year = current_timestamp.getFullYear();",
+                  "var current_start_date = ('0' + (current_timestamp.getDate()+dayIncrement)).slice(-2);",
+                  "var current_end_date = ('0' + (current_timestamp.getDate()+afterHoursIncrement)).slice(-2);",
+                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
+                  "",
+                  "var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_start_date + startTime;",
+                  "var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_end_date + endTime;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
+                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_beginner}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateHost",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
+                  "\r",
+                  "if (responseCode.code != 201)\r",
+                  "{\r",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
+                  "}\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_1}}\",\r\n  \"substituteId\" : \"{{employeeId_ricky}}\",\r\n  \"employeeId\" : \"{{employeeId_rizwan}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_1}}/host",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_1}}",
+                "host"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "20508b15-7289-48d1-b616-860b661089d2",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "94e76a10-5ac9-49f8-ad2d-4aec108e0b43",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Event - Beginner Kick Boxing",
+      "description": null,
+      "item": [
+        {
+          "name": "CreateEventBeginnerKickBoxing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7b01d86c-feec-4f73-86b2-30b34efdc6f4",
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"eventId_2\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e8e423dc-440a-4a1f-9631-98b01aca1dd4",
+                "type": "text/javascript",
+                "exec": [
+                  "var dayIncrement = Number(data.dayIncrement);",
+                  "var afterHoursIncrement = Number(data.afterHoursIncrement);",
+                  "var startTime = data.startTime;",
+                  "var endTime = data.endTime;",
+                  "",
+                  "var current_timestamp = new Date();",
+                  "var current_year = current_timestamp.getFullYear();",
+                  "var current_start_date = ('0' + (current_timestamp.getDate()+dayIncrement)).slice(-2);",
+                  "var current_end_date = ('0' + (current_timestamp.getDate()+afterHoursIncrement)).slice(-2);",
+                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
+                  "",
+                  "var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_start_date + startTime;",
+                  "var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_end_date + endTime;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
+                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_beginner}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateHost",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_1200pm\", jsonData.id);\r",
+                  "\r",
+                  "if (responseCode.code != 201)\r",
+                  "{\r",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
+                  "}\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_2}}\",\r\n  \"substituteId\" : \"{{employeeId_tony}}\",\r\n  \"employeeId\" : \"{{employeeId_john}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_2}}/host",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_2}}",
+                "host"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Event - Spin Intermediate",
+      "description": null,
+      "item": [
+        {
+          "name": "CreateEventSpinIntermediate",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "021b635b-2936-4694-8741-e9bd71562d41",
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"eventId_3\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e8e423dc-440a-4a1f-9631-98b01aca1dd4",
+                "type": "text/javascript",
+                "exec": [
+                  "var dayIncrement = Number(data.dayIncrement);",
+                  "var afterHoursIncrement = Number(data.afterHoursIncrement);",
+                  "var startTime = data.startTime;",
+                  "var endTime = data.endTime;",
+                  "",
+                  "var current_timestamp = new Date();",
+                  "var current_year = current_timestamp.getFullYear();",
+                  "var current_start_date = ('0' + (current_timestamp.getDate()+dayIncrement)).slice(-2);",
+                  "var current_end_date = ('0' + (current_timestamp.getDate()+afterHoursIncrement)).slice(-2);",
+                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
+                  "",
+                  "var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_start_date + startTime;",
+                  "var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_end_date + endTime;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
+                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_spinIntermediate}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_intermediate}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateHost",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_100pm\", jsonData.id);\r",
+                  "\r",
+                  "if (responseCode.code != 201)\r",
+                  "{\r",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
+                  "}\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_3}}\",\r\n  \"substituteId\" : \"{{employeeId_monty}}\",\r\n  \"employeeId\" : \"{{employeeId_max}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_3}}/host",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_3}}",
+                "host"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Event - Yoga For Beginner",
+      "description": null,
+      "item": [
+        {
+          "name": "CreateEventYogaForBeginners2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "418f56ff-1c03-41c8-8df0-0749ea8c0d07",
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"eventId_4\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e8e423dc-440a-4a1f-9631-98b01aca1dd4",
+                "type": "text/javascript",
+                "exec": [
+                  "var dayIncrement = Number(data.dayIncrement);",
+                  "var afterHoursIncrement = Number(data.afterHoursIncrement);",
+                  "var startTime = data.startTime;",
+                  "var endTime = data.endTime;",
+                  "",
+                  "var current_timestamp = new Date();",
+                  "var current_year = current_timestamp.getFullYear();",
+                  "var current_start_date = ('0' + (current_timestamp.getDate()+dayIncrement)).slice(-2);",
+                  "var current_end_date = ('0' + (current_timestamp.getDate()+afterHoursIncrement)).slice(-2);",
+                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
+                  "",
+                  "var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_start_date + startTime;",
+                  "var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_end_date + endTime;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
+                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_beginner}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateHost",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_200pm\", jsonData.id);\r",
+                  "\r",
+                  "if (responseCode.code != 201)\r",
+                  "{\r",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
+                  "}\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_4}}\",\r\n  \"substituteId\" : \"{{employeeId_ash}}\",\r\n  \"employeeId\" : \"{{employeeId_steve}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_4}}/host",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_4}}",
+                "host"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Event - Beginner Kick Boxing",
+      "description": null,
+      "item": [
+        {
+          "name": "CreateEventBeginnerKickBoxing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e2ba2608-6946-4824-b978-a393824f215e",
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"eventId_5\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e8e423dc-440a-4a1f-9631-98b01aca1dd4",
+                "type": "text/javascript",
+                "exec": [
+                  "var dayIncrement = Number(data.dayIncrement);",
+                  "var afterHoursIncrement = Number(data.afterHoursIncrement);",
+                  "var startTime = data.startTime;",
+                  "var endTime = data.endTime;",
+                  "",
+                  "var current_timestamp = new Date();",
+                  "var current_year = current_timestamp.getFullYear();",
+                  "var current_start_date = ('0' + (current_timestamp.getDate()+dayIncrement)).slice(-2);",
+                  "var current_end_date = ('0' + (current_timestamp.getDate()+afterHoursIncrement)).slice(-2);",
+                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
+                  "",
+                  "var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_start_date + startTime;",
+                  "var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_end_date + endTime;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
+                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_beginner}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateHost",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_300pm\", jsonData.id);\r",
+                  "\r",
+                  "if (responseCode.code != 201)\r",
+                  "{\r",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
+                  "}\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_5}}\",\r\n  \"substituteId\" : \"{{employeeId_kane}}\",\r\n  \"employeeId\" : \"{{employeeId_don}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_5}}/host",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_5}}",
+                "host"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Event - Advanced Community Pilates",
+      "description": null,
+      "item": [
+        {
+          "name": "CreateEventAdvancedCommunityPilates",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "67d2a2a1-50e0-4e31-ad32-7d019e616d32",
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"eventId_6\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e8e423dc-440a-4a1f-9631-98b01aca1dd4",
+                "type": "text/javascript",
+                "exec": [
+                  "var dayIncrement = Number(data.dayIncrement);",
+                  "var afterHoursIncrement = Number(data.afterHoursIncrement);",
+                  "var startTime = data.startTime;",
+                  "var endTime = data.endTime;",
+                  "",
+                  "var current_timestamp = new Date();",
+                  "var current_year = current_timestamp.getFullYear();",
+                  "var current_start_date = ('0' + (current_timestamp.getDate()+dayIncrement)).slice(-2);",
+                  "var current_end_date = ('0' + (current_timestamp.getDate()+afterHoursIncrement)).slice(-2);",
+                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
+                  "",
+                  "var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_start_date + startTime;",
+                  "var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_end_date + endTime;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
+                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_advancedCommunityPilates}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_advanced}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateHost",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId_430pm\", jsonData.id);\r",
+                  "\r",
+                  "if (responseCode.code != 201)\r",
+                  "{\r",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
+                  "}\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_6}}\",\r\n  \"substituteId\" : \"{{employeeId_dave}}\",\r\n  \"employeeId\" : \"{{employeeId_dane}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_6}}/host",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_6}}",
+                "host"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Event - Hot Power Intermediate",
+      "description": null,
+      "item": [
+        {
+          "name": "CreateEventHotPowerIntermediate",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "60bd7712-af0a-41ab-84a0-8094f20c8288",
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"eventId_7\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e8e423dc-440a-4a1f-9631-98b01aca1dd4",
+                "type": "text/javascript",
+                "exec": [
+                  "var dayIncrement = Number(data.dayIncrement);",
+                  "var afterHoursIncrement = Number(data.afterHoursIncrement);",
+                  "var startTime = data.startTime;",
+                  "var endTime = data.endTime;",
+                  "",
+                  "var current_timestamp = new Date();",
+                  "var current_year = current_timestamp.getFullYear();",
+                  "var current_start_date = ('0' + (current_timestamp.getDate()+dayIncrement)).slice(-2);",
+                  "var current_end_date = ('0' + (current_timestamp.getDate()+afterHoursIncrement)).slice(-2);",
+                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
+                  "",
+                  "var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_start_date + startTime;",
+                  "var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_end_date + endTime;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
+                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_hotPowerIntermediate}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_intermediate}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateHost",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);\r",
+                  "\r",
+                  "if (responseCode.code != 201)\r",
+                  "{\r",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
+                  "}\r",
+                  "\r",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_6}}\",\r\n  \"substituteId\" : \"{{employeeId_annie}}\",\r\n  \"employeeId\" : \"{{employeeId_david}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_7}}/host",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_7}}",
+                "host"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
