@@ -3031,93 +3031,23 @@
       "description": null,
       "item": [
         {
-          "name": "CreatePromoCodeAll",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "f228cb07-9a0f-42a8-bb0c-1d145eb75f6a",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"promoCodeId\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "c675f7f6-7fbc-43be-a766-05058a12f888",
-                "type": "text/javascript",
-                "exec": [
-                  "var current_timestamp = new Date();",
-                  "var current_year = (current_timestamp.getFullYear());",
-                  "var end_year = (current_timestamp.getFullYear()+1);",
-                  "var current_date = ('0' + (current_timestamp.getDate())).slice(-2);",
-                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
-                  "",
-                  "var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date;",
-                  "var eventEndTime = end_year + \"-\" + current_month + \"-\" + current_date;",
-                  "",
-                  "",
-                  "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
-                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"Promo Code All\",\r\n  \"code\" : \"PROMOCODEALL\",\r\n  \"type\" : \"PERCENTAGE\",\r\n  \"startDate\" : \"{{eventStartTime}}\",\r\n  \"endDate\" : \"{{eventEndTime}}\",\r\n  \"amount\" : 20\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion",
-              "host": [
-                "{{purchase}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "promotion"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "CreatePromoCodeTwo",
           "event": [
             {
               "listen": "test",
               "script": {
-                "id": "076c8cad-8933-47b3-b61e-d7e73288293a",
+                "id": "d0227068-44b7-4e0d-9e15-3651fb753ce9",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"promoCodeId\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"promoCodeId_1\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -3154,7 +3084,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"Promo Code 2\",\r\n  \"code\" : \"PROMOCODETWO\",\r\n  \"type\" : \"PERCENTAGE\",\r\n  \"startDate\" : \"{{eventStartTime}}\",\r\n  \"endDate\" : \"{{eventEndTime}}\",\r\n  \"amount\" : 30\r\n}"
+              "raw": "{\r\n  \"name\" : \"Promo Code 1\",\r\n  \"code\" : \"PROMOCODEONE\",\r\n  \"type\" : \"PERCENTAGE\",\r\n  \"startDate\" : \"{{eventStartTime}}\",\r\n  \"endDate\" : \"{{eventEndTime}}\",\r\n  \"amount\" : 20\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion",
@@ -3176,18 +3106,18 @@
             {
               "listen": "test",
               "script": {
-                "id": "a90106e8-d91b-4d36-a987-64522d5e3984",
+                "id": "18c0e4b2-88e3-43f3-8428-9957901fb242",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"promoCodeId\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"promoCodeId_2\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -3224,7 +3154,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"Promo Code 3\",\r\n  \"code\" : \"PROMOCODETHREE\",\r\n  \"type\" : \"PERCENTAGE\",\r\n  \"startDate\" : \"{{eventStartTime}}\",\r\n  \"endDate\" : \"{{eventEndTime}}\",\r\n  \"amount\" : 30\r\n}"
+              "raw": "{\r\n  \"name\" : \"Promo Code 2\",\r\n  \"code\" : \"PROMOCODETWO\",\r\n  \"type\" : \"FIXED_AMOUNT\",\r\n  \"startDate\" : \"{{eventStartTime}}\",\r\n  \"endDate\" : \"{{eventEndTime}}\",\r\n  \"amount\" : 5,\r\n  \"currency\" : \"USD\"\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion",
@@ -3568,7 +3498,7 @@
           "response": []
         },
         {
-          "name": "Package D toBeDeactivated",
+          "name": "Package D",
           "event": [
             {
               "listen": "test",
@@ -3624,6 +3554,65 @@
                 "category",
                 "{{itemCatId_yoga}}",
                 "item"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Package D deletion",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "64f0db9a-8b6a-458b-8a2e-821b693fd0fe",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item/{{itemId_packageD}}",
+              "host": [
+                "{{purchase}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "inventory",
+                "item",
+                "{{itemId_packageD}}"
               ]
             }
           },
@@ -3974,7 +3963,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Yoga For Beginners\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 60\r\n}"
+              "raw": "{\r\n    \"name\": \"Yoga For Beginners\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 90\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -4127,7 +4116,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Zumba Advanced\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 60\r\n}"
+              "raw": "{\r\n    \"name\": \"Zumba Advanced\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 90\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -4280,7 +4269,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Hot Power - Intermediate\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 60\r\n}"
+              "raw": "{\r\n    \"name\": \"Hot Power - Intermediate\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 90\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -4331,7 +4320,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Yoga For Advanced\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 60\r\n}"
+              "raw": "{\r\n    \"name\": \"Yoga For Advanced\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 90\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -4382,7 +4371,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Beginner Kick Boxing\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 60\r\n}"
+              "raw": "{\r\n    \"name\": \"Beginner Kick Boxing\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 90\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
