@@ -3575,7 +3575,7 @@
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 201;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             },
