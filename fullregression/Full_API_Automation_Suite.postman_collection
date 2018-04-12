@@ -1,13 +1,13 @@
 {
 	"info": {
+		"_postman_id": "6f95ab0f-44a8-4b01-a508-e92fb28c0253",
 		"name": "Full_API_Automation_Suite",
-		"_postman_id": "63086208-72d5-2b1a-0d7d-f7eeb07b03f3",
-		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Create Photos For Org",
+			"description": null,
 			"item": [
 				{
 					"name": "SaveEmployeePhoto1_male",
@@ -749,6 +749,7 @@
 		},
 		{
 			"name": "Create Org, Location and User",
+			"description": null,
 			"item": [
 				{
 					"name": "createUserForOrg",
@@ -921,6 +922,7 @@
 		},
 		{
 			"name": "Create Employees",
+			"description": null,
 			"item": [
 				{
 					"name": "createEmployee",
@@ -1941,7 +1943,7 @@
 		},
 		{
 			"name": "UpdatePassword",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "UpdatePassword",
@@ -1999,8 +2001,7 @@
 							"query": [
 								{
 									"key": "token",
-									"value": "{{employeeTokenId}}",
-									"equals": true
+									"value": "{{employeeTokenId}}"
 								}
 							]
 						}
@@ -2011,6 +2012,7 @@
 		},
 		{
 			"name": "Create Documents",
+			"description": null,
 			"item": [
 				{
 					"name": "uploadTermsAndConditionsDoc",
@@ -2115,6 +2117,7 @@
 		},
 		{
 			"name": "Create Event/Item Category and Promo Code",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEventCategory",
@@ -2405,6 +2408,7 @@
 		},
 		{
 			"name": "Create Event Level",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEventLevel",
@@ -2593,6 +2597,7 @@
 		},
 		{
 			"name": "Get/Put Event Category",
+			"description": null,
 			"item": [
 				{
 					"name": "getEventCategory",
@@ -2845,6 +2850,7 @@
 		},
 		{
 			"name": "Create Packages",
+			"description": null,
 			"item": [
 				{
 					"name": "createUnlimitedItem",
@@ -2974,6 +2980,7 @@
 		},
 		{
 			"name": "Get Event Levels",
+			"description": null,
 			"item": [
 				{
 					"name": "getEventLevels",
@@ -3122,6 +3129,7 @@
 		},
 		{
 			"name": "Create Events",
+			"description": null,
 			"item": [
 				{
 					"name": "Create Event Type - Yoga",
@@ -3477,6 +3485,7 @@
 		},
 		{
 			"name": "Create Item",
+			"description": null,
 			"item": [
 				{
 					"name": "createUnlimitedItem_cycling",
@@ -3526,16 +3535,14 @@
 							"raw": "{\r\n  \"name\" : \"Cycling {{randItemNumber}}\",\r\n  \"type\" : \"multiple\",\r\n  \"unitPrice\" : 70,\r\n  \"quantity\" : 1,\r\n  \"unlimited\" : true,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 10,\r\n  \"expirationUnit\" : \"DAYS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\r\n  } ]\r\n}"
 						},
 						"url": {
-							"raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
+							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
 							"host": [
-								"{{purchase-setup}}"
+								"{{purchase}}"
 							],
 							"path": [
 								"{{organizationId}}",
 								"{{locationId}}",
 								"inventory",
-								"category",
-								"{{itemCatId}}",
 								"item"
 							]
 						}
@@ -3608,6 +3615,7 @@
 		},
 		{
 			"name": "Get Purchase",
+			"description": null,
 			"item": [
 				{
 					"name": "getPurchase_metered",
@@ -3705,6 +3713,7 @@
 		},
 		{
 			"name": "Item Eligibility",
+			"description": null,
 			"item": [
 				{
 					"name": "itemEligibilityId_1",
@@ -4354,6 +4363,7 @@
 		},
 		{
 			"name": "Create Yoga for 10:30AM",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEvent",
@@ -4598,6 +4608,7 @@
 		},
 		{
 			"name": "Create P90X for 12PM",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEvent",
@@ -4747,6 +4758,7 @@
 		},
 		{
 			"name": "Create Aerobics for 1PM",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEvent",
@@ -4896,6 +4908,7 @@
 		},
 		{
 			"name": "Create Pilates for 2PM",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEvent",
@@ -5045,6 +5058,7 @@
 		},
 		{
 			"name": "Create Zumba for 3PM",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEvent",
@@ -5194,6 +5208,7 @@
 		},
 		{
 			"name": "Create Turbo Kick for 4:30PM",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEvent",
@@ -5343,6 +5358,7 @@
 		},
 		{
 			"name": "Create Cycling for 5PM",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEvent",
@@ -5492,6 +5508,7 @@
 		},
 		{
 			"name": "Create and Enroll Member for 10:30AM",
+			"description": null,
 			"item": [
 				{
 					"name": "createUserMember",
@@ -6153,6 +6170,7 @@
 		},
 		{
 			"name": "Create and Enroll Member for 12PM",
+			"description": null,
 			"item": [
 				{
 					"name": "createUserMember",
@@ -6465,6 +6483,7 @@
 		},
 		{
 			"name": "Create and Enroll Member for 1PM (2)",
+			"description": null,
 			"item": [
 				{
 					"name": "createUserMember",
@@ -6777,6 +6796,7 @@
 		},
 		{
 			"name": "Create and Enroll Member for 2PM (3)",
+			"description": null,
 			"item": [
 				{
 					"name": "createUserMember",
@@ -7089,6 +7109,7 @@
 		},
 		{
 			"name": "Create and Enroll Member for 3PM (2)",
+			"description": null,
 			"item": [
 				{
 					"name": "createUserMember",
@@ -7401,6 +7422,7 @@
 		},
 		{
 			"name": "Create and Enroll Member for 4:30PM",
+			"description": null,
 			"item": [
 				{
 					"name": "createUserMember",
@@ -7713,6 +7735,7 @@
 		},
 		{
 			"name": "Create and Enroll Member for 5PM",
+			"description": null,
 			"item": [
 				{
 					"name": "createUserMember",
@@ -8025,6 +8048,7 @@
 		},
 		{
 			"name": "Available Session",
+			"description": null,
 			"item": [
 				{
 					"name": "getAvailableSession",
@@ -8074,6 +8098,7 @@
 		},
 		{
 			"name": "Update Location",
+			"description": null,
 			"item": [
 				{
 					"name": "updateLocation",
@@ -8275,6 +8300,7 @@
 		},
 		{
 			"name": "GET Schedule",
+			"description": null,
 			"item": [
 				{
 					"name": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
@@ -8330,6 +8356,7 @@
 		},
 		{
 			"name": "GET Registration",
+			"description": null,
 			"item": [
 				{
 					"name": "getEmployeeRegistration",
@@ -8398,6 +8425,7 @@
 		},
 		{
 			"name": "GET Enrollment",
+			"description": null,
 			"item": [
 				{
 					"name": "getEnrollment_1030AM",
@@ -8716,7 +8744,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/enrollment/{{userId}}",
 							"host": [
@@ -8755,7 +8786,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/enrollment/{{userId}}",
 							"host": [
@@ -8799,6 +8833,7 @@
 		},
 		{
 			"name": "Login Tests",
+			"description": null,
 			"item": [
 				{
 					"name": "OwnerLogin",
@@ -8856,8 +8891,7 @@
 							"query": [
 								{
 									"key": "clientId",
-									"value": "automated-testing-client",
-									"equals": true
+									"value": "automated-testing-client"
 								}
 							]
 						}
@@ -8978,8 +9012,7 @@
 							"query": [
 								{
 									"key": "token",
-									"value": "{{loginAccessToken}}",
-									"equals": true
+									"value": "{{loginAccessToken}}"
 								}
 							]
 						}
@@ -8990,6 +9023,7 @@
 		},
 		{
 			"name": "GET Package",
+			"description": null,
 			"item": [
 				{
 					"name": "getPackage_yoga",
@@ -9325,6 +9359,7 @@
 		},
 		{
 			"name": "Omni Search Checks",
+			"description": null,
 			"item": [
 				{
 					"name": "getOrganization",
@@ -9504,6 +9539,7 @@
 		},
 		{
 			"name": "Promotion",
+			"description": null,
 			"item": [
 				{
 					"name": "CreatePromoCode_1",
@@ -9976,6 +10012,7 @@
 		},
 		{
 			"name": "Merchant_Account",
+			"description": null,
 			"item": [
 				{
 					"name": "GetMerchantAccount",
@@ -10037,6 +10074,7 @@
 		},
 		{
 			"name": "Get Member",
+			"description": null,
 			"item": [
 				{
 					"name": "createMember",
@@ -10244,6 +10282,7 @@
 		},
 		{
 			"name": "Update Member",
+			"description": null,
 			"item": [
 				{
 					"name": "updateMember",
@@ -10349,6 +10388,7 @@
 		},
 		{
 			"name": "GET Person",
+			"description": null,
 			"item": [
 				{
 					"name": "getPerson",
@@ -10549,6 +10589,7 @@
 		},
 		{
 			"name": "Items",
+			"description": null,
 			"item": [
 				{
 					"name": "createItemUnlimitedTrue",
@@ -10773,7 +10814,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item/{{itemId_Unlimited_true_1}}",
 							"host": [
@@ -10818,7 +10862,10 @@
 								"value": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
 							"host": [
@@ -10864,7 +10911,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"{{eventId_Unlimited_true_1}}\",\n    \"name\": \"Yoga{{$randomInt}}\",\n    \"type\": \"multiple\",\n    \"unitPrice\": 100,\n    \"quantity\": 1,\n    \"unlimited\": true,\n    \"expirationStart\": \"PURCHASE\",\n    \"expirationTime\": 1,\n    \"expirationUnit\": \"DAYS\",\n    \"currencyId\": \"USD\",\n     \"eligibleClasses\" : [ {\n    \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\n  },{\n    \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\n  },{\n    \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\n  } ]\n}"
+							"raw": "{\n    \"id\": \"{{itemId_Unlimited_true_1}}\",\n    \"name\": \"Yoga{{$randomInt}}\",\n    \"type\": \"multiple\",\n    \"unitPrice\": 100,\n    \"quantity\": 1,\n    \"unlimited\": true,\n    \"expirationStart\": \"PURCHASE\",\n    \"expirationTime\": 1,\n    \"expirationUnit\": \"DAYS\",\n    \"currencyId\": \"USD\",\n     \"eligibleClasses\" : [ {\n    \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\n  },{\n    \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\n  },{\n    \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\n  } ]\n}"
 						},
 						"url": {
 							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item/{{itemId_Unlimited_true_1}}",
@@ -10905,7 +10952,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item/{{itemId_Unlimited_true_1}}",
 							"host": [
@@ -10952,7 +11002,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"{{eventId_Unlimited_false_1}}\",\n    \"name\": \"Yoga{{$randomInt}}\",\n    \"type\": \"multiple\",\n    \"unitPrice\": 100,\n    \"quantity\": 1,\n    \"unlimited\": false,\n    \"expirationStart\": \"PURCHASE\",\n    \"expirationTime\": 1,\n    \"expirationUnit\": \"DAYS\",\n    \"currencyId\": \"USD\",\n     \"eligibleClasses\" : [ {\n    \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\n  },{\n    \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\n  },{\n    \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\n  } ]\n}"
+							"raw": "{\n    \"id\": \"{{itemId_Unlimited_false_1}}\",\n    \"name\": \"Yoga{{$randomInt}}\",\n    \"type\": \"multiple\",\n    \"unitPrice\": 100,\n    \"quantity\": 1,\n    \"unlimited\": false,\n    \"expirationStart\": \"PURCHASE\",\n    \"expirationTime\": 1,\n    \"expirationUnit\": \"DAYS\",\n    \"currencyId\": \"USD\",\n     \"eligibleClasses\" : [ {\n    \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\n  },{\n    \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\n  },{\n    \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\n  } ]\n}"
 						},
 						"url": {
 							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item/{{itemId_Unlimited_false_1}}",
@@ -10974,7 +11024,7 @@
 		},
 		{
 			"name": "Create Event Type",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "CreateEventType",
@@ -11205,6 +11255,394 @@
 								"{{locationId}}",
 								"eventType",
 								"{{eventTypeId1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Save Card and Purchase",
+			"description": null,
+			"item": [
+				{
+					"name": "createStripeId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c70968d-e632-4d6e-8a62-014b0bcdab6a",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"stripeId\", jsonData.id);",
+									"",
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2d7c99ab-2a16-401c-b97e-faefbbc27b15",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "type=card&card[number]=4242424242424242&card[cvc]=123&card[exp_month]=04&card[exp_year]=24&owner[address][postal_code]=72032&guid=8f90b4e1-e4c4-460f-90b1-fee1775221d0&muid=2d3e52eb-9c72-4e8f-aa4d-3a973d7df4f1&sid=51940006-8d4b-43f6-8b9f-1cf6113f66c0&payment_user_agent=stripe.js%2F44a726a%3B+stripe-js-v3%2F44a726a&referrer=https%3A%2F%2Ffiddle.jshell.net%2Fbtrq2x01%2F19%2Fshow%2F&key=pk_test_V5oe7MeZeWZPN8NlnXVonFcX&_stripe_account=acct_1BtdvbCeoiMjsR3A"
+						},
+						"url": {
+							"raw": "{{stripe}}",
+							"host": [
+								"{{stripe}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveCardToUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "21ffb4ea-dd11-4ff8-ab6d-459a3927453b",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"cardIdForPurchase\", jsonData.id);",
+									"postman.setEnvironmentVariable(\"gatewayResponseOfSaveCard\", jsonData.gatewayResponse);",
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cardType\": \"Visa\",\r\n  \"collectedUserId\": \"{{employeeId}}\",\r\n  \"expiryMonth\": 4,\r\n  \"expiryYear\": 24,\r\n  \"gateway\": \"STRIPE\",\r\n  \"gatewayResponse\": \"{\\r\\n  \\\"id\\\": \\\"{{stripeId}}\\\",\\r\\n  \\\"object\\\": \\\"source\\\",\\r\\n  \\\"amount\\\": null,\\r\\n  \\\"client_secret\\\": \\\"src_client_secret_CfLCSV7hXlJbrl4Wf00bLtsD\\\",\\r\\n  \\\"created\\\": 1523520642,\\r\\n  \\\"currency\\\": null,\\r\\n  \\\"flow\\\": \\\"none\\\",\\r\\n  \\\"livemode\\\": false,\\r\\n  \\\"metadata\\\": {},\\r\\n  \\\"owner\\\": {\\r\\n    \\\"address\\\": {\\r\\n      \\\"city\\\": \\\"Berlin\\\",\\r\\n      \\\"country\\\": \\\"DE\\\",\\r\\n      \\\"line1\\\": \\\"Nollendorfstra\\u00DFe 27\\\",\\r\\n      \\\"line2\\\": null,\\r\\n      \\\"postal_code\\\": \\\"72032\\\",\\r\\n      \\\"state\\\": null\\r\\n    },\\r\\n    \\\"email\\\": \\\"jenny.rosen@example.com\\\",\\r\\n    \\\"name\\\": \\\"Jenny Rosen\\\",\\r\\n    \\\"phone\\\": null,\\r\\n    \\\"verified_address\\\": null,\\r\\n    \\\"verified_email\\\": null,\\r\\n    \\\"verified_name\\\": null,\\r\\n    \\\"verified_phone\\\": null\\r\\n  },\\r\\n  \\\"statement_descriptor\\\": null,\\r\\n  \\\"status\\\": \\\"chargeable\\\",\\r\\n  \\\"type\\\": \\\"card\\\",\\r\\n  \\\"usage\\\": \\\"reusable\\\",\\r\\n  \\\"card\\\": {\\r\\n    \\\"exp_month\\\": 4,\\r\\n    \\\"exp_year\\\": 2024,\\r\\n    \\\"address_line1_check\\\": \\\"unchecked\\\",\\r\\n    \\\"address_zip_check\\\": \\\"unchecked\\\",\\r\\n    \\\"brand\\\": \\\"Visa\\\",\\r\\n    \\\"card_automatically_updated\\\": false,\\r\\n    \\\"country\\\": \\\"US\\\",\\r\\n    \\\"cvc_check\\\": \\\"unchecked\\\",\\r\\n    \\\"funding\\\": \\\"credit\\\",\\r\\n    \\\"last4\\\": \\\"4242\\\",\\r\\n    \\\"three_d_secure\\\": \\\"optional\\\",\\r\\n    \\\"tokenization_method\\\": null,\\r\\n    \\\"dynamic_last4\\\": null\\r\\n  }\\r\\n}\",\r\n  \r\n  \"lastFour\": \"4242\",\r\n  \r\n  \"userId\": \"{{userId}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/card/user/{{userId}}",
+							"host": [
+								"{{purchase}}"
+							],
+							"path": [
+								"{{organizationId}}",
+								"{{locationId}}",
+								"card",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCardByUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad17c998-36b3-4d06-93ba-6da7963799d6",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/card/user/{{userId}}",
+							"host": [
+								"{{purchase}}"
+							],
+							"path": [
+								"{{organizationId}}",
+								"{{locationId}}",
+								"card",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUnlimitedPurchaseBySaveCard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
+									"postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
+									"",
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+									"var randItemQuantity = 1;",
+									"var unitPrice = 22.5;",
+									"var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+									"var purchaseAmount = randItemQuantity * unitPrice;",
+									"purchaseAmount = +purchaseAmount + +salesTax;",
+									"",
+									"postman.setEnvironmentVariable(\"salesTax\", salesTax);",
+									"postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
+									"postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
+									"postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"itemCategoryId\" : \"{{itemCatId}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\n    \"type\": \"CARD\",\n    \"cardId\": \"{{cardIdForPurchase}}\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+							"host": [
+								"{{purchase}}"
+							],
+							"path": [
+								"{{organizationId}}",
+								"{{locationId}}",
+								"purchase",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createlimitedPurchaseBySaveCard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
+									"postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
+									"",
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+									"var unitPrice = 22.5;",
+									"var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+									"var purchaseAmount = randItemQuantity * unitPrice;",
+									"purchaseAmount = +purchaseAmount + +salesTax;",
+									"",
+									"postman.setEnvironmentVariable(\"salesTax\", salesTax);",
+									"postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
+									"postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
+									"postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n   \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CARD\",\r\n    \"cardId\": \"{{cardIdForPurchase}}\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+							"host": [
+								"{{purchase}}"
+							],
+							"path": [
+								"{{organizationId}}",
+								"{{locationId}}",
+								"purchase",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Member SignUp",
+			"description": null,
+			"item": [
+				{
+					"name": "creatememberSignUp",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2958255f-7705-47d8-ae7b-a4e44ebc510a",
+								"type": "text/javascript",
+								"exec": [
+									"var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+									"",
+									"postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
+									"",
+									"var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
+									"var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
+									"var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
+									"var randFirstName = randFirstNameWithGenderArray[0];",
+									"var gender = randFirstNameWithGenderArray[1];",
+									"",
+									"var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+									"",
+									"var userPhotos_male = [postman.getEnvironmentVariable(\"photoId_male_1\"),postman.getEnvironmentVariable(\"photoId_male_2\"),postman.getEnvironmentVariable(\"photoId_male_3\"),postman.getEnvironmentVariable(\"photoId_male_4\"),postman.getEnvironmentVariable(\"photoId_male_5\"),postman.getEnvironmentVariable(\"photoId_male_6\"),postman.getEnvironmentVariable(\"photoId_male_7\"),postman.getEnvironmentVariable(\"photoId_male_8\")];",
+									"",
+									"var userPhotos_female = [postman.getEnvironmentVariable(\"photoId_female_1\"),postman.getEnvironmentVariable(\"photoId_female_2\"),postman.getEnvironmentVariable(\"photoId_female_3\"),postman.getEnvironmentVariable(\"photoId_female_4\"),postman.getEnvironmentVariable(\"photoId_female_5\"),postman.getEnvironmentVariable(\"photoId_female_6\"),postman.getEnvironmentVariable(\"photoId_female_7\"),postman.getEnvironmentVariable(\"photoId_female_8\")];",
+									"",
+									"if(gender === 'male')",
+									"{",
+									"    var randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+									"    do {",
+									"        randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+									"    }",
+									"    while (randPhotoId === undefined);",
+									"} ",
+									"else if (gender === 'female')",
+									"{",
+									"        var randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+									"    do {",
+									"        randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+									"    }",
+									"    while (randPhotoId === undefined);",
+									"}",
+									"else",
+									"{",
+									"    //GENDER FOR FIRST NAME WAS NOT SET AS 'male' OR 'female'",
+									"}",
+									"",
+									"var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+									"",
+									"postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+									"postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+									"postman.setEnvironmentVariable(\"randPhotoId\", randPhotoId);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : {\r\n    \"address\" : \"{{randLastName}}.{{randFirstName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"457\"\r\n  },\r\n  \"healthConditions\" : [\"bfbbafcd-a63b-4bbd-9130-7e802f1c1f87\"],\r\n  \"healthNote\" : \"High Blood Pressure\",\r\n  \"items\" : [ {\r\n    \"quantity\" : 1,\r\n    \"unlimited\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : 17.2,\r\n    \"salesTax\" :0.5,\r\n    \"itemId\" : \"{{itemId_unlimited}}\",\r\n    \"itemCategoryId\" : \"{{itemCatId}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n   \"payment\" : {\r\n    \"amount\" : 17.76,\r\n    \"type\" : \"CARD\",\r\n    \"email\" : \"john.snow@abc.com\"\r\n  },\r\n  \"card\" : {\r\n    \"lastFour\" : \"4242\",\r\n    \"expiryMonth\" : 2,\r\n    \"expiryYear\" : 24,\r\n    \"cardType\" : \"Visa\",\r\n    \"gateway\" : \"STRIPE\",\r\n    \"gatewayResponse\" : \"{{gatewayResponseOfSaveCard}}\"\r\n  },\r\n  \"saveCard\" : true,\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"termsAndConditionsId\" : \"e787de7a-8d2d-45f7-a4af-b59e67cda67f\",\r\n  \"waiverId\" : \"a98b7bc5-f9b5-4aae-82c4-b8bf05c89cd7\",\r\n  \"signatureContent\" : \"{}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/signup",
+							"host": [
+								"{{memberSignUp}}"
+							],
+							"path": [
+								"{{organizationId}}",
+								"{{locationId}}",
+								"signup"
 							]
 						}
 					},
