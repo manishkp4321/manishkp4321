@@ -11428,11 +11428,9 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "f3ae200f-3f20-44ca-ae87-91c081a23907",
+								"type": "text/javascript",
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
-									"postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
-									"",
 									"if (responseCode.code != 201)",
 									"{",
 									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
@@ -11440,13 +11438,14 @@
 									"}",
 									"",
 									"tests[\"Response code should be 201\"] = responseCode.code === 201;"
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "6086e282-7c8e-4faf-8b8d-ec9502fdfbcb",
+								"type": "text/javascript",
 								"exec": [
 									"// var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
 									"var randItemQuantity = 1;",
@@ -11459,8 +11458,7 @@
 									"postman.setEnvironmentVariable(\"unitPrice\", unitPrice);",
 									"postman.setEnvironmentVariable(\"purchaseAmount\", purchaseAmount);",
 									"postman.setEnvironmentVariable(\"randItemQuantity\", randItemQuantity);"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -11498,12 +11496,9 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "16a82509-66b1-4af2-82a2-4d2f4a758c01",
 								"type": "text/javascript",
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"invoiceId\", jsonData.items[0].invoiceId);",
-									"postman.setEnvironmentVariable(\"saleItemsId\", jsonData.items[0].id);",
-									"",
 									"if (responseCode.code != 201)",
 									"{",
 									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
@@ -11517,6 +11512,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "5c654eb7-1060-4111-b2ec-caf0ad42f3be",
 								"type": "text/javascript",
 								"exec": [
 									"var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
@@ -11618,6 +11614,22 @@
 									"postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
 									"postman.setEnvironmentVariable(\"randLastName\", randLastName);",
 									"postman.setEnvironmentVariable(\"randPhotoId\", randPhotoId);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "bf45df75-0714-4092-8123-4e0174f3c2e5",
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;"
 								]
 							}
 						}
