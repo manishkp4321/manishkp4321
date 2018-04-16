@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "419c1bca-0a57-4647-ae51-c0190461242c",
+		"name": "nestedJson",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createUserForOrg ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e99a75c-a0a1-4ae0-aa56-47e542fbf1ae",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var appURL = postman.getEnvironmentVariable(\"baseURL\") + jsonData.organizationId;",
+							"postman.setEnvironmentVariable(\"ownerId\", jsonData.userId);",
+							"postman.setEnvironmentVariable(\"organizationId\", jsonData.organizationId);",
+							"postman.setEnvironmentVariable(\"ownerEmail\", jsonData.email);",
+							"postman.setEnvironmentVariable(\"ownerPassword\", jsonData.password);",
+							"postman.setEnvironmentVariable(\"appURL\", appURL);",
+							"",
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"tests[\"Response code should be 201\"] = responseCode.code === 201;",
+							"",
+							"",
+							"var obj1={",
+							"  \"firstName\" : \"{{randFirstName}}\",",
+							"  \"lastName\" : \"{{randLastName}}\",",
+							"  \"password\" : \"Password1\",",
+							"  \"phone\" : {",
+							"    \"number\" : \"{{phoneNumber}}\",",
+							"    \"extension\" : \"\"",
+							"  },",
+							"  \"birthDate\" : \"1998-01-27\",",
+							"  \"email\" : \"test{{phoneNumber}}@abc.com\",",
+							"  \"photoId\" : \"{{randPhotoId}}\"",
+							"}",
+							"",
+							"var obj2=jsonData",
+							"",
+							"var parsedFunc = eval('('+environment.deepDiffMapper+'()'+')');",
+							"var result=parsedFunc.map(obj1,obj2);",
+							"console.log(result);",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2ede2cb3-5b79-40c1-8a89-da99578d5504",
+						"type": "text/javascript",
+						"exec": [
+							"var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+							"",
+							"postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
+							"",
+							"var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
+							"var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
+							"var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
+							"var randFirstName = randFirstNameWithGenderArray[0];",
+							"var gender = randFirstNameWithGenderArray[1];",
+							"",
+							"var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+							"",
+							"var userPhotos_male = [postman.getEnvironmentVariable(\"photoId_male_1\"),postman.getEnvironmentVariable(\"photoId_male_2\"),postman.getEnvironmentVariable(\"photoId_male_3\"),postman.getEnvironmentVariable(\"photoId_male_4\"),postman.getEnvironmentVariable(\"photoId_male_5\"),postman.getEnvironmentVariable(\"photoId_male_6\"),postman.getEnvironmentVariable(\"photoId_male_7\"),postman.getEnvironmentVariable(\"photoId_male_8\")];",
+							"",
+							"var userPhotos_female = [postman.getEnvironmentVariable(\"photoId_female_1\"),postman.getEnvironmentVariable(\"photoId_female_2\"),postman.getEnvironmentVariable(\"photoId_female_3\"),postman.getEnvironmentVariable(\"photoId_female_4\"),postman.getEnvironmentVariable(\"photoId_female_5\"),postman.getEnvironmentVariable(\"photoId_female_6\"),postman.getEnvironmentVariable(\"photoId_female_7\"),postman.getEnvironmentVariable(\"photoId_female_8\")];",
+							"",
+							"if(gender === 'male')",
+							"{",
+							"    var randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+							"    do {",
+							"        randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+							"    }",
+							"    while (randPhotoId === undefined);",
+							"} ",
+							"else if (gender === 'female')",
+							"{",
+							"        var randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+							"    do {",
+							"        randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+							"    }",
+							"    while (randPhotoId === undefined);",
+							"}",
+							"else",
+							"{",
+							"    //GENDER FOR FIRST NAME WAS NOT SET AS 'male' OR 'female'",
+							"}",
+							"",
+							"var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+							"",
+							"postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+							"postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+							"postman.setEnvironmentVariable(\"randPhotoId\", randPhotoId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"\"\r\n  },\r\n  \"birthDate\" : \"1998-01-27\",\r\n  \"email\" : \"test{{phoneNumber}}@abc.com\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+				},
+				"url": {
+					"raw": "{{registration}}/user",
+					"host": [
+						"{{registration}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
