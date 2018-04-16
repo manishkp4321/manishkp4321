@@ -6,6 +6,233 @@
   },
   "item": [
     {
+      "name": "Create Org, Location and User",
+      "description": null,
+      "item": [
+        {
+          "name": "createUserForOrg",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "dde09d46-fa5b-45d4-8b65-131dfcbc7b07",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    var appURL = postman.getEnvironmentVariable(\"baseURL\") + jsonData.organizationId;",
+                  "    postman.setEnvironmentVariable(\"ownerId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"organizationId\", jsonData.organizationId);",
+                  "    postman.setEnvironmentVariable(\"employeeId_10\", jsonData.employeeId);",
+                  "    postman.setEnvironmentVariable(\"ownerEmail\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"ownerPassword\", jsonData.password);",
+                  "    postman.setEnvironmentVariable(\"appURL\", appURL);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "0a8e922a-76ae-400c-bb5c-a48723153e85",
+                "type": "text/javascript",
+                "exec": [
+                  "var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
+                  "",
+                  "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
+                  "var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
+                  "var randFirstName = randFirstNameWithGenderArray[0];",
+                  "var gender = randFirstNameWithGenderArray[1];",
+                  "",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"\"\r\n  },\r\n  \"birthDate\" : \"1998-01-27\",\r\n  \"email\" : \"TestUser@abc.com\"\r\n}"
+            },
+            "url": {
+              "raw": "{{registration}}/user",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Authorization",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c895d105-c320-4960-8948-02179b85eece",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+              },
+              {
+                "key": "",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"password\": \"{{ownerPassword}}\",\r\n  \"username\": \"{{ownerEmail}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "organization",
+                "{{organizationId}}",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "automated-testing-client"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createOrgLocation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "79af9f06-0864-4c49-b8a9-6f721ce2e978",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"addressId\", jsonData.location.address.id);",
+                  "    postman.setEnvironmentVariable(\"locationId\", jsonData.location.id);",
+                  "    postman.setEnvironmentVariable(\"locationName\", jsonData.location.name);",
+                  "    postman.setEnvironmentVariable(\"orgName\", jsonData.name);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d08223c3-b03c-4751-a0da-c75e3afb7a00",
+                "type": "text/javascript",
+                "exec": [
+                  "var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
+                  "",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box {{$randomInt}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/organization",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "organization"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Create Photos For Org",
       "description": null,
       "item": [
@@ -15,15 +242,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "863ca841-444f-4f4c-8136-576889c6f03e",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_male_1\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_male_1\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -37,6 +267,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -61,15 +295,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "2ee4211a-267c-48c5-890c-07036ee02818",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_male_2\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_male_2\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -83,6 +320,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -107,15 +348,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "86b60e4f-d4ea-43ff-b088-848c8b8a3ead",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_male_3\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_male_3\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -129,6 +373,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -153,15 +401,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "3fead2d5-9e93-42d3-b087-411b4cb36f77",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_male_4\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_male_4\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -175,6 +426,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -199,15 +454,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "f8f21a02-aab9-486c-90ac-7849e35f2656",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_male_5\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_male_5\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -221,6 +479,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -245,15 +507,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "759bcdf3-09da-4bef-b057-827807218490",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_male_6\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_male_6\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -267,6 +532,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -291,15 +560,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "92b88c76-d713-4936-be9d-7c2bd1ace665",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_male_7\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_male_7\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -313,6 +585,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -337,15 +613,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "5f0176e9-6741-416c-8576-8b8e8506222d",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_male_8\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_male_8\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -359,6 +638,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -383,15 +666,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "0870b2f8-a0f0-4749-a383-860af0e1fe08",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_female_1\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_female_1\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -405,6 +691,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -429,15 +719,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "5fc31908-04dd-43a4-ade5-969445983f09",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_female_2\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_female_2\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -451,6 +744,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -475,6 +772,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "2be51fd6-ddd3-4aca-b761-c07a0d82867f",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
@@ -484,6 +782,10 @@
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -497,6 +799,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -521,15 +827,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "e9b89c66-80d5-4707-9597-20246530670e",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_female_4\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_female_4\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -543,6 +852,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -567,15 +880,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "855dfc01-fac1-4713-98af-4daeb7e1ec2f",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_female_5\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_female_5\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -589,6 +905,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -613,15 +933,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "f5b4e8ec-ad38-408b-a228-287e8a1cdc53",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_female_6\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_female_6\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -635,6 +958,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -659,15 +986,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "d23f0f9c-9b61-48ab-9a2d-658f997dd713",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_female_7\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_female_7\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -681,6 +1011,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -705,15 +1039,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "9e74c205-37da-4c9d-b847-6b402a8a0188",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"photoId_female_8\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"photoId_female_8\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -727,6 +1064,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -748,182 +1089,6 @@
       ]
     },
     {
-      "name": "Create Org, Location and User",
-      "description": null,
-      "item": [
-        {
-          "name": "createUserForOrg",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "27f6b651-ce99-4e18-8423-8462e410eb6a",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "var appURL = postman.getEnvironmentVariable(\"baseURL\") + jsonData.organizationId;",
-                  "postman.setEnvironmentVariable(\"ownerId\", jsonData.userId);",
-                  "postman.setEnvironmentVariable(\"organizationId\", jsonData.organizationId);",
-                  "postman.setEnvironmentVariable(\"employeeId_10\", jsonData.employeeId);",
-                  "postman.setEnvironmentVariable(\"ownerEmail\", jsonData.email);",
-                  "postman.setEnvironmentVariable(\"ownerPassword\", jsonData.password);",
-                  "postman.setEnvironmentVariable(\"appURL\", appURL);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "eb9327ce-99b9-4bc9-8904-029aa4e31d1d",
-                "type": "text/javascript",
-                "exec": [
-                  "var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
-                  "",
-                  "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
-                  "var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
-                  "var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
-                  "var randFirstName = randFirstNameWithGenderArray[0];",
-                  "var gender = randFirstNameWithGenderArray[1];",
-                  "",
-                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
-                  "",
-                  "var userPhotos_male = [postman.getEnvironmentVariable(\"photoId_male_1\"),postman.getEnvironmentVariable(\"photoId_male_2\"),postman.getEnvironmentVariable(\"photoId_male_3\"),postman.getEnvironmentVariable(\"photoId_male_4\"),postman.getEnvironmentVariable(\"photoId_male_5\"),postman.getEnvironmentVariable(\"photoId_male_6\"),postman.getEnvironmentVariable(\"photoId_male_7\"),postman.getEnvironmentVariable(\"photoId_male_8\")];",
-                  "",
-                  "var userPhotos_female = [postman.getEnvironmentVariable(\"photoId_female_1\"),postman.getEnvironmentVariable(\"photoId_female_2\"),postman.getEnvironmentVariable(\"photoId_female_3\"),postman.getEnvironmentVariable(\"photoId_female_4\"),postman.getEnvironmentVariable(\"photoId_female_5\"),postman.getEnvironmentVariable(\"photoId_female_6\"),postman.getEnvironmentVariable(\"photoId_female_7\"),postman.getEnvironmentVariable(\"photoId_female_8\")];",
-                  "",
-                  "if(gender === 'male')",
-                  "{",
-                  "    var randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
-                  "    do {",
-                  "        randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
-                  "    }",
-                  "    while (randPhotoId === undefined);",
-                  "} ",
-                  "else if (gender === 'female')",
-                  "{",
-                  "        var randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
-                  "    do {",
-                  "        randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
-                  "    }",
-                  "    while (randPhotoId === undefined);",
-                  "}",
-                  "else",
-                  "{",
-                  "    //GENDER FOR FIRST NAME WAS NOT SET AS 'male' OR 'female'",
-                  "}",
-                  "",
-                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
-                  "",
-                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
-                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
-                  "postman.setEnvironmentVariable(\"randPhotoId\", randPhotoId);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"\"\r\n  },\r\n  \"birthDate\" : \"1998-01-27\",\r\n  \"email\" : \"TestUser@abc.com\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{registration}}/user",
-              "host": [
-                "{{registration}}"
-              ],
-              "path": [
-                "user"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "createOrgLocation",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"addressId\", jsonData.location.address.id);",
-                  "postman.setEnvironmentVariable(\"locationId\", jsonData.location.id);",
-                  "postman.setEnvironmentVariable(\"locationName\", jsonData.location.name);",
-                  "postman.setEnvironmentVariable(\"orgName\", jsonData.name);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
-                  "",
-                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
-                  "",
-                  "var randState = states[Math.floor(Math.random() * states.length)];",
-                  "postman.setEnvironmentVariable(\"randState\", randState);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box {{$randomInt}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\n    }\n  }\n}"
-            },
-            "url": {
-              "raw": "{{registration}}/{{organizationId}}/organization",
-              "host": [
-                "{{registration}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "organization"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
       "name": "Create Employees",
       "description": null,
       "item": [
@@ -933,30 +1098,32 @@
             {
               "listen": "test",
               "script": {
+                "id": "787e1a15-90a1-44ed-b1a2-3827ee3a3b42",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
-                  "postman.setEnvironmentVariable(\"employeeId\", jsonData.id);",
-                  "postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
-                  "postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
-                  "postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeId\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
+                  "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
+                  "    postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
+                  "}",
                   "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  "",
-                  "//console.out(responseBody);"
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
             },
             {
               "listen": "prerequest",
               "script": {
+                "id": "7a2caa80-356c-4f0b-9f1b-2f5d917c7d9b",
                 "type": "text/javascript",
                 "exec": [
                   "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
@@ -1014,6 +1181,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1039,15 +1210,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "4e4a5668-613b-44a3-a687-c6a240485068",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeId_2\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeId_2\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1057,6 +1231,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "9a819297-dab9-433b-8eea-e2edd1b04af8",
                 "type": "text/javascript",
                 "exec": [
                   "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
@@ -1114,6 +1289,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1139,15 +1318,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "b53da1e0-1094-4b21-b598-9230898be48e",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeId_3\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeId_3\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1157,6 +1339,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "79487c35-de19-4576-9a37-a02ec8129365",
                 "type": "text/javascript",
                 "exec": [
                   "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
@@ -1214,6 +1397,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1239,15 +1426,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "fe11f9d2-9875-4423-a150-c52218545493",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeId_4\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeId_4\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1257,6 +1447,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "b62040d2-14f8-48a3-9a81-7054973e82d4",
                 "type": "text/javascript",
                 "exec": [
                   "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
@@ -1314,6 +1505,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1339,15 +1534,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "1dbd6230-f48b-490c-8635-d83df972b4ec",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeId_5\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeId_5\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1357,6 +1555,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "b0581a1e-ca75-46bc-8110-8563a3d723ad",
                 "type": "text/javascript",
                 "exec": [
                   "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
@@ -1414,6 +1613,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1439,15 +1642,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "f77064eb-710e-4233-97e9-f435edaf83e1",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeId_6\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeId_6\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1457,6 +1663,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "435da066-41a5-4cfc-931c-fba9b52ea694",
                 "type": "text/javascript",
                 "exec": [
                   "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
@@ -1514,6 +1721,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1539,15 +1750,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "9f5b7ee3-53b2-4600-900a-bfebc0f791bb",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeId_7\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeId_7\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1557,6 +1771,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "835538c5-c009-4073-a57c-14b4611cc975",
                 "type": "text/javascript",
                 "exec": [
                   "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
@@ -1614,6 +1829,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1639,15 +1858,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "1d02f6e1-cefc-4a5b-a870-133453552650",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeId_8\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeId_8\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1657,6 +1879,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "edde2f1c-005a-49ee-8d35-06cc4262755a",
                 "type": "text/javascript",
                 "exec": [
                   "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
@@ -1714,6 +1937,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1739,15 +1966,18 @@
             {
               "listen": "test",
               "script": {
+                "id": "89e5138b-cd94-4b87-b527-2fddb68f6e79",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"employeeId_9\", jsonData.id);",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeId_9\", jsonData.id);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1757,6 +1987,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "045cc500-dc50-4189-8474-ed87071de0c2",
                 "type": "text/javascript",
                 "exec": [
                   "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
@@ -1814,6 +2045,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1845,16 +2080,18 @@
             {
               "listen": "test",
               "script": {
-                "id": "a675c307-61c0-4065-a90c-1dfa15483064",
+                "id": "5ba68f46-d892-4749-9e99-c78bbeb9db77",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"termsId\", jsonData.location.termDocId);",
-                  "",
                   "if (responseCode.code != 200)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"termsId\", jsonData.location.termDocId);",
                   "}",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
@@ -1868,6 +2105,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1895,16 +2136,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "d870fdb1-baad-45c2-be33-ff999208aafc",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"waiverId\", jsonData.location.waiverDocId);",
-                  "",
                   "if (responseCode.code != 200)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"waiverId\", jsonData.location.waiverDocId);",
+                  "}",
+                  "",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
@@ -1917,6 +2162,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -1950,17 +2199,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "fff4654b-3ac3-43f8-a6cc-f732d05edded",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -1968,6 +2220,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "dc64887a-b1d1-4443-989b-0cd00cad48af",
                 "type": "text/javascript",
                 "exec": [
                   "var randCatNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
@@ -1983,6 +2236,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2009,17 +2266,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "d432a7b9-9d5a-48b0-890a-9207aece60ac",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2027,6 +2287,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "0bb6c4f1-7e49-42ff-93a3-b252e46e8474",
                 "type": "text/javascript",
                 "exec": [
                   "var randomLargeInt = Math.floor(Math.random() * 9000000000) + 1000000000;",
@@ -2042,11 +2303,15 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"Class Category {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n  \r\n}\r\n"
+              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"Class Category {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n}"
             },
             "url": {
               "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category",
@@ -2069,17 +2334,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "872d0117-b2a8-4037-b463-649b7493f9ff",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"promoCodeId\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"promoCodeId\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2091,6 +2359,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2123,17 +2395,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "6da41f01-5651-46f3-bb54-9d128dd20cf1",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"itemId_unlimited\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_unlimited\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2141,6 +2416,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "994a98b2-ab2f-4157-b9e7-1d0dffb45705",
                 "type": "text/javascript",
                 "exec": [
                   "var randItemNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
@@ -2156,6 +2432,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2185,17 +2465,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "28ce3ec4-385a-4fa6-bfe4-97ffcdf9a1ac",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"itemId_metered\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_metered\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2203,6 +2486,7 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "3165053d-155c-4574-b060-204444939e11",
                 "type": "text/javascript",
                 "exec": [
                   "var randItemNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
@@ -2218,6 +2502,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2253,22 +2541,25 @@
             {
               "listen": "test",
               "script": {
+                "id": "4932ff70-aef8-4b16-89c2-8f601d97c849",
                 "type": "text/javascript",
                 "exec": [
-                  " var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "const levels =  jsonData.content[0].id;",
-                  "const levels2 =  jsonData.content[1].id;",
-                  "const levels3 =  jsonData.content[2].id;",
-                  "",
-                  "postman.setEnvironmentVariable(\"eventLevelId_beginner\", levels);",
-                  "postman.setEnvironmentVariable(\"eventLevelId_intermediate\", levels2);",
-                  "postman.setEnvironmentVariable(\"eventLevelId_advanced\", levels3);",
-                  "",
                   "if (responseCode.code != 200)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    const levels =  jsonData.content[0].id;",
+                  "    const levels2 =  jsonData.content[1].id;",
+                  "    const levels3 =  jsonData.content[2].id;",
+                  "    ",
+                  "    postman.setEnvironmentVariable(\"eventLevelId_beginner\", levels);",
+                  "    postman.setEnvironmentVariable(\"eventLevelId_intermediate\", levels2);",
+                  "    postman.setEnvironmentVariable(\"eventLevelId_advanced\", levels3);",
                   "}",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
@@ -2278,7 +2569,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {
               "mode": "raw",
               "raw": ""
@@ -2309,17 +2605,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "dbed8708-cfb9-438e-b770-c84af80fd97d",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventTypeId_yoga\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"eventTypeId_yoga\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2331,6 +2630,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2359,17 +2662,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "f6049b3f-aa45-4a8c-90e6-ad4476589e40",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventTypeId_p90x\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"eventTypeId_p90x\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2381,6 +2687,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2409,17 +2719,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "acab5d01-d825-47f2-b36b-5e80c39d7038",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventTypeId_pilates\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"eventTypeId_pilates\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2431,6 +2744,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2459,17 +2776,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "7042a0a0-0cf1-48db-9709-d286af8cfa61",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventTypeId_zumba\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"eventTypeId_zumba\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2481,6 +2801,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2509,17 +2833,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "3399a2f5-2bd4-40c7-ab6f-06b9a90bbe7a",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventTypeId_cycling\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"eventTypeId_cycling\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2531,6 +2858,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2559,17 +2890,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "55cda026-27bc-49e8-a632-0cc7c13f97ad",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventTypeId_aerobics\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"eventTypeId_aerobics\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2581,6 +2915,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2609,17 +2947,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "357e07e1-2492-4798-bec3-64d0383aace1",
                 "type": "text/javascript",
                 "exec": [
-                  "var jsonData = JSON.parse(responseBody);\r",
-                  "postman.setEnvironmentVariable(\"eventTypeId_turboKick\", jsonData.id);\r",
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"eventTypeId_turboKick\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2631,6 +2972,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2685,6 +3030,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2731,6 +3080,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2777,6 +3130,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2823,6 +3180,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2869,6 +3230,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2915,6 +3280,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -2961,6 +3330,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -3007,6 +3380,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -3053,6 +3430,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -3099,6 +3480,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -3145,6 +3530,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -3191,6 +3580,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -3237,6 +3630,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -3283,6 +3680,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
