@@ -2615,7 +2615,7 @@
               "raw": "{\r\n  \"password\" : \"password2\"\r\n}"
             },
             "url": {
-              "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId}}/password?token={{employeeTokenId}}",
+              "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId}}/password?token={{employeeTokenId_3}}",
               "host": [
                 "{{registration}}"
               ],
@@ -2628,7 +2628,7 @@
               "query": [
                 {
                   "key": "token",
-                  "value": "{{employeeTokenId}}"
+                  "value": "{{employeeTokenId_3}}"
                 }
               ]
             }
