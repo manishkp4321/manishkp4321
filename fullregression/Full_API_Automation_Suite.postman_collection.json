@@ -8252,7 +8252,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "710ecdfb-0f65-4ef4-a660-080054dcbf08",
+								"id": "7d880d4e-24fa-4293-a35a-904d2a7b5889",
 								"type": "text/javascript",
 								"exec": [
 									"",
@@ -8288,7 +8288,8 @@
 									"tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
 									"tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":false\");",
 									"tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
-									"}"
+									"}",
+									""
 								]
 							}
 						},
