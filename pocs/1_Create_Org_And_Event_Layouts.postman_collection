@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "c0e09aa4-189e-49e1-b260-1399a74e1d16",
+    "_postman_id": "f5f26e95-889a-4b91-9432-de8c0411e6d4",
     "name": "1_Create_Org_And_Event_Layouts",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -215,7 +215,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box {{$randomInt}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\n    }\n  }\n}"
+              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box {{$randomInt}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"abcqatesting2017@gmail.com\"\n    }\n  }\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/organization",
@@ -1189,7 +1189,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1297,7 +1297,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n  \"firstName\" : \"{{randFirstName}}\",\n  \"lastName\" : \"{{randLastName}}\",\n  \"address\" : {\n    \"address1\" : \"10 Fit Lane\",\n    \"address2\" : \"PO Box {{$randomInt}}\",\n    \"city\" : \"Little Rock\",\n    \"state\" : \"{{randState}}\",\n    \"country\" : \"United States\",\n    \"zipCode\" : \"{{randZipCode}}\"\n  },\n  \"phone\": {\n    \"number\": \"{{randPhoneNumber}}\"\n  },\n  \"userType\" : \"Customer\",\n  \"photoId\" : \"{{randPhotoId}}\"\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1405,7 +1405,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1513,7 +1513,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1621,7 +1621,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1729,7 +1729,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1837,7 +1837,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1945,7 +1945,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -2053,7 +2053,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -2220,12 +2220,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "dc64887a-b1d1-4443-989b-0cd00cad48af",
+                "id": "f9bb8477-2b1c-4641-98f6-6ac06911fdc9",
                 "type": "text/javascript",
                 "exec": [
-                  "var randCatNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"randCatNumber\", randCatNumber);"
+                  ""
                 ]
               }
             }
@@ -2244,7 +2242,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"EventCategory{{randCatNumber}}\"\r\n}"
+              "raw": "{\r\n    \"name\": \"Active Classes\"\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory",
@@ -2255,74 +2253,6 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "eventCategory"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "CreateItemCategory",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "d432a7b9-9d5a-48b0-890a-9207aece60ac",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"itemCatId\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "0bb6c4f1-7e49-42ff-93a3-b252e46e8474",
-                "type": "text/javascript",
-                "exec": [
-                  "var randomLargeInt = Math.floor(Math.random() * 9000000000) + 1000000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"randomLargeInt\", randomLargeInt);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"name\" : \"Class Category {{randomLargeInt}}\",\r\n  \"type\" : \"Classes\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category"
               ]
             }
           },
@@ -2351,6 +2281,25 @@
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "7bddfe6d-8703-402d-be35-13e31129aa59",
+                "type": "text/javascript",
+                "exec": [
+                  "var current_timestamp = new Date();",
+                  "var current_year = current_timestamp.getFullYear();",
+                  "var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
+                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
+                  "",
+                  "var promoStartTime = current_year + \"-\" + current_month + \"-\" + current_date;",
+                  "var promoEndTime = (current_year + 1) + \"-\" + current_month + \"-\" + current_date;",
+                  "",
+                  "postman.setEnvironmentVariable(\"promoStartTime\", promoStartTime);",
+                  "postman.setEnvironmentVariable(\"promoEndTime\", promoEndTime);"
+                ]
+              }
             }
           ],
           "request": {
@@ -2367,163 +2316,17 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"promotionCode\" : \"SAVE10\",\r\n  \"description\" : \"New Offer\",\r\n  \"promotionAmount\" : 10,\r\n  \"promotionMaxQuantity\" : 10,\r\n  \"itemCategoryId\" : \"{{itemCatId}}\",\r\n  \"currencyId\" : \"USD\"\r\n}"
+              "raw": "{\r\n  \"name\" : \"SAVE10 Promotion\",\r\n  \"code\" : \"SAVE10\",\r\n  \"type\" : \"FIXED_AMOUNT\",\r\n  \"startDate\" : \"{{promoStartTime}}\",\r\n  \"endDate\" : \"{{promoEndTime}}\",\r\n  \"amount\" : 10,\r\n  \"currency\" : \"USD\"\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/promotion",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
                 "promotion"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Create Packages",
-      "description": null,
-      "item": [
-        {
-          "name": "createUnlimitedItem",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "6da41f01-5651-46f3-bb54-9d128dd20cf1",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"itemId_unlimited\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "994a98b2-ab2f-4157-b9e7-1d0dffb45705",
-                "type": "text/javascript",
-                "exec": [
-                  "var randItemNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"randItemNumber\", randItemNumber);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Unlimited Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 1,\r\n  \"unlimited\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "createMeteredItem",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "28ce3ec4-385a-4fa6-bfe4-97ffcdf9a1ac",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"itemId_metered\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "3165053d-155c-4574-b060-204444939e11",
-                "type": "text/javascript",
-                "exec": [
-                  "var randItemNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"randItemNumber\", randItemNumber);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Regular Package {{randItemNumber}}\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 45,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId}}",
-                "item"
               ]
             }
           },
@@ -3001,25 +2804,40 @@
       ]
     },
     {
-      "name": "Item Eligibility",
+      "name": "Create Packages",
       "description": null,
       "item": [
         {
-          "name": "itemEligibilityId_1",
+          "name": "createUnlimitedItem",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "6da41f01-5651-46f3-bb54-9d128dd20cf1",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_unlimited\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "642e4266-bf24-4567-8d9d-b9b76fc86ba5",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -3038,38 +2856,54 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_unlimited}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Unlimited Package for All\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 200,\r\n  \"quantity\" : 1,\r\n  \"unlimited\" : true,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_p90x}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_pilates}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_aerobics}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_turboKick}}\"\r\n    }  \r\n  ]\r\n}\r\n"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibilityId_1_metered",
+          "name": "createMeteredItem",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "28ce3ec4-385a-4fa6-bfe4-97ffcdf9a1ac",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_metered\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "b2b897eb-81fd-4a60-8e0c-b430b41be2e2",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -3088,38 +2922,54 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_metered}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"5 Piece Package for All\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 10,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_p90x}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_pilates}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_aerobics}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_turboKick}}\"\r\n    }  \r\n  ]\r\n}\r\n"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibilityId_2",
+          "name": "createMeteredItem_yoga",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "30e6fe9d-4d90-434b-aa36-3df514f14959",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_yoga\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "bcf389d9-cdbc-4f58-a954-92c6bbade3ac",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -3138,38 +2988,54 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_unlimited}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_p90x}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Yoga Package\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 10,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\r\n    }\r\n  ]\r\n}\r\n"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibilityId_2_metered",
+          "name": "createMeteredItem_p90x",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "98c9c8b4-a0ad-4b0c-812b-d7f6eecd5c71",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_p90x\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "37755c1a-4f1b-446f-a870-1393ea237057",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -3188,38 +3054,54 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_metered}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_p90x}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"P90X Package\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 12,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n      \"eventTypeId\" : \"{{eventTypeId_p90x}}\"\r\n    }\r\n  ]\r\n}\r\n"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibilityId_3",
+          "name": "createMeteredItem_aerobics",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "935491ba-4f06-417e-b394-5070579c1e7e",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_aerobics\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "f3d86a0c-618f-4033-9860-18a42a888300",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -3238,38 +3120,54 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_unlimited}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_pilates}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Aerobics Package\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 15,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n      \"eventTypeId\" : \"{{eventTypeId_aerobics}}\"\r\n    }\r\n  ]\r\n}\r\n"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibilityId_3_metered",
+          "name": "createMeteredItem_pilates",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "2ce1cb70-2f2c-406c-adda-2a0d170ecf08",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_pilates\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "09701f47-e4ef-4e23-8c96-28869fc42d39",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -3288,38 +3186,54 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_metered}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_pilates}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Pilates Package\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 5,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n      \"eventTypeId\" : \"{{eventTypeId_pilates}}\"\r\n    }\r\n  ]\r\n}\r\n"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibilityId_4",
+          "name": "createMeteredItem_zumba",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "3c911be9-e032-40b3-a477-dcd71b45fd1a",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_zumba\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "478c1bd8-5e95-4d0f-843a-d70f37609750",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -3338,38 +3252,54 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_unlimited}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Zumba Package\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 7.50,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n      \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\r\n    }\r\n  ]\r\n}\r\n"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibilityId_4_metered",
+          "name": "createMeteredItem_cycling",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "26f5f869-fe53-4ea1-b5c8-a24c701c4932",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_cycling\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "c73bba13-a5f2-4e87-bcac-2605ede1c37d",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -3388,38 +3318,54 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_metered}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Cycling Package\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 20,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n      \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\r\n    }\r\n  ]\r\n}\r\n"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibilityId_5",
+          "name": "createMeteredItem_turboKick",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "2fb71b66-3273-40a2-bc9a-84b0ae9ce015",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"itemId_turboKick\", jsonData.id);",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "62675862-a243-47ca-8563-afd3a62aa260",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -3438,267 +3384,18 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_unlimited}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Turbo Kick Package\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 17.50,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n      \"eventTypeId\" : \"{{eventTypeId_turboKick}}\"\r\n    }\r\n  ]\r\n}\r\n"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "itemEligibilityId_5_metered",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_metered}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "itemEligibility"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "itemEligibilityId_6",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_unlimited}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_aerobics}}\"\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "itemEligibility"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "itemEligibilityId_6_metered",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_metered}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_aerobics}}\"\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "itemEligibility"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "itemEligibilityId_7",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_unlimited}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_turboKick}}\"\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "itemEligibility"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "itemEligibilityId_7_metered",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_metered}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_turboKick}}\"\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },

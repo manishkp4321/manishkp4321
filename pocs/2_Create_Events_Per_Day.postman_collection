@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "b5b9b702-c53d-4c36-b4af-34128f0944a3",
+    "_postman_id": "f588fb50-bce1-4707-904d-f0f4feec6c90",
     "name": "2_Create_Events_Per_Day",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -1309,7 +1309,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -1660,7 +1660,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -2010,7 +2010,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -2360,7 +2360,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -2710,7 +2710,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -3060,7 +3060,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -3410,7 +3410,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -3760,7 +3760,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -4110,7 +4110,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -4460,7 +4460,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -4810,7 +4810,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -5160,7 +5160,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -5510,7 +5510,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -5860,7 +5860,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -6210,7 +6210,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -6560,7 +6560,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -6910,7 +6910,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -7260,7 +7260,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -7610,7 +7610,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -7960,7 +7960,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -8310,7 +8310,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
