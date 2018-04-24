@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ac9b3a80-ba25-42e4-8140-a4311e6948fd",
+		"_postman_id": "a3a5a4c6-5f9b-4f76-91eb-149d5a6d97cd",
 		"name": "Full_API_Automation_Suite",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -7422,173 +7422,34 @@
 					"response": []
 				},
 				{
-					"name": "createEnrollment_p90x",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d8b80e0f-6db7-47c4-b043-eb11b88d7fed",
-								"type": "text/javascript",
-								"exec": [
-									"",
-									"",
-									"if (responseCode.code != 201)",
-									"{",
-									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"}",
-									"",
-									"else if (responseCode.code === 201) ",
-									"{",
-									"    ",
-									"    var jsonData = JSON.parse(responseBody);",
-									"    postman.setEnvironmentVariable(\"enrollmentId1\", jsonData.id);",
-									"    ",
-									"    tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId1\")+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct reservationDateTime\"] = responseBody.has(\"\\\"reservationDateTime\\\":\"+\"\\\"\"+jsonData.reservationDateTime+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct status\"] = responseBody.has(\"\\\"status\\\":\"+\"\\\"\"+jsonData.status+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.member.id+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userId\")+\"\\\"\"); ",
-									"    tests[\"Response Body has Correct firstName\"] = responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+jsonData.member.person.firstName+\"\\\"\"); ",
-									"    tests[\"Response Body has Correct lastName\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+jsonData.member.person.lastName+\"\\\"\"); ",
-									"   tests[\"Response Body has Correct photoId\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+jsonData.member.person.photoId+\"\\\"\"); ",
-									"    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.member.person.email+\"\\\"\");",
-									"    tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.purchaseSummary.expirationDateTime+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":\"+false);",
-									"    tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":\"+false);  ",
-									"    tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":\"+true);",
-									"",
-									"}",
-									"",
-									"tests[\"Response code should be 201\"] = responseCode.code === 201;"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/enrollment/{{userId}}",
-							"host": [
-								"{{enrollment}}"
-							],
-							"path": [
-								"{{organizationId}}",
-								"{{locationId}}",
-								"event",
-								"{{eventId_1200pm}}",
-								"enrollment",
-								"{{userId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "createEnrollment_Aerobics",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "824f71d0-09f7-4011-8478-d29d2254f182",
-								"type": "text/javascript",
-								"exec": [
-									"",
-									"",
-									"if (responseCode.code != 201)",
-									"{",
-									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"}",
-									"",
-									"else if (responseCode.code === 201) ",
-									"{",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"enrollmentId1\", jsonData.id);",
-									"",
-									"tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId1\")+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct reservationDateTime\"] = responseBody.has(\"\\\"reservationDateTime\\\":\"+\"\\\"\"+jsonData.reservationDateTime+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct status\"] = responseBody.has(\"\\\"status\\\":\"+\"\\\"\"+jsonData.status+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.member.id+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userId\")+\"\\\"\"); ",
-									"    tests[\"Response Body has Correct firstName\"] = responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+jsonData.member.person.firstName+\"\\\"\"); ",
-									"    tests[\"Response Body has Correct lastName\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+jsonData.member.person.lastName+\"\\\"\"); ",
-									"    tests[\"Response Body has Correct photoId\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+jsonData.member.person.photoId+\"\\\"\"); ",
-									"    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.member.person.email+\"\\\"\");",
-									"    tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.purchaseSummary.expirationDateTime+\"\\\"\");  ",
-									"    tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":\"+false);",
-									"    tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":\"+false);  ",
-									"    tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":\"+true);",
-									"",
-									"}",
-									"",
-									"",
-									"tests[\"Response code should be 201\"] = responseCode.code === 201;"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "text/plain"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/enrollment/{{userId}}",
-							"host": [
-								"{{enrollment}}"
-							],
-							"path": [
-								"{{organizationId}}",
-								"{{locationId}}",
-								"event",
-								"{{eventId_100pm}}",
-								"enrollment",
-								"{{userId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "updateEnrollment",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "81658b9c-223a-4c30-a94b-34bdaba9c5ec",
+								"id": "5c330440-ebe4-4048-bfa4-b88b5cd2fc8d",
 								"type": "text/javascript",
 								"exec": [
-									"if(responseCode.code===200) {",
-									"var jsonData = JSON.parse(responseBody);",
-									"var attendStatus = postman.getEnvironmentVariable(\"attendStatus\");",
-									"postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id); ",
 									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"var attendStatus = postman.getEnvironmentVariable(\"attendStatus\")",
+									"postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id);",
+									"",
+									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+									"if(attendStatus == 'reserved'){",
+									"    if (responseCode.code != 409)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+									"}else{",
+									"    if (responseCode.code != 200)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
 									"tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
 									"tests[\"Response Body has Correct status\"] = responseBody.has(\"\\\"status\\\":\\\"attended\\\"\");",
 									"tests[\"Response Body has Correct Member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.member.id+\"\\\"\");  ",
@@ -7599,26 +7460,12 @@
 									"tests[\"Response Body has Correct reservationDateTime\"] = responseBody.has(\"\\\"reservationDateTime\\\":\"+\"\\\"\"+jsonData.reservationDateTime+\"\\\"\");",
 									"tests[\"Response Body has Correct attendanceDateTime\"] = responseBody.has(\"\\\"attendanceDateTime\\\":\"+\"\\\"\"+jsonData.attendanceDateTime+\"\\\"\");",
 									"tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.member.person.email+\"\\\"\");",
-									"//tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.expirationDateTime+\"\\\"\");",
+									"tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.expirationDateTime+\"\\\"\");",
 									"tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
 									"tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":false\");",
 									"tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
 									"}",
-									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
 									"",
-									"    else if (responseCode.code != 409)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"        ",
-									"",
-									"    else if (responseCode.code != 200)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
 									""
 								]
 							}
@@ -7995,15 +7842,29 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a79d5c5a-c191-47bf-b4e0-818b781cd6ca",
+								"id": "c8f75f68-4f2e-417e-96b0-227b52fd4701",
 								"type": "text/javascript",
 								"exec": [
-									"if(responseCode.code===200) {",
+									"",
 									"var jsonData = JSON.parse(responseBody);",
 									"var attendStatus = postman.getEnvironmentVariable(\"attendStatus\");",
 									"postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id); ",
-									"",
-									"tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
+									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+									"if(attendStatus == 'reserved'){",
+									"    if (responseCode.code != 409)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+									"}else{",
+									"    if (responseCode.code != 200)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"    tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
 									"tests[\"Response Body has Correct status\"] = responseBody.has(\"\\\"status\\\":\\\"attended\\\"\");",
 									"tests[\"Response Body has Correct Member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.member.id+\"\\\"\");  ",
 									"tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userId\")+\"\\\"\"); ",
@@ -8017,23 +7878,7 @@
 									"tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
 									"tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":false\");",
 									"tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
-									"}",
-									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
-									"",
-									"    else if (responseCode.code != 409)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"        ",
-									"",
-									"    else if (responseCode.code != 200)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
-									""
+									"}"
 								]
 							}
 						},
@@ -8407,15 +8252,29 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8aff5d06-fbb4-4a02-bdd4-19a1998c47a8",
+								"id": "710ecdfb-0f65-4ef4-a660-080054dcbf08",
 								"type": "text/javascript",
 								"exec": [
-									"if(responseCode.code===200) {",
+									"",
 									"var jsonData = JSON.parse(responseBody);",
 									"var attendStatus = postman.getEnvironmentVariable(\"attendStatus\");",
 									"postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id); ",
-									"",
-									"tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
+									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+									"if(attendStatus == 'reserved'){",
+									"    if (responseCode.code != 409)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+									"}else{",
+									"    if (responseCode.code != 200)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"    tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
 									"tests[\"Response Body has Correct status\"] = responseBody.has(\"\\\"status\\\":\\\"attended\\\"\");",
 									"tests[\"Response Body has Correct Member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.member.id+\"\\\"\");  ",
 									"tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userId\")+\"\\\"\"); ",
@@ -8429,23 +8288,7 @@
 									"tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
 									"tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":false\");",
 									"tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
-									"}",
-									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
-									"",
-									"    else if (responseCode.code != 409)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"        ",
-									"",
-									"    else if (responseCode.code != 200)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
-									""
+									"}"
 								]
 							}
 						},
@@ -8819,15 +8662,29 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c9820132-5268-40e0-9e01-8119daf4b72f",
+								"id": "dab183a1-99f8-4c1f-a585-1c49fcf7c090",
 								"type": "text/javascript",
 								"exec": [
-									"if(responseCode.code===200) {",
+									"",
 									"var jsonData = JSON.parse(responseBody);",
 									"var attendStatus = postman.getEnvironmentVariable(\"attendStatus\");",
 									"postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id); ",
-									"",
-									"tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
+									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+									"if(attendStatus == 'reserved'){",
+									"    if (responseCode.code != 409)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+									"}else{",
+									"    if (responseCode.code != 200)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"    tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
 									"tests[\"Response Body has Correct status\"] = responseBody.has(\"\\\"status\\\":\\\"attended\\\"\");",
 									"tests[\"Response Body has Correct Member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.member.id+\"\\\"\");  ",
 									"tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userId\")+\"\\\"\"); ",
@@ -8842,21 +8699,8 @@
 									"tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":false\");",
 									"tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
 									"}",
-									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
 									"",
-									"    else if (responseCode.code != 409)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"        ",
 									"",
-									"    else if (responseCode.code != 200)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
 									""
 								]
 							}
@@ -9228,15 +9072,29 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8be9109a-a617-4631-8b52-635a07c4a4ad",
+								"id": "ac87f27f-d0b7-43db-ac68-feea00778144",
 								"type": "text/javascript",
 								"exec": [
-									"if(responseCode.code===200) {",
+									"",
 									"var jsonData = JSON.parse(responseBody);",
 									"var attendStatus = postman.getEnvironmentVariable(\"attendStatus\");",
 									"postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id); ",
-									"",
-									"tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
+									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+									"if(attendStatus == 'reserved'){",
+									"    if (responseCode.code != 409)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+									"}else{",
+									"    if (responseCode.code != 200)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"    tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
 									"tests[\"Response Body has Correct status\"] = responseBody.has(\"\\\"status\\\":\\\"attended\\\"\");",
 									"tests[\"Response Body has Correct Member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.member.id+\"\\\"\");  ",
 									"tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userId\")+\"\\\"\"); ",
@@ -9251,21 +9109,6 @@
 									"tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":false\");",
 									"tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
 									"}",
-									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
-									"",
-									"    else if (responseCode.code != 409)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"        ",
-									"",
-									"    else if (responseCode.code != 200)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
 									""
 								]
 							}
@@ -9639,15 +9482,29 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f4938364-21f9-49e7-8ef7-b7bcadfe1a79",
+								"id": "e2eb8ee2-1343-4b12-be95-dfde2ea6c7fb",
 								"type": "text/javascript",
 								"exec": [
-									"if(responseCode.code===200) {",
+									"",
 									"var jsonData = JSON.parse(responseBody);",
 									"var attendStatus = postman.getEnvironmentVariable(\"attendStatus\");",
 									"postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id); ",
-									"",
-									"tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
+									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+									"if(attendStatus == 'reserved'){",
+									"    if (responseCode.code != 409)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+									"}else{",
+									"    if (responseCode.code != 200)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"    tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
 									"tests[\"Response Body has Correct status\"] = responseBody.has(\"\\\"status\\\":\\\"attended\\\"\");",
 									"tests[\"Response Body has Correct Member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.member.id+\"\\\"\");  ",
 									"tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userId\")+\"\\\"\"); ",
@@ -9662,21 +9519,7 @@
 									"tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":false\");",
 									"tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
 									"}",
-									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
 									"",
-									"    else if (responseCode.code != 409)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"        ",
-									"",
-									"    else if (responseCode.code != 200)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
 									""
 								]
 							}
@@ -10052,15 +9895,29 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "073ba900-ae6b-41a6-9c01-791d22c02e51",
+								"id": "70ade620-f80a-4233-8d9d-bd60f51b658a",
 								"type": "text/javascript",
 								"exec": [
-									"if(responseCode.code===200) {",
+									"",
 									"var jsonData = JSON.parse(responseBody);",
 									"var attendStatus = postman.getEnvironmentVariable(\"attendStatus\");",
 									"postman.setEnvironmentVariable(\"enrollmentId\", jsonData.id); ",
-									"",
-									"tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
+									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
+									"if(attendStatus == 'reserved'){",
+									"    if (responseCode.code != 409)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 409\"] = responseCode.code === 409;    ",
+									"}else{",
+									"    if (responseCode.code != 200)",
+									"    {",
+									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"    }",
+									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"    tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"enrollmentId\")+\"\\\"\");  ",
 									"tests[\"Response Body has Correct status\"] = responseBody.has(\"\\\"status\\\":\\\"attended\\\"\");",
 									"tests[\"Response Body has Correct Member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.member.id+\"\\\"\");  ",
 									"tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userId\")+\"\\\"\"); ",
@@ -10075,21 +9932,6 @@
 									"tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":false\");",
 									"tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
 									"}",
-									"//Returns 409 conflict when you send attendStatus of reserved to an existing enrollment.",
-									"",
-									"    else if (responseCode.code != 409)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"        ",
-									"",
-									"    else if (responseCode.code != 200)",
-									"    {",
-									"        tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-									"        tests[\"[INFO] Response Body: \" + responseBody] = true;",
-									"    }",
-									"    tests[\"Response code should be 200\"] = responseCode.code === 200;",
 									""
 								]
 							}
@@ -10634,7 +10476,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{registration}}/{{organizationId}}/user/token/{{employeeTokenId_3}}",
+							"raw": "{{registration}}/{{organizationId}}/user/token/{{employeeTokenId}}",
 							"host": [
 								"{{registration}}"
 							],
@@ -10642,7 +10484,7 @@
 								"{{organizationId}}",
 								"user",
 								"token",
-								"{{employeeTokenId_3}}"
+								"{{employeeTokenId}}"
 							]
 						}
 					},
