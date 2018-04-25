@@ -1,0 +1,1210 @@
+{
+  "info": {
+    "_postman_id": "e04feab3-6cca-f275-57e5-4311aad75725",
+    "name": "3_Automated_SanityChecks_GET_Requests_New",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Update Location",
+      "description": "",
+      "item": [
+        {
+          "name": "updateLocation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\" : \"University Fitness Center #{{orgNumber}}\",\r\n    \"address\" : {\r\n      \"address1\" : \"123 Fitness Lane\",\r\n      \"address2\" : \"PO Box {{$randomInt}}\",\r\n      \"city\" : \"Little Rock\",\r\n      \"state\" : \"{{randState}}\",\r\n      \"country\" : \"United States\",\r\n      \"zipCode\" : \"33935\"\r\n    },\r\n  \"email\" : {\r\n    \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\r\n  },\r\n  \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"411\"\r\n    }\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
+              "host": [
+                "{{my-organization}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "location",
+                "{{locationId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Send Reset Password Mail",
+      "description": "Sends Reset Password email with Passcode for Reset Password/Forgot Password",
+      "item": [
+        {
+          "name": "sendPasswordResetMail",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 202)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 202;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"{{employeeEmail}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{authentication}}/organization/{{organizationId}}/password?reset=true",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "organization",
+                "{{organizationId}}",
+                "password"
+              ],
+              "query": [
+                {
+                  "key": "reset",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Schedule",
+      "description": "",
+      "item": [
+        {
+          "name": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "schedule"
+              ],
+              "query": [
+                {
+                  "key": "startDateTime",
+                  "value": "{{eventStartTime}}"
+                },
+                {
+                  "key": "endDateTime",
+                  "value": "{{eventEndTime}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Registration",
+      "description": "",
+      "item": [
+        {
+          "name": "getEmployeeRegistration",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/user/token/{{employeeTokenId}}",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "user",
+                "token",
+                "{{employeeTokenId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Enrollment",
+      "description": "",
+      "item": [
+        {
+          "name": "getEnrollment_1030AM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_1030am}}",
+                "enrollment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_1200PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_1200pm}}",
+                "enrollment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_100PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_100pm}}",
+                "enrollment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_200PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_200pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_200pm}}",
+                "enrollment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_300PM ",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_300pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_300pm}}",
+                "enrollment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_430PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_430pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_430pm}}",
+                "enrollment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getEnrollment_500PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_500pm}}",
+                "enrollment"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "description": "",
+      "item": [
+        {
+          "name": "OwnerLogin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+              },
+              {
+                "key": "",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"password\": \"{{ownerPassword}}\",\r\n  \"username\": \"{{ownerEmail}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "organization",
+                "{{organizationId}}",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "automated-testing-client"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ABCStaffLogin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+              },
+              {
+                "key": "",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"password\": \"Sydney@32\",\r\n  \"username\": \"animesh.kumar@abcfinancial.com\"\r\n}"
+            },
+            "url": {
+              "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "organization",
+                "{{organizationId}}",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "automated-testing-client"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get Package",
+      "description": "",
+      "item": [
+        {
+          "name": "getPackage_yoga",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "85d1feb5-6c0e-4fb7-9c12-448ad36612d0",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_yoga}}?userId={{userId}}",
+              "host": [
+                "{{package}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "package",
+                "{{eventTypeId_yoga}}"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPackage_p90x",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_p90x}}?userId={{userId}}",
+              "host": [
+                "{{package}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "package",
+                "{{eventTypeId_p90x}}"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPackage_pilates",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_pilates}}?userId={{userId}}",
+              "host": [
+                "{{package}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "package",
+                "{{eventTypeId_pilates}}"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPackage_zumba",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_zumba}}?userId={{userId}}",
+              "host": [
+                "{{package}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "package",
+                "{{eventTypeId_zumba}}"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPackage_cycling",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_cycling}}?userId={{userId}}",
+              "host": [
+                "{{package}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "package",
+                "{{eventTypeId_cycling}}"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPackage_aerobics",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_aerobics}}?userId={{userId}}",
+              "host": [
+                "{{package}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "package",
+                "{{eventTypeId_aerobics}}"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPackage_turboKick",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_turboKick}}?userId={{userId}}",
+              "host": [
+                "{{package}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "package",
+                "{{eventTypeId_turboKick}}"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Omni Seearch",
+      "description": "",
+      "item": [
+        {
+          "name": "getOrganization",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "var orgNameToSearchFor = postman.getEnvironmentVariable(\"orgName\");",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "tests[\"Searching for specific Org Name in response\"] = responseBody.has(orgNameToSearchFor);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{omniSearch}}/{{organizationId}}/organization",
+              "host": [
+                "{{omniSearch}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "organization"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getLocation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "var locationNameToSearchFor = postman.getEnvironmentVariable(\"locationName\");",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "tests[\"Searching for specific Org Name in response\"] = responseBody.has(locationNameToSearchFor);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{omniSearch}}/{{organizationId}}/location",
+              "host": [
+                "{{omniSearch}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "location"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getEmployees",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "var ownerEmailToSearchFor = postman.getEnvironmentVariable(\"ownerEmail\");",
+                  "var ownerIdToSearchFor = postman.getEnvironmentVariable(\"ownerId\");",
+                  "var employeeIdToSearchFor = postman.getEnvironmentVariable(\"employeeId\");",
+                  "var employeeEmailToSearchFor = postman.getEnvironmentVariable(\"employeeEmail\");",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "tests[\"Searching for specific Owner Email in response\"] = responseBody.has(ownerEmailToSearchFor);",
+                  "tests[\"Searching for specific Owner UUID in response\"] = responseBody.has(ownerIdToSearchFor);",
+                  "tests[\"Searching for specific Employee Email in response\"] = responseBody.has(employeeEmailToSearchFor);",
+                  "tests[\"Searching for specific Employee UUID in response\"] = responseBody.has(employeeIdToSearchFor);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{omniSearch}}/{{organizationId}}/employee",
+              "host": [
+                "{{omniSearch}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "employee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getMembers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "var memberIdToSearchFor = postman.getEnvironmentVariable(\"memberId_1030am\");",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "tests[\"Searching for specific Member ID in response\"] = responseBody.has(memberIdToSearchFor);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{omniSearch}}/{{organizationId}}/member",
+              "host": [
+                "{{omniSearch}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "member"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
