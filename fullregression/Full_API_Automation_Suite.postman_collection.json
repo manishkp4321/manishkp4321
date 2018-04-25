@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "459ec13d-53f7-4620-aa3e-8633e40775e1",
+    "_postman_id": "45593db2-162f-4874-be37-a8466b4a77a5",
     "name": "Full_API_Automation_Suite",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -940,7 +940,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "17afad65-0f6c-4ed2-9736-b5c59916124f",
+                "id": "1ba0f661-2a65-415f-83c4-2383710c38a6",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -960,6 +960,7 @@
                   "    postman.setEnvironmentVariable(\"ownerEmail\", jsonData.email);",
                   "    postman.setEnvironmentVariable(\"ownerPassword\", jsonData.password);",
                   "    postman.setEnvironmentVariable(\"appURL\", appURL);",
+                  "    postman.setEnvironmentVariable(\"roleId\", jsonData.roleId);",
                   "    ",
                   "    tests[\"Response Body has Correct Organization ID\"] = responseBody.has(\"\\\"organizationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"organizationId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct User ID\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerId\")+\"\\\"\");",
@@ -2303,7 +2304,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "191471cc-6ff4-4b8b-bc2a-018f4f5c003c",
+                "id": "6534416e-0f26-4dae-9199-8ead1145f84b",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2322,6 +2323,11 @@
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
+                  "    ",
+                  "    postman.setEnvironmentVariable(\"getEmpFirstName\", jsonData.firstName);",
+                  "    postman.setEnvironmentVariable(\"getEmpLastName\", jsonData.lastName);",
+                  "    postman.setEnvironmentVariable(\"getEmpEmailId\", jsonData.email);",
+                  "    ",
                   "    ",
                   "    tests[\"Response Body has contains id\"] = responseBody.has(jsonData.id);",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@gymemployee.com\"+\"\\\"\");",
@@ -7427,7 +7433,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "688fc667-c6e4-406c-9df2-6db30bdae761",
+                "id": "cc588d5a-46ea-4cd9-9240-94c0ea378620",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -7460,7 +7466,7 @@
                   "tests[\"Response Body has Correct reservationDateTime\"] = responseBody.has(\"\\\"reservationDateTime\\\":\"+\"\\\"\"+jsonData.reservationDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct attendanceDateTime\"] = responseBody.has(\"\\\"attendanceDateTime\\\":\"+\"\\\"\"+jsonData.attendanceDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.member.person.email+\"\\\"\");",
-                  "tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
+                  "//tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
                   "tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"purchaseOpportunity\");",
                   "tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
                   "tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
@@ -7842,7 +7848,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "c7c27727-61ff-43a4-be9d-09a5bcc63519",
+                "id": "e543a9b6-e0b7-4a0e-b040-86574ef49dab",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -7874,7 +7880,7 @@
                   "tests[\"Response Body has Correct reservationDateTime\"] = responseBody.has(\"\\\"reservationDateTime\\\":\"+\"\\\"\"+jsonData.reservationDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct attendanceDateTime\"] = responseBody.has(\"\\\"attendanceDateTime\\\":\"+\"\\\"\"+jsonData.attendanceDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.member.person.email+\"\\\"\");",
-                  "tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
+                  "//tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
                   "tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"purchaseOpportunity\");",
                   "tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
                   "tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
@@ -8252,7 +8258,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "31612f0e-d5f9-42bb-81fe-513377f7dc04",
+                "id": "fdd27504-ee86-485b-ae18-786b9dbacc20",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -8284,7 +8290,7 @@
                   "tests[\"Response Body has Correct reservationDateTime\"] = responseBody.has(\"\\\"reservationDateTime\\\":\"+\"\\\"\"+jsonData.reservationDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct attendanceDateTime\"] = responseBody.has(\"\\\"attendanceDateTime\\\":\"+\"\\\"\"+jsonData.attendanceDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.member.person.email+\"\\\"\");",
-                  "tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
+                  "//tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
                   "tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"purchaseOpportunity\");",
                   "tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
                   "tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
@@ -9073,7 +9079,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ab822599-d785-47e1-a3cb-4d75bcd91d2c",
+                "id": "cf6fdc58-768b-4522-b259-0f63dcbc1be3",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -9105,7 +9111,7 @@
                   "tests[\"Response Body has Correct reservationDateTime\"] = responseBody.has(\"\\\"reservationDateTime\\\":\"+\"\\\"\"+jsonData.reservationDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct attendanceDateTime\"] = responseBody.has(\"\\\"attendanceDateTime\\\":\"+\"\\\"\"+jsonData.attendanceDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.member.person.email+\"\\\"\");",
-                  "tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
+                  "//tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
                   "tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"purchaseOpportunity\");",
                   "tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
                   "tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
@@ -9483,7 +9489,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "fdea9a8b-540e-478b-8614-fda0aab6a523",
+                "id": "e6f78b2e-db62-48b2-a411-998c27ed5477",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -9515,7 +9521,7 @@
                   "tests[\"Response Body has Correct reservationDateTime\"] = responseBody.has(\"\\\"reservationDateTime\\\":\"+\"\\\"\"+jsonData.reservationDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct attendanceDateTime\"] = responseBody.has(\"\\\"attendanceDateTime\\\":\"+\"\\\"\"+jsonData.attendanceDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.member.person.email+\"\\\"\");",
-                  "tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
+                  "//tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
                   "tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"purchaseOpportunity\");",
                   "tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
                   "tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
@@ -9896,7 +9902,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "df24b93d-d853-49cf-92c7-97d7612f4a6c",
+                "id": "ca32753b-54c0-48c5-962d-73e5904a63da",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -9928,7 +9934,7 @@
                   "tests[\"Response Body has Correct reservationDateTime\"] = responseBody.has(\"\\\"reservationDateTime\\\":\"+\"\\\"\"+jsonData.reservationDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct attendanceDateTime\"] = responseBody.has(\"\\\"attendanceDateTime\\\":\"+\"\\\"\"+jsonData.attendanceDateTime+\"\\\"\");",
                   "tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.member.person.email+\"\\\"\");",
-                  "tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
+                  "//tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
                   "tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"purchaseOpportunity\");",
                   "tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":false\");",
                   "tests[\"Response Body has Correct unlimited\"] = responseBody.has(jsonData.purchaseSummary.unlimited);",
@@ -10437,7 +10443,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "e1991d22-7a3b-47d6-9c5b-ed44bd73a654",
+                "id": "97dcb97c-f56a-4c7b-804f-de0ce7f309ec",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -10450,12 +10456,12 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    ",
-                  "    tests[\"Response Body has contains id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.user.id+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"email\");",
-                  "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"firstName\");",
-                  "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"lastName\");",
-                  "    tests[\"Response Body has Correct Person id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.person.id+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Phone number\"] = responseBody.has(\"phoneNumber\");",
+                  "tests[\"Response Body has contains id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.user.id+\"\\\"\");",
+                  "tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"getEmpEmailId\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct First name\"] = responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"getEmpFirstName\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"getEmpLastName\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct Person id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.person.id+\"\\\"\");",
+                  "tests[\"Response Body has Correct Phone number\"] = responseBody.has(\"phoneNumber\");",
                   "   ",
                   "}",
                   "",
@@ -10525,7 +10531,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ba606dfe-16f4-4a13-ab98-0603ab0d7729",
+                "id": "5bee2d2f-3ece-4918-b089-ed6cb6a34576",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -10557,7 +10563,7 @@
                   "    tests[\"Response Body has Correct photoId\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.photoId+\"\\\"\");",
                   "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.email+\"\\\"\");",
                   "    ",
-                  "    tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
                   "    tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":\"+jsonData.enrollment[0].purchaseSummary.expiringSoon);",
                   "    tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":\"+jsonData.enrollment[0].purchaseSummary.purchaseOpportunity);",
                   "    tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":\"+jsonData.enrollment[0].purchaseSummary.unlimited);",
@@ -10605,7 +10611,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "bf960293-16a5-4aaf-b643-4c516c68fdf6",
+                "id": "22b0349a-24ad-47a4-9081-294e4fdc68bd",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -10637,7 +10643,7 @@
                   "    tests[\"Response Body has Correct photoId\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.photoId+\"\\\"\");",
                   "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.email+\"\\\"\");",
                   "    ",
-                  "    tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
                   "    tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":\"+jsonData.enrollment[0].purchaseSummary.expiringSoon);",
                   "    tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":\"+jsonData.enrollment[0].purchaseSummary.purchaseOpportunity);",
                   "    tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":\"+jsonData.enrollment[0].purchaseSummary.unlimited);",
@@ -10685,7 +10691,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "5b6c54a2-364b-4981-a2d3-812caaa9494f",
+                "id": "ff3fa8d1-9e53-42ab-be57-fd19bcb2be27",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -10717,7 +10723,7 @@
                   "    tests[\"Response Body has Correct photoId\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.photoId+\"\\\"\");",
                   "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.email+\"\\\"\");",
                   "    ",
-                  "    tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
+                  "    //tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"expirationDateTime\");",
                   "    tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":\"+jsonData.enrollment[0].purchaseSummary.expiringSoon);",
                   "    tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":\"+jsonData.enrollment[0].purchaseSummary.purchaseOpportunity);",
                   "    tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":\"+jsonData.enrollment[0].purchaseSummary.unlimited);",
@@ -10844,7 +10850,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "8e749cbb-b2aa-4d0b-b130-c30da3ee8d68",
+                "id": "20ba03af-2a94-4e84-93c4-7530c618cfbf",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -10876,7 +10882,7 @@
                   "    tests[\"Response Body has Correct photoId\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.photoId+\"\\\"\");",
                   "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.email+\"\\\"\");",
                   "    ",
-                  "    tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
                   "    tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":\"+jsonData.enrollment[0].purchaseSummary.expiringSoon);",
                   "    tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":\"+jsonData.enrollment[0].purchaseSummary.purchaseOpportunity);",
                   "    tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":\"+jsonData.enrollment[0].purchaseSummary.unlimited);",
@@ -10924,7 +10930,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "2dcaf5f0-2ecb-4bd2-bad0-835f75749c99",
+                "id": "88a224b1-b6d3-43da-a7aa-4b6fdd133d5d",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -10956,7 +10962,7 @@
                   "    tests[\"Response Body has Correct photoId\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.photoId+\"\\\"\");",
                   "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.email+\"\\\"\");",
                   "    ",
-                  "    tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
                   "    tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":\"+jsonData.enrollment[0].purchaseSummary.expiringSoon);",
                   "    tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":\"+jsonData.enrollment[0].purchaseSummary.purchaseOpportunity);",
                   "    tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":\"+jsonData.enrollment[0].purchaseSummary.unlimited);",
@@ -11004,7 +11010,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "e502cdf9-feda-40cc-adc4-282c19cef379",
+                "id": "183551b0-d853-4286-88c2-e76ecd985e02",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -11036,7 +11042,7 @@
                   "    tests[\"Response Body has Correct photoId\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.photoId+\"\\\"\");",
                   "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+jsonData.enrollment[0].member.person.email+\"\\\"\");",
                   "    ",
-                  "    tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct expirationDateTime\"] = responseBody.has(\"\\\"expirationDateTime\\\":\"+\"\\\"\"+jsonData.enrollment[0].purchaseSummary.expirationDateTime+\"\\\"\");",
                   "    tests[\"Response Body has Correct expiringSoon\"] = responseBody.has(\"\\\"expiringSoon\\\":\"+jsonData.enrollment[0].purchaseSummary.expiringSoon);",
                   "    tests[\"Response Body has Correct purchaseOpportunity\"] = responseBody.has(\"\\\"purchaseOpportunity\\\":\"+jsonData.enrollment[0].purchaseSummary.purchaseOpportunity);",
                   "    tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":\"+jsonData.enrollment[0].purchaseSummary.unlimited);",
@@ -15109,6 +15115,226 @@
                 "purchase",
                 "user",
                 "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "description": "",
+      "item": [
+        {
+          "name": "getRoles",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3a24d998-08cb-4a04-ad4b-626394c81f76",
+                "type": "text/javascript",
+                "exec": [
+                  "//jsonData.content[0].id",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200) ",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"permissionGroupId_1\", jsonData.content[0].permissions[0].permissionGroupId);",
+                  "",
+                  "",
+                  "",
+                  " tests[\"Response Body has Correct Organization ID\"] = responseBody.has(\"\\\"organizationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"organizationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct name\"] = responseBody.has(\"name\");",
+                  "     tests[\"Response Body has Correct description name\"] = responseBody.has(\"description\");",
+                  "     tests[\"Response Body has Correct permissionGroupId\"] = responseBody.has(\"permissionGroupId\");",
+                  "      tests[\"Response Body has Correct permissionKey\"] = responseBody.has(\"permissionKey\");",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{authentication}}/{{organizationId}}/role",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "role"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getRolesById",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "33cea620-a205-4e64-9a9d-96fb774a8217",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200) ",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "",
+                  " tests[\"Response Body has Correct Organization ID\"] = responseBody.has(\"\\\"organizationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"organizationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct name\"] = responseBody.has(\"name\");",
+                  "     tests[\"Response Body has Correct description name\"] = responseBody.has(\"description\");",
+                  "     tests[\"Response Body has Correct permissionGroupId\"] = responseBody.has(\"permissionGroupId\");",
+                  "      tests[\"Response Body has Correct permissionKey\"] = responseBody.has(\"permissionKey\");",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{authentication}}/{{organizationId}}/role/{{roleId}}",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "role",
+                "{{roleId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Permission",
+      "description": "",
+      "item": [
+        {
+          "name": "getAllPermissionGroups",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be135b20-d4b1-49c1-95b1-9415c4dc3b2b",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200) ",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{authentication}}/permissionGroup",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "permissionGroup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllPermissionGroupById",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6dda7b07-4a43-4795-9b7b-aad2e91b3e6c",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200) ",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{authentication}}/permissionGroup/{{permissionGroupId_1}}",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "permissionGroup",
+                "{{permissionGroupId_1}}"
               ]
             }
           },
