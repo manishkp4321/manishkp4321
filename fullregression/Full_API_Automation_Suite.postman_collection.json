@@ -1,10 +1,295 @@
 {
   "info": {
-    "_postman_id": "45593db2-162f-4874-be37-a8466b4a77a5",
-    "name": "Full_API_Automation_Suite",
+    "_postman_id": "ff4efb52-8f62-4a01-bb08-60edd7c8c015",
+    "name": "Full_API_Automation_Suite copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
+    {
+      "name": "Create Org, Location and User",
+      "description": null,
+      "item": [
+        {
+          "name": "createUserForOrg",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "64d1fac9-7bf1-495d-b3c5-04f6c828c3fe",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    var appURL = postman.getEnvironmentVariable(\"baseURL\") + jsonData.organizationId;",
+                  "    postman.setEnvironmentVariable(\"ownerId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"organizationId\", jsonData.organizationId);",
+                  "    postman.setEnvironmentVariable(\"ownerEmail\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"ownerPassword\", jsonData.password);",
+                  "    postman.setEnvironmentVariable(\"appURL\", appURL);",
+                  "    postman.setEnvironmentVariable(\"roleId\", jsonData.roleId);",
+                  "    ",
+                  "    tests[\"Response Body has Correct Organization ID\"] = responseBody.has(\"\\\"organizationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"organizationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct User ID\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct FirstName\"] = responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct LastName\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Password\"] = responseBody.has(\"\\\"password\\\":\\\"Password1\\\"\");",
+                  "    tests[\"Response Body has Correct PhoneNumber\"] = responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"phoneNumber\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Email\"] = responseBody.has(\"\\\"email\\\":\\\"TestUser@abc.com\\\"\");",
+                  "    tests[\"Response Body has Correct Birthdate\"] = responseBody.has(\"\\\"birthDate\\\":\\\"1998-01-27\\\"\");",
+                  "    tests[\"Response Body has Correct extension\"] = responseBody.has(\"\\\"extension\\\":\\\"1234\\\"\");",
+                  "    tests[\"Response Body has Correct person id\"] = responseBody.has(jsonData.personId);",
+                  "    tests[\"Response Body has Correct role id\"] = responseBody.has(jsonData.roleId);",
+                  "    tests[\"Response Body has Correct employee id\"] = responseBody.has(jsonData.employeeId);",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "298a76db-c033-4c5e-929e-d573e0515bb9",
+                "type": "text/javascript",
+                "exec": [
+                  "var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
+                  "",
+                  "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
+                  "var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
+                  "var randFirstName = randFirstNameWithGenderArray[0];",
+                  "var gender = randFirstNameWithGenderArray[1];",
+                  "",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"1234\"\r\n  },\r\n  \"birthDate\" : \"1998-01-27\",\r\n  \"email\" : \"TestUser@abc.com\"\r\n}"
+            },
+            "url": {
+              "raw": "{{registration}}/user",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Authorization",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "78a0eebd-a601-49bc-9f65-95296151d248",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
+                  "   ",
+                  "    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"tokenType\\\":\\\"Bearer\\\"\");",
+                  "    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"accessToken\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"accessToken\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Client Id\"] = responseBody.has(jsonData.clientId);",
+                  "    tests[\"Response Body has Correct Username\"] = responseBody.has(\"\\\"username\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerEmail\")+\"\\\"\");",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+              },
+              {
+                "key": "",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"password\": \"{{ownerPassword}}\",\r\n  \"username\": \"{{ownerEmail}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "organization",
+                "{{organizationId}}",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "automated-testing-client"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createOrgLocation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a3b6669e-b275-4428-a6e9-6b3e73a09e0d",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"addressId\", jsonData.location.address.id);",
+                  "    postman.setEnvironmentVariable(\"locationId\", jsonData.location.id);",
+                  "    postman.setEnvironmentVariable(\"locationName\", jsonData.location.name);",
+                  "    postman.setEnvironmentVariable(\"orgName\", jsonData.name);",
+                  "    ",
+                  "    ",
+                  "   ",
+                  "    ",
+                  "    var loc_address1 = \"123 Fitness Lane\";",
+                  "    var loc_address2 = \"PO Box #\"+postman.getEnvironmentVariable(\"orgNumber\");",
+                  "    var city = \"Little Rock\";",
+                  "   ",
+                  "    ",
+                  "   ",
+                  "    ",
+                  "    var emailaddress = \"UniversityFitness\"+postman.getEnvironmentVariable(\"orgNumber\")+\"@ufit.com\";",
+                  "    ",
+                  "    responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+\"UniversityFitness\"+postman.getEnvironmentVariable(\"phoneNumber\")+\"@ufit.com\"+\"\\\"\");",
+                  "    ",
+                  "    ",
+                  "    ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(jsonData.location.id);",
+                  "    tests[\"Response Body has Correct Address id\"] = responseBody.has(jsonData.location.address.id);",
+                  "    tests[\"Response Body has Correct Org name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+\"University Sports and Fitness #\"+postman.getEnvironmentVariable(\"orgNumber\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Owner ID\"] = responseBody.has(\"\\\"ownerId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Loc name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+\"University Fitness Center #\"+postman.getEnvironmentVariable(\"orgNumber\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Loc addr1\"] = responseBody.has(loc_address1);",
+                  "    tests[\"Response Body has Correct Loc addr2\"] = responseBody.has(loc_address2);",
+                  "    tests[\"Response Body has Correct City\"] = responseBody.has(\"\\\"city\\\":\\\"Little Rock\\\"\");",
+                  "    tests[\"Response Body has Correct State\"] =responseBody.has(\"\\\"state\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randState\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"\\\"country\\\":\\\"United States\\\"\");",
+                  "    tests[\"Response Body has Correct Zip code\"] = responseBody.has(\"\\\"zipCode\\\":\\\"33935\\\"\");",
+                  "    tests[\"Response Body has Correct Phone number\"] =  responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"phoneNumber\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct extension\"] = responseBody.has(\"\\\"extension\\\":\\\"411\\\"\");",
+                  "    tests[\"Response Body has Correct Email\"] = responseBody.has(emailaddress);",
+                  "    ",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "697738f3-b9f4-4646-9044-97f803022747",
+                "type": "text/javascript",
+                "exec": [
+                  "var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
+                  "",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box #{{orgNumber}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/organization",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "organization"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
     {
       "name": "Create Photos For Org",
       "description": null,
@@ -931,318 +1216,6 @@
       ]
     },
     {
-      "name": "Create Org, Location and User",
-      "description": null,
-      "item": [
-        {
-          "name": "createUserForOrg",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "1ba0f661-2a65-415f-83c4-2383710c38a6",
-                "type": "text/javascript",
-                "exec": [
-                  "",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    var appURL = postman.getEnvironmentVariable(\"baseURL\") + jsonData.organizationId;",
-                  "    postman.setEnvironmentVariable(\"ownerId\", jsonData.userId);",
-                  "    postman.setEnvironmentVariable(\"organizationId\", jsonData.organizationId);",
-                  "    postman.setEnvironmentVariable(\"ownerEmail\", jsonData.email);",
-                  "    postman.setEnvironmentVariable(\"ownerPassword\", jsonData.password);",
-                  "    postman.setEnvironmentVariable(\"appURL\", appURL);",
-                  "    postman.setEnvironmentVariable(\"roleId\", jsonData.roleId);",
-                  "    ",
-                  "    tests[\"Response Body has Correct Organization ID\"] = responseBody.has(\"\\\"organizationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"organizationId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct User ID\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct FirstName\"] = responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct LastName\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Password\"] = responseBody.has(\"\\\"password\\\":\\\"Password1\\\"\");",
-                  "    tests[\"Response Body has Correct PhoneNumber\"] = responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"phoneNumber\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Email\"] = responseBody.has(\"\\\"email\\\":\\\"TestUser@abc.com\\\"\");",
-                  "    tests[\"Response Body has Correct Birthdate\"] = responseBody.has(\"\\\"birthDate\\\":\\\"1998-01-27\\\"\");",
-                  "    tests[\"Response Body has Correct extension\"] = responseBody.has(\"\\\"extension\\\":\\\"1234\\\"\");",
-                  "    tests[\"Response Body has Correct photoId\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randPhotoId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct person id\"] = responseBody.has(jsonData.personId);",
-                  "    tests[\"Response Body has Correct role id\"] = responseBody.has(jsonData.roleId);",
-                  "    tests[\"Response Body has Correct employee id\"] = responseBody.has(jsonData.employeeId);",
-                  "    ",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "e5463ea2-c34b-401a-8499-f0bcd501098a",
-                "type": "text/javascript",
-                "exec": [
-                  "var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
-                  "",
-                  "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
-                  "var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
-                  "var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
-                  "var randFirstName = randFirstNameWithGenderArray[0];",
-                  "var gender = randFirstNameWithGenderArray[1];",
-                  "",
-                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
-                  "",
-                  "var userPhotos_male = [postman.getEnvironmentVariable(\"photoId_male_1\"),postman.getEnvironmentVariable(\"photoId_male_2\"),postman.getEnvironmentVariable(\"photoId_male_3\"),postman.getEnvironmentVariable(\"photoId_male_4\"),postman.getEnvironmentVariable(\"photoId_male_5\"),postman.getEnvironmentVariable(\"photoId_male_6\"),postman.getEnvironmentVariable(\"photoId_male_7\"),postman.getEnvironmentVariable(\"photoId_male_8\")];",
-                  "",
-                  "var userPhotos_female = [postman.getEnvironmentVariable(\"photoId_female_1\"),postman.getEnvironmentVariable(\"photoId_female_2\"),postman.getEnvironmentVariable(\"photoId_female_3\"),postman.getEnvironmentVariable(\"photoId_female_4\"),postman.getEnvironmentVariable(\"photoId_female_5\"),postman.getEnvironmentVariable(\"photoId_female_6\"),postman.getEnvironmentVariable(\"photoId_female_7\"),postman.getEnvironmentVariable(\"photoId_female_8\")];",
-                  "",
-                  "if(gender === 'male')",
-                  "{",
-                  "    var randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
-                  "    do {",
-                  "        randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
-                  "    }",
-                  "    while (randPhotoId === undefined);",
-                  "} ",
-                  "else if (gender === 'female')",
-                  "{",
-                  "        var randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
-                  "    do {",
-                  "        randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
-                  "    }",
-                  "    while (randPhotoId === undefined);",
-                  "}",
-                  "else",
-                  "{",
-                  "    //GENDER FOR FIRST NAME WAS NOT SET AS 'male' OR 'female'",
-                  "}",
-                  "",
-                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
-                  "",
-                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
-                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
-                  "postman.setEnvironmentVariable(\"randPhotoId\", randPhotoId);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"1234\"\r\n  },\r\n  \"birthDate\" : \"1998-01-27\",\r\n  \"email\" : \"TestUser@abc.com\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{registration}}/user",
-              "host": [
-                "{{registration}}"
-              ],
-              "path": [
-                "user"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Authorization",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "78a0eebd-a601-49bc-9f65-95296151d248",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 200)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
-                  "   ",
-                  "    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"tokenType\\\":\\\"Bearer\\\"\");",
-                  "    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"accessToken\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"accessToken\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Client Id\"] = responseBody.has(jsonData.clientId);",
-                  "    tests[\"Response Body has Correct Username\"] = responseBody.has(\"\\\"username\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerEmail\")+\"\\\"\");",
-                  "    ",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
-              },
-              {
-                "key": "",
-                "value": "",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"password\": \"{{ownerPassword}}\",\r\n  \"username\": \"{{ownerEmail}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
-              "host": [
-                "{{authentication}}"
-              ],
-              "path": [
-                "organization",
-                "{{organizationId}}",
-                "login"
-              ],
-              "query": [
-                {
-                  "key": "clientId",
-                  "value": "automated-testing-client"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "createOrgLocation",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a3b6669e-b275-4428-a6e9-6b3e73a09e0d",
-                "type": "text/javascript",
-                "exec": [
-                  "",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"addressId\", jsonData.location.address.id);",
-                  "    postman.setEnvironmentVariable(\"locationId\", jsonData.location.id);",
-                  "    postman.setEnvironmentVariable(\"locationName\", jsonData.location.name);",
-                  "    postman.setEnvironmentVariable(\"orgName\", jsonData.name);",
-                  "    ",
-                  "    ",
-                  "   ",
-                  "    ",
-                  "    var loc_address1 = \"123 Fitness Lane\";",
-                  "    var loc_address2 = \"PO Box #\"+postman.getEnvironmentVariable(\"orgNumber\");",
-                  "    var city = \"Little Rock\";",
-                  "   ",
-                  "    ",
-                  "   ",
-                  "    ",
-                  "    var emailaddress = \"UniversityFitness\"+postman.getEnvironmentVariable(\"orgNumber\")+\"@ufit.com\";",
-                  "    ",
-                  "    responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+\"UniversityFitness\"+postman.getEnvironmentVariable(\"phoneNumber\")+\"@ufit.com\"+\"\\\"\");",
-                  "    ",
-                  "    ",
-                  "    ",
-                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(jsonData.location.id);",
-                  "    tests[\"Response Body has Correct Address id\"] = responseBody.has(jsonData.location.address.id);",
-                  "    tests[\"Response Body has Correct Org name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+\"University Sports and Fitness #\"+postman.getEnvironmentVariable(\"orgNumber\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Owner ID\"] = responseBody.has(\"\\\"ownerId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Loc name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+\"University Fitness Center #\"+postman.getEnvironmentVariable(\"orgNumber\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Loc addr1\"] = responseBody.has(loc_address1);",
-                  "    tests[\"Response Body has Correct Loc addr2\"] = responseBody.has(loc_address2);",
-                  "    tests[\"Response Body has Correct City\"] = responseBody.has(\"\\\"city\\\":\\\"Little Rock\\\"\");",
-                  "    tests[\"Response Body has Correct State\"] =responseBody.has(\"\\\"state\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randState\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"\\\"country\\\":\\\"United States\\\"\");",
-                  "    tests[\"Response Body has Correct Zip code\"] = responseBody.has(\"\\\"zipCode\\\":\\\"33935\\\"\");",
-                  "    tests[\"Response Body has Correct Phone number\"] =  responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"phoneNumber\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct extension\"] = responseBody.has(\"\\\"extension\\\":\\\"411\\\"\");",
-                  "    tests[\"Response Body has Correct Email\"] = responseBody.has(emailaddress);",
-                  "    ",
-                  "    ",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "697738f3-b9f4-4646-9044-97f803022747",
-                "type": "text/javascript",
-                "exec": [
-                  "var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
-                  "",
-                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
-                  "",
-                  "var randState = states[Math.floor(Math.random() * states.length)];",
-                  "postman.setEnvironmentVariable(\"randState\", randState);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box #{{orgNumber}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\n    }\n  }\n}"
-            },
-            "url": {
-              "raw": "{{registration}}/{{organizationId}}/organization",
-              "host": [
-                "{{registration}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "organization"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
       "name": "Create Employees",
       "description": null,
       "item": [
@@ -1387,7 +1360,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "d9388986-7ff1-4164-974f-eccb5c4e4aaa",
+                "id": "59e1885c-c3b0-4bd9-8df1-a4c18787aec8",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -1402,7 +1375,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
-                  "    postman.setEnvironmentVariable(\"employeeId\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeId2\", jsonData.id);",
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
@@ -15124,7 +15097,7 @@
     },
     {
       "name": "Roles",
-      "description": "",
+      "description": null,
       "item": [
         {
           "name": "getRoles",
@@ -15170,7 +15143,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{authentication}}/{{organizationId}}/role",
               "host": [
@@ -15224,7 +15200,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{authentication}}/{{organizationId}}/role/{{roleId}}",
               "host": [
@@ -15243,7 +15222,7 @@
     },
     {
       "name": "Permission",
-      "description": "",
+      "description": null,
       "item": [
         {
           "name": "getAllPermissionGroups",
@@ -15279,7 +15258,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{authentication}}/permissionGroup",
               "host": [
@@ -15326,7 +15308,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{authentication}}/permissionGroup/{{permissionGroupId_1}}",
               "host": [
