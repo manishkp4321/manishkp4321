@@ -1360,11 +1360,9 @@
             {
               "listen": "test",
               "script": {
-                "id": "59e1885c-c3b0-4bd9-8df1-a4c18787aec8",
+                "id": "8f31ddf5-1341-479c-9181-f6c63cebf244",
                 "type": "text/javascript",
                 "exec": [
-                  "",
-                  "",
                   "if (responseCode.code != 201)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
@@ -1392,7 +1390,6 @@
                   "    tests[\"Response Body has Correct Zip code\"] =  responseBody.has(\"\\\"zipCode\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randZipCode\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Phone number\"] = responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct photo Id\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randPhotoId\")+\"\\\"\");",
-                  "    ",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;",
@@ -12413,20 +12410,29 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "6aad9a6d-ed8e-44a3-ac61-e0a29de2bbb2",
+                "id": "651f470c-69ec-4ba4-a06e-1574cc9f5c11",
                 "type": "text/javascript",
                 "exec": [
-                  "var current_timestamp = new Date();",
-                  "var current_year = current_timestamp.getFullYear();",
-                  "var current_date = ('0' + (current_timestamp.getDate()+1)).slice(-2);",
-                  "var end_date = ('0' + (current_timestamp.getDate()+5)).slice(-2);",
-                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
-                  "var promoStartDate = current_year + \"-\" + current_month + \"-\" + current_date;",
-                  "var promoEndDate = current_year + \"-\" + current_month + \"-\" + end_date;",
-                  "",
                   "var promoCodeAmount=3;",
                   "var promoCodePrefix=\"Save\";",
                   "var promoCode=promoCodePrefix+promoCodeAmount;",
+                  "",
+                  "//smart date increment logic, which rolls over into the next month if we're at the end of month",
+                  "var startDate = new Date();",
+                  "startDate.setDate(startDate.getDate() + 1);",
+                  "var endDate = new Date();",
+                  "endDate.setDate(endDate.getDate() + 5);",
+                  "",
+                  "var startyear = startDate.getFullYear();",
+                  "var startMonth = ('0' + (startDate.getMonth()+1)).slice(-2);",
+                  "var startDate = ('0' + (startDate.getDate())).slice(-2);",
+                  "var endyear = endDate.getFullYear();",
+                  "var endMonth = ('0' + (endDate.getMonth()+1)).slice(-2);",
+                  "var endDate = ('0' + (endDate.getDate())).slice(-2);",
+                  "",
+                  "var promoStartDate = startyear + \"-\" + startMonth + \"-\" + startDate;",
+                  "var promoEndDate = endyear + \"-\" + endMonth + \"-\" + endDate;",
+                  "",
                   "",
                   "postman.setEnvironmentVariable(\"promoStartDate\", promoStartDate);",
                   "postman.setEnvironmentVariable(\"promoEndDate\", promoEndDate);",
@@ -12445,21 +12451,25 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
+                "value": "Bearer 9c91efb8-5651-4500-b875-f161739dfae6"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"Offer to Save\",\r\n  \"code\" : \"{{promoCode}}\",\r\n  \"type\" : \"FIXED_AMOUNT\",\r\n  \"startDate\" : \"{{promoStartDate}}\",\r\n  \"endDate\" : \"{{promoEndDate}}\",\r\n  \"amount\" : \"{{promoCodeAmount}}\",\r\n  \"currency\" : \"USD\"\r\n}"
+              "raw": "{\r\n  \"name\" : \"Offer to Save\",\r\n  \"code\" : \"{{promoCode}}\",\r\n  \"type\" : \"FIXED_AMOUNT\",\r\n  \"startDate\" : \"{{promoStartDate}}\",\r\n  \"endDate\" : \"{{promoEndDate}}\",\r\n  \"amount\" : \"{{promoCodeAmount_2}}\",\r\n  \"currency\" : \"USD\"\r\n}"
             },
             "url": {
-              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion",
+              "raw": "https://dev.greatestclubmanagementsoftwareever.com/purchase/1f8fbd61-bbe5-43c0-8ffe-152e6c9a335f/79c77356-6743-4995-8b72-b29ef5342d6c/promotion",
+              "protocol": "https",
               "host": [
-                "{{purchase}}"
+                "dev",
+                "greatestclubmanagementsoftwareever",
+                "com"
               ],
               "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
+                "purchase",
+                "1f8fbd61-bbe5-43c0-8ffe-152e6c9a335f",
+                "79c77356-6743-4995-8b72-b29ef5342d6c",
                 "promotion"
               ]
             }
@@ -12512,16 +12522,24 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "c1328c00-27dd-4ce2-91e7-141eb70836aa",
+                "id": "4616c289-d6b8-4546-8fd7-24faacc15c61",
                 "type": "text/javascript",
                 "exec": [
-                  "var current_timestamp = new Date();",
-                  "var current_year = current_timestamp.getFullYear();",
-                  "var current_date = ('0' + (current_timestamp.getDate()+1)).slice(-2);",
-                  "var end_date = ('0' + (current_timestamp.getDate()+5)).slice(-2);",
-                  "var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
-                  "var promoStartDate = current_year + \"-\" + current_month + \"-\" + current_date;",
-                  "var promoEndDate = current_year + \"-\" + current_month + \"-\" + end_date;",
+                  "//smart date increment logic, which rolls over into the next month if we're at the end of month",
+                  "var startDate = new Date();",
+                  "startDate.setDate(startDate.getDate() + 1);",
+                  "var endDate = new Date();",
+                  "endDate.setDate(endDate.getDate() + 5);",
+                  "",
+                  "var startyear = startDate.getFullYear();",
+                  "var startMonth = ('0' + (startDate.getMonth()+1)).slice(-2);",
+                  "var startDate = ('0' + (startDate.getDate())).slice(-2);",
+                  "var endyear = endDate.getFullYear();",
+                  "var endMonth = ('0' + (endDate.getMonth()+1)).slice(-2);",
+                  "var endDate = ('0' + (endDate.getDate())).slice(-2);",
+                  "",
+                  "var promoStartDate = startyear + \"-\" + startMonth + \"-\" + startDate;",
+                  "var promoEndDate = endyear + \"-\" + endMonth + \"-\" + endDate;",
                   "",
                   "var promoCodeAmount_2=60;",
                   "var promoCodePrefix=\"Save\";",
@@ -12544,7 +12562,7 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
+                "value": "Bearer 9c91efb8-5651-4500-b875-f161739dfae6"
               }
             ],
             "body": {
@@ -12552,13 +12570,17 @@
               "raw": "{\r\n  \"name\" : \"Offer to Save\",\r\n  \"code\" : \"{{promoCode_2}}\",\r\n  \"type\" : \"FIXED_AMOUNT\",\r\n  \"startDate\" : \"{{promoStartDate}}\",\r\n  \"endDate\" : \"{{promoEndDate}}\",\r\n  \"amount\" : \"{{promoCodeAmount_2}}\",\r\n  \"currency\" : \"USD\"\r\n}"
             },
             "url": {
-              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion",
+              "raw": "https://dev.greatestclubmanagementsoftwareever.com/purchase/1f8fbd61-bbe5-43c0-8ffe-152e6c9a335f/79c77356-6743-4995-8b72-b29ef5342d6c/promotion",
+              "protocol": "https",
               "host": [
-                "{{purchase}}"
+                "dev",
+                "greatestclubmanagementsoftwareever",
+                "com"
               ],
               "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
+                "purchase",
+                "1f8fbd61-bbe5-43c0-8ffe-152e6c9a335f",
+                "79c77356-6743-4995-8b72-b29ef5342d6c",
                 "promotion"
               ]
             }
