@@ -12451,25 +12451,21 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer 9c91efb8-5651-4500-b875-f161739dfae6"
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"Offer to Save\",\r\n  \"code\" : \"{{promoCode}}\",\r\n  \"type\" : \"FIXED_AMOUNT\",\r\n  \"startDate\" : \"{{promoStartDate}}\",\r\n  \"endDate\" : \"{{promoEndDate}}\",\r\n  \"amount\" : \"{{promoCodeAmount_2}}\",\r\n  \"currency\" : \"USD\"\r\n}"
+              "raw": "{\r\n  \"name\" : \"Offer to Save\",\r\n  \"code\" : \"{{promoCode}}\",\r\n  \"type\" : \"FIXED_AMOUNT\",\r\n  \"startDate\" : \"{{promoStartDate}}\",\r\n  \"endDate\" : \"{{promoEndDate}}\",\r\n  \"amount\" : \"{{promoCodeAmount}}\",\r\n  \"currency\" : \"USD\"\r\n}"
             },
             "url": {
-              "raw": "https://dev.greatestclubmanagementsoftwareever.com/purchase/1f8fbd61-bbe5-43c0-8ffe-152e6c9a335f/79c77356-6743-4995-8b72-b29ef5342d6c/promotion",
-              "protocol": "https",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion",
               "host": [
-                "dev",
-                "greatestclubmanagementsoftwareever",
-                "com"
+                "{{purchase}}"
               ],
               "path": [
-                "purchase",
-                "1f8fbd61-bbe5-43c0-8ffe-152e6c9a335f",
-                "79c77356-6743-4995-8b72-b29ef5342d6c",
+                "{{organizationId}}",
+                "{{locationId}}",
                 "promotion"
               ]
             }
@@ -12562,7 +12558,7 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer 9c91efb8-5651-4500-b875-f161739dfae6"
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
@@ -12570,17 +12566,13 @@
               "raw": "{\r\n  \"name\" : \"Offer to Save\",\r\n  \"code\" : \"{{promoCode_2}}\",\r\n  \"type\" : \"FIXED_AMOUNT\",\r\n  \"startDate\" : \"{{promoStartDate}}\",\r\n  \"endDate\" : \"{{promoEndDate}}\",\r\n  \"amount\" : \"{{promoCodeAmount_2}}\",\r\n  \"currency\" : \"USD\"\r\n}"
             },
             "url": {
-              "raw": "https://dev.greatestclubmanagementsoftwareever.com/purchase/1f8fbd61-bbe5-43c0-8ffe-152e6c9a335f/79c77356-6743-4995-8b72-b29ef5342d6c/promotion",
-              "protocol": "https",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion",
               "host": [
-                "dev",
-                "greatestclubmanagementsoftwareever",
-                "com"
+                "{{purchase}}"
               ],
               "path": [
-                "purchase",
-                "1f8fbd61-bbe5-43c0-8ffe-152e6c9a335f",
-                "79c77356-6743-4995-8b72-b29ef5342d6c",
+                "{{organizationId}}",
+                "{{locationId}}",
                 "promotion"
               ]
             }
