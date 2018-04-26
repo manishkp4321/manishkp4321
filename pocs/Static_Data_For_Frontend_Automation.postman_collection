@@ -39,26 +39,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "022c710c-ada6-4264-9c05-cfcf69cb686f",
+                "id": "cbed1e17-0703-444c-868a-349ed4692806",
                 "type": "text/javascript",
                 "exec": [
-                  "var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
-                  "",
-                  "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
-                  "var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
-                  "var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
-                  "var randFirstName = randFirstNameWithGenderArray[0];",
-                  "var gender = randFirstNameWithGenderArray[1];",
-                  "",
-                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
-                  "",
-                  "",
-                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
-                  "",
-                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
-                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);"
+                  ""
                 ]
               }
             }
@@ -73,7 +57,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"\"\r\n  },\r\n  \"birthDate\" : \"1998-01-27\",\r\n  \"email\" : \"TestUser@abc.com\"\r\n}"
+              "raw": "{\r\n  \"firstName\" : \"Ronnie\",\r\n  \"lastName\" : \"Coleman\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"number\" : \"4738303338\",\r\n    \"extension\" : \"4573356664\"\r\n  },\r\n  \"birthDate\" : \"1998-01-27\",\r\n  \"email\" : \"coleman@test.com\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/user",
@@ -160,6 +144,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "62de797c-ad35-476b-9e21-98099c51afdd",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
@@ -181,16 +166,17 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "f055130e-c56d-4b5d-a893-d5c5201adf52",
                 "type": "text/javascript",
                 "exec": [
                   "var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
-                  "",
                   "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
-                  "",
+                  "var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
                   "var randState = states[Math.floor(Math.random() * states.length)];",
-                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                  "",
+                  "postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);",
+                  "postman.setEnvironmentVariable(\"orgNumber\", orgNumber);"
                 ]
               }
             }
@@ -1037,6 +1023,57 @@
       "description": null,
       "item": [
         {
+          "name": "getRoles",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "64f616f3-dfdf-4b9f-bb59-3fbb83244496",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "} ",
+                  "else {",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    const owner =  jsonData.content[0].id;",
+                  "    const staff =  jsonData.content[1].id;",
+                  "    const member =  jsonData.content[2].id;",
+                  "    postman.setEnvironmentVariable(\"ownerRoleId\", owner);",
+                  "    postman.setEnvironmentVariable(\"staffRoleId\", staff);",
+                  "    postman.setEnvironmentVariable(\"memberRoleId\", member);",
+                  "    ",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{authentication}}/{{organizationId}}/role",
+              "host": [
+                "{{authentication}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "role"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "createEmployee",
           "event": [
             {
@@ -1134,7 +1171,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Rizwan.Jordan{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Rizwan\",\r\n  \"lastName\" : \"Jordan\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Robin Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Rizwan.Jordan{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Rizwan\",\r\n  \"lastName\" : \"Jordan\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Robin Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1241,7 +1278,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"John.Matthews{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Matthews\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Tiger Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"John.Matthews{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Matthews\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Tiger Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1348,7 +1385,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Max.Meercat{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Max\",\r\n  \"lastName\" : \"Meercat\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Misty Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Max.Meercat{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Max\",\r\n  \"lastName\" : \"Meercat\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Misty Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1455,7 +1492,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Steve.Nash{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Steve\",\r\n  \"lastName\" : \"Nash\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Hopkins Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Steve.Nash{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Steve\",\r\n  \"lastName\" : \"Nash\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Hopkins Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1476,12 +1513,14 @@
             {
               "listen": "test",
               "script": {
-                "id": "d2e987ee-4120-411a-b481-fdc46feb913c",
+                "id": "628cb218-cce0-4a18-a018-cea23fc111f9",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_5\", jsonData.id);",
                   "postman.setEnvironmentVariable(\"employeeId_don\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"userId_don\", jsonData.userId);",
+                  "postman.setEnvironmentVariable(\"employeeTokenId_don\", jsonData.token.id);",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
@@ -1562,7 +1601,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Don.Crump{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Don\",\r\n  \"lastName\" : \"Crump\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"TestUser@abc.com\",\r\n  \"firstName\" : \"Don\",\r\n  \"lastName\" : \"Crump\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{ownerRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1572,6 +1611,117 @@
               "path": [
                 "{{organizationId}}",
                 "employee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee - employee5UpdatePassword",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a67f242e-50f8-43ec-a386-9ff6e02ffc35",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "7d10e8c1-78d8-4c2c-9eb6-e83ccdb194c2",
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
+                  "var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
+                  "var randFirstName = randFirstNameWithGenderArray[0];",
+                  "var gender = randFirstNameWithGenderArray[1];",
+                  "",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var userPhotos_male = [postman.getEnvironmentVariable(\"photoId_male_1\"),postman.getEnvironmentVariable(\"photoId_male_2\"),postman.getEnvironmentVariable(\"photoId_male_3\"),postman.getEnvironmentVariable(\"photoId_male_4\"),postman.getEnvironmentVariable(\"photoId_male_5\"),postman.getEnvironmentVariable(\"photoId_male_6\"),postman.getEnvironmentVariable(\"photoId_male_7\"),postman.getEnvironmentVariable(\"photoId_male_8\")];",
+                  "",
+                  "var userPhotos_female = [postman.getEnvironmentVariable(\"photoId_female_1\"),postman.getEnvironmentVariable(\"photoId_female_2\"),postman.getEnvironmentVariable(\"photoId_female_3\"),postman.getEnvironmentVariable(\"photoId_female_4\"),postman.getEnvironmentVariable(\"photoId_female_5\"),postman.getEnvironmentVariable(\"photoId_female_6\"),postman.getEnvironmentVariable(\"photoId_female_7\"),postman.getEnvironmentVariable(\"photoId_female_8\")];",
+                  "",
+                  "if(gender === 'male')",
+                  "{",
+                  "    var randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+                  "    do {",
+                  "        randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+                  "    }",
+                  "    while (randPhotoId === undefined);",
+                  "} ",
+                  "else if (gender === 'female')",
+                  "{",
+                  "        var randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+                  "    do {",
+                  "        randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+                  "    }",
+                  "    while (randPhotoId === undefined);",
+                  "}",
+                  "else",
+                  "{",
+                  "    //GENDER FOR FIRST NAME WAS NOT SET AS 'male' OR 'female'",
+                  "}",
+                  "",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);",
+                  "postman.setEnvironmentVariable(\"randPhotoId\", randPhotoId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"password\" : \"Password1\"\n}"
+            },
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/user/{{userId_don}}/password?token={{employeeTokenId_don}}",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "user",
+                "{{userId_don}}",
+                "password"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{employeeTokenId_don}}"
+                }
               ]
             }
           },
@@ -1669,7 +1819,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Dane.Reynolds{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Dane\",\r\n  \"lastName\" : \"Reynolds\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Dane.Reynolds{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Dane\",\r\n  \"lastName\" : \"Reynolds\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1776,7 +1926,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"David.Allens{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"David\",\r\n  \"lastName\" : \"Allens\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"David.Allens{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"David\",\r\n  \"lastName\" : \"Allens\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1883,7 +2033,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Ricky.Portels{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Ricky\",\r\n  \"lastName\" : \"Portels\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Ricky.Portels{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Ricky\",\r\n  \"lastName\" : \"Portels\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -1990,7 +2140,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Tony.Gonzalez{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Tony\",\r\n  \"lastName\" : \"Gonzalez\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Tony.Gonzalez{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Tony\",\r\n  \"lastName\" : \"Gonzalez\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -2097,7 +2247,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Monty.Python{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Monty\",\r\n  \"lastName\" : \"Python\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Monty.Python{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Monty\",\r\n  \"lastName\" : \"Python\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -2203,7 +2353,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Ash.Nappers{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Ash\",\r\n  \"lastName\" : \"Nappers\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Ash.Nappers{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Ash\",\r\n  \"lastName\" : \"Nappers\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -2309,7 +2459,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Kane.Lovins{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Kane\",\r\n  \"lastName\" : \"Lovins\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Kane.Lovins{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Kane\",\r\n  \"lastName\" : \"Lovins\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -2415,7 +2565,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Dave.Crews{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Dave\",\r\n  \"lastName\" : \"Crews\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Dave.Crews{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Dave\",\r\n  \"lastName\" : \"Crews\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -2521,7 +2671,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : \"Annie.Orphan{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Annie\",\r\n  \"lastName\" : \"Orphan\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"email\" : \"Annie.Orphan{{randPhoneNumber}}@gymemployee.com\",\r\n  \"firstName\" : \"Annie\",\r\n  \"lastName\" : \"Orphan\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/employee",
@@ -2531,6 +2681,189 @@
               "path": [
                 "{{organizationId}}",
                 "employee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 16 - for DimaV",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "44f27c48-396a-487e-b7fb-24d72af6b7aa",
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"employeeId_numan\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"userId_numan\", jsonData.userId);",
+                  "postman.setEnvironmentVariable(\"tokenId_numan\", jsonData.token.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "9467786e-c95a-44ff-bd2b-f1b2cb33fd4e",
+                "type": "text/javascript",
+                "exec": [
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"test@test.com\",\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Numan\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"4758903778\",\r\n    \"extension\": \"4573356664\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"roleId\": \"{{staffRoleId}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/employee",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "employee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createEmployee 16 - update password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a67f242e-50f8-43ec-a386-9ff6e02ffc35",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "7d10e8c1-78d8-4c2c-9eb6-e83ccdb194c2",
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
+                  "var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
+                  "var randFirstName = randFirstNameWithGenderArray[0];",
+                  "var gender = randFirstNameWithGenderArray[1];",
+                  "",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var userPhotos_male = [postman.getEnvironmentVariable(\"photoId_male_1\"),postman.getEnvironmentVariable(\"photoId_male_2\"),postman.getEnvironmentVariable(\"photoId_male_3\"),postman.getEnvironmentVariable(\"photoId_male_4\"),postman.getEnvironmentVariable(\"photoId_male_5\"),postman.getEnvironmentVariable(\"photoId_male_6\"),postman.getEnvironmentVariable(\"photoId_male_7\"),postman.getEnvironmentVariable(\"photoId_male_8\")];",
+                  "",
+                  "var userPhotos_female = [postman.getEnvironmentVariable(\"photoId_female_1\"),postman.getEnvironmentVariable(\"photoId_female_2\"),postman.getEnvironmentVariable(\"photoId_female_3\"),postman.getEnvironmentVariable(\"photoId_female_4\"),postman.getEnvironmentVariable(\"photoId_female_5\"),postman.getEnvironmentVariable(\"photoId_female_6\"),postman.getEnvironmentVariable(\"photoId_female_7\"),postman.getEnvironmentVariable(\"photoId_female_8\")];",
+                  "",
+                  "if(gender === 'male')",
+                  "{",
+                  "    var randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+                  "    do {",
+                  "        randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+                  "    }",
+                  "    while (randPhotoId === undefined);",
+                  "} ",
+                  "else if (gender === 'female')",
+                  "{",
+                  "        var randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+                  "    do {",
+                  "        randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+                  "    }",
+                  "    while (randPhotoId === undefined);",
+                  "}",
+                  "else",
+                  "{",
+                  "    //GENDER FOR FIRST NAME WAS NOT SET AS 'male' OR 'female'",
+                  "}",
+                  "",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);",
+                  "postman.setEnvironmentVariable(\"randPhotoId\", randPhotoId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"password\" : \"Password1\"\n}"
+            },
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/user/{{userId_numan}}/password?token={{tokenId_numan}}",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "user",
+                "{{userId_numan}}",
+                "password"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{tokenId_numan}}"
+                }
               ]
             }
           },
@@ -3393,748 +3726,6 @@
       ]
     },
     {
-      "name": "Create Packages",
-      "description": null,
-      "item": [
-        {
-          "name": "10 Days Package",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ad304396-e53e-44cc-a614-97943165fe44",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_10DaysPackage\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "f0c17ebb-f618-4a1c-b7d6-3f9abb0f48da",
-                "type": "text/javascript",
-                "exec": [
-                  "// var randItemNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
-                  "",
-                  "// postman.setEnvironmentVariable(\"randItemNumber\", randItemNumber);",
-                  "",
-                  "// var current_timestamp = new Date();",
-                  "// var current_year = current_timestamp.getFullYear();",
-                  "// var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
-                  "// var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
-                  "// var next_month = ('0' + (current_timestamp.getMonth()+2)).slice(-2);",
-                  "",
-                  "// var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T15:30:00\";",
-                  "// var eventEndTime = current_year + \"-\" + next_month + \"-\" + current_date + \"T16:00:00\";"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"10 Days Package\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 250,\r\n  \"quantity\": 1,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 1,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_yoga}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_yoga}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Fitness Unlimited",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "0987cdd9-ddce-462e-95c9-18005bb3252d",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_fitnessUnlimited\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Fitness Unlimited\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 8.89,\r\n  \"quantity\": 9,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 3,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_kickBoxing}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_kickBoxing}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Package A",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "1414294a-2299-4b8e-8ca2-36075023b6e9",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_packageA\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Package A\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 5,\r\n  \"quantity\": 10,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 6,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_spin}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_spin}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Package B",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "f3094d16-9c1e-44c3-8519-effedc3d7541",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_packageB\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Package B\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 10,\r\n  \"quantity\": 2,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 7,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"DAYS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_yoga}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_yoga}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Package C",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "515e74dd-b773-4d32-9736-3eecba7ec752",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_packageC\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Package C\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 10,\r\n  \"quantity\": 4,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 6,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_spin}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_spin}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Package D",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "58a1ba41-d6b8-4932-be97-b37f8485e0ee",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_packageD\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Package D\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 15,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 3,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_yoga}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_yoga}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Package D deletion",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "5baa44f4-0e67-4bb7-8f14-af42eded94c5",
-                "type": "text/javascript",
-                "exec": [
-                  "",
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item/{{itemId_packageD}}",
-              "host": [
-                "{{purchase}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "item",
-                "{{itemId_packageD}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Package E",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "5b6a31bf-6ec0-49df-bde7-4786aebf2b4b",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_packageE\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Package E\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 30,\r\n  \"quantity\": 5,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 1,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_kickBoxing}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_kickBoxing}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Package F",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "5cf6666a-9203-4d0d-b901-b6efd338c53f",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_packageF\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "0b1ff44d-f511-45aa-978c-397c8c5bdeb6",
-                "type": "text/javascript",
-                "exec": [
-                  "var randItemNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
-                  "",
-                  "postman.setEnvironmentVariable(\"randItemNumber\", randItemNumber);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Package F\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 150,\r\n  \"quantity\": 1,\r\n  \"unlimited\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 24,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"MONTHS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_zumba}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_zumba}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Package G",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ce89dec3-4953-4a53-a38e-1880cd0f4cf6",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_packageG\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Package G\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 10,\r\n  \"quantity\": 10,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 1,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"DAYS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_communityPilates}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_communityPilates}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Package H",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "16a5c016-b681-4d7d-91c7-44941351d89f",
-                "type": "text/javascript",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"itemId_packageH\", jsonData.id);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Package H\",\r\n  \"type\": \"SERVICE\",\r\n  \"unitPrice\": 10,\r\n  \"quantity\": 4,\r\n  \"metered\": true,\r\n  \"expirationStart\": \"PURCHASE\",\r\n  \"expirationTime\": 2,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"expirationUnit\":\"DAYS\",\r\n  \"currencyId\" : \"USD\"\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/inventory/category/{{itemCatId_hotPower}}/item",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "inventory",
-                "category",
-                "{{itemCatId_hotPower}}",
-                "item"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
       "name": "Get Event Levels",
       "description": null,
       "item": [
@@ -4697,25 +4288,49 @@
       ]
     },
     {
-      "name": "Item Eligibility",
+      "name": "Create Packages",
       "description": null,
       "item": [
         {
-          "name": "itemEligibility_10DaysPackage",
+          "name": "10 Days Package",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "ad304396-e53e-44cc-a614-97943165fe44",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_10DaysPackage\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "f0c17ebb-f618-4a1c-b7d6-3f9abb0f48da",
+                "type": "text/javascript",
+                "exec": [
+                  "// var randItemNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "// postman.setEnvironmentVariable(\"randItemNumber\", randItemNumber);",
+                  "",
+                  "// var current_timestamp = new Date();",
+                  "// var current_year = current_timestamp.getFullYear();",
+                  "// var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
+                  "// var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
+                  "// var next_month = ('0' + (current_timestamp.getMonth()+2)).slice(-2);",
+                  "",
+                  "// var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T15:30:00\";",
+                  "// var eventEndTime = current_year + \"-\" + next_month + \"-\" + current_date + \"T16:00:00\";"
                 ]
               }
             }
@@ -4734,38 +4349,52 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_10DaysPackage}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"10 Days Package\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 250,\r\n  \"quantity\" : 1,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 1,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_fitnessUnlimited",
+          "name": "Fitness Unlimited",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "0987cdd9-ddce-462e-95c9-18005bb3252d",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_fitnessUnlimited\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -4784,38 +4413,52 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_fitnessUnlimited}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Fitness Unlimited\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 8.89,\r\n  \"quantity\" : 9,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 3,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n    },\r\n    {\r\n    \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_fitnessUnlimited2",
+          "name": "Package A",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "1414294a-2299-4b8e-8ca2-36075023b6e9",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_packageA\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -4834,38 +4477,52 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_fitnessUnlimited}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Package A\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 5,\r\n  \"quantity\" : 10,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 6,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n    },\r\n    {\r\n    \"eventTypeId\" : \"{{eventTypeId_spinIntermediate}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_packageA",
+          "name": "Package B",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "f3094d16-9c1e-44c3-8519-effedc3d7541",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_packageB\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -4884,38 +4541,52 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageA}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Package B\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 10,\r\n  \"quantity\" : 2,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 7,\r\n  \"expirationUnit\" : \"DAYS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n    },\r\n    {\r\n    \"eventTypeId\" : \"{{eventTypeId_spinIntermediate}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_packageA2",
+          "name": "Package C",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "515e74dd-b773-4d32-9736-3eecba7ec752",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_packageC\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -4934,38 +4605,52 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageA}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_spinIntermediate}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Package C\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 10,\r\n  \"quantity\" : 4,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 6,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_spinIntermediate}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_packageB",
+          "name": "Package D",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "58a1ba41-d6b8-4932-be97-b37f8485e0ee",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_packageD\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -4984,44 +4669,56 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageB}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Package D\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 15,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 3,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_packageB Copy",
+          "name": "Package D deletion",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "5baa44f4-0e67-4bb7-8f14-af42eded94c5",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
           ],
           "request": {
-            "method": "POST",
+            "method": "DELETE",
             "header": [
               {
                 "key": "Content-Type",
@@ -5034,38 +4731,53 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageB}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_spinIntermediate}}\"\r\n}\r\n"
+              "raw": ""
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item/{{itemId_packageD}}",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item",
+                "{{itemId_packageD}}"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_packageC",
+          "name": "Package E",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "5b6a31bf-6ec0-49df-bde7-4786aebf2b4b",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_packageE\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -5084,38 +4796,54 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageC}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_spinIntermediate}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Package E\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 30,\r\n  \"quantity\" : 5,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 1,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_packageD",
+          "name": "Package F",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "5cf6666a-9203-4d0d-b901-b6efd338c53f",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_packageF\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "0b1ff44d-f511-45aa-978c-397c8c5bdeb6",
+                "type": "text/javascript",
+                "exec": [
+                  "var randItemNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randItemNumber\", randItemNumber);"
                 ]
               }
             }
@@ -5134,38 +4862,52 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageD}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Package F\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 150,\r\n  \"quantity\" : 1,\r\n  \"unlimited\" : true,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 24,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\"\r\n    },\r\n    {\r\n    \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_packageE",
+          "name": "Package G",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "ce89dec3-4953-4a53-a38e-1880cd0f4cf6",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_packageG\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -5184,38 +4926,52 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageE}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Package G\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 10,\r\n  \"quantity\" : 10,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 1,\r\n  \"expirationUnit\" : \"DAYS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_advancedCommunityPilates}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "itemEligibility_packageF",
+          "name": "Package H",
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "16a5c016-b681-4d7d-91c7-44941351d89f",
                 "type": "text/javascript",
                 "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemId_packageH\", jsonData.id);",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe188c2b-3a9f-4cd7-8618-1c93fc67cffd",
+                "type": "text/javascript",
+                "exec": [
+                  ""
                 ]
               }
             }
@@ -5234,167 +4990,18 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageF}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\"\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Package H\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 10,\r\n  \"quantity\" : 4,\r\n  \"unlimited\" : false,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"DAYS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_hotPowerIntermediate}}\"\r\n    }\r\n  ]\r\n}"
             },
             "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
               "host": [
-                "{{purchase-setup}}"
+                "{{purchase}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "{{locationId}}",
-                "itemEligibility"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "itemEligibility_packageF2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageF}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\"\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "itemEligibility"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "itemEligibility_packageG",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageG}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_advancedCommunityPilates}}\"\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "itemEligibility"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "itemEligibility_packageH",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "\r",
-                  "if (responseCode.code != 201)\r",
-                  "{\r",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;\r",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;\r",
-                  "}\r",
-                  "\r",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"itemId\" : \"{{itemId_packageH}}\",\r\n  \"eventTypeId\" : \"{{eventTypeId_hotPowerIntermediate}}\"\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{purchase-setup}}/{{organizationId}}/{{locationId}}/itemEligibility",
-              "host": [
-                "{{purchase-setup}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "itemEligibility"
+                "inventory",
+                "item"
               ]
             }
           },
