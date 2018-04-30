@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "4693ff85-44c0-446f-a24f-b1bfbe1d230e",
+		"name": "Iteration copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createUserForOrg copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47fe6502-eb5f-4764-bf17-a79437dbde71",
+						"type": "text/javascript",
+						"exec": [
+							"var compareResponse = function(expectedObject,responseOject){",
+							"     var deepDiff = eval('('+environment.deepDiffMapper+'()'+')');",
+							"     var dottedRes=deepDiff.diff(expectedObject,responseOject);",
+							"     return dottedRes;",
+							" }",
+							"var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
+							"    if(testFirstNameIteration.length>0) {",
+							"        console.log(testFirstNameIteration);",
+							"        if( postman.getEnvironmentVariable(\"expectedStatus\")==201){",
+							"            var  resBody=JSON.parse(responseBody);",
+							"         ",
+							"            var compareResult=compareResponse(JSON.parse(pm.environment.get(\"currentNameIteration\")),resBody);",
+							"             for(var i=0; i<compareResult.added.length;i++){",
+							"                tests[\"Response Body has Added :\"+compareResult.added[i].field+\" : \"+compareResult.added[i].data]=1 ;        ",
+							"                }",
+							"            ",
+							"             if(pm.environment.get(\"testType\")==\"Nominal\")  {",
+							"                pm.environment.set(\"organizationId\", resBody.organizationId);",
+							"                 pm.environment.set(\"ownerId\", resBody.userId);",
+							"             }",
+							"        }",
+							"        postman.setNextRequest(\"createUserForOrg copy\");",
+							"    } else {",
+							"         compareResponse(JSON.parse(pm.environment.get(\"currentNameIteration\")),JSON.parse(responseBody));",
+							"        postman.setNextRequest(null);",
+							"    }",
+							"",
+							"",
+							"    "
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1b5744ab-b041-4d1c-89c1-91890cc717ac",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
+							"var emailId=pm.environment.get(\"emailId\");",
+							"",
+							"var nominalUserData={",
+							"  \"firstName\" : \"Michael\",",
+							"  \"lastName\" : \"Test_Surname\",",
+							"  \"password\" : \"Password1\",",
+							"  \"phone\" : {",
+							"    \"number\" : \"1234567890\",",
+							"    \"extension\" : \"12345\"",
+							"  },",
+							"  \"birthDate\" : \"1998-01-27\",",
+							"  \"email\" : \"TestUser@abc.com\"",
+							"};",
+							"",
+							"var maxUserData={",
+							"  \"firstName\" : \"First name of employee for maximum characters Firs\",",
+							"  \"lastName\" : \"Last name of employee for maximum characters Last Last name of employee for maximum characters  Last\",",
+							"  \"password\" : \"Password2\",",
+							"  \"phone\" : {",
+							"    \"number\" : \"123456789011123\",",
+							"    \"extension\" : \"1234567890\"",
+							"  },",
+							"  \"birthDate\" : \"1998-01-27\",",
+							"  \"email\" :  emailId",
+							"};",
+							"",
+							"var minUserData={",
+							"  \"firstName\" : \"T\",",
+							"  \"lastName\" : \"e\",",
+							"  \"password\" : \"Password3\",",
+							"  \"phone\" : {",
+							"    \"number\" : \"1234567890\",",
+							"    \"extension\" : \"12345\"",
+							"  },",
+							"  \"birthDate\" : \"1998-01-27\",",
+							"  \"email\" : \"T@a.com\"",
+							"};",
+							"",
+							"var allFieldsUserData={",
+							"  \"firstName\" : \"Thomas\",",
+							"  \"lastName\" : \"Test_Surname\",",
+							"  \"password\" : \"Password3\",",
+							"   \"address\" : {",
+							"    \"address1\" : \"10 Lane\",",
+							"    \"address2\" : \"Little Avenue\",",
+							"    \"city\" : \"Little Rock\",",
+							"    \"state\" : \"Arkansas\",",
+							"    \"country\" : \"United States\",",
+							"    \"zipCode\" : \"70002\"",
+							"  },",
+							"  \"phone\" : {",
+							"    \"number\" : \"1234567890\",",
+							"    \"extension\" : \"12345\"",
+							"  },",
+							"  \"birthDate\" : \"1998-01-27\",",
+							"  \"email\" : \"TestUser@abc.com\"",
+							"};",
+							"",
+							"console.log(JSON.stringify(request));",
+							"if(!testFirstNameIteration) {",
+							"    ",
+							"    testFirstNameIteration =  [{data: JSON.stringify(nominalUserData),statusCode :201 , type : \"Nominal\"},{data: JSON.stringify(maxUserData),statusCode: 201, type: \"Max\"},{data: JSON.stringify(minUserData),statusCode :201 , type : \"Min\"},{data: JSON.stringify(allFieldsUserData),statusCode: 201 , type: \"allFields\"}];",
+							"}",
+							"",
+							"var currentNameIteration =testFirstNameIteration.shift();",
+							"// console.log(currentNameIteration.data);",
+							"pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
+							"pm.environment.set(\"currentNameIteration\", currentNameIteration.data);",
+							"pm.environment.set(\"expectedStatus\", currentNameIteration.statusCode);",
+							"pm.environment.set(\"testType\", currentNameIteration.type);",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{currentNameIteration}}\n"
+				},
+				"url": {
+					"raw": "https://qa.greatestclubmanagementsoftwareever.com/registration/user",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"greatestclubmanagementsoftwareever",
+						"com"
+					],
+					"path": [
+						"registration",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
