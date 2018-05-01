@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "47fe6502-eb5f-4764-bf17-a79437dbde71",
+						"id": "4fcbc860-7f81-41cf-af08-65ea7ac82663",
 						"type": "text/javascript",
 						"exec": [
 							"var compareResponse = function(expectedObject,responseOject){",
@@ -37,19 +37,36 @@
 							"        }",
 							"        postman.setNextRequest(\"createUserForOrg copy\");",
 							"    } else {",
-							"         compareResponse(JSON.parse(pm.environment.get(\"currentNameIteration\")),JSON.parse(responseBody));",
+							"         var  resBody=JSON.parse(responseBody);",
+							"         ",
+							"            var compareResult=compareResponse(JSON.parse(pm.environment.get(\"currentNameIteration\")),resBody);",
+							"             for(var i=0; i<compareResult.added.length;i++){",
+							"                tests[\"Response Body has Added :\"+compareResult.added[i].field+\" : \"+compareResult.added[i].data]=1 ;        ",
+							"                }",
+							"                ",
+							"                for(var i=0; i<compareResult.changed.length;i++){",
+							"                tests[\"Response Body has Changed :\"+compareResult.changed[i].field+\" : \"+compareResult.changed[i].data]=1 ;        ",
+							"                }",
+							"            ",
+							"              if(pm.environment.get(\"testType\")==\"Nominal\")  {",
+							"                pm.environment.set(\"organizationId\", resBody.organizationId);",
+							"                 pm.environment.set(\"ownerId\", resBody.userId);",
+							"             }",
+							"       pm.environment.unset(\"testFirstNameIteration\");",
+							"       pm.environment.unset(\"currentNameIteration\");",
+							"       pm.environment.unset(\"expectedStatus\");",
+							"      pm.environment.unset(\"testType\");",
 							"        postman.setNextRequest(null);",
 							"    }",
 							"",
-							"",
-							"    "
+							""
 						]
 					}
 				},
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "1b5744ab-b041-4d1c-89c1-91890cc717ac",
+						"id": "128a5c30-6b67-414f-b48f-bec11a5ba855",
 						"type": "text/javascript",
 						"exec": [
 							"",
@@ -77,7 +94,7 @@
 							"    \"extension\" : \"1234567890\"",
 							"  },",
 							"  \"birthDate\" : \"1998-01-27\",",
-							"  \"email\" :  emailId",
+							"  \"email\" :  \"emailllll@shilpi.com\"",
 							"};",
 							"",
 							"var minUserData={",
