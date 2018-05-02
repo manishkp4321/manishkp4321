@@ -95,7 +95,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\",\r\n  \"name\" : \"Yoga For Beginners\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"substituteId\" : \"{{employeeUserId_8}}\",\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\",\r\n  \"name\" : \"Yoga For Beginners\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_beginner}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"substituteId\" : \"{{employeeUserId_8}}\",\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -225,7 +225,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\",\r\n  \"name\" : \"Beginner Kick Boxing\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\",\r\n  \"name\" : \"Beginner Kick Boxing\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_beginner}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -333,7 +333,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_spinIntermediate}}\",\r\n  \"name\" : \"Spin Intermediate\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"duration\" : 60,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_spinIntermediate}}\",\r\n  \"name\" : \"Spin Intermediate\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_intermediate}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"duration\" : 60,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -441,7 +441,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\",\r\n  \"name\" : \"Yoga For Beginners\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"substituteId\" : \"{{employeeUserId_8}}\",\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yogaForBeginners}}\",\r\n  \"name\" : \"Yoga For Beginners\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_beginner}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"substituteId\" : \"{{employeeUserId_8}}\",\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -549,7 +549,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\",\r\n  \"name\" : \"Beginner Kick Boxing\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_beginnerKickBoxing}}\",\r\n  \"name\" : \"Beginner Kick Boxing\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_beginner}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -657,7 +657,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_advancedCommunityPilates}}\",\r\n  \"name\" : \"Advanced Community Pilates\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_advancedCommunityPilates}}\",\r\n  \"name\" : \"Advanced Community Pilates\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_advanced}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -765,7 +765,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_hotPowerIntermediate}}\",\r\n  \"name\" : \"Hot Power Intermediate\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_hotPowerIntermediate}}\",\r\n  \"name\" : \"Hot Power Intermediate\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{eventLevelId_intermediate}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
