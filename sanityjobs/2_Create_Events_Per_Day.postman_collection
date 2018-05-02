@@ -36,7 +36,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "da59de7d-24d3-49b9-bfa7-2bafeff96323",
+                "id": "f568b086-df2f-451d-8259-fc44294cec1a",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -64,6 +64,16 @@
                   "}",
                   "while (randEventLevelId === undefined);",
                   "",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);",
+                  "",
                   "postman.setEnvironmentVariable(\"randEventLevelId\", randEventLevelId);",
                   "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
                   "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
@@ -85,7 +95,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yoga}}\",\r\n  \"name\" : \"Yoga\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yoga}}\",\r\n  \"name\" : \"Yoga\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"duration\" : 60,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"substituteId\" : \"{{employeeUserId_8}}\",\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -96,81 +106,6 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "event"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "CreateHost",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "305232e7-09bd-429e-9a9b-5378592ea6c9",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "2bd9779b-ca9d-467d-9dcc-c07523f3c7df",
-                "type": "text/javascript",
-                "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
-                  "",
-                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "do {",
-                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "}",
-                  "while (randEmployee === undefined);",
-                  "",
-                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId_1030am}}\",\r\n  \"substituteId\" : \"{{employeeUserId_8}}\",\r\n  \"employeeId\" : \"{{randEmployee}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/host",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_1030am}}",
-                "host"
               ]
             }
           },
@@ -209,7 +144,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "2c200a96-4bf0-42c2-b04e-35d4936edf89",
+                "id": "a1e10dae-6995-4965-9f52-a21549db216f",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -236,6 +171,16 @@
                   "}",
                   "while (randEventLevelId === undefined);",
                   "",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);",
+                  "",
                   "postman.setEnvironmentVariable(\"randEventLevelId\", randEventLevelId);",
                   "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
                   "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
@@ -257,7 +202,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_p90x}}\",\r\n  \"name\" : \"P90X\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_p90x}}\",\r\n  \"name\" : \"P90X\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"duration\" : 60,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -268,81 +213,6 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "event"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "CreateHost",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ffc41e2a-a9ab-4a19-a55c-57a29a662d87",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"eventHostId_1200pm\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "0f909104-b55b-4b13-9978-6c01da81629f",
-                "type": "text/javascript",
-                "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
-                  "",
-                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "do {",
-                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "}",
-                  "while (randEmployee === undefined);",
-                  "",
-                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId_1200pm}}\",\r\n  \"employeeId\" : \"{{randEmployee}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/host",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_1200pm}}",
-                "host"
               ]
             }
           },
@@ -381,7 +251,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "d3b1aedc-7e6a-45d5-99b6-89bc2dbdda38",
+                "id": "eff01989-f312-4c3a-afdd-46fe7bc1593e",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -408,6 +278,16 @@
                   "}",
                   "while (randEventLevelId === undefined);",
                   "",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);",
+                  "",
                   "postman.setEnvironmentVariable(\"randEventLevelId\", randEventLevelId);",
                   "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
                   "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
@@ -429,7 +309,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_aerobics}}\",\r\n  \"name\" : \"Aerobics\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_aerobics}}\",\r\n  \"name\" : \"Aerobics\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"duration\" : 60,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"substituteId\" : \"{{employeeUserId_8}}\",\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -440,81 +320,6 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "event"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "CreateHost",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "f130ae9e-8ad5-4a7b-81e2-4e76de81992d",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"eventHostId_100pm\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "67e48208-690f-44f1-adc8-e86023c671b0",
-                "type": "text/javascript",
-                "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
-                  "",
-                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "do {",
-                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "}",
-                  "while (randEmployee === undefined);",
-                  "",
-                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId_100pm}}\",\r\n  \"employeeId\" : \"{{randEmployee}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/host",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_100pm}}",
-                "host"
               ]
             }
           },
@@ -553,7 +358,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "0076eac8-b91e-468e-a971-0d4d242dd955",
+                "id": "7e8365c9-934c-41ea-b30e-8e490bfe69ad",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -580,6 +385,16 @@
                   "}",
                   "while (randEventLevelId === undefined);",
                   "",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);",
+                  "",
                   "postman.setEnvironmentVariable(\"randEventLevelId\", randEventLevelId);",
                   "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
                   "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
@@ -601,7 +416,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_pilates}}\",\r\n  \"name\" : \"Pilates\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_pilates}}\",\r\n  \"name\" : \"Pilates\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"duration\" : 60,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -612,81 +427,6 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "event"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "CreateHost",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "cc8ac16b-2109-46ea-8cf6-f30f8d6668b2",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"eventHostId_200pm\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "214b51c8-0b15-40c7-a712-38c29939c1e4",
-                "type": "text/javascript",
-                "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
-                  "",
-                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "do {",
-                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "}",
-                  "while (randEmployee === undefined);",
-                  "",
-                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId_200pm}}\",\r\n  \"employeeId\" : \"{{randEmployee}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_200pm}}/host",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_200pm}}",
-                "host"
               ]
             }
           },
@@ -725,7 +465,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "f952b7b2-d43c-4a7e-b630-d1289c206755",
+                "id": "fdba48fb-d37c-45f1-9b8e-b60ad90d8e66",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -752,6 +492,16 @@
                   "}",
                   "while (randEventLevelId === undefined);",
                   "",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);",
+                  "",
                   "postman.setEnvironmentVariable(\"randEventLevelId\", randEventLevelId);",
                   "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
                   "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
@@ -773,7 +523,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_zumba}}\",\r\n  \"name\" : \"Zumba\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_zumba}}\",\r\n  \"name\" : \"Zumba\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"duration\" : 60,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"substituteId\" : \"{{employeeUserId_8}}\",\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -784,81 +534,6 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "event"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "CreateHost",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "38db16de-1205-4f12-91e7-c834fe5edec7",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"eventHostId_300pm\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "37b84cb3-a6e2-4b65-ab16-da06a6dd5d23",
-                "type": "text/javascript",
-                "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
-                  "",
-                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "do {",
-                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "}",
-                  "while (randEmployee === undefined);",
-                  "",
-                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId_300pm}}\",\r\n  \"employeeId\" : \"{{randEmployee}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_300pm}}/host",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_300pm}}",
-                "host"
               ]
             }
           },
@@ -897,7 +572,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "4d884ffd-1d08-4626-b9a1-79f699660816",
+                "id": "17d73906-1cd9-451d-92f0-502be599377f",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -924,6 +599,16 @@
                   "}",
                   "while (randEventLevelId === undefined);",
                   "",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);",
+                  "",
                   "postman.setEnvironmentVariable(\"randEventLevelId\", randEventLevelId);",
                   "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
                   "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
@@ -945,7 +630,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_turboKick}}\",\r\n  \"name\" : \"Turbo Kick\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_turboKick}}\",\r\n  \"name\" : \"Turbo Kick\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"duration\" : 60,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -956,81 +641,6 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "event"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "CreateHost",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "9c720b52-0345-48cc-b3a3-9b91d910ca61",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"eventHostId_430pm\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "30b658e7-a054-4193-befe-cb02262ed984",
-                "type": "text/javascript",
-                "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
-                  "",
-                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "do {",
-                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "}",
-                  "while (randEmployee === undefined);",
-                  "",
-                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId_430pm}}\",\r\n  \"employeeId\" : \"{{randEmployee}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_430pm}}/host",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_430pm}}",
-                "host"
               ]
             }
           },
@@ -1069,7 +679,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "51837299-cc03-487c-b2d1-df208a6bc599",
+                "id": "1a92e086-cae1-40f7-928b-f6cf76bb123d",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -1096,6 +706,16 @@
                   "}",
                   "while (randEventLevelId === undefined);",
                   "",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
+                  "",
+                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "do {",
+                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
+                  "}",
+                  "while (randEmployee === undefined);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);",
+                  "",
                   "postman.setEnvironmentVariable(\"randEventLevelId\", randEventLevelId);",
                   "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
                   "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
@@ -1117,7 +737,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_cycling}}\",\r\n  \"name\" : \"Cycling\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_cycling}}\",\r\n  \"name\" : \"Cycling\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"eventCategoryId\" : \"{{eventCategoryId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"duration\" : 60,\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"hosts\" : [ {\r\n    \"employeeId\" : \"{{randEmployee}}\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -1128,81 +748,6 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "event"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "CreateHost",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "c2f16511-c96c-45ac-bda5-91b7bcf462f0",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"eventHostId\", jsonData.id);",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "c7fe2147-29e9-44a3-94e1-3caa05f7a5af",
-                "type": "text/javascript",
-                "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
-                  "",
-                  "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "do {",
-                  "    randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
-                  "}",
-                  "while (randEmployee === undefined);",
-                  "",
-                  "postman.setEnvironmentVariable(\"randEmployee\", randEmployee);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId_500pm}}\",\r\n  \"employeeId\" : \"{{randEmployee}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/host",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "event",
-                "{{eventId_500pm}}",
-                "host"
               ]
             }
           },
