@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "4693ff85-44c0-446f-a24f-b1bfbe1d230e",
-		"name": "Iteration copy",
+		"_postman_id": "fef95d8b-73ad-4163-9995-5641bca26343",
+		"name": "Iteration",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,62 +11,65 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4fcbc860-7f81-41cf-af08-65ea7ac82663",
+						"id": "4b6cce62-bc44-4278-8abb-298dac4160a0",
 						"type": "text/javascript",
 						"exec": [
-							"var compareResponse = function(expectedObject,responseOject){",
-							"     var deepDiff = eval('('+environment.deepDiffMapper+'()'+')');",
-							"     var dottedRes=deepDiff.diff(expectedObject,responseOject);",
-							"     return dottedRes;",
-							" }",
-							"var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
-							"    if(testFirstNameIteration.length>0) {",
-							"        console.log(testFirstNameIteration);",
-							"        if( postman.getEnvironmentVariable(\"expectedStatus\")==201){",
-							"            var  resBody=JSON.parse(responseBody);",
-							"         ",
-							"            var compareResult=compareResponse(JSON.parse(pm.environment.get(\"currentNameIteration\")),resBody);",
-							"             for(var i=0; i<compareResult.added.length;i++){",
-							"                tests[\"Response Body has Added :\"+compareResult.added[i].field+\" : \"+compareResult.added[i].data]=1 ;        ",
-							"                }",
-							"            ",
-							"             if(pm.environment.get(\"testType\")==\"Nominal\")  {",
-							"                pm.environment.set(\"organizationId\", resBody.organizationId);",
-							"                 pm.environment.set(\"ownerId\", resBody.userId);",
-							"             }",
-							"        }",
-							"        postman.setNextRequest(\"createUserForOrg copy\");",
-							"    } else {",
-							"         var  resBody=JSON.parse(responseBody);",
-							"         ",
-							"            var compareResult=compareResponse(JSON.parse(pm.environment.get(\"currentNameIteration\")),resBody);",
-							"             for(var i=0; i<compareResult.added.length;i++){",
-							"                tests[\"Response Body has Added :\"+compareResult.added[i].field+\" : \"+compareResult.added[i].data]=1 ;        ",
-							"                }",
-							"                ",
-							"                for(var i=0; i<compareResult.changed.length;i++){",
-							"                tests[\"Response Body has Changed :\"+compareResult.changed[i].field+\" : \"+compareResult.changed[i].data]=1 ;        ",
-							"                }",
-							"            ",
-							"              if(pm.environment.get(\"testType\")==\"Nominal\")  {",
-							"                pm.environment.set(\"organizationId\", resBody.organizationId);",
-							"                 pm.environment.set(\"ownerId\", resBody.userId);",
-							"             }",
-							"       pm.environment.unset(\"testFirstNameIteration\");",
-							"       pm.environment.unset(\"currentNameIteration\");",
-							"       pm.environment.unset(\"expectedStatus\");",
-							"      pm.environment.unset(\"testType\");",
-							"        postman.setNextRequest(null);",
-							"    }",
+							"var compareResponse = function(expectedObject, responseOject) {",
+							"    var deepDiff = eval('(' + environment.deepDiffMapper + '()' + ')');",
+							"    var dottedRes = deepDiff.diff(expectedObject, responseOject);",
+							"    return dottedRes;",
+							"}",
 							"",
-							""
+							"var nominalTestTypeCheck = function() {",
+							"    if (pm.environment.get(\"testType\") == \"Nominal\") {",
+							"        pm.environment.set(\"organizationId\", resBody.organizationId);",
+							"        pm.environment.set(\"ownerId\", resBody.userId);",
+							"    }",
+							"}",
+							"",
+							"var testSpecificCallbacks = function() {",
+							"    for(var i = 0; i < arguments.length; i++){",
+							"        arguments[i].apply(); ",
+							"    }",
+							"}",
+							"",
+							"var doAssertionChecking = function() {",
+							"    console.log(testFirstNameIteration);",
+							"    var iterationPayload = JSON.parse(postman.getEnvironmentVariable(\"currentNameIteration\"));",
+							"",
+							"    if (iterationPayload.statusCode == 201) {",
+							"        var resBody = JSON.parse(responseBody);",
+							"",
+							"        var compareResult = compareResponse(iterationPayload.data, resBody);",
+							"        for (var i = 0; i < compareResult.added.length; i++) {",
+							"            tests[\"Response Body has Added :\" + compareResult.added[i].field + \" : \" + compareResult.added[i].data] = 1;",
+							"        }",
+							"",
+							"        for (var i = 0; i < compareResult.changed.length; i++) {",
+							"            tests[\"Response Body has Changed :\" + compareResult.changed[i].field + \" : \" + compareResult.changed[i].data] = 0;",
+							"        }",
+							"",
+							"        testSpecificCallbacks(nominalTestTypeCheck);",
+							"    }",
+							"}",
+							"",
+							"var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
+							"if (testFirstNameIteration.length > 0) {",
+							"    doAssertionChecking();",
+							"    postman.setNextRequest(\"createUserForOrg copy\");",
+							"} else {",
+							"    doAssertionChecking();",
+							"    pm.environment.unset(\"testFirstNameIteration\");",
+							"    pm.environment.unset(\"currentNameIteration\");",
+							"    postman.setNextRequest(null);",
+							"}"
 						]
 					}
 				},
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "128a5c30-6b67-414f-b48f-bec11a5ba855",
+						"id": "a359cc20-4b88-442e-8979-1a32c5d2c024",
 						"type": "text/javascript",
 						"exec": [
 							"",
@@ -132,16 +135,18 @@
 							"console.log(JSON.stringify(request));",
 							"if(!testFirstNameIteration) {",
 							"    ",
-							"    testFirstNameIteration =  [{data: JSON.stringify(nominalUserData),statusCode :201 , type : \"Nominal\"},{data: JSON.stringify(maxUserData),statusCode: 201, type: \"Max\"},{data: JSON.stringify(minUserData),statusCode :201 , type : \"Min\"},{data: JSON.stringify(allFieldsUserData),statusCode: 201 , type: \"allFields\"}];",
+							"    testFirstNameIteration =  [",
+							"        {data: nominalUserData,statusCode :201 , type : \"Nominal\"},",
+							"        {data: maxUserData,statusCode: 201, type: \"Max\"},",
+							"        {data: minUserData,statusCode :201 , type : \"Min\"},",
+							"        {data: allFieldsUserData,statusCode: 201 , type: \"allFields\"}];",
 							"}",
 							"",
 							"var currentNameIteration =testFirstNameIteration.shift();",
 							"// console.log(currentNameIteration.data);",
 							"pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
-							"pm.environment.set(\"currentNameIteration\", currentNameIteration.data);",
-							"pm.environment.set(\"expectedStatus\", currentNameIteration.statusCode);",
-							"pm.environment.set(\"testType\", currentNameIteration.type);",
-							"",
+							"pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
+							"pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
 							""
 						]
 					}
@@ -157,7 +162,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{{currentNameIteration}}\n"
+					"raw": "{{currentNameIterationData}}\n"
 				},
 				"url": {
 					"raw": "https://qa.greatestclubmanagementsoftwareever.com/registration/user",
@@ -174,6 +179,28 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9cd8682d-f1dd-4219-a029-da3a5f46044d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "eb8482b9-9918-4077-9e72-95d3795341be",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
