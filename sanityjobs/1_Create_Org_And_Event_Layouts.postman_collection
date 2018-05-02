@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "f5f26e95-889a-4b91-9432-de8c0411e6d4",
-    "name": "1_Create_Org_And_Event_Layouts",
+    "_postman_id": "13e516a2-0b45-4c05-b6ea-e33dbdf7e124",
+    "name": "1_Create_Org_And_Event_Layouts copy_newest",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -15,7 +15,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "dde09d46-fa5b-45d4-8b65-131dfcbc7b07",
+                "id": "adb90409-2b26-4967-a8fb-8c2ec83f4561",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -28,6 +28,7 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    var appURL = postman.getEnvironmentVariable(\"baseURL\") + jsonData.organizationId;",
                   "    postman.setEnvironmentVariable(\"ownerId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_10\", jsonData.userId);",
                   "    postman.setEnvironmentVariable(\"organizationId\", jsonData.organizationId);",
                   "    postman.setEnvironmentVariable(\"employeeId_10\", jsonData.employeeId);",
                   "    postman.setEnvironmentVariable(\"ownerEmail\", jsonData.email);",
@@ -1210,7 +1211,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "4e4a5668-613b-44a3-a687-c6a240485068",
+                "id": "9fcdd478-5b31-427c-9ded-714c73499951",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -1222,6 +1223,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"employeeId_2\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_2\", jsonData.userId);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1318,7 +1320,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "b53da1e0-1094-4b21-b598-9230898be48e",
+                "id": "fb295afb-2d5a-4db0-a1c4-f687b4629d42",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -1330,6 +1332,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"employeeId_3\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_3\", jsonData.userId);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1426,7 +1429,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "fe11f9d2-9875-4423-a150-c52218545493",
+                "id": "82216561-635e-4c78-8da8-752a147c11d1",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -1438,6 +1441,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"employeeId_4\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_4\", jsonData.userId);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1534,7 +1538,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1dbd6230-f48b-490c-8635-d83df972b4ec",
+                "id": "4f0261c7-6486-4194-bc81-92a2e2ffa2e1",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -1546,6 +1550,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"employeeId_5\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_5\", jsonData.userId);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1642,7 +1647,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "f77064eb-710e-4233-97e9-f435edaf83e1",
+                "id": "4d5da914-685b-41be-b5fc-f6a4ca288206",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -1654,6 +1659,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"employeeId_6\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_6\", jsonData.userId);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1750,7 +1756,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "9f5b7ee3-53b2-4600-900a-bfebc0f791bb",
+                "id": "8cb3668b-11bf-4d9e-b3c9-877286bf4e9c",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -1762,6 +1768,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"employeeId_7\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_7\", jsonData.userId);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1858,7 +1865,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1d02f6e1-cefc-4a5b-a870-133453552650",
+                "id": "359a5377-9d50-405a-ae0b-268ddffeef6a",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -1870,6 +1877,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"employeeId_8\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_8\", jsonData.userId);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -1966,7 +1974,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "89e5138b-cd94-4b87-b527-2fddb68f6e79",
+                "id": "7058b027-8f23-4285-a8ed-9d7610a5d2b9",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -1978,6 +1986,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"employeeId_9\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_9\", jsonData.userId);",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -2344,7 +2353,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "4932ff70-aef8-4b16-89c2-8f601d97c849",
+                "id": "4d3710bf-bb94-4289-b5dd-73f3c128a663",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -2359,10 +2368,12 @@
                   "    const levels =  jsonData.content[0].id;",
                   "    const levels2 =  jsonData.content[1].id;",
                   "    const levels3 =  jsonData.content[2].id;",
+                  "    const levels4 =  jsonData.content[3].id;",
                   "    ",
                   "    postman.setEnvironmentVariable(\"eventLevelId_beginner\", levels);",
                   "    postman.setEnvironmentVariable(\"eventLevelId_intermediate\", levels2);",
                   "    postman.setEnvironmentVariable(\"eventLevelId_advanced\", levels3);",
+                  "    postman.setEnvironmentVariable(\"eventLevelId_allLevels\", levels4);",
                   "}",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
@@ -2441,7 +2452,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Yoga\"\r\n}"
+              "raw": "{\r\n    \"name\": \"Yoga\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 30\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -2498,7 +2509,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"P90X\"\r\n}"
+              "raw": "{\r\n    \"name\": \"P90X\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 105\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -2555,7 +2566,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Pilates\"\r\n}"
+              "raw": "{\r\n    \"name\": \"Pilates\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 120\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -2612,7 +2623,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Zumba\"\r\n}"
+              "raw": "{\r\n    \"name\": \"Zumba\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 45\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -2669,7 +2680,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Cycling\"\r\n}"
+              "raw": "{\r\n    \"name\": \"Cycling\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 75\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -2726,7 +2737,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Aerobics\"\r\n}"
+              "raw": "{\r\n    \"name\": \"Aerobics\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 90\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
@@ -2783,7 +2794,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Turbo Kick\"\r\n}"
+              "raw": "{\r\n    \"name\": \"Turbo Kick\",\r\n    \"checkInWindow\": 15,\r\n    \"duration\": 60\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId}}/eventType",
