@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "08826af1-cc08-4cc5-a5ea-399a31c4f17f",
+    "_postman_id": "4e07d380-9a7f-4dad-ba4c-bd991bc49282",
     "name": "Static_Data_For_Frontend_Automation",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -15,7 +15,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "061988be-9af9-4a54-8fed-dae726e21036",
+                "id": "9a27be71-7334-460a-bf45-d80c33f7df76",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
@@ -1059,7 +1059,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{authentication}}/{{organizationId}}/role",
               "host": [
@@ -1192,11 +1195,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "e526bcd4-e80c-435b-b6f1-bf85617a46fd",
+                "id": "5543bb7f-41ba-4db1-a3d3-4b1a23046033",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_2\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"employeeUserId_2\", jsonData.userId);",
                   "postman.setEnvironmentVariable(\"employeeId_john\", jsonData.id);",
                   "",
                   "if (responseCode.code != 201)",
@@ -1299,11 +1303,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "5b96a2cc-5dd0-4709-b71e-39a5297e41b8",
+                "id": "a7c24329-dad5-46d4-a4cb-c1658163248f",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_3\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"employeeUserId_3\", jsonData.userId);",
                   "postman.setEnvironmentVariable(\"employeeId_max\", jsonData.id);",
                   "",
                   "if (responseCode.code != 201)",
@@ -1406,11 +1411,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "825b9014-880f-45fd-b9ec-3d72f8a54033",
+                "id": "3acc5321-0986-441a-bed0-ca430516f802",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_4\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"employeeUserId_4\", jsonData.userId);",
                   "postman.setEnvironmentVariable(\"employeeId_steve\", jsonData.id);",
                   "",
                   "if (responseCode.code != 201)",
@@ -1513,12 +1519,13 @@
             {
               "listen": "test",
               "script": {
-                "id": "628cb218-cce0-4a18-a018-cea23fc111f9",
+                "id": "dca270cf-ac61-48fb-b5e0-c660b9cd328c",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_5\", jsonData.id);",
                   "postman.setEnvironmentVariable(\"employeeId_don\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"employeeUserId_5\", jsonData.userId);",
                   "postman.setEnvironmentVariable(\"userId_don\", jsonData.userId);",
                   "postman.setEnvironmentVariable(\"employeeTokenId_don\", jsonData.token.id);",
                   "",
@@ -1733,12 +1740,13 @@
             {
               "listen": "test",
               "script": {
-                "id": "e849c94a-557f-4051-8ac4-c729b1bff4fa",
+                "id": "d1e3d689-1ddc-4e3c-9988-f105b1765374",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_6\", jsonData.id);",
                   "postman.setEnvironmentVariable(\"employeeId_dane\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"employeeUserId_6\", jsonData.userId);",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
@@ -1840,12 +1848,13 @@
             {
               "listen": "test",
               "script": {
-                "id": "24a51b03-c581-4beb-8ba7-a02244dc4b76",
+                "id": "aa42fb2a-6e1f-475a-ab52-ab63ddf00149",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_7\", jsonData.id);",
                   "postman.setEnvironmentVariable(\"employeeId_david\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"employeeUserId_7\", jsonData.userId);",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
@@ -1947,12 +1956,13 @@
             {
               "listen": "test",
               "script": {
-                "id": "4adae0b0-d09a-4392-81df-fda5f0295c87",
+                "id": "9890278d-6898-486d-8362-8254a632d6cb",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_8\", jsonData.id);",
                   "postman.setEnvironmentVariable(\"employeeId_ricky\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"employeeUserId_8\", jsonData.userId);",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
@@ -2054,12 +2064,13 @@
             {
               "listen": "test",
               "script": {
-                "id": "0ad6f6fa-3326-420e-a5a5-fb1f5620cf09",
+                "id": "260e30e2-98df-454a-88e5-c1757bfdb23f",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_9\", jsonData.id);",
                   "postman.setEnvironmentVariable(\"employeeId_tony\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"employeeUserId_9\", jsonData.userId);",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
@@ -2161,12 +2172,13 @@
             {
               "listen": "test",
               "script": {
-                "id": "1d97baf1-5eda-40cc-a425-28c9b4a086e0",
+                "id": "f50330d8-9c0e-4fb0-a456-2e511b1ee13f",
                 "type": "text/javascript",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"employeeId_10\", jsonData.id);",
                   "postman.setEnvironmentVariable(\"employeeId_monty\", jsonData.id);",
+                  "postman.setEnvironmentVariable(\"employeeUserId_10\", jsonData.userId);",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
@@ -2986,7 +2998,7 @@
     },
     {
       "name": "Create Event Category",
-      "description": "",
+      "description": null,
       "item": [
         {
           "name": "CreateEventCategory",
@@ -3055,7 +3067,7 @@
     },
     {
       "name": "Create Item Categories",
-      "description": "",
+      "description": null,
       "item": [
         {
           "name": "CreateItemCategory_yoga",
