@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "f588fb50-bce1-4707-904d-f0f4feec6c90",
-    "name": "2_Create_Events_Per_Day",
+    "_postman_id": "d267f7e0-522a-4cf4-b303-56710f20b66f",
+    "name": "2_Create_Events_Per_Day copy_newest",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -85,7 +85,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yoga}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_yoga}}\",\r\n  \"name\" : \"Yoga\",\r\n  \"description\" : \"Where you can get your Sweat On!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\",\r\n  \"locationId\" : \"{{locationId}}\"\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -128,10 +128,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "46891fc5-8330-4bd2-b4a0-220d0bdf1f92",
+                "id": "2bd9779b-ca9d-467d-9dcc-c07523f3c7df",
                 "type": "text/javascript",
                 "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
                   "",
                   "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
                   "do {",
@@ -158,7 +158,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId_1030am}}\",\r\n  \"substituteId\" : \"{{employeeId_2}}\",\r\n  \"employeeId\" : \"{{randEmployee}}\"\r\n}"
+              "raw": "{\r\n  \"eventId\" : \"{{eventId_1030am}}\",\r\n  \"substituteId\" : \"{{employeeUserId_8}}\",\r\n  \"employeeId\" : \"{{randEmployee}}\"\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/host",
@@ -257,7 +257,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_p90x}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_p90x}}\",\r\n  \"name\" : \"P90X\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -300,10 +300,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "6ec5fb19-2808-4805-bc58-651277f963ca",
+                "id": "0f909104-b55b-4b13-9978-6c01da81629f",
                 "type": "text/javascript",
                 "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
                   "",
                   "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
                   "do {",
@@ -429,7 +429,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_aerobics}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_aerobics}}\",\r\n  \"name\" : \"Aerobics\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -472,10 +472,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "638ee4e3-683d-40db-9119-a927c992d386",
+                "id": "67e48208-690f-44f1-adc8-e86023c671b0",
                 "type": "text/javascript",
                 "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
                   "",
                   "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
                   "do {",
@@ -601,7 +601,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_pilates}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_pilates}}\",\r\n  \"name\" : \"Pilates\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -644,10 +644,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "62578112-47ef-4e58-8a78-0a558b090a64",
+                "id": "214b51c8-0b15-40c7-a712-38c29939c1e4",
                 "type": "text/javascript",
                 "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
                   "",
                   "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
                   "do {",
@@ -773,7 +773,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_zumba}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_zumba}}\",\r\n  \"name\" : \"Zumba\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -816,10 +816,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "ab85388a-c259-47ec-8aa0-22469ca6e65f",
+                "id": "37b84cb3-a6e2-4b65-ab16-da06a6dd5d23",
                 "type": "text/javascript",
                 "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
                   "",
                   "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
                   "do {",
@@ -945,7 +945,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_turboKick}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_turboKick}}\",\r\n  \"name\" : \"Turbo Kick\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -988,10 +988,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "463de68f-a126-4670-a1a3-df896afb5101",
+                "id": "30b658e7-a054-4193-befe-cb02262ed984",
                 "type": "text/javascript",
                 "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
                   "",
                   "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
                   "do {",
@@ -1117,7 +1117,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_cycling}}\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
+              "raw": "{\r\n  \"eventTypeId\" : \"{{eventTypeId_cycling}}\",\r\n  \"name\" : \"Cycling\",\r\n  \"description\" : \"Where you can get your sweat on!\",\r\n  \"startDateTime\" : \"{{eventStartTime}}\",\r\n  \"endDateTime\" : \"{{eventEndTime}}\",\r\n  \"eventLevelId\" : \"{{randEventLevelId}}\",\r\n  \"capacity\" : \"10\"\r\n}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event",
@@ -1160,10 +1160,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "b5b9d350-fa80-41b9-b72a-53bd2aeaae09",
+                "id": "c7fe2147-29e9-44a3-94e1-3caa05f7a5af",
                 "type": "text/javascript",
                 "exec": [
-                  "var employeeList = [postman.getEnvironmentVariable(\"employeeId\"),postman.getEnvironmentVariable(\"employeeId_2\"),postman.getEnvironmentVariable(\"employeeId_3\"),postman.getEnvironmentVariable(\"employeeId_4\"),postman.getEnvironmentVariable(\"employeeId_5\"),postman.getEnvironmentVariable(\"employeeId_6\"),postman.getEnvironmentVariable(\"employeeId_7\"),postman.getEnvironmentVariable(\"employeeId_8\"),postman.getEnvironmentVariable(\"employeeId_9\"),postman.getEnvironmentVariable(\"employeeId_10\")];",
+                  "var employeeList = [postman.getEnvironmentVariable(\"employeeUserId\"),postman.getEnvironmentVariable(\"employeeUserId_2\"),postman.getEnvironmentVariable(\"employeeUserId_3\"),postman.getEnvironmentVariable(\"employeeUserId_4\"),postman.getEnvironmentVariable(\"employeeUserId_5\"),postman.getEnvironmentVariable(\"employeeUserId_6\"),postman.getEnvironmentVariable(\"employeeUserId_7\"),postman.getEnvironmentVariable(\"employeeUserId_8\"),postman.getEnvironmentVariable(\"employeeUserId_9\"),postman.getEnvironmentVariable(\"employeeUserId_10\")];",
                   "",
                   "var randEmployee = employeeList[Math.floor(Math.random() * employeeList.length)];",
                   "do {",
