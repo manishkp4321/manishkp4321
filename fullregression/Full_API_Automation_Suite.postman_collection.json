@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "8033086e-9787-4ba1-a173-27ab31bc224a",
+    "_postman_id": "8f8f8187-d2e7-44c0-9606-feb3ecd71879",
     "name": "Full_API_Automation_Suite",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -16653,113 +16653,6 @@
                 "{{organizationId}}",
                 "role",
                 "{{roleId}}"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Permission",
-      "description": null,
-      "item": [
-        {
-          "name": "getAllPermissionGroups",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "be135b20-d4b1-49c1-95b1-9415c4dc3b2b",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 200) ",
-                  "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "}",
-                  "",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{authentication}}/permissionGroup",
-              "host": [
-                "{{authentication}}"
-              ],
-              "path": [
-                "permissionGroup"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getAllPermissionGroupById",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "6dda7b07-4a43-4795-9b7b-aad2e91b3e6c",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "else if (responseCode.code === 200) ",
-                  "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "}",
-                  "",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{authentication}}/permissionGroup/{{permissionGroupId_1}}",
-              "host": [
-                "{{authentication}}"
-              ],
-              "path": [
-                "permissionGroup",
-                "{{permissionGroupId_1}}"
               ]
             }
           },
