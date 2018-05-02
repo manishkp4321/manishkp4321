@@ -1116,6 +1116,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "80dc14ff-25b3-44f7-98c2-ef8a64c9c6cb",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -1126,12 +1127,14 @@
                   "",
                   "var ownerEmailToSearchFor = postman.getEnvironmentVariable(\"ownerEmail\");",
                   "var ownerIdToSearchFor = postman.getEnvironmentVariable(\"ownerId\");",
+                  "var ownerEmployeeIdToSearchFor = postman.getEnvironmentVariable(\"employeeId_10\");",
                   "var employeeIdToSearchFor = postman.getEnvironmentVariable(\"employeeId\");",
                   "var employeeEmailToSearchFor = postman.getEnvironmentVariable(\"employeeEmail\");",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   "tests[\"Searching for specific Owner Email in response\"] = responseBody.has(ownerEmailToSearchFor);",
                   "tests[\"Searching for specific Owner UUID in response\"] = responseBody.has(ownerIdToSearchFor);",
+                  "tests[\"Searching for specific Owner Employee ID in response\"] = responseBody.has(ownerEmployeeIdToSearchFor);",
                   "tests[\"Searching for specific Employee Email in response\"] = responseBody.has(employeeEmailToSearchFor);",
                   "tests[\"Searching for specific Employee UUID in response\"] = responseBody.has(employeeIdToSearchFor);"
                 ]
@@ -1148,13 +1151,19 @@
             ],
             "body": {},
             "url": {
-              "raw": "{{omniSearch}}/{{organizationId}}/employee",
+              "raw": "{{omniSearch}}/{{organizationId}}/employee?pageSize=100",
               "host": [
                 "{{omniSearch}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "employee"
+              ],
+              "query": [
+                {
+                  "key": "pageSize",
+                  "value": "100"
+                }
               ]
             }
           },
@@ -1192,13 +1201,19 @@
             ],
             "body": {},
             "url": {
-              "raw": "{{omniSearch}}/{{organizationId}}/member",
+              "raw": "{{omniSearch}}/{{organizationId}}/member?pageSize=1000",
               "host": [
                 "{{omniSearch}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "member"
+              ],
+              "query": [
+                {
+                  "key": "pageSize",
+                  "value": "1000"
+                }
               ]
             }
           },
