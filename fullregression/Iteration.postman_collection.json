@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "05fcd20d-3cc7-430f-ad27-e48c46e2c37e",
+		"_postman_id": "73139361-1688-40a7-8319-7c83e1d0ad51",
 		"name": "Iteration copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,9 +11,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "da532f10-fb3b-4f39-8589-c5b97f8c0d63",
+						"id": "bd10273e-22c0-4e75-9667-7c6887fcff56",
 						"type": "text/javascript",
 						"exec": [
+							"",
+							"",
 							"var compareResponse = function(expectedObject, responseOject) {",
 							"    var deepDiff = eval('(' + environment.deepDiffMapper + '()' + ')');",
 							"    var dottedRes = deepDiff.diff(expectedObject, responseOject);",
@@ -22,8 +24,8 @@
 							"",
 							"var nominalTestTypeCheck = function() {",
 							"    if (pm.environment.get(\"testType\") == \"Nominal\") {",
-							"        pm.environment.set(\"organizationId\", resBody.organizationId);",
-							"        pm.environment.set(\"ownerId\", resBody.userId);",
+							"        pm.environment.set(\"organizationId_new\", resBody.organizationId);",
+							"        pm.environment.set(\"ownerId_new\", resBody.userId);",
 							"    }",
 							"}",
 							"",
@@ -52,11 +54,9 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "21a7baf3-5f17-44e0-b2f1-0751be5c41c2",
+						"id": "a4ff507c-3ad7-4652-866e-7fc86bc85b55",
 						"type": "text/javascript",
 						"exec": [
-							"",
-							"",
 							"var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
 							"var emailId=pm.environment.get(\"emailId\");",
 							"",
@@ -69,7 +69,7 @@
 							"    \"extension\" : \"12345\"",
 							"  },",
 							"  \"birthDate\" : \"1998-01-27\",",
-							"  \"email\" : \"TestUser@abc.com\"",
+							"  \"email\" : \"TestUser@qa4life.com\"",
 							"};",
 							"",
 							"var maxUserData={",
@@ -78,7 +78,7 @@
 							"  \"password\" : \"Password2\",",
 							"  \"phone\" : {",
 							"    \"number\" : \"123456789011123\",",
-							"    \"extension\" : \"1234567890\"",
+							"    \"extension\" : \"12121\"",
 							"  },",
 							"  \"birthDate\" : \"1998-01-27\",",
 							"  \"email\" :  \"emailllll@shilpi.com\"",
@@ -89,8 +89,8 @@
 							"  \"lastName\" : \"e\",",
 							"  \"password\" : \"Password3\",",
 							"  \"phone\" : {",
-							"    \"number\" : \"1234567890\",",
-							"    \"extension\" : \"12345\"",
+							"    \"number\" : \"1234567888\",",
+							"    \"extension\" : \"54321\"",
 							"  },",
 							"  \"birthDate\" : \"1998-01-27\",",
 							"  \"email\" : \"T@a.com\"",
@@ -109,8 +109,8 @@
 							"    \"zipCode\" : \"70002\"",
 							"  },",
 							"  \"phone\" : {",
-							"    \"number\" : \"1234567890\",",
-							"    \"extension\" : \"12345\"",
+							"    \"number\" : \"1234567999\",",
+							"    \"extension\" : \"32154\"",
 							"  },",
 							"  \"birthDate\" : \"1998-01-27\",",
 							"  \"email\" : \"TestUser@abc.com\"",
@@ -141,6 +141,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -158,6 +163,290 @@
 					"path": [
 						"registration",
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorization Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae3cb756-48d2-4b95-aac6-959f7c660bd9",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
+							"   ",
+							"    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"tokenType\\\":\\\"Bearer\\\"\");",
+							"    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"accessToken\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"accessToken\")+\"\\\"\");",
+							"    tests[\"Response Body has Correct Client Id\"] = responseBody.has(\"clientId\");",
+							"    tests[\"Response Body has Correct Username\"] = responseBody.has(\"\\\"username\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerEmail\")+\"\\\"\");",
+							"    ",
+							"}",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							"",
+							"postman.setNextRequest();"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"password\": \"{{ownerPassword}}\",\r\n  \"username\": \"{{ownerEmail}}\"\r\n}"
+				},
+				"url": {
+					"raw": "{{authentication}}/organization/{{organizationId_new}}/login?clientId=automated-testing-client",
+					"host": [
+						"{{authentication}}"
+					],
+					"path": [
+						"organization",
+						"{{organizationId_new}}",
+						"login"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "automated-testing-client"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrgLocation Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b1a8b729-36ff-4930-aa3a-3c7c839010cc",
+						"type": "text/javascript",
+						"exec": [
+							"var compareResponse = function(expectedObject, responseOject) {",
+							"    var deepDiff = eval('(' + environment.deepDiffMapper + '()' + ')');",
+							"    var dottedRes = deepDiff.diff(expectedObject, responseOject);",
+							"    return dottedRes;",
+							"}",
+							"",
+							"var nominalTestTypeCheck = function() {",
+							"    if (pm.environment.get(\"testType\") == \"Nominal\") {",
+							"       // pm.environment.set(\"locationId\", resBody.location.id);",
+							"       // pm.environment.set(\"emailId\", resBody.location.email.address);",
+							"    }",
+							"}",
+							"",
+							"var testSpecificCallbacks = function() {",
+							"    for(var i = 0; i < arguments.length; i++){",
+							"        arguments[i].apply(); ",
+							"    }",
+							"}",
+							"",
+							"//var assertion = pm.environment.get(\"assert\");",
+							"var assertCompare = eval('(' + environment.assert + ')');",
+							"var testSecondNameIteration = pm.environment.get(\"testSecondNameIteration\");",
+							"if (testSecondNameIteration.length > 0) {",
+							"    assertCompare();",
+							"    postman.setNextRequest(\"createOrgLocation Copy\");",
+							"} else {",
+							"    assertCompare();",
+							"    pm.environment.unset(\"createOrgLocation Copy\");",
+							"    pm.environment.unset(\"currentNameIterationData1\");",
+							"    pm.environment.unset(\"currentNameIteration1\");",
+							"    postman.setNextRequest(null);",
+							"}"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e9bddc8b-b64e-4efb-9101-b2c0ba052a22",
+						"type": "text/javascript",
+						"exec": [
+							"var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
+							"",
+							"postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
+							"",
+							"var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+							"",
+							"var randState = states[Math.floor(Math.random() * states.length)];",
+							"postman.setEnvironmentVariable(\"randState\", randState);",
+							"",
+							"",
+							"",
+							"var testSecondNameIteration=pm.environment.get(\"testSecondNameIteration\");",
+							"var emailId=pm.environment.get(\"emailId\");",
+							"var ownerID=pm.environment.get(\"ownerId_new\");",
+							"var phoneNumber=pm.environment.get(\"phoneNumber\");",
+							"",
+							"var nominalUserData={",
+							"  \"name\" : \"University Sports and Fitness #6591969\",",
+							"  \"ownerId\" : ownerID,",
+							"  \"location\" : {",
+							"    \"name\" : \"University Fitness Center #659196\",",
+							"    \"address\" : {",
+							"      \"address1\" : \"123 Fitness Lane\",",
+							"      \"address2\" : \"PO Box #6591965\",",
+							"      \"city\" : \"Little Rock\",",
+							"      \"state\" : \"Alaska\",",
+							"      \"country\" : \"United States\",",
+							"      \"zipCode\" : \"33935\"",
+							"    },",
+							"    \"phone\" : {",
+							"      \"number\" : \"1234567899\",",
+							"      \"extension\" : \"411\"",
+							"    },",
+							"    \"email\" : {",
+							"      \"address\" : \"UniversityFitness123@ufit.com\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"var maxUserData={",
+							"  \"name\" : \"aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee dsfsfsdfdfsfsffasdfsdfsdffd\",",
+							"  \"ownerId\" : ownerID,",
+							"  \"location\" : {",
+							"    \"name\" : \"University Fitness University Fitness Center University Fitness Center Center\",",
+							"    \"address\" : {",
+							"      \"address1\" : \"123 Fitness 123 Fitness Lane Lane Fitness Lane Lane\",",
+							"      \"address2\" : \"PO Box 123 PO Box PO Box 123\",",
+							"      \"city\" : \"Little Rock sMALL Rock Middle Rock\",",
+							"      \"state\" : \"Alaska\",",
+							"      \"country\" : \"United States\",",
+							"      \"zipCode\" : \"339312335\"",
+							"    },",
+							"    \"phone\" : {",
+							"      \"number\" : \"1234567892\",",
+							"      \"extension\" : \"414\"",
+							"    },",
+							"    \"email\" : {",
+							"      \"address\" : \"UniversityFitness1245@ufit.com\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"var minUserData={",
+							"  \"name\" : \"U\",",
+							"  \"ownerId\" : ownerID,",
+							"  \"location\" : {",
+							"    \"name\" : \"U\",",
+							"    \"address\" : {",
+							"      \"address1\" : \"L\",",
+							"      \"address2\" : \"PO\",",
+							"      \"city\" : \"Little\",",
+							"      \"state\" : \"Alaska\",",
+							"      \"country\" : \"United States\",",
+							"      \"zipCode\" : \"3\"",
+							"    },",
+							"    \"phone\" : {",
+							"      \"number\" : \"1234567896\",",
+							"      \"extension\" : \"413\"",
+							"    },",
+							"    \"email\" : {",
+							"      \"address\" : \"U3@ufit.com\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"var allFieldsUserData={",
+							"  \"name\" : \"University Sports and Fitness 123\",",
+							"  \"tin\" : \"12345\",",
+							"  \"ownerId\" : ownerID,",
+							"  \"location\" : {",
+							"    \"name\" : \"University Fitness Center 4321\",",
+							"    \"address\" : {",
+							"      \"address1\" : \"123 456 Fitness Lane\",",
+							"      \"address2\" : \"PO Box 12345\",",
+							"      \"city\" : \"Little Rock\",",
+							"      \"state\" : \"Florida\",",
+							"      \"country\" : \"United States\",",
+							"      \"zipCode\" : \"33935\"",
+							"    },",
+							"    \"phone\" : {",
+							"      \"number\" : \"1234567890\",",
+							"      \"extension\" : \"412\"",
+							"      ",
+							"    },",
+							"    \"email\" : {",
+							"      \"address\" : \"UniversityFitness13@ufit.com\"",
+							"    }",
+							"  },",
+							"  \"email\" : {",
+							"      \"address\" : \"abc@qa4life.com\"",
+							"  }",
+							"};",
+							"",
+							"console.log(JSON.stringify(request));",
+							"if(!testSecondNameIteration) {",
+							"    ",
+							"    testSecondNameIteration =  [",
+							"        {data: nominalUserData,statusCode :201 , type : \"Nominal\"},",
+							"        {data: maxUserData,statusCode: 201, type: \"Max\"},",
+							"        {data: minUserData,statusCode :201 , type : \"Min\"},",
+							"        {data: allFieldsUserData,statusCode: 201 , type: \"allFields\"}];",
+							"}",
+							"",
+							"var currentNameIteration1 =testSecondNameIteration.shift();",
+							"pm.environment.set(\"testFirstNameIteration\", testSecondNameIteration);",
+							"pm.environment.set(\"currentNameIteration1\", JSON.stringify(currentNameIteration1));",
+							"pm.environment.set(\"currentNameIterationData1\", JSON.stringify(currentNameIteration1.data));"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{currentNameIteration1}}"
+				},
+				"url": {
+					"raw": "{{registration}}/{{organizationId_new}}/organization",
+					"host": [
+						"{{registration}}"
+					],
+					"path": [
+						"{{organizationId_new}}",
+						"organization"
 					]
 				}
 			},
