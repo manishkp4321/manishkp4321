@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fef95d8b-73ad-4163-9995-5641bca26343",
+		"_postman_id": "2aa7f6ea-29dc-4a4e-98ee-e4c945e2b2dc",
 		"name": "Iteration",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4b6cce62-bc44-4278-8abb-298dac4160a0",
+						"id": "da532f10-fb3b-4f39-8589-c5b97f8c0d63",
 						"type": "text/javascript",
 						"exec": [
 							"var compareResponse = function(expectedObject, responseOject) {",
@@ -33,33 +33,16 @@
 							"    }",
 							"}",
 							"",
-							"var doAssertionChecking = function() {",
-							"    console.log(testFirstNameIteration);",
-							"    var iterationPayload = JSON.parse(postman.getEnvironmentVariable(\"currentNameIteration\"));",
-							"",
-							"    if (iterationPayload.statusCode == 201) {",
-							"        var resBody = JSON.parse(responseBody);",
-							"",
-							"        var compareResult = compareResponse(iterationPayload.data, resBody);",
-							"        for (var i = 0; i < compareResult.added.length; i++) {",
-							"            tests[\"Response Body has Added :\" + compareResult.added[i].field + \" : \" + compareResult.added[i].data] = 1;",
-							"        }",
-							"",
-							"        for (var i = 0; i < compareResult.changed.length; i++) {",
-							"            tests[\"Response Body has Changed :\" + compareResult.changed[i].field + \" : \" + compareResult.changed[i].data] = 0;",
-							"        }",
-							"",
-							"        testSpecificCallbacks(nominalTestTypeCheck);",
-							"    }",
-							"}",
-							"",
+							"//var assertion = pm.environment.get(\"assert\");",
+							"var assertCompare = eval('(' + environment.assert + ')');",
 							"var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
 							"if (testFirstNameIteration.length > 0) {",
-							"    doAssertionChecking();",
+							"    assertCompare();",
 							"    postman.setNextRequest(\"createUserForOrg copy\");",
 							"} else {",
-							"    doAssertionChecking();",
+							"    assertCompare();",
 							"    pm.environment.unset(\"testFirstNameIteration\");",
+							"    pm.environment.unset(\"currentNameIterationData\");",
 							"    pm.environment.unset(\"currentNameIteration\");",
 							"    postman.setNextRequest(null);",
 							"}"
@@ -69,9 +52,10 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a359cc20-4b88-442e-8979-1a32c5d2c024",
+						"id": "21a7baf3-5f17-44e0-b2f1-0751be5c41c2",
 						"type": "text/javascript",
 						"exec": [
+							"",
 							"",
 							"var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
 							"var emailId=pm.environment.get(\"emailId\");",
@@ -143,7 +127,6 @@
 							"}",
 							"",
 							"var currentNameIteration =testFirstNameIteration.shift();",
-							"// console.log(currentNameIteration.data);",
 							"pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
 							"pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
 							"pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
