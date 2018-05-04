@@ -42,7 +42,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"University Fitness Center #{{orgNumber}}\",\r\n    \"address\" : {\r\n      \"address1\" : \"123 Fitness Lane\",\r\n      \"address2\" : \"PO Box {{$randomInt}}\",\r\n      \"city\" : \"Little Rock\",\r\n      \"state\" : \"{{randState}}\",\r\n      \"country\" : \"United States\",\r\n      \"zipCode\" : \"33935\"\r\n    },\r\n  \"email\" : {\r\n    \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\r\n  },\r\n  \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"411\"\r\n    }\r\n}\r\n\r\n"
+              "raw": "{\r\n  \"name\" : \"University Fitness Center #{{orgNumber}}\",\r\n    \"address\" : {\r\n      \"address1\" : \"123 Fitness Lane\",\r\n      \"address2\" : \"PO Box {{$randomInt}}\",\r\n      \"city\" : \"Little Rock\",\r\n      \"state\" : \"{{randState}}\",\r\n      \"country\" : \"United States\",\r\n      \"zipCode\" : \"33935\"\r\n    },\r\n  \"email\" : {\r\n    \"address\" : \"UniversityFitness{{orgNumber}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"411\"\r\n    }\r\n}\r\n\r\n"
             },
             "url": {
               "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
@@ -644,7 +644,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"password\": \"Sydney@32\",\r\n  \"username\": \"animesh.kumar@abcfinancial.com\"\r\n}"
+              "raw": "{\r\n  \"password\": \"abc1234$\",\r\n  \"username\": \"Test5ABC3@abcfinancial.com\"\r\n}"
             },
             "url": {
               "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
