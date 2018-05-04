@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "73139361-1688-40a7-8319-7c83e1d0ad51",
-		"name": "Iteration copy",
+		"_postman_id": "258ae43c-2e63-444b-9b37-24de2a18176f",
+		"name": "Iteration copy copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bd10273e-22c0-4e75-9667-7c6887fcff56",
+						"id": "06f36364-e386-4049-a75e-beb770de5076",
 						"type": "text/javascript",
 						"exec": [
 							"",
@@ -22,23 +22,29 @@
 							"    return dottedRes;",
 							"}",
 							"",
+							"",
 							"var nominalTestTypeCheck = function() {",
-							"    if (pm.environment.get(\"testType\") == \"Nominal\") {",
+							"  ",
+							"    if (pm.environment.get(\"testType\") == \"\\\"Nominal\\\"\") {",
+							"     ",
+							"        var resBody = JSON.parse(responseBody);",
 							"        pm.environment.set(\"organizationId_new\", resBody.organizationId);",
 							"        pm.environment.set(\"ownerId_new\", resBody.userId);",
+							"        pm.environment.set(\"ownerEmail_new\", resBody.email);",
+							"        pm.environment.set(\"ownerPassword_new\", resBody.password);",
 							"    }",
 							"}",
 							"",
-							"var testSpecificCallbacks = function() {",
+							" var testSpecificCallbacks = function() {",
 							"    for(var i = 0; i < arguments.length; i++){",
 							"        arguments[i].apply(); ",
-							"    }",
-							"}",
+							"     }",
+							" }",
 							"",
-							"//var assertion = pm.environment.get(\"assert\");",
-							"var assertCompare = eval('(' + environment.assert + ')');",
-							"var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
-							"if (testFirstNameIteration.length > 0) {",
+							"",
+							" var assertCompare = eval('(' + environment.assert + ')');",
+							" var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
+							"  if (testFirstNameIteration.length > 0) {",
 							"    assertCompare();",
 							"    postman.setNextRequest(\"createUserForOrg copy\");",
 							"} else {",
@@ -46,15 +52,20 @@
 							"    pm.environment.unset(\"testFirstNameIteration\");",
 							"    pm.environment.unset(\"currentNameIterationData\");",
 							"    pm.environment.unset(\"currentNameIteration\");",
-							"    postman.setNextRequest(null);",
-							"}"
+							"    pm.environment.unset(\"testType\");",
+							"   postman.setNextRequest();",
+							"",
+							"}",
+							"",
+							"  ",
+							""
 						]
 					}
 				},
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a4ff507c-3ad7-4652-866e-7fc86bc85b55",
+						"id": "b11f195e-0e3b-4123-94dd-da9fbdbe05d8",
 						"type": "text/javascript",
 						"exec": [
 							"var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
@@ -130,6 +141,7 @@
 							"pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
 							"pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
 							"pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
+							"pm.environment.set(\"testType\", JSON.stringify(currentNameIteration.type));",
 							""
 						]
 					}
@@ -174,7 +186,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ae3cb756-48d2-4b95-aac6-959f7c660bd9",
+						"id": "71a53e0c-c428-49c5-834e-d68ee6a788f0",
 						"type": "text/javascript",
 						"exec": [
 							"if (responseCode.code != 200)",
@@ -190,7 +202,7 @@
 							"    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"tokenType\\\":\\\"Bearer\\\"\");",
 							"    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"accessToken\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"accessToken\")+\"\\\"\");",
 							"    tests[\"Response Body has Correct Client Id\"] = responseBody.has(\"clientId\");",
-							"    tests[\"Response Body has Correct Username\"] = responseBody.has(\"\\\"username\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerEmail\")+\"\\\"\");",
+							"    tests[\"Response Body has Correct Username\"] = responseBody.has(\"\\\"username\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerEmail_new\")+\"\\\"\");",
 							"    ",
 							"}",
 							"",
@@ -220,7 +232,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"password\": \"{{ownerPassword}}\",\r\n  \"username\": \"{{ownerEmail}}\"\r\n}"
+					"raw": "{\r\n  \"password\": \"{{ownerPassword_new}}\",\r\n  \"username\": \"{{ownerEmail_new}}\"\r\n}"
 				},
 				"url": {
 					"raw": "{{authentication}}/organization/{{organizationId_new}}/login?clientId=automated-testing-client",
@@ -248,7 +260,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b1a8b729-36ff-4930-aa3a-3c7c839010cc",
+						"id": "f932295b-b89c-48a5-bb0d-15f2792483ef",
 						"type": "text/javascript",
 						"exec": [
 							"var compareResponse = function(expectedObject, responseOject) {",
@@ -258,9 +270,10 @@
 							"}",
 							"",
 							"var nominalTestTypeCheck = function() {",
-							"    if (pm.environment.get(\"testType\") == \"Nominal\") {",
-							"       // pm.environment.set(\"locationId\", resBody.location.id);",
-							"       // pm.environment.set(\"emailId\", resBody.location.email.address);",
+							"    if (pm.environment.get(\"testType\") == \"\\\"Nominal\\\"\") {",
+							"        var resBody = JSON.parse(responseBody);",
+							"      //  pm.environment.set(\"locationId_new\", resBody.location.id);",
+							"       pm.environment.set(\"emailId_new\", resBody.location.email.address);",
 							"    }",
 							"}",
 							"",
@@ -270,26 +283,26 @@
 							"    }",
 							"}",
 							"",
-							"//var assertion = pm.environment.get(\"assert\");",
 							"var assertCompare = eval('(' + environment.assert + ')');",
 							"var testSecondNameIteration = pm.environment.get(\"testSecondNameIteration\");",
 							"if (testSecondNameIteration.length > 0) {",
 							"    assertCompare();",
-							"    postman.setNextRequest(\"createOrgLocation Copy\");",
 							"} else {",
 							"    assertCompare();",
-							"    pm.environment.unset(\"createOrgLocation Copy\");",
-							"    pm.environment.unset(\"currentNameIterationData1\");",
-							"    pm.environment.unset(\"currentNameIteration1\");",
+							"    pm.environment.unset(\"testSecondNameIteration\");",
+							"    pm.environment.unset(\"currentNameIterationData\");",
+							"    pm.environment.unset(\"currentNameIteration\");",
+							"    pm.environment.unset(\"testType\");",
 							"    postman.setNextRequest(null);",
-							"}"
+							"}",
+							""
 						]
 					}
 				},
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "e9bddc8b-b64e-4efb-9101-b2c0ba052a22",
+						"id": "b644532e-48b3-4ec5-9a79-597860fd4fa2",
 						"type": "text/javascript",
 						"exec": [
 							"var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
@@ -301,16 +314,15 @@
 							"var randState = states[Math.floor(Math.random() * states.length)];",
 							"postman.setEnvironmentVariable(\"randState\", randState);",
 							"",
-							"",
-							"",
 							"var testSecondNameIteration=pm.environment.get(\"testSecondNameIteration\");",
-							"var emailId=pm.environment.get(\"emailId\");",
+							"//var emailId=pm.environment.get(\"emailId\");",
 							"var ownerID=pm.environment.get(\"ownerId_new\");",
-							"var phoneNumber=pm.environment.get(\"phoneNumber\");",
+							"",
+							"//var phoneNumber=pm.environment.get(\"phoneNumber\");",
 							"",
 							"var nominalUserData={",
 							"  \"name\" : \"University Sports and Fitness #6591969\",",
-							"  \"ownerId\" : ownerID,",
+							"  \"ownerId\" : \"3fab4fef-31eb-4ec7-af78-21791f17cdc8\",",
 							"  \"location\" : {",
 							"    \"name\" : \"University Fitness Center #659196\",",
 							"    \"address\" : {",
@@ -333,7 +345,7 @@
 							"",
 							"var maxUserData={",
 							"  \"name\" : \"aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee dsfsfsdfdfsfsffasdfsdfsdffd\",",
-							"  \"ownerId\" : ownerID,",
+							"  \"ownerId\" : \"3fab4fef-31eb-4ec7-af78-21791f17cdc8\",",
 							"  \"location\" : {",
 							"    \"name\" : \"University Fitness University Fitness Center University Fitness Center Center\",",
 							"    \"address\" : {",
@@ -356,7 +368,7 @@
 							"",
 							"var minUserData={",
 							"  \"name\" : \"U\",",
-							"  \"ownerId\" : ownerID,",
+							"  \"ownerId\" : \"3fab4fef-31eb-4ec7-af78-21791f17cdc8\",",
 							"  \"location\" : {",
 							"    \"name\" : \"U\",",
 							"    \"address\" : {",
@@ -380,7 +392,7 @@
 							"var allFieldsUserData={",
 							"  \"name\" : \"University Sports and Fitness 123\",",
 							"  \"tin\" : \"12345\",",
-							"  \"ownerId\" : ownerID,",
+							"  \"ownerId\" : \"3fab4fef-31eb-4ec7-af78-21791f17cdc8\",",
 							"  \"location\" : {",
 							"    \"name\" : \"University Fitness Center 4321\",",
 							"    \"address\" : {",
@@ -412,13 +424,16 @@
 							"        {data: nominalUserData,statusCode :201 , type : \"Nominal\"},",
 							"        {data: maxUserData,statusCode: 201, type: \"Max\"},",
 							"        {data: minUserData,statusCode :201 , type : \"Min\"},",
-							"        {data: allFieldsUserData,statusCode: 201 , type: \"allFields\"}];",
+							"        {data: allFieldsUserData,statusCode: 201 , type: \"allFields\"}",
+							"        ];",
 							"}",
 							"",
-							"var currentNameIteration1 =testSecondNameIteration.shift();",
-							"pm.environment.set(\"testFirstNameIteration\", testSecondNameIteration);",
-							"pm.environment.set(\"currentNameIteration1\", JSON.stringify(currentNameIteration1));",
-							"pm.environment.set(\"currentNameIterationData1\", JSON.stringify(currentNameIteration1.data));"
+							"var currentNameIteration =testSecondNameIteration.shift();",
+							"pm.environment.set(\"testSecondNameIteration\", testSecondNameIteration);",
+							"pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
+							"pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
+							"pm.environment.set(\"testType\", JSON.stringify(currentNameIteration.type));",
+							""
 						]
 					}
 				}
@@ -437,7 +452,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{{currentNameIteration1}}"
+					"raw": "{{currentNameIteration}}"
 				},
 				"url": {
 					"raw": "{{registration}}/{{organizationId_new}}/organization",
