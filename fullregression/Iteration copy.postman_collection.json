@@ -1,0 +1,516 @@
+{
+	"info": {
+		"_postman_id": "4419513c-a62d-407b-8f85-4f1ec2050b94",
+		"name": "Iteration copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createUserForOrg copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07bf116c-23e0-4e27-95a2-8129234607cd",
+						"type": "text/javascript",
+						"exec": [
+							" var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
+							" var resBody = JSON.parse(responseBody);",
+							" if(!orgInfo) orgInfo=[];",
+							" ",
+							"function pushOrgInfoToAry(orgId,ownerId,ownerEmail,ownerPassword,testType) {",
+							"    ",
+							"   var obj = {",
+							"       orgId:orgId,",
+							"       ownerId:ownerId,",
+							"       ownerEmail:ownerEmail,",
+							"       ownerPassword:ownerPassword,",
+							"       testType:testType",
+							"   };",
+							"",
+							"   orgInfo.push(obj);",
+							"   console.log(orgInfo);",
+							"}",
+							"",
+							"  if (responseCode.code===201) {",
+							"            console.log(\"1\");",
+							"            if(pm.environment.get(\"testType\") === \"\\\"Nominal\\\"\") {",
+							"            console.log(\"2\");",
+							"            pushOrgInfoToAry(resBody.organizationId, resBody.userId,resBody.email,resBody.password,\"Nominal\"); ",
+							"            ",
+							"        } else if(pm.environment.get(\"testType\") == \"\\\"Max\\\"\") {",
+							"            console.log(\"3\");",
+							"          pushOrgInfoToAry(resBody.organizationId, resBody.userId,resBody.email,resBody.password,\"Max\"); ",
+							"        } else if(pm.environment.get(\"testType\") == \"\\\"Min\\\"\") {",
+							"            console.log(\"4\");",
+							"         pushOrgInfoToAry(resBody.organizationId, resBody.userId,resBody.email,resBody.password,\"Min\"); ",
+							"        } else if(pm.environment.get(\"testType\") == \"\\\"allFields\\\"\") {",
+							"            console.log(\"5\");",
+							"          pushOrgInfoToAry(resBody.organizationId, resBody.userId,resBody.email,resBody.password,\"allFields\"); ",
+							"        }",
+							"      ",
+							"    pm.environment.set(\"orgInfoDetails\", orgInfo); ",
+							"  ",
+							"  } ",
+							"  ",
+							" var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
+							"    if(testFirstNameIteration.length>0) {",
+							"        console.log(testFirstNameIteration);",
+							"        postman.setNextRequest(\"createUserForOrg copy\");",
+							"    } else {",
+							"        postman.setNextRequest(null);",
+							"        ",
+							"    }",
+							"    ",
+							"      console.log(JSON.stringify(orgInfo));",
+							"",
+							"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9e855cf6-0123-4a08-82a6-fd283b95e7e5",
+						"type": "text/javascript",
+						"exec": [
+							"var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
+							"var emailId=pm.environment.get(\"emailId\");",
+							"var nominalUserData={",
+							"  \"firstName\" : \"Michael\",",
+							"  \"lastName\" : \"Test_Surname\",",
+							"  \"password\" : \"Password1\",",
+							"  \"phone\" : {",
+							"    \"number\" : \"1234567890\",",
+							"    \"extension\" : \"12345\"",
+							"  },",
+							"  \"birthDate\" : \"1998-01-27\",",
+							"  \"email\" : \"TestUser@abc.com\"",
+							"};",
+							"var maxUserData={",
+							"  \"firstName\" : \"First name of employee for maximum characters Firs\",",
+							"  \"lastName\" : \"Last name of employee for maximum characters Last Last name of employee for maximum characters  Last\",",
+							"  \"password\" : \"Password2\",",
+							"  \"phone\" : {",
+							"    \"number\" : \"123456789011123\",",
+							"    \"extension\" : \"12121\"",
+							"  },",
+							"  \"birthDate\" : \"1998-01-27\",",
+							"  \"email\" :  \"emailllll@shilpi.com\"",
+							"};",
+							"var minUserData={",
+							"  \"firstName\" : \"T\",",
+							"  \"lastName\" : \"e\",",
+							"  \"password\" : \"Password3\",",
+							"  \"phone\" : {",
+							"    \"number\" : \"1234567888\",",
+							"    \"extension\" : \"54321\"",
+							"  },",
+							"  \"birthDate\" : \"1998-01-27\",",
+							"  \"email\" : \"T@a.com\"",
+							"};",
+							"var allFieldsUserData={",
+							"  \"firstName\" : \"Thomas\",",
+							"  \"lastName\" : \"Test_Surname\",",
+							"  \"password\" : \"Password3\",",
+							"   \"address\" : {",
+							"    \"address1\" : \"10 Lane\",",
+							"    \"address2\" : \"Little Avenue\",",
+							"    \"city\" : \"Little Rock\",",
+							"    \"state\" : \"Arkansas\",",
+							"    \"country\" : \"United States\",",
+							"    \"zipCode\" : \"70002\"",
+							"  },",
+							"  \"phone\" : {",
+							"    \"number\" : \"1234567999\",",
+							"    \"extension\" : \"32154\"",
+							"  },",
+							"  \"birthDate\" : \"1998-01-27\",",
+							"  \"email\" : \"TestUser@abc.com\"",
+							"};",
+							"console.log(JSON.stringify(request));",
+							"if(!testFirstNameIteration) {",
+							"    ",
+							"    testFirstNameIteration =  [",
+							"        {data: nominalUserData,statusCode :201 , type : \"Nominal\"},",
+							"        {data: maxUserData,statusCode: 201, type: \"Max\"},",
+							"        {data: minUserData,statusCode :201 , type : \"Min\"},",
+							"        {data: allFieldsUserData,statusCode: 201 , type: \"allFields\"}];",
+							"}",
+							"var currentNameIteration =testFirstNameIteration.shift();",
+							"pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
+							"pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
+							"pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
+							"pm.environment.set(\"testType\", JSON.stringify(currentNameIteration.type));",
+							"pm.environment.set(\"statsCode\", JSON.stringify(currentNameIteration.statusCode));"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{currentNameIterationData}}\n"
+				},
+				"url": {
+					"raw": "https://dev.greatestclubmanagementsoftwareever.com/registration/user",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"greatestclubmanagementsoftwareever",
+						"com"
+					],
+					"path": [
+						"registration",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorization Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "71a53e0c-c428-49c5-834e-d68ee6a788f0",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
+							"   ",
+							"    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"tokenType\\\":\\\"Bearer\\\"\");",
+							"    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"accessToken\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"accessToken\")+\"\\\"\");",
+							"    tests[\"Response Body has Correct Client Id\"] = responseBody.has(\"clientId\");",
+							"    tests[\"Response Body has Correct Username\"] = responseBody.has(\"\\\"username\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerEmail_new\")+\"\\\"\");",
+							"    ",
+							"}",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							"",
+							"postman.setNextRequest();"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d78f65b7-f0b3-4f6b-86a0-879194cf1028",
+						"type": "text/javascript",
+						"exec": [
+							"var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
+							"var emailId=pm.environment.get(\"emailId\");",
+							"var nominal={",
+							"  \"password\" : \"Password2\",",
+							"  \"email\" :  \"emailllll@shilpi.com\"",
+							"};",
+							"if(!testFirstNameIteration) {",
+							"    testFirstNameIteration =  [",
+							"        {statusCode :201 , type : \"Nominal\"},",
+							"        {statusCode: 201, type: \"Max\"},",
+							"        {statusCode :201 , type : \"Min\"},",
+							"        {statusCode: 201 , type: \"allFields\"}];",
+							"}",
+							"",
+							"var currentNameIteration =testFirstNameIteration.shift();",
+							"",
+							"if(currentNameIteration1.data===\"Nominal\") {",
+							"    var orgInfo=pm.environment.get(\"orgInfoDetails\"); ",
+							"    console.log(\"test:->\"+JSON.stringify(orgInfo));",
+							"    // Need to set orgID for Nominal case",
+							"    ",
+							"}",
+							"pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
+							"pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YXV0b21hdGVkLXRlc3RpbmctY2xpZW50OiNhbnRpLWpvbmFz"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{currentNameIteration}}"
+				},
+				"url": {
+					"raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
+					"host": [
+						"{{authentication}}"
+					],
+					"path": [
+						"organization",
+						"{{organizationId}}",
+						"login"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "automated-testing-client"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrgLocation Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1f07761-9a00-400b-9179-b4fc8e089bc2",
+						"type": "text/javascript",
+						"exec": [
+							"var compareResponse = function(expectedObject, responseOject) {",
+							"    var deepDiff = eval('(' + environment.deepDiffMapper + '()' + ')');",
+							"    var dottedRes = deepDiff.diff(expectedObject, responseOject);",
+							"    return dottedRes;",
+							"}",
+							"",
+							"",
+							"var nominalTestTypeCheck = function() {",
+							"  ",
+							"    if (pm.environment.get(\"testType\") == \"\\\"Nominal\\\"\") {",
+							"     ",
+							"        var resBody = JSON.parse(responseBody);",
+							"        //pm.environment.set(\"emailId_new\", resBody.location.email.address);",
+							"    }",
+							"}",
+							"",
+							" var testSpecificCallbacks = function() {",
+							"    for(var i = 0; i < arguments.length; i++){",
+							"        arguments[i].apply(); ",
+							"     }",
+							" }",
+							"",
+							"",
+							" var assertCompare = eval('(' + environment.assert + ')');",
+							" var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
+							"  if (testFirstNameIteration.length > 0) {",
+							"    assertCompare();",
+							"    postman.setNextRequest(\"createOrgLocation Copy\");",
+							"} else {",
+							"    assertCompare();",
+							"    pm.environment.unset(\"testFirstNameIteration\");",
+							"    pm.environment.unset(\"currentNameIterationData\");",
+							"    pm.environment.unset(\"currentNameIteration\");",
+							"    pm.environment.unset(\"testType\");",
+							"   postman.setNextRequest();",
+							"",
+							"}",
+							"",
+							"  ",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f325a21a-e077-4dcf-a67b-5ceb22f19f5a",
+						"type": "text/javascript",
+						"exec": [
+							"var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
+							"",
+							"var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+							"",
+							"var randState = states[Math.floor(Math.random() * states.length)];",
+							"postman.setEnvironmentVariable(\"randState\", randState);",
+							"",
+							"var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
+							"//var emailId=pm.environment.get(\"emailId\");",
+							"var ownerID=pm.environment.get(\"ownerId_new\");",
+							"",
+							"//var phoneNumber=pm.environment.get(\"phoneNumber\");",
+							"",
+							"var nominalUserData={",
+							"  \"name\" : \"University Sports and Fitnes Nominal \"+orgNumber,",
+							"  \"ownerId\" : ownerID,",
+							"  \"location\" : {",
+							"    \"name\" : \"University Fitness Center \"+orgNumber,",
+							"    \"address\" : {",
+							"      \"address1\" : \"123 Fitness Lane \"+orgNumber,",
+							"      \"address2\" : \"PO Box \"+orgNumber,",
+							"      \"city\" : \"Little Rock\",",
+							"      \"state\" : \"Alaska\",",
+							"      \"country\" : \"United States\",",
+							"      \"zipCode\" : \"33935\"",
+							"    },",
+							"    \"phone\" : {",
+							"      \"number\" : \"1234567899\",",
+							"      \"extension\" : \"411\"",
+							"    },",
+							"    \"email\" : {",
+							"      \"address\" : \"UniversityFitness\"+orgNumber+\"@ufit.com\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"var maxUserData={",
+							"  \"name\" : \"aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee dsfsfsdfdfsfsffasdfsdfsdffd\"+orgNumber,",
+							"  \"ownerId\" : ownerID,",
+							"  \"location\" : {",
+							"    \"name\" : \"University Fitness University Fitness Center University Fitness Center Center\"+orgNumber,",
+							"    \"address\" : {",
+							"      \"address1\" : \"123 Fitness 123 Fitness Lane Lane Fitness Lane Lane\"+orgNumber,",
+							"      \"address2\" : \"PO Box 123 PO Box PO Box 123\"+orgNumber,",
+							"      \"city\" : \"Little Rock sMALL Rock Middle Rock\",",
+							"      \"state\" : \"Alaska\",",
+							"      \"country\" : \"United States\",",
+							"      \"zipCode\" : \"339312335\"",
+							"    },",
+							"    \"phone\" : {",
+							"      \"number\" : \"1234567892\",",
+							"      \"extension\" : \"414\"",
+							"    },",
+							"    \"email\" : {",
+							"      \"address\" : \"UniversityFit\"+orgNumber+\"@ufit.com\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"var minUserData={",
+							"  \"name\" : \"U\"+orgNumber,",
+							"  \"ownerId\" : ownerID,",
+							"  \"location\" : {",
+							"    \"name\" : \"U\",",
+							"    \"address\" : {",
+							"      \"address1\" : \"L\",",
+							"      \"address2\" : \"PO\"+orgNumber,",
+							"      \"city\" : \"Little\",",
+							"      \"state\" : \"Alaska\",",
+							"      \"country\" : \"United States\",",
+							"      \"zipCode\" : \"75028\"",
+							"    },",
+							"    \"phone\" : {",
+							"      \"number\" : \"1234567896\",",
+							"      \"extension\" : \"413\"",
+							"    },",
+							"    \"email\" : {",
+							"      \"address\" : \"U\"+orgNumber+\"@ufit.com\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"var allFieldsUserData={",
+							"  \"name\" : \"University Sports and Fitness\"+orgNumber,",
+							"  \"tin\" : \"12345\",",
+							"  \"ownerId\" : ownerID,",
+							"  \"location\" : {",
+							"    \"name\" : \"University Fitness Center\"+orgNumber,",
+							"    \"address\" : {",
+							"      \"address1\" : \"123 456 Fitness Lane\"+orgNumber,",
+							"      \"address2\" : \"PO Box\"+orgNumber,",
+							"      \"city\" : \"Little Rock\",",
+							"      \"state\" : \"Florida\",",
+							"      \"country\" : \"United States\",",
+							"      \"zipCode\" : \"33935\"",
+							"    },",
+							"    \"phone\" : {",
+							"      \"number\" : \"1234567890\",",
+							"      \"extension\" : \"412\"",
+							"      ",
+							"    },",
+							"    \"email\" : {",
+							"      \"address\" : \"UniversityFitnez\"+orgNumber+\"@ufit.com\"",
+							"    }",
+							"  },",
+							"  \"email\" : {",
+							"      \"address\" : \"abc\"+orgNumber+\"@ufit.com\"",
+							"  }",
+							"};",
+							"",
+							"",
+							"",
+							"console.log(JSON.stringify(request));",
+							"if(!testFirstNameIteration) {",
+							"    ",
+							"    testFirstNameIteration =  [",
+							"        {data: nominalUserData,statusCode :201 , type : \"Nominal\"},",
+							"        {data: maxUserData,statusCode: 201, type: \"Max\"},",
+							"        {data: minUserData,statusCode :201 , type : \"Min\"},",
+							"        {data: allFieldsUserData,statusCode: 201 , type: \"allFields\"}",
+							"        ];",
+							"}",
+							"",
+							"var currentNameIteration =testFirstNameIteration.shift();",
+							"pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
+							"pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
+							"pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
+							"pm.environment.set(\"testType\", JSON.stringify(currentNameIteration.type));",
+							"",
+							"var orgInfo=pm.environment.get(\"orgInfoDetails\");",
+							"console.log(orgInfo);",
+							"var currentOrg=orgInfo.shift();",
+							"pm.environment.set(\"organizationId_new\", currentOrg.orgId);",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{currentNameIterationData}}"
+				},
+				"url": {
+					"raw": "{{registration}}/{{organizationId_new}}/organization",
+					"host": [
+						"{{registration}}"
+					],
+					"path": [
+						"{{organizationId_new}}",
+						"organization"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
