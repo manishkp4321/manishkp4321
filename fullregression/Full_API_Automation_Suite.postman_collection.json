@@ -93,7 +93,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"1234\"\r\n  },\r\n  \"birthDate\" : \"1998-01-27\",\r\n  \"email\" : \"TestUser@abc.com\"\r\n}"
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"1234\"\r\n  },\r\n  \"birthDate\" : \"1998-01-27\",\r\n  \"email\" : \"TestUser@qa4life.com\"\r\n}"
             },
             "url": {
               "raw": "{{registration}}/user",
@@ -185,7 +185,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "2961228b-261a-48f4-82f5-4885d4903661",
+                "id": "edd911b1-9fcc-49cd-be68-0510064618bf",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -208,7 +208,7 @@
                   "    var loc_address2 = \"PO Box #\"+postman.getEnvironmentVariable(\"orgNumber\");",
                   "    var city = \"Little Rock\";",
                   "   ",
-                  "    var emailaddress = \"UniversityFitness\"+postman.getEnvironmentVariable(\"orgNumber\")+\"@ufit.com\";",
+                  "    var emailaddress = \"UniversityFitness\"+postman.getEnvironmentVariable(\"orgNumber\")+\"@qa4life.com\";",
                   "    ",
                   "    responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+\"UniversityFitness\"+postman.getEnvironmentVariable(\"phoneNumber\")+\"@ufit.com\"+\"\\\"\");",
                   "    ",
@@ -268,7 +268,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box #{{orgNumber}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\n    }\n  }\n}"
+              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box #{{orgNumber}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"UniversityFitness{{orgNumber}}@qa4life.com\"\n    }\n  }\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/organization",
@@ -11083,7 +11083,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"University Fitness Center #{{orgNumber}}\",\r\n    \"address\" : {\r\n      \"address1\" : \"123 Fitness Lane\",\r\n      \"address2\" : \"PO Box {{$randomInt}}\",\r\n      \"city\" : \"Little Rock\",\r\n      \"state\" : \"{{randState}}\",\r\n      \"country\" : \"United States\",\r\n      \"zipCode\" : \"33935\"\r\n    },\r\n  \"email\" : {\r\n    \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\r\n  },\r\n  \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"411\"\r\n    }\r\n}\r\n\r\n"
+              "raw": "{\r\n  \"name\" : \"University Fitness Center #{{orgNumber}}\",\r\n    \"address\" : {\r\n      \"address1\" : \"123 Fitness Lane\",\r\n      \"address2\" : \"PO Box {{$randomInt}}\",\r\n      \"city\" : \"Little Rock\",\r\n      \"state\" : \"{{randState}}\",\r\n      \"country\" : \"United States\",\r\n      \"zipCode\" : \"33935\"\r\n    },\r\n  \"email\" : {\r\n    \"address\" : \"UniversityFitness{{orgNumber}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"411\"\r\n    }\r\n}\r\n\r\n"
             },
             "url": {
               "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
@@ -12317,7 +12317,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"password\": \"Sydney@32\",\r\n  \"username\": \"animesh.kumar@abcfinancial.com\"\r\n}"
+              "raw": "{\r\n  \"password\": \"abc1234$\",\r\n  \"username\": \"Test5ABC3@abcfinancial.com\"\r\n}"
             },
             "url": {
               "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
@@ -14188,7 +14188,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "48e6f0e3-cc91-44b7-8620-e8bc34cb63ba",
+                "id": "7912f397-dcae-4006-97b2-84a7b408bab0",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -14212,7 +14212,7 @@
                   "tests[\"Response Body has Correct firstName\"] = responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\"); ",
                   "tests[\"Response Body has Correct lastName\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
                   "tests[\"Response Body has Correct number\"] = responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"\\\"\");",
-                  "tests[\"Response Body has Correct address\"] = responseBody.has(\"\\\"address\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@gmail.com\"+\"\\\"\");",
+                  "tests[\"Response Body has Correct address\"] = responseBody.has(\"\\\"address\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@qa4life.com\"+\"\\\"\");",
                   "",
                   "}",
                   "",
@@ -14235,7 +14235,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member",
@@ -14322,7 +14322,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "df8fa354-23b7-4152-a870-aed84594c80b",
+                "id": "3d765305-652d-4bac-b738-b520b9b93316",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -14343,7 +14343,7 @@
                   "tests[\"Response Body has Correct firstName\"] = responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\"); ",
                   "tests[\"Response Body has Correct lastName\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
                   "tests[\"Response Body has Correct number\"] = responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"\\\"\");",
-                  "tests[\"Response Body has Correct address\"] = responseBody.has(\"\\\"address\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@gmail.com\"+\"\\\"\");",
+                  "tests[\"Response Body has Correct address\"] = responseBody.has(\"\\\"address\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@qa4life.com\"+\"\\\"\");",
                   "}",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
@@ -14741,7 +14741,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"phoneNumber\" : \"{{randPhoneNumber}}\",\r\n    \"phoneExtension\" : \"118\"\r\n  },\r\n  \"address\" : {\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"21253\",\r\n    \"address2\" : \"13/211 ,Goir Street\",\r\n    \"city\" : \"Albama1\",\r\n    \"address1\" : \"Belouve Hard {{$randomInt}}\",\r\n    \"state\" : \"Alabama\"\r\n  },\r\n  \"birthDate\" : \"1998-01-22\",\r\n  \"email\" : \"TestUser{{randPhoneNumber}}@abc.com\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"password\" : \"Password1\",\r\n  \"phone\" : {\r\n    \"phoneNumber\" : \"{{randPhoneNumber}}\",\r\n    \"phoneExtension\" : \"118\"\r\n  },\r\n  \"address\" : {\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"21253\",\r\n    \"address2\" : \"13/211 ,Goir Street\",\r\n    \"city\" : \"Albama1\",\r\n    \"address1\" : \"Belouve Hard {{$randomInt}}\",\r\n    \"state\" : \"Alabama\"\r\n  },\r\n  \"birthDate\" : \"1998-01-22\",\r\n  \"email\" : \"TestUser{{randPhoneNumber}}@qa4life.com\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
             },
             "url": {
               "raw": "{{manageUser}}/{{organizationId}}/person/{{personId}}",
@@ -16156,7 +16156,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1630af57-80f9-4f30-bc24-beedf193a876",
+                "id": "96278fae-dc2a-41cd-a441-0cebda8a4467",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -16185,7 +16185,7 @@
                   "    tests[\"Response Body has Correct Payment id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.payment.id+\"\\\"\");",
                   "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct type\"] = responseBody.has(\"\\\"type\\\":\"+\"\\\"\"+\"CARD\"+\"\\\"\");",
-                  "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@gmail.com\"+\"\\\"\");",
+                  "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@qa4life.com\"+\"\\\"\");",
                   "",
                   "}",
                   "",
@@ -16229,7 +16229,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\n    \"type\": \"CARD\",\n    \"cardId\": \"{{cardIdForPurchase}}\"\n  }\n}"
+              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CARD\",\n    \"cardId\": \"{{cardIdForPurchase}}\"\n  }\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -16253,7 +16253,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "889ded58-3288-4932-9e16-6aae95755013",
+                "id": "e27d1651-b380-44c7-902f-f0c9c7e039a5",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -16281,7 +16281,7 @@
                   "    tests[\"Response Body has Correct Payment id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.payment.id+\"\\\"\");",
                   "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct type\"] = responseBody.has(\"\\\"type\\\":\"+\"\\\"\"+\"CARD\"+\"\\\"\");",
-                  "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@gmail.com\"+\"\\\"\");",
+                  "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@qa4life.com\"+\"\\\"\");",
                   "",
                   "}",
                   "",
@@ -16325,7 +16325,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n   \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CARD\",\r\n    \"cardId\": \"{{cardIdForPurchase}}\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n   \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CARD\",\r\n    \"cardId\": \"{{cardIdForPurchase}}\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -16349,7 +16349,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "eab1c7fc-c805-460b-8a64-5a36fa81b334",
+                "id": "e8c46b57-faf2-4c38-998a-b3a771fa5017",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -16377,7 +16377,7 @@
                   "    tests[\"Response Body has Correct Payment id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.payment.id+\"\\\"\");",
                   "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct type\"] = responseBody.has(\"\\\"type\\\":\"+\"\\\"\"+\"CARD\"+\"\\\"\");",
-                  "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@gmail.com\"+\"\\\"\");",
+                  "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@qa4life.com\"+\"\\\"\");",
                   "",
                   "}",
                   "",
@@ -16421,7 +16421,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n   \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\r\n    \"type\": \"CARD\",\r\n    \"cardId\": \"{{newCardIdForPurchase}}\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n   \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CARD\",\r\n    \"cardId\": \"{{newCardIdForPurchase}}\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -16445,7 +16445,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1630af57-80f9-4f30-bc24-beedf193a876",
+                "id": "06fe3412-19ad-4951-81f4-cac9a469d619",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -16474,7 +16474,7 @@
                   "    tests[\"Response Body has Correct Payment id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.payment.id+\"\\\"\");",
                   "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct type\"] = responseBody.has(\"\\\"type\\\":\"+\"\\\"\"+\"CARD\"+\"\\\"\");",
-                  "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@gmail.com\"+\"\\\"\");",
+                  "    tests[\"Response Body has Correct email\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\".\"+postman.getEnvironmentVariable(\"randLastName\")+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"@qa4life.com\"+\"\\\"\");",
                   "",
                   "}",
                   "",
@@ -16518,7 +16518,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@gmail.com\",\n    \"type\": \"CARD\",\n    \"cardId\": \"{{newCardIdForPurchase}}\"\n  }\n}"
+              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CARD\",\n    \"cardId\": \"{{newCardIdForPurchase}}\"\n  }\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -16900,7 +16900,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : {\r\n    \"address\" : \"john{{$randomInt}}.snow{{$randomInt}}@abc.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\"\r\n  },\r\n\r\n  \"healthNote\" : \"Wrist pain\",\r\n  \"items\" : [ {\r\n    \"quantity\" : 1,\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 60,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : 10.0,\r\n    \"salesTax\" : 1.2,\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\" : 11.2,\r\n    \"type\" : \"CASH\",\r\n    \"email\" : \"john.snowKingInTheNorth@abc.com\",\r\n     \"currency\":\"USD\"\r\n  },\r\n\"salesEmployeeId\" : \"{{employeeId_2}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\",\r\n  \"waiverId\" : \"{{waiverId}}\"\r\n\r\n}\r\n"
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : {\r\n    \"address\" : \"john{{$randomInt}}.snow{{$randomInt}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\"\r\n  },\r\n\r\n  \"healthNote\" : \"Wrist pain\",\r\n  \"items\" : [ {\r\n    \"quantity\" : 1,\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 60,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : 10.0,\r\n    \"salesTax\" : 1.2,\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\" : 11.2,\r\n    \"type\" : \"CASH\",\r\n    \"email\" : \"john.snowKingInTheNorth@abc.com\",\r\n     \"currency\":\"USD\"\r\n  },\r\n\"salesEmployeeId\" : \"{{employeeId_2}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\",\r\n  \"waiverId\" : \"{{waiverId}}\"\r\n\r\n}\r\n"
             },
             "url": {
               "raw": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/signUp",
