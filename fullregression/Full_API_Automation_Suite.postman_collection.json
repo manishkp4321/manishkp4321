@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "8033086e-9787-4ba1-a173-27ab31bc224a",
+    "_postman_id": "f27b4a02-006b-4d5e-aee8-76e1bc54aa2c",
     "name": "Full_API_Automation_Suite",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -287,7 +287,7 @@
     },
     {
       "name": "My Organisation",
-      "description": "",
+      "description": null,
       "item": [
         {
           "name": "getLocationbyLocID",
@@ -346,7 +346,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
               "host": [
@@ -406,7 +409,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/document",
               "host": [
@@ -455,10 +461,15 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "6fd7ac1d-3f7f-4b7b-8b8a-be56acd6660d",
+                "id": "81b051c3-494a-410d-b8aa-5cba2dc5d542",
                 "type": "text/javascript",
                 "exec": [
                   "var randnum = (parseInt)((Math.random()*100)+1);",
+                  "",
+                  "if(randnum<10)",
+                  "{",
+                  "    randnum = randnum + 10;",
+                  "}",
                   "",
                   "postman.setEnvironmentVariable(\"randnum\", randnum);"
                 ]
@@ -542,10 +553,15 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "6fd7ac1d-3f7f-4b7b-8b8a-be56acd6660d",
+                "id": "7f9eec26-4099-4b38-abad-a34e7f3b7ea6",
                 "type": "text/javascript",
                 "exec": [
                   "var randnum = (parseInt)((Math.random()*100)+1);",
+                  "",
+                  "if(randnum<10)",
+                  "{",
+                  "    randnum = randnum + 10;",
+                  "}",
                   "",
                   "postman.setEnvironmentVariable(\"randnum\", randnum);"
                 ]
@@ -3170,7 +3186,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId}}/token/{{tokenid}}",
               "host": [
@@ -7778,14 +7797,13 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "9d188d09-14c1-41e8-baed-39f59cb649ca",
+                "id": "0ed6e2bf-66e4-42d2-869f-da9ca2853bbc",
                 "type": "text/javascript",
                 "exec": [
-                  "// var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
-                  "var randItemQuantity = 1;",
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -8439,7 +8457,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createUnlimitedPurchase",
           "event": [
             {
               "listen": "test",
@@ -9538,14 +9556,13 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "e2ce0984-721d-43d3-bfd7-d8a2f0042cd8",
+                "id": "17976b8b-6d17-46fd-811c-11df61f4c04b",
                 "type": "text/javascript",
                 "exec": [
-                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
-                  "var randItemQuantity = 1;",
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -9899,7 +9916,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createMeteredPurchase",
           "event": [
             {
               "listen": "test",
@@ -9947,14 +9964,13 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "af48a38a-c69c-4b89-a98a-edc68b7cae33",
+                "id": "ba25d436-a167-418c-a50c-e385b751dc23",
                 "type": "text/javascript",
                 "exec": [
-                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
-                  "var randItemQuantity = 1;",
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -10312,7 +10328,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createMeteredPurchase",
           "event": [
             {
               "listen": "test",
@@ -10358,14 +10374,13 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "e32beb55-d6f9-40d2-b33b-21625a282e25",
+                "id": "20bda5af-7916-4c20-bd66-a1951583794d",
                 "type": "text/javascript",
                 "exec": [
-                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
-                  "var randItemQuantity = 1;",
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -10720,7 +10735,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createUnlimitedPurchase",
           "event": [
             {
               "listen": "test",
@@ -11131,7 +11146,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createUnlimitedPurchase",
           "event": [
             {
               "listen": "test",
@@ -12864,7 +12879,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "a0ef4f5b-e083-4eaf-a4b3-905976fb1a71",
+                "id": "d02bd80b-5d6f-4b14-95e9-276baab32410",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12886,12 +12901,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"\\\"expirationTime\\\":\"+1);",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"\\\"expirationUnit\\\":\"+\"\\\"\"+\"DAYS\"+\"\\\"\");",
-                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
                   "    ",
-                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -12950,7 +12965,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "db733ff2-a43e-4866-8b9d-f3c2cbbae729",
+                "id": "d2d81fc5-e41c-434d-8ab4-ee620fdb5727",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12970,12 +12985,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "   // tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
-                  "   ",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
-                  "   // tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    ",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13034,7 +13049,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "3c3ba032-a872-49f8-ba7a-b8189e66fdb5",
+                "id": "ca947c83-7042-49cb-bb4a-0e23da5eec3e",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13056,12 +13071,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "   // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
-                  "   ",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
-                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    ",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13120,7 +13135,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "7ad22f85-8bfe-425f-854e-0962eb955533",
+                "id": "6945d48e-1926-47a4-ba42-6ae7c66ecc24",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13142,12 +13157,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
                   "    ",
-                  "   // tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13206,7 +13221,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "86785d0c-b005-493a-ab97-b1fb23fb24ea",
+                "id": "ba761089-c329-4dac-9d86-480326ac0f62",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13228,12 +13243,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "   // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "   tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "   // tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
-                  "   ",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
-                  "   // tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    ",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13292,7 +13307,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "87a268f9-92f5-4d17-9d60-e48533d9f89f",
+                "id": "be775f0b-edd6-45e4-b2a9-58d6c7096973",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13314,12 +13329,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "   // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "  // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
                   "    ",
-                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13378,7 +13393,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "c30cb706-8f82-4ff9-b022-0b531d85329c",
+                "id": "f3d15677-6db3-4268-9146-23d06be189a6",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13400,12 +13415,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "   //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "   //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
                   "    ",
-                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -17360,7 +17375,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "dd02d51b-7114-4ab4-971e-8ecbbb134326",
+                "id": "405b9b2c-13e9-4ef1-9051-f6110a0a32a3",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -17391,6 +17406,18 @@
                   ""
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "09baed31-0893-4ca0-a3ba-8cc1945bc7f9",
+                "type": "text/javascript",
+                "exec": [
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);"
+                ]
+              }
             }
           ],
           "request": {
@@ -17407,7 +17434,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : {\r\n    \"address\" : \"john{{$randomInt}}.snow{{$randomInt}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\"\r\n  },\r\n\r\n  \"healthNote\" : \"Wrist pain\",\r\n  \"items\" : [ {\r\n    \"quantity\" : 1,\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 60,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : 10.0,\r\n    \"salesTax\" : 1.2,\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\" : 11.2,\r\n    \"type\" : \"CASH\",\r\n    \"email\" : \"john.snowKingInTheNorth@abc.com\",\r\n     \"currency\":\"USD\"\r\n  },\r\n\"salesEmployeeId\" : \"{{employeeId_2}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\",\r\n  \"waiverId\" : \"{{waiverId}}\"\r\n\r\n}\r\n"
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : {\r\n    \"address\" : \"joh1n.snow{{$randomInt}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"{{randPhoneNumber}}\",\r\n    \"extension\": \"{{$randomInt}}\"\r\n  },\r\n\r\n  \"healthNote\" : \"Wrist pain\",\r\n  \"items\" : [ {\r\n    \"quantity\" : 1,\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 60,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : 10.0,\r\n    \"salesTax\" : 1.2,\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\" : 11.2,\r\n    \"type\" : \"CASH\",\r\n    \"email\" : \"john.snow{{$randomInt}}Kings{{$randomInt}}North@abc.com\",\r\n     \"currency\":\"USD\"\r\n  },\r\n\"salesEmployeeId\" : \"{{employeeId_2}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\",\r\n  \"waiverId\" : \"{{waiverId}}\"\r\n\r\n}\r\n"
             },
             "url": {
               "raw": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/signUp",
