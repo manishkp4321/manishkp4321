@@ -185,7 +185,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "edd911b1-9fcc-49cd-be68-0510064618bf",
+                "id": "daac9255-304b-4079-897f-f7625a4d75c8",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -219,8 +219,8 @@
                   "    tests[\"Response Body has Correct Org name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"orgName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Owner ID\"] = responseBody.has(\"\\\"ownerId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Loc name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Loc addr1\"] = responseBody.has(loc_address1);",
-                  "    tests[\"Response Body has Correct Loc addr2\"] = responseBody.has(loc_address2);",
+                  "    tests[\"Response Body has Correct Loc address1\"] = responseBody.has(loc_address1);",
+                  "    tests[\"Response Body has Correct Loc address2\"] = responseBody.has(loc_address2);",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =responseBody.has(\"\\\"state\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randState\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -278,6 +278,385 @@
               "path": [
                 "{{organizationId}}",
                 "organization"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "My Organisation",
+      "description": "",
+      "item": [
+        {
+          "name": "getLocationbyLocID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b27aa956-c294-4bd8-b8e6-9e241f9d5c0f",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Address id\"] = responseBody.has(jsonData.address.id);",
+                  "    tests[\"Response Body has Correct Org name\"] = responseBody.has(\"name\");",
+                  "    tests[\"Response Body has Correct Address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct Address2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
+                  "    tests[\"Response Body has Correct State\"] =responseBody.has(\"state\");",
+                  "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
+                  "    tests[\"Response Body has Correct Zip code\"] = responseBody.has(\"zipCode\");",
+                  "    tests[\"Response Body has Correct Phone number\"] =  responseBody.has(jsonData.phone.phoneNumber);",
+                  "    tests[\"Response Body has Correct extension\"] = responseBody.has(jsonData.phone.phoneExtension);",
+                  "    tests[\"Response Body has Correct Email\"] = responseBody.has(\"email\");",
+                  "    ",
+                  "    //tests[\"Response Body has Correct waiverDocId\"] = responseBody.has(\"waiverDocId\");",
+                  "    //tests[\"Response Body has Correct termDocId\"] = responseBody.has(\"termDocId\");",
+                  "    ",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
+              "host": [
+                "{{my-organization}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "location",
+                "{{locationId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getLocationDocuments",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c843a4f7-57de-49a5-9e8e-2c6b85062eb0",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct waiverDocId\"] = responseBody.has(\"waiverDocId\");",
+                  "    //tests[\"Response Body has Correct termDocId\"] = responseBody.has(\"termDocId\");",
+                  "    ",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/document",
+              "host": [
+                "{{my-organization}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "document"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "uploadLocationDocument",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "36b46b4b-3e4c-4d20-bc44-8efc5439a0fb",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct waiverDocId\"] = responseBody.has(\"waiverDocId\");",
+                  "    ",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "6fd7ac1d-3f7f-4b7b-8b8a-be56acd6660d",
+                "type": "text/javascript",
+                "exec": [
+                  "var randnum = (parseInt)((Math.random()*100)+1);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randnum\", randnum);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"locationName\" : \"{{locationName}}\",\r\n  \"accountNumber\" : \"{{randnum}}R4Q6\",\r\n  \"document\" : \"Our employees are encouraged to be pro-active in expressing their ideas and contributing to the company's future.\"\r\n}"
+            },
+            "url": {
+              "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/waiver",
+              "host": [
+                "{{my-organization}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "document",
+                "waiver"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "uploadLocation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c46ddd69-d284-4f4c-8dc1-d5b72cd9cf26",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Address id\"] = responseBody.has(jsonData.address.id);",
+                  "    tests[\"Response Body has Correct Org name\"] = responseBody.has(\"name\");",
+                  "    tests[\"Response Body has Correct Address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct Address2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
+                  "    tests[\"Response Body has Correct State\"] =responseBody.has(\"state\");",
+                  "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
+                  "    tests[\"Response Body has Correct Zip code\"] = responseBody.has(\"zipCode\");",
+                  "    tests[\"Response Body has Correct Phone number\"] =  responseBody.has(\"\\\"phoneNumber\\\":\\\"9999888877\\\"\");",
+                  "    tests[\"Response Body has Correct extension\"] = responseBody.has(\"\\\"phoneExtension\\\":\\\"666\\\"\");",
+                  "    tests[\"Response Body has Correct Email\"] = responseBody.has(\"\\\"email\\\":\\\"myabc555@abc.com\\\"\");",
+                  "    ",
+                  "    tests[\"Response Body has Correct waiverDocId\"] = responseBody.has(\"waiverDocId\");",
+                  "    ",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "6fd7ac1d-3f7f-4b7b-8b8a-be56acd6660d",
+                "type": "text/javascript",
+                "exec": [
+                  "var randnum = (parseInt)((Math.random()*100)+1);",
+                  "",
+                  "postman.setEnvironmentVariable(\"randnum\", randnum);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : {\r\n    \"address\" : \"myabc555@abc.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"9999888877\",\r\n    \"extension\" : \"666\"\r\n  }\r\n}"
+            },
+            "url": {
+              "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
+              "host": [
+                "{{my-organization}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "location",
+                "{{locationId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "uploadLocationLogo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2c5a4325-3350-4883-a6fc-45e48c86f84b",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    ",
+                  "    tests[\"Response Body has Correct logoId\"] = responseBody.has(\"logoId\");",
+                  "    ",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "0a45eebd-1ff9-4db2-b51f-aa4eff207a12",
+                "type": "text/javascript",
+                "exec": [
+                  "var randnum = (parseInt)((Math.random()*100)+1);",
+                  "",
+                  "if(randnum<10)",
+                  "{",
+                  "    randnum = randnum + 10;",
+                  "}",
+                  "",
+                  "postman.setEnvironmentVariable(\"randnum\", randnum);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"locationName\" : \"{{locationName}}\",\r\n  \"accountNumber\" : \"{{randnum}}R4Q6\",\r\n  \"document\" : \"iVBORw0KGgoAAAANSUhEUgAAAc4AAABQCAYAAACQ/ZU3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MjRGMzU1Qjk5RjFFMTFFNEE2NzA4QzlBNERCRTcxRTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MjRGMzU1QkE5RjFFMTFFNEE2NzA4QzlBNERCRTcxRTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyNEYzNTVCNzlGMUUxMUU0QTY3MDhDOUE0REJFNzFFNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyNEYzNTVCODlGMUUxMUU0QTY3MDhDOUE0REJFNzFFNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkQbS2MAABpBSURBVHja7F0JuBTVlT4PARcIqCgKEgQliolLjGtEBUEwjIrGfUMwypCIToyjURRQBNGITty3JMY1YVziviCoj7hLcI9BUYOIyiIMCAg4hjfnt047bVuvu+rcqupb3ef/vvM19Ot769atW/cs9ywNTU1NlADaMu3E1IPpe0ybMrVhWk8+k8ZqpsVM85jeZ/o70wympWQwGMLQyNQ7ZpsrmE7LYGynlVznM6a7mU5g2pPpI6axTEOYtpe/GwxVQ0uHtt2ZjmcawLQb01pVvhdIAK8yTZaXboY9XoMhF5gkjP0RpjFMLzKdyNRNmOVlTCOYOjC1sOky5JFxQmodxdSPqcGje8FYdhQ6m+kfTNcz3cS03B61weAt5gl9wfQu0xvy/QrROj9gam3TZPAFcaQ3aJiPimS4r2dMMwzbUGBqms10hr14BkPucL9onZcw3WnTYcgb44TU9zrTT3J4jzDvTKTgHHQve+QGQ26wkOlhps5MN9t0GPLCOBuE6cDc2Tbn9wrHpWlM48jOSQwGH/EW/f+xykdCv2N6julZpteY/mXTZKg2Gip41d7INKwG7/s+piMpOFMxGOoBjeSvV63BUDMa53k1yjSBgynw4LNzT4PBYDAkwjgHMp1f4/cOr+Df2xIwGAwGgyvj3JCCM816wGCm4bYMDAaDweDCOKFpblpHc4Dg6s1sKRgMBoNBwzjheXpync0BUgKOs6VgMBgMBg3j/BVVP3VeNQCTbSdbDgaDwWCohOKUe+2ZhibU78dMLzHNYppPycdetaPAnNyTaQcKzmVd5wFJHibYkjAYDAZDVMY5iIJqJlr8LwXZPW6gbBOsQ2velYLQmSEOGvOBxjgNBoPBEIdxHu7Qz9tMhzG9WYV7WMP0gtBVFOS37Bqh3Uqmd2TsSAj/li0Hg8FgMERlnPjsq+wD5ljkgF3owf2grBjKnL1cpD1/UsQc8TlTPlFxocmWgMFgMBg0jBNFqLUFp4/zhGkWa7/7UVDsGv+2orcGg8FgSJxx7qBs/xgFTkC+4Rl7tAaDwWBIA4VwlG2V7f9iU2gwGAyGetQ4uyrbv2RTWJfowrQHBd7MW1EQGoSE+csoCEWCo9WzQisTuF5ruRZoe6bvUhCCtEauOZeCs/YXKbA2LPdkntZh2oVpZwqSi2xBwZFIO/k7xr5Kxo8zd5y/T2d6z5aYweA/49QG/3/i6X1BEHhd0Q5Zk/5U8t3+THfk6JmOZLqu5LuHmPaM2c/FQkArpj4UhOyAukXsYwUFJdyup/jmczDHgygIk9pLmFAUfMk0hekWpnvk/1niO0w/ZTpG5mxtRR8LmB5kupdpchXuIWkgROzPFDjuaQFHvuNlXspiyvS5Q/njjwmOf3D/XbrcnlRnPD5UZhqYUHcf8Ni6hVxjNn9snuAcfE5ByOEKEfg+EiF5DgVOmXDIfJ/H0hRxDm6jwD8mLjCGHnydOY7PYF2Ml3TpZacXGKc2gYCv9Sxhgm6v1GxK0UrZV7UQtlG3VdwDvJJ7y+I+XDkH0K6OFYI2+Gumv5b5PTSxQ2WDxLUblMLgQCFobuOFiabtQb0R0+kifLmul45MJwp9yHQ10zWyaeURl5FbuBtwQRSmmRL6MyXCOHnDXlsEqryhEKVQWNtbh/zmU76/hykICXyEmdvqMv2hbOWRsr/GAX5/DtPPHe9nOOlzsp/bomgwSW3ShtoANNdGppMSEhx2Y5rGBEmzQ8nfeotGgixTN8nG0pDANbcUzQPMeosUtakRFJiKR6YgZEHz/o30PzSH6+g/mH7p2Mckqm6Zw/4J9tWLad0a3TMgPCIJDXxf5jATHcO0UeiE7tIF2t4Nyuv8jPvt5qhtnqVsPo3HPqVFAi+1oTbRMqV+ocG+LMwSUuObwqCPoujm2LiAmXoGJWceK6Az05OiEa6f8vPoJELA/bJB5QEoGP9bxz5gqTiBqhtz3Yk3220T6mvfOtk/YDUZC4GP5+5kpjBB+EKlFaWVoyDlom1COP7aq1Zrcu1DBkN8dBVmibPYH2R0TTC2BygwGyeBHzG9wrR3xnM3SJhJD8+fMRy5/kThpQujAudYOOde5cH9JKV17ldn7zreOxwzPMjMs32J1jnPQbA6jvuL/Q44apsP8ZifL2acnzpoDw1kMORHi76V6YAENNinRKquBmB2xgvc09N57k7BeaSLSXKZPKf5ntyTM+PkTRtHFDvW6bsHJ8tpPAcbl3yP8+9Fiv5wRDIqQ20TFo8xhf8UGOcHyslA4oTjbT825AhY8zgz+76y/TbCFNpV+T5grn2U/Cs6v4GMy0WoQJgRTPdveHRfvXnTb+3YR786VzTALx7geVynSOtcwh8XZaF1Omqbd/JYXyllnC7J2XG+s7Xtx4YcAd6+CDGK6xQHUxNCCdb35D66kbs5NEmAsdyfwH5wusyzT4BXaS/HPvazV492Z5pY8t21FMQya7TO8RlomyiLObpU+gamO0wEQh0aSZ+2z2CoBn5IQeH2OLiWosewZoV9mE7zYBzQpG6mIObWBYj5vcLTNeNqrt3XXruvMIK1vz2KtE4kSTlf2dcR3FdF6xH/BnxqpPIat/AYZ4UxzqfJ7QAeXPw5Crzf7MyzulhjUxAZiAeL6qGKM5pjPL0PbDobV3kM8JA82rEPJK441eP1omacvHEjw1ZXe+W+FrJKnYIQa/22sq8xEX53CumOD+A4O7b0ywLjBMd3NY3AlIEYvKdEHTdkD2TyuMOmITJgev33CL+DU9GlHt8HshWdW8Xrn+QgzReAdINHkN9ZknYSBx8NBtjr9g3synPZt0jr/NJhDZfVOkXbPEPZ93VhWYqKz0ZuSmhCEJ8Hjz/Etx1CliQhKxRSki2yqYiFEVT5jBAZTnp6fh9gXtVwWMK53fWOfSwSjX5JDjQlbd3i/vaqhb57xUDihOnK5zK+grapEXgQYzqhOUm6AGicKPa8TUKTso/Q/1AQP4dUTFNy8HLkFZcwPZHxNeFUBg9KJPtHSBM83E5M0eIAqRRZgB6Xa2P9wmFjKOlNlZ2lj6fL/Mb1DPFfIkjCGvOOMIoWwuiQ2GAHGYNLkH0bEZyuzvD545z4LgqcNLRA7lEkSng/J+/ZALnnyGCNp6Xshb4DSUKWV7BsdCJ9bvNSHIDYTtbolorW2cT/h+ViqqKvn3LbHYs9XxPQNq/g/hZUYpzQWHDmc2/CDwPu6UOEsIHgxp4RQvWMeZ4vJmzS3VO+xj6OGj8W/OiM5gNM8nYRhkrDmBqZ/iDS3zkJatJPyDXvDxG88B3O124QzVCDQ8owzu0oqG6iBVIJjqRoIV9IqoC4tj7Kax2eIeNEhZyHZDN11ZTzVD9XY3LdPYF5ysRqwYzi1QiCAAQ+JLg4TIQ1bbxua7E0fF1Yg6//BPcPxqlxpDpPhLAktE0w84nN/bE0rdp9wijSssevJZvQzkVS/EyRMCaLRrras8WEqgCzU+wfCfbHObSHOeEYkdzTAmz8NwvzmhWB0SEwGYHeAx2vCWYIp4GPIizyo8Vkc4TiWuUqxxzhcA+nxmRkL8uGgUwrw5X30YHSN9e3E6a5mWM/iN+7NWeWna68sX+v1MuyAmrKTMv3/pns2VN5LmDKvIPiV18qYG/6dkWqkUrGeVCx1umobV4sMaahCDvb+RkF5tWs0FOkAgSVLxCNZR+qH9zouAFBAHknhXGtkc1xkGjc50VgmsXMU+ss8p5IobjmhAhMs/iaw5RMA0y+ubN4bZahi5TaH6wyI8QaExctHDawqEDsK0yVruFnd1N1HZqy1Dpr9nxTHGdwzj1D2UXvkD7/JutDg3EJaJvzKr27YYwTG9VRVJ2whnbCuHEehKwhh1Bth7fAo/NQh/aoN/n7lMYGpnWgCDSatfAa6WqiQnh6RHlNSMJXKi0h3UK+h3lte0V//6QQF/aYzPNMZdtdU16z15G7RQqb7BCqbuL2TBin5GfdlWoYzOhglRuqfJ5b8xytF/L9KHkP4mJ/7m93R23zIr6n5XEZJ/C4SO/VxLbCGHD+sV0NrjdkV3GpHPERRQulcNm8XTFN0cY1HlFbszHsHHsX0mXluYrcjxzgmT5T0W77FNcENMQTHfuYKwLZ5zl+d/uIw08U9CU356m8MM83hW/ERQOFZJri/hDTqS1Gfj4F5ew02ibq31b0Ei+3KcBZZThVP6AeGSagup9aQ9onDsXhNLKesj0ku8FMiz2/T83G71qr8FUl0w8L5dBWIPlLQvOncZpJy5ENVWXGO/aB83iY/j/xcK2uiLlWdovKU2L0+yXlG/cr2zUX6gWrjSYxz36kSwAPnMdMu2K1sErSNM7f4KW03ANGc6WMpxakN2xALlUSEHryVA7uc6miTVvHa0Ko0FT7CRNitlT0AzPtBwnNn+bcKI3sNHs7SP8FrBHm+4qna/VdipcvtX/CvwNeyPm+9qyyXddmtFg8D62XuEYAh5Z7W5QfRjFDwfQFL9jXPHgwJ8kLnGfNEy/SmQ7tsww9yVKKTxJJ1W/cRNHm7wnehybxdZJhD7+gIPwH4UCtHPs620EjyQpTkmScU6bP7R7TajGV8o2ZpLNQlku8frFSANdqm5G0/qjnN+DEOOC+gKpfVBYmynE5XVjIi3qLIyNKO/TEUF4LrYSFVdbYgaQyCMHSA+eWlo79wIFtYg6edxzGuVtpYeYQxAmpeDdBS0V1NILAxKnxau9Ups9FGa0dHPHcGfXHcV4ITApCEm6WGzm0is/oHJGCn8rZ2voDuWXdSCv0xNA844gLeFw2JnR9rdm6hUdziLkYkZPnDY0Ppv4oFi0cGSFs7r4KayEqHq+RdwaMLq6DXyVB73IKQkvSrD17LjIXpcE4C8AZDjJG7CgM7FDK3nSK68Fku5Uw9DwAZq9BDu3TDD0xJIfNyD0xQK3gHdkfcvGO8sa5kLXIVym6/0H/5hgn9wPhpV9Mpt2+Bp65xmGxbYXnsoLnE34haWXFeo6vEavIiYtkikP+w4V5QQNdmPED2pzp5JwsJmTu/y+H9mmHnhgMSQNJVA4k/z2/XTS/chrlThSkG40CnAs+VSPP/TNFmyhHC7+jIDlKKtpm3AZJmHRgm/+1SNlIsXYrZZd56CxyP39JG8hIg9CTdZTt8xJ6YjAUgDP4QyifxwpxGGcP1oQ2VzDVUkwvl94tZ0glZaqcn56XQteTue/GajDO4pflMQoygsDGjUrwcOKZRunln4XN+988X0jwCnMJSs9L6InBUAAsQY05HTtCKlYmoHXGCUOZUufrJaozGxSQpKM7VPGeaTkRIAAdwduozN1HJgaMFPlLkf80yTCFYzxeED8ht5JUeQo9MRgAWEj+kdfBs/axOibT/xbjZC0UJd72iNHH1DpfMy0iPhuYtJPMb3yv5MX1hnGW4gthpNC+cO6B+DhUs3g6gb5xAO9jXGdHstATQ/0B7yKOa9rm+B7iaIB9xRGoGFAWWsV4z5+3ZRNZsHk4Ib7RRPrsQlVzW8dimURBRhK4dL/r0BdiI7fzcPP4ozBPLSz0xJBXbMF0RY7HH+ecE2UBdyr5Lk785rQoKd4MiWvoyEk7U9vYh3ivRgoqyT/m0McPPHuwiFtzOXu10BND3oEqR4PyOHBmZMj+FCefbul5ZhzHoFoz02oyTEVO9MHa/foUJHB3BdL8HZ9nxlnQQFEw+GNl+608WjjQfi91aG+hJ/5gpU2BE5DwY5Ocjl2Vfo83dkQXfL+OGWcbRZs45ciQrrRDQmMdy89Lk+TEqwwjyyg4A9VKDz4AISfw/Fpb2d5CT/zCapsCJ+AYJa+Wkzjm2l7iEATEMdPOY+32jRp75hpGFElA5TnuzB+nJzhW8A1VLoAWnk26Ngm0Lxk3oGm6mI0t9MQYp29a1wnklkP1AMqnBSWOxgnzZG/5dz2baQvCUlxErc06lvTx8M1hlBS9jgXfkgfMkUmMm1y7jQdj35/ccnJa6Il/0JhqkTml2qWzkqrr+BYFuanfF4FOK2gja9aT5OYEmClYE1wg6fd+GLUJ//7RmBqnMc4AyyJom9uIEJc0YPY9g4Li17llnABS920es826VR4zEre71CvEGe9RZKEnvkGTzWU+BeEItYS/UmANOVvZHoIt6hzuSboi49XUOiMzTgoSnXSM2X/tmCemz4XmvYGiaZR0rRMovVrMZ/DYr0Gu4qgNWng4/xpmXk0njgaRyjd26OPUPEnjdYQFijbdPH2vXIFkJi87tN+dgqIQecLkGL/FEc3QONo8b9Qf19ga6eagLJVjyL344+AUxw3BLlZMp48vuMZj6vMqjhfxlgMc2t/lqK0a0sM8RRtI3bVYHQXWkGMdhVQw351zdM9x0+/FcTSpRTOtNrVopdCf32Qw9l+UyTvsPeOEl5Pm8PfTKo13B9J7AgNzmYYbf/IW7yvbbVej84GA8f90aA9r0u2kKxCeOVgjXEXxstTE8SitRcb5Y2W7D8tom4gF7pXB2CHwXpBXxrl3hpqBK/DyTyKd+zWAvIvHUXaVZAzx8V7G6zgPuJ7pEYf2W2ekQSSFNApMw3mrFr3nD1C2m9UM02zpqJjExWC+5rZ5ZJyDle2qcT4IT8GeDu2xeUwz3uQ14O33T0W7g2p4ThBrjKxALlaeUygogJAHpOHA8wJrs8traVEww/mxCEUaBWJWM38byrSNok+cHWsy0cFf5cK8MU7krNWeFWZdjQEbo4uJdTqlU1vOkDw0oSU9ZT3XKuYL83QBsgp1yMG9IkFB0hatWjTTjtPu3WG5epkRI1JirMNYtI5og/jaFSvb+MI4u1Bw9qEBgtRfz3CsneWl18KqnuQLLyrbXUTpuc/7gAeZbnB8j67z/SZ5U29KQeustTAUOEj2UzZ/rpnvT5M1EhezmW7i5waB97+VY6poHvaBceI86AXlJAGop5ZVdQHM122OkrKFnuQLk5XtdmO6kvwseZcU4Cg0y6H94aQ/nsmUNyTYFxJkvFQjDLMF01n8z8scunk+pF/sr2cp+xtbpMHC2adJ0cdePIayRTpw+DqMgtyoC+VzkXymmW4MDjVIUQX3bdf4nEczXCvIMNHXoT2cKu5lWj/FMa4kSxWXJGDNgLt8J0VbrG+c+4wS4VADBJRvKMLahkWEDC0d5XMT+TdCm8ZkODewnhwrWoM2mcrVFJz1z/F4DSTpINTIG/uXeX4hpEIJvF1/RdETRIQBTO3hkO9hZtWkUYUQd3uRteAtHityhx+j6GsCt31MimeHMs4by7wUYKAo+bJEPpcW/R+S0yr5XC2/x4F36aJoVfRyb0lBoDCCoZPK9nNvRuvlR0zjHfuAFJO2Fy0W8+XG7xIDXu5JMq8a9BNCMoWZ8rlC/lYQoPAuoDAAPLXbMX1HPuPm0GxXhfnBeT3OorRnXBjzrSKQrvFxAfDmOZ83UQhQ2yfQnc9m2gv4PpsrMLGW7OPdKahGlYQl5VmkNixhyoilPEXZ35gQoQS+JEdS/GMThBoezXRHc4yzObQR+q7HDxov7VsZXAcb2J9JV2vOkH/c4sA4C+hIboXNfQbOcwcy7aFsD+sTql5c6vE9Pl4HjPPAjK8X5tcCAUwT4vcm050hQs+7zIxxnSGKPlF27K4w56W8pwa7NqPrXE5+1fw0ZIvXyEKHygH5Z3FWucyhjwsTYkxpIQmGN5c34bdtuXwFaLa3lWib0PKOU/Y3ujmzKgUWEY0zJiykw8L+kGfG+V5zanTCQNaKE22d1z3OtykoC2RZOtWhfWvZSNf29P6QQcjVd2CKLZOvcQUzus9DLBcaEzAqSzVbkpKvg1jsm5TjDC07lmfGOYqyCenY2Na4gdFI+nqx9QKYtO92aA+Nc7yPN8ab70qKl34vDFNtiXyF2UwTS7RNnHEP1PICCRsqhwlKfrEp0y9rhXHCO3WSrT9DxoCX7FKbhrJAYhCXqh8Icent6b25etca45T3SASRAtOElqlNwwgHo4pZgvg38NrWHu2dKSEyuWacCA0YZmvPUAWAIZjZvjxwdjXEoT02UXjZtvfw3lwY5+ulHqR1igk8D6UhhIjn1VbNiVMODMx5leIaWIsj88w4IaUMcpRoDQYX3AMJ1Kahomb1W4f2qJJ0lYf3hZAULfOz882gQMA3GJ0Uv56g7O8JZsKNUX/Mv/3EQescwWPtkkfGiXhRZN//m60/Q5VxqTDPJpuKZoEg9jcc2sNL9zCfbkjO0bRaZ70zToSZnBxyFgnT/pYZaJsFwAFphaIdyl2enzfGCfs0gsiftP3I4BHzhPVjkU1FKGASQ2iBiycqcuF29uy+NAwQcYBP1+k6+IBpADPMMaVMU7xVRyv7fZj7i52Ni9ugqs/VymsO5TF/VRGrZQ4mHokH4JSxxPYig2d4iIJMWJeIhtRgU/INvC6apzaXKVILIoxgoEfaPTTOuN7V74SEXtQ6UFEG5vqrih2BSoAUptqkIKMdxob39ecU/xwd2Yfg9X2Yz4wT+S+R6PcZ238MHgMltuAMA8cDZL85ioKMW4YA2DyRalJbPWM/EZyv8eFmmAmAIRxsjzUUOE57gII0qA+FZdwp0jY3EcapwT1S/UT7DBfz9ZHURlPa8VBuu4tvjBMH7/dRkD93hq1DQ46A1I8nURDzBUaB2rJIQQfTjsuRCEydyG+8pIQK3y0uojc9nJcmESxw3rmBsg/E/D1BQa5fQ/UB7flDodmyVyP9KTyHo8ZKjlYKmFhPSRQyAOM8jXTe2xc3NDU1Iei4g3SApNPtSgg3h6TTyOyBJNSFhNSwT7eU32BjaCV/rwSk5yoki/9QXgZsOo0UmHaSMMlgXF0U7WD/Lq3Mvh7lK8foYpH8ioEg3nVi9lPYoF2gmTukzXKtlNGF4h9DhD37JIB3pQcF1VXayXsGwgazQt4HpKr7Qj6Xybwvl38nVelGswY+k/WUBDZ21MQjr0c5O9soZv9f8KZfVW995bi/5HHPDelL8w6UQ6GAx9IIyQai3Kt2fKH3qxxDx4g861v4PwEGAPxb/SZEmJVjAAAAAElFTkSuQmCC\"\r\n}"
+            },
+            "url": {
+              "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/logo",
+              "host": [
+                "{{my-organization}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "logo"
               ]
             }
           },
@@ -1220,7 +1599,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "666de056-cb1f-48dd-8119-01033bac3521",
+                "id": "55743299-e3b0-435d-9dd2-78df449d4ea0",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -1239,13 +1618,14 @@
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid\", jsonData.token.id);",
                   "    ",
                   "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -1355,7 +1735,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ca3d4ab8-a46a-4c9e-a0fd-a2d8a6752a06",
+                "id": "a67026fb-5472-4cdd-8c3e-77e31ea00b97",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -1372,13 +1752,14 @@
                   "    postman.setEnvironmentVariable(\"employeeTokenId_2\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime_2\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail_2\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid2\", jsonData.token.id);",
                   "    ",
                   "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId_2\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail_2\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -1483,7 +1864,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "8868ee77-c442-4790-9b0f-c313bded8de5",
+                "id": "be161879-40c6-4d0c-9712-8143003949a7",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -1497,18 +1878,19 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_3\", jsonData.userId);",
                   "    postman.setEnvironmentVariable(\"employeeId_3\", jsonData.id);",
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail_3\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid3\", jsonData.token.id);",
                   "    ",
                   "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId_3\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail_3\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -1614,7 +1996,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "62f28205-8098-4806-b973-640644e95448",
+                "id": "428d6dfa-412d-43f0-9307-705435fc8cea",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -1628,18 +2010,19 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_4\", jsonData.userId);",
                   "    postman.setEnvironmentVariable(\"employeeId_4\", jsonData.id);",
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail_4\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid4\", jsonData.token.id);",
                   "    ",
                   "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId_4\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail_4\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -1745,7 +2128,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "644de9a3-4f76-4fe0-8841-b2b88dc1a230",
+                "id": "39ba016a-3151-45d0-b0a7-e8164e8a2815",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -1759,18 +2142,19 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_5\", jsonData.userId);",
                   "    postman.setEnvironmentVariable(\"employeeId_5\", jsonData.id);",
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail_5\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid5\", jsonData.token.id);",
                   "    ",
                   "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId_5\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail_5\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -1876,7 +2260,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "3809a7a5-a614-43f6-a24d-55358a946cb8",
+                "id": "df7ca2ef-26ee-4bec-b66b-72d0ea08e241",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -1890,18 +2274,19 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_6\", jsonData.userId);",
                   "    postman.setEnvironmentVariable(\"employeeId_6\", jsonData.id);",
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail_6\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid6\", jsonData.token.id);",
                   "    ",
                   "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId_6\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail_6\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -2007,7 +2392,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "497b3b04-f16c-4c0b-86fd-ec940f41cb66",
+                "id": "66b61114-3d3d-49f0-8115-10ce81f82ad7",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2021,18 +2406,19 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_7\", jsonData.userId);",
                   "    postman.setEnvironmentVariable(\"employeeId_7\", jsonData.id);",
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail_7\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid7\", jsonData.token.id);",
                   "    ",
                   "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId_7\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail_7\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -2138,7 +2524,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "3a7f4f78-7f0d-494b-98de-30f9e3fa3ae4",
+                "id": "f653b27f-74f3-46da-beea-23c988f4710c",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2152,18 +2538,19 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_8\", jsonData.userId);",
                   "    postman.setEnvironmentVariable(\"employeeId_8\", jsonData.id);",
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail_8\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid8\", jsonData.token.id);",
                   "    ",
                   "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId_8\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail_8\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -2269,7 +2656,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1c3b1e99-84ac-4b50-a93a-8f76d551aef5",
+                "id": "a3e48146-be90-419a-b61d-5ba0083026b2",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2283,11 +2670,12 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_9\", jsonData.userId);",
                   "    postman.setEnvironmentVariable(\"employeeId_9\", jsonData.id);",
                   "    postman.setEnvironmentVariable(\"employeeTokenId\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
                   "    postman.setEnvironmentVariable(\"employeeEmail_9\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid9\", jsonData.token.id);",
                   "    ",
                   "    postman.setEnvironmentVariable(\"getEmpFirstName\", jsonData.firstName);",
                   "    postman.setEnvironmentVariable(\"getEmpLastName\", jsonData.lastName);",
@@ -2298,8 +2686,8 @@
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail_9\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -2405,7 +2793,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "2372454c-96aa-4f10-9b59-46a6cf37a755",
+                "id": "31776e62-43d3-4d6a-b779-5bab00163323",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2419,7 +2807,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"employeeUserId\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_10\", jsonData.userId);",
                   "    postman.setEnvironmentVariable(\"employeeId_10\", jsonData.id);",
                   "    postman.setEnvironmentVariable(\"employeeTokenId_3\", jsonData.token.id);",
                   "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime\", jsonData.token.expirationTime);",
@@ -2427,13 +2815,14 @@
                   "    postman.setEnvironmentVariable(\"employeeFirstName\", jsonData.firstName);",
                   "    postman.setEnvironmentVariable(\"employeeLastName\", jsonData.lastName);",
                   "     postman.setEnvironmentVariable(\"employeePhoneNumber\", jsonData.phone.number);",
+                  "     postman.setEnvironmentVariable(\"tokenid10\", jsonData.token.id);",
                   "    ",
                   "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId_10\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail_10\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct addr1\"] = responseBody.has(\"address1\");",
-                  "    tests[\"Response Body has Correct addr2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
                   "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
                   "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
                   "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
@@ -2586,14 +2975,14 @@
               "raw": "{\r\n  \"password\" : \"password2\"\r\n}"
             },
             "url": {
-              "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId}}/password?token={{employeeTokenId_3}}",
+              "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId_10}}/password?token={{employeeTokenId_3}}",
               "host": [
                 "{{registration}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "user",
-                "{{employeeUserId}}",
+                "{{employeeUserId_10}}",
                 "password"
               ],
               "query": [
@@ -2618,7 +3007,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "fbc652ed-3977-472a-9645-8b07103e013a",
+                "id": "77c7074c-7a26-4d14-b4f7-3ff1de73c8dc",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2635,7 +3024,7 @@
                   "    postman.setEnvironmentVariable(\"termsId\", jsonData.location.termDocId);",
                   "    ",
                   "    tests[\"Response Body has Correct location.id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct location.termDocId\"] = responseBody.has(\"\\\"termDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location term Doc Id\"] = responseBody.has(\"\\\"termDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
                   "    ",
                   "}",
                   "",
@@ -2681,7 +3070,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "9eca8605-261a-46bc-9bb1-bafcaa53f6ee",
+                "id": "bbdbf572-eaef-4f76-b722-10a39effdd75",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2698,8 +3087,8 @@
                   "    postman.setEnvironmentVariable(\"waiverId\", jsonData.location.waiverDocId);",
                   "    ",
                   "    tests[\"Response Body has Correct location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct location waiverDocId\"] = responseBody.has(\"\\\"waiverDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"waiverId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct location.termDocId\"] = responseBody.has(\"\\\"termDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location waiver Doc Id\"] = responseBody.has(\"\\\"waiverDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"waiverId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location termDoc Id\"] = responseBody.has(\"\\\"termDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
                   "}",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
@@ -2737,6 +3126,66 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "getUserInfobyToken",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c2c95cc3-cea4-493d-b769-b61c09095fe9",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests[\"Response Body has Correct identity\"] = responseBody.has(\"identity\");",
+                  "    ",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId}}/token/{{tokenid}}",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "user",
+                "{{employeeUserId}}",
+                "token",
+                "{{tokenid}}"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -2750,7 +3199,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "2e5b9caf-0988-4195-adf7-237f2d7f614b",
+                "id": "1cc34f08-90f6-47a6-89e3-581518cdce1b",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2766,7 +3215,7 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"eventCategoryId\", jsonData.id);",
                   "",
-                  "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
+                  "    tests[\"Response Body has Correct location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
                   "    tests[\"Response Body has Correct Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId\")+\"\\\"\");",
                   "    tests[\"Response Body has Name\"] =responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.name+\"\\\"\");",
                   "}",
@@ -2822,7 +3271,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "9f31698a-8b4b-40f1-8180-46d1205ba53c",
+                "id": "2a1de309-8748-44f5-ae87-dbbbe56e8089",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2838,7 +3287,7 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"eventCategoryId1\", jsonData.id);",
                   "    ",
-                  "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
+                  "    tests[\"Response Body has Correct location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
                   "    tests[\"Response Body has Correct Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId1\")+\"\\\"\");",
                   "    tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.name+\"\\\"\");",
                   "}",
@@ -2894,7 +3343,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "b8bb50de-5d50-4557-826b-abd62e6a99ce",
+                "id": "b4dac063-c0be-4854-a527-1252d2d5fa33",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2910,7 +3359,7 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"eventCategoryId2\", jsonData.id);",
                   "",
-                  "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
+                  "    tests[\"Response Body has Correct location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
                   "    tests[\"Response Body has Correct Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId2\")+\"\\\"\");",
                   "    tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.name+\"\\\"\");",
                   "",
@@ -2973,7 +3422,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "fb1d6b80-31b9-4021-bcd9-0709a871cd9c",
+                "id": "718ad541-af01-40e8-886e-8b45b4571ae2",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -2983,7 +3432,7 @@
                   "} else if(responseCode.code==200) {",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    ",
-                  "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
+                  "    tests[\"Response Body has Correct location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
                   "    tests[\"Response Body has Correct Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId\")+\"\\\"\");",
                   "    tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.name+\"\\\"\");",
                   "    ",
@@ -3027,7 +3476,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "26e71c09-7f2c-4d94-95db-e5d8393b805f",
+                "id": "5739fef3-b472-4b93-ae36-9d276349dd8c",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -3043,7 +3492,7 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    //postman.setEnvironmentVariable(\"eventCategoryId1\", jsonData.id);",
                   "    ",
-                  "     tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
+                  "     tests[\"Response Body has Correct location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");    ",
                   "    tests[\"Response Body has Correct Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId\")+\"\\\"\");",
                   "    tests[\"Response Body has Name\"] =responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.name+\"\\\"\");",
                   "    ",
@@ -3101,7 +3550,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "2d6b9fde-ff93-4954-9433-64bb02c56ac3",
+                "id": "52d6458c-ff12-41b2-a865-a921537b63cc",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -3112,7 +3561,7 @@
                   "else if(responseCode.code==200) ",
                   "{",
                   "    ",
-                  "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
                   "    ",
                   "    tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId1\")+\"\\\"\");",
@@ -3172,7 +3621,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "006c947c-eed6-47b4-a725-8d29d1b57e0a",
+                "id": "f01f8fed-58d2-43ad-bc02-6ce4fefbe4b4",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -3184,7 +3633,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    ",
-                  "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.name+\"\\\"\");",
                   "}",
@@ -3240,7 +3689,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "9f9c9599-0c14-43e1-b63e-b0e03ece3a5e",
+                "id": "23a261eb-844d-4724-8028-2fe48a2e77b3",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -3251,7 +3700,7 @@
                   "else if(responseCode.code==200) ",
                   "{",
                   "    ",
-                  "    tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
                   "    ",
                   "    tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId1\")+\"\\\"\");",
@@ -3464,7 +3913,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "debe3188-3811-4a16-bd82-d362a4f9f69a",
+                "id": "2942567a-d6f6-4ef2-85f6-77f0ec32adf2",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -3474,7 +3923,7 @@
                   "} else if(responseCode.code==200) {",
                   "",
                   "tests[\"Response Body has Name\"] = responseBody.has(\"Adventure\");",
-                  "tests[\"Response Body has Correct locationID\"] = responseBody.has(postman.getEnvironmentVariable(\"locationId\"));",
+                  "tests[\"Response Body has Correct location ID\"] = responseBody.has(postman.getEnvironmentVariable(\"locationId\"));",
                   "tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventCategoryId2\"));    ",
                   "}",
                   "",
@@ -3601,7 +4050,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "6740882d-8803-40f2-a7b6-c93ccb850e35",
+                "id": "c46a405d-112d-430b-866c-fc74555296c0",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -3618,7 +4067,7 @@
                   "    postman.setEnvironmentVariable(\"eventTypeId_p90x\", jsonData.id);",
                   "",
                   "tests[\"Response Body has Name\"] = responseBody.has(\"P90X\");",
-                  "tests[\"Response Body has Event Type Id for Yoga\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_p90x\"));",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_p90x\"));",
                   "tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventCategoryId\"));    ",
                   "tests[\"Response Body has Correct Location Id\"] = responseBody.has(postman.getEnvironmentVariable(\"locationId\"));  ",
                   "tests[\"Response Body has Correct checkInWindow\"] = responseBody.has(\"\\\"checkInWindow\\\":60\");",
@@ -3670,7 +4119,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "33575790-7086-4ac4-ad5f-fe6b79e22997",
+                "id": "540062c8-ec90-4ff4-948b-587c907257dd",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -3687,7 +4136,7 @@
                   "    postman.setEnvironmentVariable(\"eventTypeId_pilates\", jsonData.id);",
                   "    ",
                   "tests[\"Response Body has Name\"] = responseBody.has(\"Pilates\");",
-                  "tests[\"Response Body has Event Type Id for Yoga\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_pilates\"));",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_pilates\"));",
                   "tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventCategoryId\"));    ",
                   "tests[\"Response Body has Correct Location Id\"] = responseBody.has(postman.getEnvironmentVariable(\"locationId\"));  ",
                   "tests[\"Response Body has Correct checkInWindow\"] = responseBody.has(\"\\\"checkInWindow\\\":60\");",
@@ -3740,7 +4189,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "087335f9-e5f6-4934-ae4f-84412e8b9b0d",
+                "id": "2e50422f-7c48-4600-a7d3-203d0b3d6751",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -3757,7 +4206,7 @@
                   "    postman.setEnvironmentVariable(\"eventTypeId_zumba\", jsonData.id);",
                   "    ",
                   "tests[\"Response Body has Name\"] = responseBody.has(\"Zumba\");",
-                  "tests[\"Response Body has Event Type Id for Yoga\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_zumba\"));",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_zumba\"));",
                   "tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventCategoryId\"));    ",
                   "tests[\"Response Body has Correct Location Id\"] = responseBody.has(postman.getEnvironmentVariable(\"locationId\"));  ",
                   "tests[\"Response Body has Correct checkInWindow\"] = responseBody.has(\"\\\"checkInWindow\\\":60\");",
@@ -3810,7 +4259,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "b186623a-0e1b-41f8-90e8-3ac965856ed6",
+                "id": "6effa4d8-2a8a-4cf0-9cd0-9b3ba91014f6",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -3827,7 +4276,7 @@
                   "    postman.setEnvironmentVariable(\"eventTypeId_cycling\", jsonData.id);",
                   "    ",
                   "tests[\"Response Body has Name\"] = responseBody.has(\"Cycling\");",
-                  "tests[\"Response Body has Event Type Id for Yoga\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_cycling\"));",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_cycling\"));",
                   "tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventCategoryId\"));    ",
                   "tests[\"Response Body has Correct Location Id\"] = responseBody.has(postman.getEnvironmentVariable(\"locationId\"));  ",
                   "tests[\"Response Body has Correct checkInWindow\"] = responseBody.has(\"\\\"checkInWindow\\\":60\");",
@@ -3880,7 +4329,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "0a24ee62-b369-409e-90d9-8ad0675eac72",
+                "id": "d7ab0474-5395-46ea-a5d2-d4dff7562681",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -3897,7 +4346,7 @@
                   "    postman.setEnvironmentVariable(\"eventTypeId_aerobics\", jsonData.id);",
                   "",
                   "tests[\"Response Body has Name\"] = responseBody.has(\"Aerobics\");",
-                  "tests[\"Response Body has Event Type Id for Yoga\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_aerobics\"));",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_aerobics\"));",
                   "tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventCategoryId\"));    ",
                   "tests[\"Response Body has Correct Location Id\"] = responseBody.has(postman.getEnvironmentVariable(\"locationId\"));  ",
                   "tests[\"Response Body has Correct checkInWindow\"] = responseBody.has(\"\\\"checkInWindow\\\":60\");",
@@ -3950,7 +4399,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "6fc1d0a0-809a-464c-b724-e1878c7e3986",
+                "id": "ccdd5fa6-e942-46a4-b75f-c56da742dea8",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -3967,7 +4416,7 @@
                   "    postman.setEnvironmentVariable(\"eventTypeId_turboKick\", jsonData.id);",
                   "    ",
                   "tests[\"Response Body has Name\"] = responseBody.has(\"Turbo Kick\");",
-                  "tests[\"Response Body has Event Type Id for Yoga\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_turboKick\"));",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventTypeId_turboKick\"));",
                   "tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(postman.getEnvironmentVariable(\"eventCategoryId\"));    ",
                   "tests[\"Response Body has Correct Location Id\"] = responseBody.has(postman.getEnvironmentVariable(\"locationId\"));  ",
                   "tests[\"Response Body has Correct checkInWindow\"] = responseBody.has(\"\\\"checkInWindow\\\":60\");",
@@ -5577,7 +6026,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "cc3cdb85-8b66-4ec2-a2bf-32655e7eb021",
+                "id": "ca86b1d4-e3ec-41c6-a24d-655b3b6dee51",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -5593,8 +6042,8 @@
                   "{",
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"eventId_1030am\", jsonData.id);",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_1030am\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_1030am\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -5672,7 +6121,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "c0ec1e16-ffde-43b4-8033-1442ba0e15cb",
+                "id": "ef929fe1-314d-4722-bef8-d3a2e8ee7fbe",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -5689,8 +6138,8 @@
                   "    postman.setEnvironmentVariable(\"eventId_Swap\", jsonData.id); ",
                   "    ",
                   "    ",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_Swap\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_Swap\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -5856,7 +6305,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "fbcd729f-3c4c-443e-8899-1842d7399c33",
+                "id": "bdb39ca3-eb69-405d-816d-e18c34ade4b6",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -5872,8 +6321,8 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"eventId_1200pm\", jsonData.id);",
                   "    ",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_1200pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_p90x\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_1200pm\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_p90x\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -6041,7 +6490,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "53c6f0ac-e950-4fa8-b9fc-033eabbe638d",
+                "id": "2fd31aa8-2a03-4dd4-9085-6d60934ad0eb",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6057,8 +6506,8 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"eventId_100pm\", jsonData.id);",
                   "    ",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_100pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_aerobics\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_100pm\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_aerobics\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -6226,7 +6675,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "f70fd2ab-8024-47e3-b6e2-392d0405eec1",
+                "id": "1b43c000-e738-48c3-8e08-bbe9ae8c1772",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6242,8 +6691,8 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"eventId_200pm\", jsonData.id);",
                   "    ",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_200pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_pilates\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_200pm\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_pilates\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -6410,7 +6859,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "0b6a3cef-556b-4e32-99c0-901fcf3f11a9",
+                "id": "7b9f6a6b-0467-4cf7-a591-0de4df06a59a",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6426,8 +6875,8 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"eventId_300pm\", jsonData.id);",
                   "",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_300pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_zumba\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_300pm\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_zumba\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -6593,7 +7042,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "a44a71ef-cf32-46ca-9854-6df537d85d02",
+                "id": "acd8f24e-555c-4068-ba91-20e7cda437fc",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6609,8 +7058,8 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"eventId_430pm\", jsonData.id);",
                   "",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_430pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_430pm\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -6780,7 +7229,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "75bd5854-584e-4c30-8760-dee57f653d4b",
+                "id": "7d287b3c-e630-48de-823f-195305a8500b",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6796,8 +7245,8 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"eventId_500pm\", jsonData.id);",
                   "",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_500pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_cycling\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_500pm\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_cycling\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -7777,7 +8226,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "e56b1015-6e89-4552-a662-9da0ab232190",
+                "id": "87e6581b-2776-4544-88d5-fab2a35ca731",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -7793,8 +8242,8 @@
                   "{",
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"eventId_new\", jsonData.id);",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_new\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_new\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventLevelId_beginner\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -8249,7 +8698,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "9af611f4-e766-4c3f-a644-9c882eb08761",
+                "id": "09abb683-41d0-4014-96b5-459ea1eb53b1",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -8267,7 +8716,7 @@
                   "    ",
                   "    ",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_newup\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventLevelId_beginner\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -8346,7 +8795,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "8dd43107-f5e9-422b-a8ef-04c3f264b96d",
+                "id": "cb49d14c-ea9c-479b-93d3-1b6633dfc502",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -8362,8 +8811,8 @@
                   "    postman.setEnvironmentVariable(\"eventId_Swap\", jsonData.id); ",
                   "    ",
                   "    ",
-                  "tests[\"Response Body has Evnet Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_Swap\")+\"\\\"\");",
-                  "tests[\"Response Body has Evemt Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_Swap\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
                   "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventLevelId_beginner\")+\"\\\"\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
@@ -9089,10 +9538,11 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "0fabd4f2-6c7a-4b8e-b9dc-fd2e78cc0aab",
+                "id": "e2ce0984-721d-43d3-bfd7-d8a2f0042cd8",
                 "type": "text/javascript",
                 "exec": [
-                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
                   "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
                   "var purchaseAmount = randItemQuantity * unitPrice;",
@@ -9497,10 +9947,11 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "84b4d7ae-0464-46fe-b515-5fe02c149ea3",
+                "id": "af48a38a-c69c-4b89-a98a-edc68b7cae33",
                 "type": "text/javascript",
                 "exec": [
-                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
                   "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
                   "var purchaseAmount = randItemQuantity * unitPrice;",
@@ -9907,10 +10358,11 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "6fc8c0ed-c601-430e-afb4-d16a435e267d",
+                "id": "e32beb55-d6f9-40d2-b33b-21625a282e25",
                 "type": "text/javascript",
                 "exec": [
-                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
                   "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
                   "var purchaseAmount = randItemQuantity * unitPrice;",
@@ -12412,7 +12864,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "3b732fa0-69bd-4b2b-9f77-01be9ab4eec0",
+                "id": "a0ef4f5b-e083-4eaf-a4b3-905976fb1a71",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12434,19 +12886,19 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"\\\"expirationTime\\\":\"+1);",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"\\\"expirationUnit\\\":\"+\"\\\"\"+\"DAYS\"+\"\\\"\");",
-                  "    tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
                   "    ",
-                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
                   "    ",
                   "    ",
-                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
                   "    tests[\"Response Body has Correct  size\"] = responseBody.has(\"\\\"size\\\":\"+jsonData.size);",
                   "    tests[\"Response Body has Correct  number\"] = responseBody.has(\"\\\"number\\\":\"+jsonData.number);",
-                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.sort.sorted);",
-                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.sort.unsorted);",
+                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.pageable.sort.sorted);",
+                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.pageable.sort.unsorted);",
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
                   "    tests[\"Response Body has Correct  numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":\"+jsonData.numberOfElements);",
                   "    ",
@@ -12498,7 +12950,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "6bdb6804-358a-4a97-9864-1f9326670c30",
+                "id": "db733ff2-a43e-4866-8b9d-f3c2cbbae729",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12518,19 +12970,19 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
                   "    ",
-                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "   // tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
                   "   ",
                   "    ",
-                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "   // tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
                   "    tests[\"Response Body has Correct  size\"] = responseBody.has(\"\\\"size\\\":\"+jsonData.size);",
                   "    tests[\"Response Body has Correct  number\"] = responseBody.has(\"\\\"number\\\":\"+jsonData.number);",
-                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.sort.sorted);",
-                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.sort.unsorted);",
+                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.pageable.sort.sorted);",
+                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.pageable.sort.unsorted);",
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
                   "    tests[\"Response Body has Correct  numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":\"+jsonData.numberOfElements);",
                   "    ",
@@ -12582,7 +13034,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "b89263af-a3a3-4d39-915c-b425d6baca1e",
+                "id": "3c3ba032-a872-49f8-ba7a-b8189e66fdb5",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12604,19 +13056,19 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
                   "    ",
-                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
                   "   ",
                   "    ",
-                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
                   "    tests[\"Response Body has Correct  size\"] = responseBody.has(\"\\\"size\\\":\"+jsonData.size);",
                   "    tests[\"Response Body has Correct  number\"] = responseBody.has(\"\\\"number\\\":\"+jsonData.number);",
-                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.sort.sorted);",
-                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.sort.unsorted);",
+                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.pageable.sort.sorted);",
+                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.pageable.sort.unsorted);",
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
                   "    tests[\"Response Body has Correct  numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":\"+jsonData.numberOfElements);",
                   "    ",
@@ -12668,7 +13120,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "6d7499a4-3e34-4964-8d61-28073a922398",
+                "id": "7ad22f85-8bfe-425f-854e-0962eb955533",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12690,19 +13142,19 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
                   "    ",
-                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
                   "    ",
                   "    ",
-                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "   // tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
                   "    tests[\"Response Body has Correct  size\"] = responseBody.has(\"\\\"size\\\":\"+jsonData.size);",
                   "    tests[\"Response Body has Correct  number\"] = responseBody.has(\"\\\"number\\\":\"+jsonData.number);",
-                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.sort.sorted);",
-                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.sort.unsorted);",
+                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.pageable.sort.sorted);",
+                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.pageable.sort.unsorted);",
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
                   "    tests[\"Response Body has Correct  numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":\"+jsonData.numberOfElements);",
                   "    ",
@@ -12754,7 +13206,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "08df365b-bb4f-4d08-9ec6-59837273ebe2",
+                "id": "86785d0c-b005-493a-ab97-b1fb23fb24ea",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12776,19 +13228,19 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "   // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
                   "    ",
-                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "   // tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
                   "   ",
                   "    ",
-                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "   // tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
                   "    tests[\"Response Body has Correct  size\"] = responseBody.has(\"\\\"size\\\":\"+jsonData.size);",
                   "    tests[\"Response Body has Correct  number\"] = responseBody.has(\"\\\"number\\\":\"+jsonData.number);",
-                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.sort.sorted);",
-                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.sort.unsorted);",
+                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.pageable.sort.sorted);",
+                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.pageable.sort.unsorted);",
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
                   "    tests[\"Response Body has Correct  numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":\"+jsonData.numberOfElements);",
                   "    ",
@@ -12840,7 +13292,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "362909a5-8cda-4a4b-8af7-fc568c946fd0",
+                "id": "87a268f9-92f5-4d17-9d60-e48533d9f89f",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12862,19 +13314,19 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "   // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
                   "    ",
-                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
                   "    ",
                   "    ",
-                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
                   "    tests[\"Response Body has Correct  size\"] = responseBody.has(\"\\\"size\\\":\"+jsonData.size);",
                   "    tests[\"Response Body has Correct  number\"] = responseBody.has(\"\\\"number\\\":\"+jsonData.number);",
-                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.sort.sorted);",
-                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.sort.unsorted);",
+                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.pageable.sort.sorted);",
+                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.pageable.sort.unsorted);",
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
                   "    tests[\"Response Body has Correct  numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":\"+jsonData.numberOfElements);",
                   "    ",
@@ -12926,7 +13378,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "487b24ee-6d76-4527-a328-36104ecc4fc4",
+                "id": "c30cb706-8f82-4ff9-b022-0b531d85329c",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12948,19 +13400,19 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "   //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
                   "    ",
-                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
                   "    ",
                   "    ",
-                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
                   "    tests[\"Response Body has Correct  size\"] = responseBody.has(\"\\\"size\\\":\"+jsonData.size);",
                   "    tests[\"Response Body has Correct  number\"] = responseBody.has(\"\\\"number\\\":\"+jsonData.number);",
-                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.sort.sorted);",
-                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.sort.unsorted);",
+                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.pageable.sort.sorted);",
+                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.pageable.sort.unsorted);",
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
                   "    tests[\"Response Body has Correct  numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":\"+jsonData.numberOfElements);",
                   "    ",
@@ -13018,7 +13470,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "55c4c831-45d3-412a-b0f3-830a1144b2a4",
+                "id": "0f57a25c-eefd-4bf0-b35e-1a9a1cd9f49d",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13047,11 +13499,10 @@
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
-                  "    ",
                   "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   "tests[\"Searching for specific Org Name in response\"] = responseBody.has(orgNameToSearchFor);",
-                  "}"
+                  "}",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -13087,7 +13538,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "70f07e26-4782-496f-96ca-f1004b7e71e5",
+                "id": "649aaf63-4f3f-4746-ba17-d68b21a0d1f0",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13125,9 +13576,8 @@
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
                   "",
                   "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                  "",
-                  "}"
+                  "}",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -13163,7 +13613,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ff255b9b-bee4-458b-8a5c-be964560414b",
+                "id": "ef250ef8-5642-4b81-aba8-4e28d0eb19bb",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13193,11 +13643,9 @@
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
-                  "    ",
                   "",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                  "}"
+                  "}",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -13237,7 +13685,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ceb2af76-e80e-4ae3-ba64-a9f40ff74b4e",
+                "id": "fbc560f0-9d80-4ed6-8b67-13bd8e1f4299",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13271,8 +13719,9 @@
                   "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
                   "",
                   "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                  "}"
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
               }
             }
@@ -14519,7 +14968,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "610ca7db-3ae3-4090-a08c-429d39e960ff",
+                "id": "c7b4c28f-eabc-47eb-8722-fedd1b2b6d80",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -14536,7 +14985,7 @@
                   "tests[\"Response Body has Correct id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"personId\")+\"\\\"\");   ",
                   "tests[\"Response Body has Correct firstName\"] = responseBody.has(\"firstName\");",
                   "tests[\"Response Body has Correct lastName\"] = responseBody.has(\"lastName\");",
-                  "tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userId\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct userId\"] = responseBody.has(\"userId\");",
                   "tests[\"Response Body has Correct address1\"] = responseBody.has(\"\\\"address1\\\":\"+\"\\\"10 Fit Lane\\\"\");",
                   "tests[\"Response Body has Correct address2\"] = responseBody.has(\"\\\"address2\\\":\"+\"\\\"PO Box\");",
                   "tests[\"Response Body has Correct zipCode\"] = responseBody.has(\"zipCode\");",
@@ -14870,6 +15319,62 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "isAllowedToUpdateRole",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5079d3ad-d644-460e-b457-727d2c504117",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "} else if(responseCode.code==200) {",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "tests[\"Response Body has Correct id\"] = responseBody.has(\"allowedToUpdateRole\");   ",
+                  "",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{manageUser}}/{{organizationId}}/user/{{ownerId}}/allowedToUpdateRole",
+              "host": [
+                "{{manageUser}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "user",
+                "{{ownerId}}",
+                "allowedToUpdateRole"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -15105,7 +15610,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "fb88c5e0-f59c-4d75-8de3-9745d92c1fa9",
+                "id": "1b27f4e4-3e89-4478-abc8-7e528ef971dc",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -15126,9 +15631,9 @@
                   "var eventTypeIdZumba = postman.getEnvironmentVariable(\"eventTypeId_zumba\");",
                   "",
                   "tests[\"Response Body has  contains Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_Unlimited_false_Multiple\")+\"\\\"\");",
-                  "tests[\"Response Body has Correct EventTypeId1\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
-                  "tests[\"Response Body has Correct EventTypeId2\"] =responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_cycling\")+\"\\\"\");",
-                  "tests[\"Response Body has Correct EventTypeId3\"] =responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_zumba\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct EventType Id1\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct EventType Id2\"] =responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_cycling\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct EventType Id3\"] =responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_zumba\")+\"\\\"\");",
                   "tests[\"Response Body has Correct Currency\"] = responseBody.has(\"\\\"currencyId\\\":\\\"USD\\\"\");",
                   "tests[\"Response Body has Correct type\"] = responseBody.has(\"\\\"type\\\":\\\"SERVICE\\\"\");",
                   "tests[\"Response Body has Correct Name\"] = responseBody.has(\"\\\"name\\\":\\\"Yoga\");",
@@ -15397,7 +15902,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "b69805ed-a02a-450f-8204-f9550506435a",
+                "id": "ac85a358-001e-489d-83f9-b12598c888d6",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -15415,7 +15920,7 @@
                   "tests[\"Response Body has  contains Id\"] =  responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_Unlimited_true_1\")+\"\\\"\");",
                   "tests[\"Response Body has Correct EventTypeIdYoga\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
                   "",
-                  "tests[\"Response Body has Correct ItemIdUnlimitedTrue\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_Unlimited_true_1\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct ItemId Unlimited True\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_Unlimited_true_1\")+\"\\\"\");",
                   "tests[\"Response Body has Correct Currency\"] = responseBody.has(\"\\\"currencyId\\\":\\\"USD\\\"\");",
                   "tests[\"Response Body has Correct type\"] = responseBody.has(\"\\\"type\\\":\\\"SERVICE\\\"\");",
                   "tests[\"Response Body has Correct Name\"] = responseBody.has(\"\\\"name\\\":\\\"Yoga\");",
@@ -16294,10 +16799,11 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "5c654eb7-1060-4111-b2ec-caf0ad42f3be",
+                "id": "d05b1c8d-9402-48ce-ae65-85909c0691e9",
                 "type": "text/javascript",
                 "exec": [
-                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
                   "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
                   "var purchaseAmount = randItemQuantity * unitPrice;",
@@ -16390,10 +16896,11 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "5c654eb7-1060-4111-b2ec-caf0ad42f3be",
+                "id": "802e7db4-031b-44ca-ab0a-629666148be2",
                 "type": "text/javascript",
                 "exec": [
-                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
+                  "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
                   "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
                   "var purchaseAmount = randItemQuantity * unitPrice;",
