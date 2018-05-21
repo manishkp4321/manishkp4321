@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "8033086e-9787-4ba1-a173-27ab31bc224a",
+    "_postman_id": "f27b4a02-006b-4d5e-aee8-76e1bc54aa2c",
     "name": "Full_API_Automation_Suite",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -287,7 +287,7 @@
     },
     {
       "name": "My Organisation",
-      "description": "",
+      "description": null,
       "item": [
         {
           "name": "getLocationbyLocID",
@@ -346,7 +346,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
               "host": [
@@ -406,7 +409,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/document",
               "host": [
@@ -455,10 +461,15 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "6fd7ac1d-3f7f-4b7b-8b8a-be56acd6660d",
+                "id": "81b051c3-494a-410d-b8aa-5cba2dc5d542",
                 "type": "text/javascript",
                 "exec": [
                   "var randnum = (parseInt)((Math.random()*100)+1);",
+                  "",
+                  "if(randnum<10)",
+                  "{",
+                  "    randnum = randnum + 10;",
+                  "}",
                   "",
                   "postman.setEnvironmentVariable(\"randnum\", randnum);"
                 ]
@@ -542,10 +553,15 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "6fd7ac1d-3f7f-4b7b-8b8a-be56acd6660d",
+                "id": "7f9eec26-4099-4b38-abad-a34e7f3b7ea6",
                 "type": "text/javascript",
                 "exec": [
                   "var randnum = (parseInt)((Math.random()*100)+1);",
+                  "",
+                  "if(randnum<10)",
+                  "{",
+                  "    randnum = randnum + 10;",
+                  "}",
                   "",
                   "postman.setEnvironmentVariable(\"randnum\", randnum);"
                 ]
@@ -3170,7 +3186,10 @@
                 "value": "Bearer {{accessToken}}"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId}}/token/{{tokenid}}",
               "host": [
@@ -3550,7 +3569,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "52d6458c-ff12-41b2-a865-a921537b63cc",
+                "id": "f3c7ee33-4ca9-4525-8cda-5301e3c9948c",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -3567,20 +3586,19 @@
                   "    tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId1\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId2\")+\"\\\"\");",
                   "    ",
-                  "    tests[\"Response Body has numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":3\");",
+                  "    tests[\"Response Body has numberOfElements\"] = responseBody.has(\"numberOfElements\");",
                   "    tests[\"Response Body has unsorted\"] = responseBody.has(\"\\\"unsorted\\\":true\");",
                   "    tests[\"Response Body has sorted\"] = responseBody.has(\"\\\"sorted\\\":false\");",
-                  "    tests[\"Response Body has pageSize\"] = responseBody.has(\"\\\"pageSize\\\":20\");",
-                  "    tests[\"Response Body has pageNumber\"] = responseBody.has(\"\\\"pageNumber\\\":0\");",
-                  "    tests[\"Response Body has offset\"] = responseBody.has(\"\\\"offset\\\":0\");",
-                  "    tests[\"Response Body has paged\"] = responseBody.has(\"\\\"paged\\\":true\");",
-                  "    tests[\"Response Body has unpaged\"] = responseBody.has(\"\\\"unpaged\\\":false\");",
-                  "    //tests[\"Response Body has total\"] = responseBody.has(\"\\\"total\\\":0\");",
+                  "    //tests[\"Response Body has pageSize\"] = responseBody.has(\"\\\"pageSize\\\":20\");",
+                  "   // tests[\"Response Body has pageNumber\"] = responseBody.has(\"\\\"pageNumber\\\":0\");",
+                  "   // tests[\"Response Body has offset\"] = responseBody.has(\"\\\"offset\\\":0\");",
+                  "   // tests[\"Response Body has paged\"] = responseBody.has(\"\\\"paged\\\":true\");",
+                  "   // tests[\"Response Body has unpaged\"] = responseBody.has(\"\\\"unpaged\\\":false\");",
                   "    tests[\"Response Body has totalPages\"] = responseBody.has(\"\\\"totalPages\\\":1\");",
                   "    tests[\"Response Body has last\"] = responseBody.has(\"\\\"last\\\":true\");",
                   "    tests[\"Response Body has first\"] = responseBody.has(\"\\\"first\\\":true\");",
                   "    tests[\"Response Body has totalElements\"] = responseBody.has(\"\\\"totalElements\\\":3\");",
-                  "    tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":20\");",
+                  "    //tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":20\");",
                   "    tests[\"Response Body has number\"] = responseBody.has(\"\\\"number\\\":0\");",
                   "}",
                   "",
@@ -3689,7 +3707,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "23a261eb-844d-4724-8028-2fe48a2e77b3",
+                "id": "683ee4c5-bec1-412c-a84b-ec366dc28f22",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -3709,17 +3727,16 @@
                   "    tests[\"Response Body has numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":3\");",
                   "    tests[\"Response Body has unsorted\"] = responseBody.has(\"\\\"unsorted\\\":true\");",
                   "    tests[\"Response Body has sorted\"] = responseBody.has(\"\\\"sorted\\\":false\");",
-                  "    tests[\"Response Body has pageSize\"] = responseBody.has(\"\\\"pageSize\\\":20\");",
-                  "    tests[\"Response Body has pageNumber\"] = responseBody.has(\"\\\"pageNumber\\\":0\");",
-                  "    tests[\"Response Body has offset\"] = responseBody.has(\"\\\"offset\\\":0\");",
-                  "    tests[\"Response Body has paged\"] = responseBody.has(\"\\\"paged\\\":true\");",
-                  "    tests[\"Response Body has unpaged\"] = responseBody.has(\"\\\"unpaged\\\":false\");",
-                  "    //tests[\"Response Body has total\"] = responseBody.has(\"\\\"total\\\":0\");",
+                  "    //tests[\"Response Body has pageSize\"] = responseBody.has(\"\\\"pageSize\\\":20\");",
+                  "   // tests[\"Response Body has pageNumber\"] = responseBody.has(\"\\\"pageNumber\\\":0\");",
+                  "   // tests[\"Response Body has offset\"] = responseBody.has(\"\\\"offset\\\":0\");",
+                  "   // tests[\"Response Body has paged\"] = responseBody.has(\"\\\"paged\\\":true\");",
+                  "   // tests[\"Response Body has unpaged\"] = responseBody.has(\"\\\"unpaged\\\":false\");",
                   "    tests[\"Response Body has totalPages\"] = responseBody.has(\"\\\"totalPages\\\":1\");",
                   "    tests[\"Response Body has last\"] = responseBody.has(\"\\\"last\\\":true\");",
                   "    tests[\"Response Body has first\"] = responseBody.has(\"\\\"first\\\":true\");",
                   "    tests[\"Response Body has totalElements\"] = responseBody.has(\"\\\"totalElements\\\":3\");",
-                  "    tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":20\");",
+                  "    //tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":20\");",
                   "    tests[\"Response Body has number\"] = responseBody.has(\"\\\"number\\\":0\");",
                   "}",
                   "",
@@ -3810,70 +3827,6 @@
                   "tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":0\");",
                   "tests[\"Response Body has number\"] = responseBody.has(\"\\\"number\\\":0\");",
                   "    ",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventLevel",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "eventLevel"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getEventLevels_test",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "7c979b96-476e-4042-b6c2-7a980ba30f28",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "} else if(responseCode.code==200) {",
-                  "    ",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"Beginner\");",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"Intermediate\");",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"Advanced\");",
-                  "tests[\"Response Body has Correct Event Level for Begineer\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_beginner\"));",
-                  "tests[\"Response Body has Correct Event Level for Intermediate\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_intermediate\"));",
-                  "tests[\"Response Body has Correct Event Level for Advanced\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_advanced\"));",
-                  "tests[\"Response Body has pageable\"] = responseBody.has(\"INSTANCE\");",
-                  "tests[\"Response Body has totalPages\"] = responseBody.has(\"\\\"totalPages\\\":1\");",
-                  "tests[\"Response Body has last\"] = responseBody.has(\"\\\"last\\\":true\");",
-                  "tests[\"Response Body has totalElements\"] = responseBody.has(\"\\\"totalElements\\\":4\");",
-                  "tests[\"Response Body has unsorted\"] = responseBody.has(\"\\\"unsorted\\\":true\");",
-                  "tests[\"Response Body has sorted\"] = responseBody.has(\"\\\"sorted\\\":false\");",
-                  "tests[\"Response Body has first\"] = responseBody.has(\"\\\"first\\\":true\");",
-                  "tests[\"Response Body has numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":4\");",
-                  "tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":0\");",
-                  "tests[\"Response Body has number\"] = responseBody.has(\"\\\"number\\\":0\");",
                   "}",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
@@ -6026,7 +5979,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ca86b1d4-e3ec-41c6-a24d-655b3b6dee51",
+                "id": "2d2865e2-a748-4103-aca1-8a36c89d6d6b",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6043,8 +5996,9 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"eventId_1030am\", jsonData.id);",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_1030am\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
+                  "//tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeid\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":10\");",
@@ -6121,7 +6075,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ef929fe1-314d-4722-bef8-d3a2e8ee7fbe",
+                "id": "e42900d1-5f52-44d2-82d2-7162d56ab89a",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6139,8 +6093,8 @@
                   "    ",
                   "    ",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_Swap\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_yoga\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":12\");",
@@ -6305,7 +6259,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "bdb39ca3-eb69-405d-816d-e18c34ade4b6",
+                "id": "3fd134e0-de3a-493c-855a-f694e2db5efb",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6322,8 +6276,8 @@
                   "    postman.setEnvironmentVariable(\"eventId_1200pm\", jsonData.id);",
                   "    ",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_1200pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_p90x\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_p90x\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":10\");",
@@ -6490,7 +6444,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "2fd31aa8-2a03-4dd4-9085-6d60934ad0eb",
+                "id": "5a44d867-6310-4107-a27e-4160d943be94",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6507,8 +6461,8 @@
                   "    postman.setEnvironmentVariable(\"eventId_100pm\", jsonData.id);",
                   "    ",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_100pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_aerobics\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_aerobics\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":10\");",
@@ -6675,7 +6629,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1b43c000-e738-48c3-8e08-bbe9ae8c1772",
+                "id": "c342e88f-8aec-43fa-8137-c823ab2d14b6",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6692,8 +6646,8 @@
                   "    postman.setEnvironmentVariable(\"eventId_200pm\", jsonData.id);",
                   "    ",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_200pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_pilates\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_pilates\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":10\");",
@@ -6859,7 +6813,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "7b9f6a6b-0467-4cf7-a591-0de4df06a59a",
+                "id": "bed14c3f-109f-44a7-b1d8-acef25dc1301",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -6876,8 +6830,8 @@
                   "    postman.setEnvironmentVariable(\"eventId_300pm\", jsonData.id);",
                   "",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_300pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_zumba\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_zumba\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":10\");",
@@ -7042,7 +6996,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "acd8f24e-555c-4068-ba91-20e7cda437fc",
+                "id": "498e0af7-45b2-4845-8001-739703875f6c",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -7059,8 +7013,8 @@
                   "    postman.setEnvironmentVariable(\"eventId_430pm\", jsonData.id);",
                   "",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_430pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":10\");",
@@ -7229,7 +7183,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "7d287b3c-e630-48de-823f-195305a8500b",
+                "id": "3094b842-5664-4f48-9c38-12188d9712f5",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -7246,8 +7200,8 @@
                   "    postman.setEnvironmentVariable(\"eventId_500pm\", jsonData.id);",
                   "",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_500pm\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_cycling\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randEventLevelId\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_cycling\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":10\");",
@@ -7778,14 +7732,13 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "9d188d09-14c1-41e8-baed-39f59cb649ca",
+                "id": "0ed6e2bf-66e4-42d2-869f-da9ca2853bbc",
                 "type": "text/javascript",
                 "exec": [
-                  "// var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
-                  "var randItemQuantity = 1;",
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -8226,7 +8179,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "87e6581b-2776-4544-88d5-fab2a35ca731",
+                "id": "011db7f3-64d2-49f9-9a3f-f87c4f80711f",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -8243,8 +8196,8 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"eventId_new\", jsonData.id);",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_new\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventLevelId_beginner\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":10\");",
@@ -8439,7 +8392,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createUnlimitedPurchase",
           "event": [
             {
               "listen": "test",
@@ -8698,7 +8651,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "09abb683-41d0-4014-96b5-459ea1eb53b1",
+                "id": "0a044065-96bb-43e0-929f-fbbb77fa43bf",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -8716,8 +8669,8 @@
                   "    ",
                   "    ",
                   "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_newup\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventLevelId_beginner\")+\"\\\"\");",
+                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
+                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"eventLevelId\");",
                   "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
                   "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
                   "tests[\"Response Body has Capacity\"] = responseBody.has(\"\\\"capacity\\\":12\");",
@@ -9538,14 +9491,13 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "e2ce0984-721d-43d3-bfd7-d8a2f0042cd8",
+                "id": "17976b8b-6d17-46fd-811c-11df61f4c04b",
                 "type": "text/javascript",
                 "exec": [
-                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
-                  "var randItemQuantity = 1;",
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -9899,7 +9851,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createMeteredPurchase",
           "event": [
             {
               "listen": "test",
@@ -9947,14 +9899,13 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "af48a38a-c69c-4b89-a98a-edc68b7cae33",
+                "id": "ba25d436-a167-418c-a50c-e385b751dc23",
                 "type": "text/javascript",
                 "exec": [
-                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
-                  "var randItemQuantity = 1;",
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -10312,7 +10263,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createMeteredPurchase",
           "event": [
             {
               "listen": "test",
@@ -10358,14 +10309,13 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "e32beb55-d6f9-40d2-b33b-21625a282e25",
+                "id": "20bda5af-7916-4c20-bd66-a1951583794d",
                 "type": "text/javascript",
                 "exec": [
-                  "//var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
-                  "var randItemQuantity = 1;",
+                  "var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -10720,7 +10670,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createUnlimitedPurchase",
           "event": [
             {
               "listen": "test",
@@ -11131,7 +11081,7 @@
           "response": []
         },
         {
-          "name": "createPurchase",
+          "name": "createUnlimitedPurchase",
           "event": [
             {
               "listen": "test",
@@ -12864,7 +12814,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "a0ef4f5b-e083-4eaf-a4b3-905976fb1a71",
+                "id": "d02bd80b-5d6f-4b14-95e9-276baab32410",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12886,12 +12836,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"\\\"expirationTime\\\":\"+1);",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"\\\"expirationUnit\\\":\"+\"\\\"\"+\"DAYS\"+\"\\\"\");",
-                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
                   "    ",
-                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -12950,7 +12900,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "db733ff2-a43e-4866-8b9d-f3c2cbbae729",
+                "id": "d2d81fc5-e41c-434d-8ab4-ee620fdb5727",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -12970,12 +12920,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "   // tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
-                  "   ",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
-                  "   // tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    ",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13034,7 +12984,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "3c3ba032-a872-49f8-ba7a-b8189e66fdb5",
+                "id": "ca947c83-7042-49cb-bb4a-0e23da5eec3e",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13056,12 +13006,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "   // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
-                  "   ",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
-                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    ",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13120,7 +13070,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "7ad22f85-8bfe-425f-854e-0962eb955533",
+                "id": "6945d48e-1926-47a4-ba42-6ae7c66ecc24",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13142,12 +13092,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "    //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
                   "    ",
-                  "   // tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13206,7 +13156,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "86785d0c-b005-493a-ab97-b1fb23fb24ea",
+                "id": "ba761089-c329-4dac-9d86-480326ac0f62",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13228,12 +13178,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "   // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "   tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "   // tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
-                  "   ",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
-                  "   // tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    ",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13292,7 +13242,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "87a268f9-92f5-4d17-9d60-e48533d9f89f",
+                "id": "be775f0b-edd6-45e4-b2a9-58d6c7096973",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13314,12 +13264,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "   // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "  // tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
                   "    ",
-                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -13378,7 +13328,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "c30cb706-8f82-4ff9-b022-0b531d85329c",
+                "id": "f3d15677-6db3-4268-9146-23d06be189a6",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13400,12 +13350,12 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "   //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+false);",
+                  "   //tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
                   "    ",
-                  "    //tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"\\\"itemId\\\":\"+\"\\\"\"+jsonData.content[0].associatedEventTypes[0].eligibility[0].itemId+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
                   "    ",
-                  "    //tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"\\\"pageable\\\":\"+\"\\\"\"+jsonData.pageable);",
+                  "    tests[\"Response Body has Correct  pageable\"] = responseBody.has(\"pageable\");",
                   "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
                   "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
@@ -17360,7 +17310,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "dd02d51b-7114-4ab4-971e-8ecbbb134326",
+                "id": "405b9b2c-13e9-4ef1-9051-f6110a0a32a3",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -17391,6 +17341,18 @@
                   ""
                 ]
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "09baed31-0893-4ca0-a3ba-8cc1945bc7f9",
+                "type": "text/javascript",
+                "exec": [
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);"
+                ]
+              }
             }
           ],
           "request": {
@@ -17407,7 +17369,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : {\r\n    \"address\" : \"john{{$randomInt}}.snow{{$randomInt}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"{{phoneNumber}}\"\r\n  },\r\n\r\n  \"healthNote\" : \"Wrist pain\",\r\n  \"items\" : [ {\r\n    \"quantity\" : 1,\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 60,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : 10.0,\r\n    \"salesTax\" : 1.2,\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\" : 11.2,\r\n    \"type\" : \"CASH\",\r\n    \"email\" : \"john.snowKingInTheNorth@abc.com\",\r\n     \"currency\":\"USD\"\r\n  },\r\n\"salesEmployeeId\" : \"{{employeeId_2}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\",\r\n  \"waiverId\" : \"{{waiverId}}\"\r\n\r\n}\r\n"
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : {\r\n    \"address\" : \"joh1n.snow{{$randomInt}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"{{randPhoneNumber}}\",\r\n    \"extension\": \"{{$randomInt}}\"\r\n  },\r\n\r\n  \"healthNote\" : \"Wrist pain\",\r\n  \"items\" : [ {\r\n    \"quantity\" : 1,\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 60,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : 10.0,\r\n    \"salesTax\" : 1.2,\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\" : 11.2,\r\n    \"type\" : \"CASH\",\r\n    \"email\" : \"john.snow{{$randomInt}}Kings{{$randomInt}}North@abc.com\",\r\n     \"currency\":\"USD\"\r\n  },\r\n\"salesEmployeeId\" : \"{{employeeId_2}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\",\r\n  \"waiverId\" : \"{{waiverId}}\"\r\n\r\n}\r\n"
             },
             "url": {
               "raw": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/signUp",
