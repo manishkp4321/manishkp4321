@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "e84ef8f3-a6ad-471c-814e-0a611cac8592",
+		"_postman_id": "61710ebd-f8ef-4978-b135-67fc10fdc9d8",
 		"name": "Iteration copy.postman_collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Create Org, Location and User",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "createUserForOrg copy",
@@ -15,7 +15,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a9d464d7-2a76-4817-b439-c8c1fa0665c2",
+								"id": "c266b5b4-cd3e-45c5-a61f-0ba672743146",
 								"type": "text/javascript",
 								"exec": [
 									" var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
@@ -37,19 +37,20 @@
 									"}",
 									"",
 									"  if (responseCode.code===201) {",
-									"            console.log(\"1\");",
+									"           // var compareResponse = ",
+									"    ",
 									"            if(pm.environment.get(\"testType\") === \"\\\"Nominal\\\"\") {",
-									"            console.log(\"2\");",
+									"          ",
 									"            pushOrgInfoToAry(resBody.organizationId, resBody.userId,resBody.email,resBody.password,\"Nominal\"); ",
 									"            ",
 									"        } else if(pm.environment.get(\"testType\") == \"\\\"Max\\\"\") {",
-									"            console.log(\"3\");",
+									"           ",
 									"          pushOrgInfoToAry(resBody.organizationId, resBody.userId,resBody.email,resBody.password,\"Max\"); ",
 									"        } else if(pm.environment.get(\"testType\") == \"\\\"Min\\\"\") {",
-									"            console.log(\"4\");",
+									"            ",
 									"         pushOrgInfoToAry(resBody.organizationId, resBody.userId,resBody.email,resBody.password,\"Min\"); ",
 									"        } else if(pm.environment.get(\"testType\") == \"\\\"allFields\\\"\") {",
-									"            console.log(\"5\");",
+									"         ",
 									"          pushOrgInfoToAry(resBody.organizationId, resBody.userId,resBody.email,resBody.password,\"allFields\"); ",
 									"        }",
 									"      ",
@@ -1482,7 +1483,7 @@
 		},
 		{
 			"name": "Create Employee",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "create Employee",
@@ -1490,7 +1491,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b52ac2b1-c83f-4fa2-95b6-2514271f3df3",
+								"id": "d0470137-9cef-4129-b4b8-d2218a0c8b90",
 								"type": "text/javascript",
 								"exec": [
 									"var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -1508,13 +1509,17 @@
 									"    ",
 									"        for(var i=0; i<orgInfo.length; i++){",
 									"        console.log(\"current orgid : \"+orgInfo[i].orgId+\" comp org : \"+currentRequest.orgId);",
-									"        if(orgInfo[i].orgId==currentRequest.orgId){",
-									"            ",
-									"            orgInfo[i].employeeUserId=employeeUserId;",
-									"            orgInfo[i].employeeId=employeeId;",
-									"            orgInfo[i].employeeTokenId=employeeTokenId;",
-									"            orgInfo[i].EmpTokenExpirationTime=EmpTokenExpirationTime;",
-									"            orgInfo[i].employeeEmail=employeeEmail;",
+									"        if(orgInfo[i].orgId== pm.environment.get(\"organizationId\")){",
+									"             if(!orgInfo[i].employees)  orgInfo[i].employees=[];",
+									"             orgInfo[i].employees.push({",
+									"                 employeeUserId: employeeUserId,",
+									"                 employeeId:employeeId,",
+									"                 employeeTokenId:employeeTokenId,",
+									"                 empTokenExpirationTime:EmpTokenExpirationTime,",
+									"                 employeeEmail:employeeEmail",
+									"                 ",
+									"             });",
+									"          ",
 									"             console.log(orgInfo[i]);",
 									"            break;",
 									"        }",
@@ -1542,7 +1547,11 @@
 									"}",
 									"",
 									"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-									""
+									"",
+									"",
+									"pm.globals.unset(\"variable_key\");",
+									"",
+									"pm.globals.unset(\"variable_key\");"
 								]
 							}
 						},
@@ -1761,8 +1770,106 @@
 			]
 		},
 		{
+			"name": "UpdatePassword",
+			"description": null,
+			"item": [
+				{
+					"name": "UpdatePassword",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5c2c18d-5725-484f-929a-99711fd2b6e8",
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									" var testFirstNameIteration=pm.environment.get(\"currentEmployeeList\");",
+									"    if(testFirstNameIteration.length>0) {",
+									"        postman.setNextRequest(\"UpdatePassword\");",
+									"    } else {",
+									"      pm.environment.unset(\"currentEmployeeList\");",
+									"      postman.setNextRequest();",
+									"    }",
+									"    "
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a851af7e-8af2-41dd-b921-73779cfa96c6",
+								"type": "text/javascript",
+								"exec": [
+									"var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
+									"var currentEmployees= pm.environment.get(\"currentEmployeeList\");",
+									"",
+									"if(!currentEmployees){",
+									"    currentEmployees=[];",
+									"    currentEmployees=orgInfo[0].employees;",
+									"}",
+									"",
+									"var employee=currentEmployees.shift();",
+									"",
+									"",
+									"postman.setEnvironmentVariable(\"organizationId\",  orgInfo[0].orgId);",
+									"postman.setEnvironmentVariable(\"employeeUserId_10\", employee.employeeUserId);",
+									"postman.setEnvironmentVariable(\"employeeTokenId_3\", employee.employeeTokenId);",
+									"",
+									"pm.environment.set(\"currentEmployeeList\",currentEmployees);",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\" : \"password2\"\r\n}"
+						},
+						"url": {
+							"raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId_10}}/password?token={{employeeTokenId_3}}",
+							"host": [
+								"{{registration}}"
+							],
+							"path": [
+								"{{organizationId}}",
+								"user",
+								"{{employeeUserId_10}}",
+								"password"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{employeeTokenId_3}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Create Event Category",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "createEventCategory",
@@ -1835,7 +1942,10 @@
 					"request": {
 						"method": "POST",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory",
 							"host": [
