@@ -15,10 +15,9 @@
             {
               "listen": "test",
               "script": {
-                "id": "4f2bda97-db29-4430-a691-0d52e978c805",
+                "id": "faa7eaf3-9c38-4251-a9eb-660b8ede8fa1",
                 "type": "text/javascript",
                 "exec": [
-                  "",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
@@ -50,9 +49,7 @@
                   "    tests[\"Response Body has Correct person id\"] = responseBody.has(\"\\\"personId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"personId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct role id\"] = responseBody.has(\"\\\"roleId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"roleId\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct employee id\"] = responseBody.has(\"employeeId\");",
-                  "    ",
                   "}",
-                  "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -185,7 +182,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "daac9255-304b-4079-897f-f7625a4d75c8",
+                "id": "8cb6cdfe-d91b-4d54-96c6-94c4023baaa6",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -3897,6 +3894,56 @@
           ],
           "request": {
             "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory/{{eventCategoryId2}}",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "eventCategory",
+                "{{eventCategoryId2}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getDeletedEventCategory",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4c132709-14ec-4daa-b78b-2429cb6939fb",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 204)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "} ",
+                  "else if(responseCode.code===204) {",
+                  "  ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 204\"] = responseCode.code === 204;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Authorization",
@@ -8646,6 +8693,97 @@
           "response": []
         },
         {
+          "name": "getEvents",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "682f9587-ca26-492a-8319-5f1cc11af7ec",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200) {",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "} else if (responseCode.code === 200) {",
+                  "",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "    tests[\"Response Body has Correct  eventId\"] = responseBody.has(\"\\\"eventId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_new\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct eventLevel name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.content[0].eventLevel.name+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  checkInTime\"] = responseBody.has(\"checkInTime\");",
+                  "    tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\" + jsonData.pageable.sort.sorted);",
+                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\" + jsonData.pageable.sort.unsorted);",
+                  "    tests[\"Response Body has Correct  pageSize\"] = responseBody.has(\"\\\"pageSize\\\":\" + jsonData.pageable.pageSize);",
+                  "    tests[\"Response Body has Correct  number\"] = responseBody.has(\"\\\"pageNumber\\\":\" + jsonData.pageable.pageNumber);",
+                  "    tests[\"Response Body has Correct  offset\"] = responseBody.has(\"\\\"offset\\\":\" + jsonData.pageable.offset);",
+                  "    tests[\"Response Body has Correct  paged\"] = responseBody.has(\"\\\"paged\\\":\" + jsonData.pageable.paged);",
+                  "    tests[\"Response Body has Correct  unpaged\"] = responseBody.has(\"\\\"unpaged\\\":\" + jsonData.pageable.unpaged);",
+                  "",
+                  "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\" + jsonData.totalElements);",
+                  "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\" + jsonData.last);",
+                  "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\" + jsonData.totalPages);",
+                  "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\" + jsonData.first);",
+                  "    ",
+                  "    tests[\"Response Body has Correct  startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\" + \"\\\"\" +jsonData.content[0].startDateTime+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\" + \"\\\"\" +jsonData.content[0].endDateTime+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  enrollmentFull\"] = responseBody.has(\"\\\"enrollmentFull\\\":\"+jsonData.content[0].enrollmentFull);",
+                  "    ",
+                  "  //  tests[\"Response Body has Correct  event type name1\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\" +\"Yoga\"+\"\\\"\");",
+                  " //   tests[\"Response Body has Correct  event type name2\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\" +\"Advanced\"+\"\\\"\");",
+                  "    // tests[\"Response Body has Correct  event type name3\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\" +\"Movies\"+\"\\\"\");",
+                  " //   tests[\"Response Body has Correct  event type name4\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\" +\"Intermediate\"+\"\\\"\");",
+                  "//    tests[\"Response Body has Correct  event type name5\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\" +\"Beginner\"+\"\\\"\");",
+                  " //   tests[\"Response Body has Correct  event type name6\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\" +\"P90X\"+\"\\\"\");",
+                  "",
+                  "",
+                  "    tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "schedule"
+              ],
+              "query": [
+                {
+                  "key": "startDateTime",
+                  "value": "{{eventStartTime}}"
+                },
+                {
+                  "key": "endDateTime",
+                  "value": "{{eventEndTime}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "updateEvent",
           "event": [
             {
@@ -8748,32 +8886,21 @@
             {
               "listen": "test",
               "script": {
-                "id": "cb49d14c-ea9c-479b-93d3-1b6633dfc502",
+                "id": "ecf713f4-dc64-41f1-9c04-a1b1915fc2be",
                 "type": "text/javascript",
                 "exec": [
                   "",
                   "",
-                  "if (responseCode.code != 200)",
+                  "if (responseCode.code != 400)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
-                  "else if (responseCode.code === 200) ",
+                  "else if (responseCode.code === 400) ",
                   "{",
-                  "        var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"eventId_Swap\", jsonData.id); ",
-                  "    ",
-                  "    ",
-                  "tests[\"Response Body has Event Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_Swap\")+\"\\\"\");",
-                  "tests[\"Response Body has Event Type Id\"] = responseBody.has(\"\\\"eventTypeId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventTypeId_turboKick\")+\"\\\"\");",
-                  "tests[\"Response Body has correct event Level Id\"] = responseBody.has(\"\\\"eventLevelId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventLevelId_beginner\")+\"\\\"\");",
-                  "tests[\"Response Body has correct startDateTime\"] = responseBody.has(\"\\\"startDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventStartTime\")+\"\\\"\");",
-                  "tests[\"Response Body has correct endDateTime\"] = responseBody.has(\"\\\"endDateTime\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventEndTime\")+\"\\\"\");",
-                  "tests[\"Response Body has Capacity\"] = responseBody.has(\"capacity\");",
-                  "tests[\"Response Body has Location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
                   "",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 400\"] = responseCode.code === 400;"
                 ]
               }
             },
@@ -8814,6 +8941,78 @@
                 "{{locationId}}",
                 "event",
                 "{{eventId_new}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getDeletedEvent",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7a3251ad-2c5c-4db4-8953-567ad22442de",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200) {",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "} ",
+                  "else if (responseCode.code === 200) {",
+                  "",
+                  "    if(responseBody.has(\"\\\"eventId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_new\")+\"\\\"\")===true){",
+                  "   var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "    tests[\"Response Body has Correct  eventId\"] = responseBody.has(\"\\\"eventId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventId_new\")+\"\\\"\");",
+                  "    }",
+                  "    else",
+                  "    {",
+                  "       tests[\"Event id has been deleted from Response Body\"] = responseBody.has(\"\");",
+                  "    }",
+                  "}",
+                  " tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "schedule"
+              ],
+              "query": [
+                {
+                  "key": "startDateTime",
+                  "value": "{{eventStartTime}}"
+                },
+                {
+                  "key": "endDateTime",
+                  "value": "{{eventEndTime}}"
+                }
               ]
             }
           },
@@ -11698,7 +11897,7 @@
       "description": null,
       "item": [
         {
-          "name": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
+          "name": "getEvents",
           "event": [
             {
               "listen": "test",
@@ -12576,6 +12775,59 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "getDeleteEnrollment_500PM",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4158000b-5854-41c2-be5c-38ca7a1428b4",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 404)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 404) ",
+                  "{",
+                  "",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 404\"] = responseCode.code === 404;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/enrollment",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_500pm}}",
+                "enrollment"
+              ]
+            }
+          },
+          "response": []
         }
       ],
       "event": [
@@ -13156,7 +13408,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ba761089-c329-4dac-9d86-480326ac0f62",
+                "id": "2d0d3c80-7733-49bb-a9bd-1ea1f69e999c",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -13178,7 +13430,7 @@
                   "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
                   "    tests[\"Response Body has Correct  expirationTime\"] = responseBody.has(\"expirationTime\");",
                   "    tests[\"Response Body has Correct  expirationUnit\"] = responseBody.has(\"expirationUnit\");",
-                  "   tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"\\\"lastPurchasedPackage\\\":\"+jsonData.content[0].lastPurchasedPackage);",
+                  "   tests[\"Response Body has Correct  lastPurchasedPackage\"] = responseBody.has(\"lastPurchasedPackage\");",
                   "    ",
                   "    tests[\"Response Body has Correct  associatedEventTypes\"] = responseBody.has(\"associatedEventTypes\");",
                   "    ",
@@ -14305,7 +14557,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "c9b38d82-4e2a-4a48-91d8-0ee57164be0e",
+                "id": "6baba519-0330-4390-8f87-11ab666ff0a4",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -14321,7 +14573,7 @@
                   "var promoStartDate = postman.getEnvironmentVariable(\"promoStartDate\");",
                   "var promoEndDate = postman.getEnvironmentVariable(\"promoEndDate\");",
                   "var promoCodeAmount = postman.getEnvironmentVariable(\"promoCodeAmount_2\");",
-                  "var promoCodeId = postman.getEnvironmentVariable(\"promoCodeId_2\");",
+                  "var promoCodeId = postman.getEnvironmentVariable(\"promoCodeId\");",
                   "var jsonData = JSON.parse(responseBody);",
                   "tests[\"Response Body has  contains Id\"] =  responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.id+\"\\\"\");",
                   "tests[\"Response Body has Correct PromoCode\"] =  responseBody.has(\"\\\"code\\\":\"+\"\\\"\"+code+\"\\\"\");",
@@ -14365,7 +14617,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion/{{promoCodeId_2}}",
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion/{{promoCodeId}}",
               "host": [
                 "{{purchase}}"
               ],
@@ -14373,7 +14625,77 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "promotion",
-                "{{promoCodeId_2}}"
+                "{{promoCodeId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetDeletedPromoCodeByCode",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d59b8adc-01c1-4976-b1e9-70800d61857f",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "",
+                  "if (responseCode.code != 404)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 404) ",
+                  "{",
+                  "",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 404\"] = responseCode.code === 404;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "11ed69d9-22dd-4a40-829c-7dcc08ccf078",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\" : \"Offer to Save\",\r\n  \"code\" : \"{{promoCode}}\",\r\n  \"type\" : \"FIXED_AMOUNT\",\r\n  \"startDate\" : \"{{promoStartDate}}\",\r\n  \"endDate\" : \"{{promoEndDate}}\",\r\n  \"amount\" : \"{{promoCodeAmount}}\",\r\n  \"currency\" : \"USD\"\r\n}"
+            },
+            "url": {
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/promotion/{{promoCode}}",
+              "host": [
+                "{{purchase}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "promotion",
+                "{{promoCode}}"
               ]
             }
           },
@@ -15703,7 +16025,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "f9fbfb8a-7d04-4e15-b13e-45f218187acf",
+                "id": "e40f993e-768d-4cd4-9a16-363dd307d276",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -15717,28 +16039,35 @@
                   "    ",
                   "    tests[\"Response Body has Correct  id1\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_unlimited\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct  id2\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_metered\")+\"\\\"\");",
-                  "    ",
-                  "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
-                  "    ",
-                  "    /*tests[\"Response Body has Correct  sorted\"] = responseBody.has(\"\\\"sorted\\\":\"+jsonData.pageable.sort.sorted);",
-                  "    tests[\"Response Body has Correct  unsorted\"] = responseBody.has(\"\\\"unsorted\\\":\"+jsonData.pageable.sort.unsorted);",
-                  "    tests[\"Response Body has Correct  pageSize\"] = responseBody.has(\"\\\"pageSize\\\":\"+jsonData.pageable.pageSize);",
-                  "    tests[\"Response Body has Correct  number\"] = responseBody.has(\"\\\"pageNumber\\\":\"+jsonData.pageable.pageNumber);",
-                  "    tests[\"Response Body has Correct  offset\"] = responseBody.has(\"\\\"offset\\\":\"+jsonData.pageable.offset);",
-                  "    tests[\"Response Body has Correct  paged\"] = responseBody.has(\"\\\"paged\\\":\"+jsonData.pageable.paged);",
-                  "    tests[\"Response Body has Correct  unpaged\"] = responseBody.has(\"\\\"unpaged\\\":\"+jsonData.pageable.unpaged);",
-                  "    tests[\"Response Body has Correct  first\"] = responseBody.has(\"\\\"first\\\":\"+jsonData.first);",
-                  "    tests[\"Response Body has Correct  last\"] = responseBody.has(\"\\\"last\\\":\"+jsonData.last);",
+                  "    /*",
+                  "    tests[\"Response Body has Correct  id3\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_unlimited_aero\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id4\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_unlimited_zum\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id5\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_yoga\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id6\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_pilates\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id7\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_zumba\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id8\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_unlmtd_cycle\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id9\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_Unlimited_false_1\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id10\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_unlimited_p90x\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id11\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_unlimited_pil\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id12\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_unlimited_cyc\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id13\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_unlimited_tur\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id14\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_p90x\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id15\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_aerobics\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id16\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_cycling\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id17\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_turboKick\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id18\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_metered_yoga\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id19\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_Unlimited_true_Multiple\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  id20\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId_Unlimited_false_Multiple\")+\"\\\"\");",
                   "    */",
-                  "    ",
-                  "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":\"+jsonData.totalElements);",
-                  "    ",
+                  "    tests[\"Response Body has Correct  expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\"+\"\\\"\"+\"PURCHASE\"+\"\\\"\");",
+                  "    tests[\"Response Body has Correct  totalElements\"] = responseBody.has(\"\\\"totalElements\\\":21\");",
                   "    tests[\"Response Body has Correct  totalPages\"] = responseBody.has(\"\\\"totalPages\\\":\"+jsonData.totalPages);",
+                  "    tests[\"Response Body has Correct  Number of Elements\"] = responseBody.has(\"\\\"numberOfElements\\\":20\");",
+                  "    tests[\"Response Body has Correct  Size\"] = responseBody.has(\"\\\"size\\\":20\");",
                   "    ",
-                  "    ",
-                  "    ",
+                  "}",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                  "}"
+                  ""
                 ]
               }
             }
@@ -15889,6 +16218,58 @@
           ],
           "request": {
             "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item/{{itemId_Unlimited_true_1}}",
+              "host": [
+                "{{purchase}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "inventory",
+                "item",
+                "{{itemId_Unlimited_true_1}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getDeletedItem",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4f2a293c-a2da-4528-a6c6-54046e3f2ff4",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 404)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 404) ",
+                  "{",
+                  "",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 404\"] = responseCode.code === 404;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Authorization",
@@ -17369,7 +17750,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : {\r\n    \"address\" : \"joh1n.snow{{$randomInt}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"{{randPhoneNumber}}\",\r\n    \"extension\": \"{{$randomInt}}\"\r\n  },\r\n\r\n  \"healthNote\" : \"Wrist pain\",\r\n  \"items\" : [ {\r\n    \"quantity\" : 1,\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 60,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : 10.0,\r\n    \"salesTax\" : 1.2,\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\" : 11.2,\r\n    \"type\" : \"CASH\",\r\n    \"email\" : \"john.snow{{$randomInt}}Kings{{$randomInt}}North@abc.com\",\r\n     \"currency\":\"USD\"\r\n  },\r\n\"salesEmployeeId\" : \"{{employeeId_2}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\",\r\n  \"waiverId\" : \"{{waiverId}}\"\r\n\r\n}\r\n"
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"birthDate\" : \"03/26/1980\",\r\n  \"email\" : {\r\n    \"address\" : \"joh1n.snow{{$randomInt}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"{{randPhoneNumber}}\",\r\n    \"extension\": \"{{$randomInt}}\"\r\n  },\r\n\r\n  \"healthNote\" : \"Wrist pain\",\r\n  \"items\" : [ {\r\n    \"quantity\" : 1,\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 60,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"unitPrice\" : 10.0,\r\n    \"salesTax\" : 1.2,\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\" : 11.2,\r\n    \"type\" : \"CASH\",\r\n    \"email\" : \"john.snow{{$randomInt}}Kings{{$randomInt}}North@abc.com\",\r\n     \"currency\":\"USD\"\r\n  },\r\n\"salesEmployeeId\" : \"{{employeeId_2}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\",\r\n  \"waiverId\" : \"{{waiverId}}\"\r\n\r\n}\r\n"
             },
             "url": {
               "raw": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/signUp",
