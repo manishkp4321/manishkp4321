@@ -109,7 +109,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "760ddec9-aa94-423d-84cd-6fd75378c360",
+                "id": "e8b974a0-7697-4e9d-857b-a86dabc11568",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -126,6 +126,11 @@
                   "    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"accessToken\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"accessToken\")+\"\\\"\");",
                   "    tests[\"Response Body has Correct Client Id\"] = responseBody.has(\"clientId\");",
                   "    tests[\"Response Body has Correct Username\"] = responseBody.has(\"\\\"username\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"ownerEmail\")+\"\\\"\");",
+                  "    ",
+                  "    tests[\"Response Body has Correct authorities Type1\"] = responseBody.has(\"ACCESS_BUSINESS\");",
+                  "    tests[\"Response Body has Correct authorities Type2\"] = responseBody.has(\"ACCESS_SETTINGS\");",
+                  "    tests[\"Response Body has Correct authorities Type3\"] = responseBody.has(\"ACCESS_MY_PROFILE\");",
+                  "    tests[\"Response Body has Correct authorities Type4\"] = responseBody.has(\"ACCESS_ROSTER\");",
                   "    ",
                   "}",
                   "",
@@ -273,7 +278,7 @@
       ]
     },
     {
-      "name": "My Organisation",
+      "name": "My Organisation Docs",
       "description": null,
       "item": [
         {
@@ -401,45 +406,33 @@
           "response": []
         },
         {
-          "name": "uploadLocationDocument",
+          "name": "uploadTermsAndConditionsDoc",
           "event": [
             {
               "listen": "test",
               "script": {
-                "id": "a727611f-57fe-4c7f-af1d-ebaa1540365b",
+                "id": "77c7074c-7a26-4d14-b4f7-3ff1de73c8dc",
                 "type": "text/javascript",
                 "exec": [
+                  "",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
+                  "",
                   "else if (responseCode.code === 200)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct waiverDocId\"] = responseBody.has(\"waiverDocId\");",
+                  "    postman.setEnvironmentVariable(\"termsId\", jsonData.location.termDocId);",
+                  "    ",
+                  "    tests[\"Response Body has Correct location.id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location term Doc Id\"] = responseBody.has(\"\\\"termDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
                   "    ",
                   "}",
+                  "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "81b051c3-494a-410d-b8aa-5cba2dc5d542",
-                "type": "text/javascript",
-                "exec": [
-                  "var randnum = (parseInt)((Math.random()*100)+1);",
-                  "",
-                  "if(randnum<10)",
-                  "{",
-                  "    randnum = randnum + 10;",
-                  "}",
-                  "",
-                  "postman.setEnvironmentVariable(\"randnum\", randnum);"
                 ]
               }
             }
@@ -458,7 +451,70 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"locationName\" : \"{{locationName}}\",\r\n  \"accountNumber\" : \"{{randnum}}R4Q6\",\r\n  \"document\" : \"Our employees are encouraged to be pro-active in expressing their ideas and contributing to the company's future.\"\r\n}"
+              "raw": "{\r\n  \"accountNumber\": \"123-456\",\r\n  \"document\": \"TERMS AND CONDITIONS - The use of this website is subject to the following terms of use: \\n\\n The content of the pages of this website is for your general information and use only. It is subject to change without notice.  \\n\\nThis website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].  \\n\\nNeither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.  \\n\\nYour use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.  \\n\\nThis website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.  \\n\\nAll trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.  \\n\\nUnauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.  \\n\\nFrom time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).  \\n\\nYour use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.\",\r\n  \"locationName\": \"Sherwood\"\r\n}"
+            },
+            "url": {
+              "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/terms",
+              "host": [
+                "{{my-organization}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "document",
+                "terms"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "uploadWaiverDoc",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "bbdbf572-eaef-4f76-b722-10a39effdd75",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"waiverId\", jsonData.location.waiverDocId);",
+                  "    ",
+                  "    tests[\"Response Body has Correct location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location waiver Doc Id\"] = responseBody.has(\"\\\"waiverDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"waiverId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location termDoc Id\"] = responseBody.has(\"\\\"termDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"accountNumber\": \"123-456\",\r\n  \"document\": \"WAIVER - The use of this website is subject to the following terms of use: \\n\\n The content of the pages of this website is for your general information and use only. It is subject to change without notice.  \\n\\nThis website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].  \\n\\nNeither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.  \\n\\nYour use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.  \\n\\nThis website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.  \\n\\nAll trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.  \\n\\nUnauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.  \\n\\nFrom time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).  \\n\\nYour use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.\",\r\n  \"locationName\": \"Sherwood\"\r\n}"
             },
             "url": {
               "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/waiver",
@@ -545,7 +601,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\" : {\r\n    \"address\" : \"myabc555@abc.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"9999888877\",\r\n    \"extension\" : \"666\"\r\n  }\r\n}"
+              "raw": "{\r\n  \"name\" : \"University Body Care #{{orgNumber}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"456 Fitness Road\",\r\n    \"address2\" : \"POST Box #{{orgNumber}}\",\r\n    \"city\" : \"Big Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"44999\"\r\n  },\r\n  \"email\" : {\r\n    \"address\" : \"myabc555@abc.com\"\r\n  },\r\n  \"phone\" : {\r\n    \"number\" : \"9999888877\",\r\n    \"extension\" : \"666\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
@@ -631,6 +687,67 @@
                 "{{organizationId}}",
                 "{{locationId}}",
                 "logo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getLocation_Term/Waiver/Logo_Docs",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ab076580-a7df-4a30-bca6-226db0fa56b1",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location term Doc Id\"] = responseBody.has(\"\\\"termDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct location waiver Doc Id\"] = responseBody.has(\"\\\"waiverDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"waiverId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct logoId\"] = responseBody.has(\"logoId\");",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/document",
+              "host": [
+                "{{my-organization}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "document"
               ]
             }
           },
@@ -1630,6 +1747,271 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "getUserInfobyToken",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c2c95cc3-cea4-493d-b769-b61c09095fe9",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests[\"Response Body has Correct identity\"] = responseBody.has(\"identity\");",
+                  "    ",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId}}/token/{{tokenid}}",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "user",
+                "{{employeeUserId}}",
+                "token",
+                "{{tokenid}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Employees for Expired Token",
+      "description": null,
+      "item": [
+        {
+          "name": "createEmployee",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2e1ca0f3-8a78-4cb9-8495-de5ea60c8dcd",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"employeeUserId_Exp\", jsonData.userId);",
+                  "    postman.setEnvironmentVariable(\"employeeId_Exp\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"employeeTokenId_Exp\", jsonData.token.id);",
+                  "    postman.setEnvironmentVariable(\"EmpTokenExpirationTime_Exp\", jsonData.token.expirationTime);",
+                  "    postman.setEnvironmentVariable(\"employeeEmail\", jsonData.email);",
+                  "    postman.setEnvironmentVariable(\"tokenid_Exp\", jsonData.token.id);",
+                  "    tests[\"Response Body has Correct Employee id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeId_Exp\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Email id\"] = responseBody.has(\"\\\"email\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"employeeEmail\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct First name\"] =  responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Last name\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct address1\"] = responseBody.has(\"address1\");",
+                  "    tests[\"Response Body has Correct address2\"] = responseBody.has(\"address2\");",
+                  "    tests[\"Response Body has Correct City\"] = responseBody.has(\"city\");",
+                  "    tests[\"Response Body has Correct State\"] =  responseBody.has(\"state\");",
+                  "    tests[\"Response Body has Correct Country\"] = responseBody.has(\"country\");",
+                  "    tests[\"Response Body has Correct Zip code\"] =  responseBody.has(\"zipCode\");",
+                  "    tests[\"Response Body has Correct Phone number\"] = responseBody.has(\"\\\"number\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randPhoneNumber\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct photo Id\"] = responseBody.has(\"\\\"photoId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randPhotoId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct entityId\"] =  responseBody.has(jsonData.token.entityId);",
+                  "    tests[\"Response Body has Correct expirationTime\"] =  responseBody.has(jsonData.token.expirationTime);",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "700b6baf-f587-4d45-8668-15aea4eb7a8a",
+                "type": "text/javascript",
+                "exec": [
+                  "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
+                  "var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
+                  "var randFirstName = randFirstNameWithGenderArray[0];",
+                  "var gender = randFirstNameWithGenderArray[1];",
+                  "",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
+                  "",
+                  "var userPhotos_male = [postman.getEnvironmentVariable(\"photoId_male_1\"),postman.getEnvironmentVariable(\"photoId_male_2\"),postman.getEnvironmentVariable(\"photoId_male_3\"),postman.getEnvironmentVariable(\"photoId_male_4\"),postman.getEnvironmentVariable(\"photoId_male_5\"),postman.getEnvironmentVariable(\"photoId_male_6\"),postman.getEnvironmentVariable(\"photoId_male_7\"),postman.getEnvironmentVariable(\"photoId_male_8\")];",
+                  "",
+                  "var userPhotos_female = [postman.getEnvironmentVariable(\"photoId_female_1\"),postman.getEnvironmentVariable(\"photoId_female_2\"),postman.getEnvironmentVariable(\"photoId_female_3\"),postman.getEnvironmentVariable(\"photoId_female_4\"),postman.getEnvironmentVariable(\"photoId_female_5\"),postman.getEnvironmentVariable(\"photoId_female_6\"),postman.getEnvironmentVariable(\"photoId_female_7\"),postman.getEnvironmentVariable(\"photoId_female_8\")];",
+                  "",
+                  "var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
+                  "",
+                  "if(gender === 'male')",
+                  "{",
+                  "    var randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+                  "    do {",
+                  "        randPhotoId = userPhotos_male[Math.floor(Math.random() * userPhotos_male.length)];",
+                  "    }",
+                  "    while (randPhotoId === undefined);",
+                  "} ",
+                  "else if (gender === 'female')",
+                  "{",
+                  "        var randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+                  "    do {",
+                  "        randPhotoId = userPhotos_female[Math.floor(Math.random() * userPhotos_female.length)];",
+                  "    }",
+                  "    while (randPhotoId === undefined);",
+                  "}",
+                  "else",
+                  "{",
+                  "    //GENDER FOR FIRST NAME WAS NOT SET AS 'male' OR 'female'",
+                  "}",
+                  "",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "var randZipCode = Math.floor(Math.random() * 90000) + 10000;",
+                  "var randState = states[Math.floor(Math.random() * states.length)];",
+                  "var randPhoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randPhoneNumber\", randPhoneNumber);",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);",
+                  "postman.setEnvironmentVariable(\"randZipCode\", randZipCode);",
+                  "postman.setEnvironmentVariable(\"randState\", randState);",
+                  "postman.setEnvironmentVariable(\"randPhotoId\", randPhotoId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\" : \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box #{{orgNumber}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\",\r\n  \"tokenExpirationTime\" : \"2018-05-24T17:00:00\"\r\n}"
+            },
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/employee",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "employee"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getUserInfobyToken",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b5f335a7-4bfb-49a0-b3da-c9d7fdb6c416",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 400)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 400)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests[\"Response Body has Correct message\"] = responseBody.has(\"\\\"message\\\":\"+\"\\\"\"+\"This token has expired\"+\"\\\"\");",
+                  "    ",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 400\"] = responseCode.code === 400;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId_Exp}}/token/{{tokenid_Exp}}",
+              "host": [
+                "{{registration}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "user",
+                "{{employeeUserId_Exp}}",
+                "token",
+                "{{tokenid_Exp}}"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -1707,202 +2089,7 @@
       ]
     },
     {
-      "name": "Create Documents",
-      "description": null,
-      "item": [
-        {
-          "name": "uploadTermsAndConditionsDoc",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "77c7074c-7a26-4d14-b4f7-3ff1de73c8dc",
-                "type": "text/javascript",
-                "exec": [
-                  "",
-                  "",
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 200)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"termsId\", jsonData.location.termDocId);",
-                  "    ",
-                  "    tests[\"Response Body has Correct location.id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct location term Doc Id\"] = responseBody.has(\"\\\"termDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
-                  "    ",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"accountNumber\": \"123-456\",\r\n  \"document\": \"TERMS AND CONDITIONS - The use of this website is subject to the following terms of use: \\n\\n The content of the pages of this website is for your general information and use only. It is subject to change without notice.  \\n\\nThis website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].  \\n\\nNeither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.  \\n\\nYour use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.  \\n\\nThis website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.  \\n\\nAll trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.  \\n\\nUnauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.  \\n\\nFrom time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).  \\n\\nYour use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.\",\r\n  \"locationName\": \"Sherwood\"\r\n}"
-            },
-            "url": {
-              "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/terms",
-              "host": [
-                "{{my-organization}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "document",
-                "terms"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "uploadWaiverDoc",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "bbdbf572-eaef-4f76-b722-10a39effdd75",
-                "type": "text/javascript",
-                "exec": [
-                  "",
-                  "",
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 200)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"waiverId\", jsonData.location.waiverDocId);",
-                  "    ",
-                  "    tests[\"Response Body has Correct location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct location waiver Doc Id\"] = responseBody.has(\"\\\"waiverDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"waiverId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct location termDoc Id\"] = responseBody.has(\"\\\"termDocId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"accountNumber\": \"123-456\",\r\n  \"document\": \"WAIVER - The use of this website is subject to the following terms of use: \\n\\n The content of the pages of this website is for your general information and use only. It is subject to change without notice.  \\n\\nThis website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].  \\n\\nNeither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.  \\n\\nYour use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.  \\n\\nThis website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.  \\n\\nAll trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.  \\n\\nUnauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.  \\n\\nFrom time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).  \\n\\nYour use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.\",\r\n  \"locationName\": \"Sherwood\"\r\n}"
-            },
-            "url": {
-              "raw": "{{my-organization}}/{{organizationId}}/{{locationId}}/document/waiver",
-              "host": [
-                "{{my-organization}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "document",
-                "waiver"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getUserInfobyToken",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "c2c95cc3-cea4-493d-b769-b61c09095fe9",
-                "type": "text/javascript",
-                "exec": [
-                  "",
-                  "",
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 200)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    ",
-                  "    tests[\"Response Body has Correct identity\"] = responseBody.has(\"identity\");",
-                  "    ",
-                  "    ",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{registration}}/{{organizationId}}/user/{{employeeUserId}}/token/{{tokenid}}",
-              "host": [
-                "{{registration}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "user",
-                "{{employeeUserId}}",
-                "token",
-                "{{tokenid}}"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Create Event/Item Category and Promo Code",
+      "name": "Create Event Category",
       "description": null,
       "item": [
         {
@@ -2125,7 +2312,7 @@
       ]
     },
     {
-      "name": "Get/Put Event Category",
+      "name": "Get and Put Event Category",
       "description": null,
       "item": [
         {
@@ -2251,76 +2438,6 @@
                 "{{locationId}}",
                 "eventCategory",
                 "{{eventCategoryId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getEventCategories",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "f3c7ee33-4ca9-4525-8cda-5301e3c9948c",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "} ",
-                  "else if(responseCode.code==200) ",
-                  "{",
-                  "    ",
-                  "    tests[\"Response Body has Correct location Id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
-                  "    ",
-                  "    tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId1\")+\"\\\"\");",
-                  "    tests[\"Response Body has Correct Event Category Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"eventCategoryId2\")+\"\\\"\");",
-                  "    ",
-                  "    tests[\"Response Body has numberOfElements\"] = responseBody.has(\"numberOfElements\");",
-                  "    tests[\"Response Body has unsorted\"] = responseBody.has(\"\\\"unsorted\\\":true\");",
-                  "    tests[\"Response Body has sorted\"] = responseBody.has(\"\\\"sorted\\\":false\");",
-                  "    //tests[\"Response Body has pageSize\"] = responseBody.has(\"\\\"pageSize\\\":20\");",
-                  "   // tests[\"Response Body has pageNumber\"] = responseBody.has(\"\\\"pageNumber\\\":0\");",
-                  "   // tests[\"Response Body has offset\"] = responseBody.has(\"\\\"offset\\\":0\");",
-                  "   // tests[\"Response Body has paged\"] = responseBody.has(\"\\\"paged\\\":true\");",
-                  "   // tests[\"Response Body has unpaged\"] = responseBody.has(\"\\\"unpaged\\\":false\");",
-                  "    tests[\"Response Body has totalPages\"] = responseBody.has(\"\\\"totalPages\\\":1\");",
-                  "    tests[\"Response Body has last\"] = responseBody.has(\"\\\"last\\\":true\");",
-                  "    tests[\"Response Body has first\"] = responseBody.has(\"\\\"first\\\":true\");",
-                  "    tests[\"Response Body has totalElements\"] = responseBody.has(\"\\\"totalElements\\\":3\");",
-                  "    //tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":20\");",
-                  "    tests[\"Response Body has number\"] = responseBody.has(\"\\\"number\\\":0\");",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventCategory",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "eventCategory"
               ]
             }
           },
@@ -2467,92 +2584,9 @@
       ]
     },
     {
-      "name": "Get Event Levels",
+      "name": "Delete Event Category",
       "description": null,
       "item": [
-        {
-          "name": "getEventLevels",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "4885b658-0c4a-4c83-844e-900628952905",
-                "type": "text/javascript",
-                "exec": [
-                  "",
-                  "",
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 200)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    const levels =  jsonData.content[0].id;",
-                  "    const levels2 =  jsonData.content[1].id;",
-                  "    const levels3 =  jsonData.content[2].id;",
-                  "    ",
-                  "    postman.setEnvironmentVariable(\"eventLevelId_beginner\", levels);",
-                  "    postman.setEnvironmentVariable(\"eventLevelId_intermediate\", levels2);",
-                  "    postman.setEnvironmentVariable(\"eventLevelId_advanced\", levels3);",
-                  "    ",
-                  "    postman.setEnvironmentVariable(\"eventLevelId1\", levels);",
-                  "    postman.setEnvironmentVariable(\"eventLevelId2\", levels2);",
-                  "    postman.setEnvironmentVariable(\"eventLevelId3\", levels3);",
-                  "    ",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Beginner\\\"\");",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Intermediate\\\"\");",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Advanced\\\"\");",
-                  "tests[\"Response Body has Correct Event Level for Begineer\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_beginner\"));",
-                  "tests[\"Response Body has Correct Event Level for Intermediate\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_intermediate\"));",
-                  "tests[\"Response Body has Correct Event Level for Advanced\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_advanced\"));",
-                  "tests[\"Response Body has pageable\"] = responseBody.has(\"INSTANCE\");",
-                  "tests[\"Response Body has totalPages\"] = responseBody.has(\"\\\"totalPages\\\":1\");",
-                  "tests[\"Response Body has last\"] = responseBody.has(\"\\\"last\\\":true\");",
-                  "tests[\"Response Body has totalElements\"] = responseBody.has(\"\\\"totalElements\\\":4\");",
-                  "tests[\"Response Body has unsorted\"] = responseBody.has(\"\\\"unsorted\\\":true\");",
-                  "tests[\"Response Body has sorted\"] = responseBody.has(\"\\\"sorted\\\":false\");",
-                  "tests[\"Response Body has first\"] = responseBody.has(\"\\\"first\\\":true\");",
-                  "tests[\"Response Body has numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":4\");",
-                  "tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":0\");",
-                  "tests[\"Response Body has number\"] = responseBody.has(\"\\\"number\\\":0\");",
-                  "    ",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventLevel",
-              "host": [
-                "{{schedule}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "eventLevel"
-              ]
-            }
-          },
-          "response": []
-        },
         {
           "name": "deleteEventCategory",
           "event": [
@@ -2668,7 +2702,96 @@
       ]
     },
     {
-      "name": "Create Events",
+      "name": "Get Event Levels",
+      "description": null,
+      "item": [
+        {
+          "name": "getEventLevels",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4885b658-0c4a-4c83-844e-900628952905",
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "    const levels =  jsonData.content[0].id;",
+                  "    const levels2 =  jsonData.content[1].id;",
+                  "    const levels3 =  jsonData.content[2].id;",
+                  "    ",
+                  "    postman.setEnvironmentVariable(\"eventLevelId_beginner\", levels);",
+                  "    postman.setEnvironmentVariable(\"eventLevelId_intermediate\", levels2);",
+                  "    postman.setEnvironmentVariable(\"eventLevelId_advanced\", levels3);",
+                  "    ",
+                  "    postman.setEnvironmentVariable(\"eventLevelId1\", levels);",
+                  "    postman.setEnvironmentVariable(\"eventLevelId2\", levels2);",
+                  "    postman.setEnvironmentVariable(\"eventLevelId3\", levels3);",
+                  "    ",
+                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Beginner\\\"\");",
+                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Intermediate\\\"\");",
+                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Advanced\\\"\");",
+                  "tests[\"Response Body has Correct Event Level for Begineer\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_beginner\"));",
+                  "tests[\"Response Body has Correct Event Level for Intermediate\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_intermediate\"));",
+                  "tests[\"Response Body has Correct Event Level for Advanced\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_advanced\"));",
+                  "tests[\"Response Body has pageable\"] = responseBody.has(\"INSTANCE\");",
+                  "tests[\"Response Body has totalPages\"] = responseBody.has(\"\\\"totalPages\\\":1\");",
+                  "tests[\"Response Body has last\"] = responseBody.has(\"\\\"last\\\":true\");",
+                  "tests[\"Response Body has totalElements\"] = responseBody.has(\"\\\"totalElements\\\":4\");",
+                  "tests[\"Response Body has unsorted\"] = responseBody.has(\"\\\"unsorted\\\":true\");",
+                  "tests[\"Response Body has sorted\"] = responseBody.has(\"\\\"sorted\\\":false\");",
+                  "tests[\"Response Body has first\"] = responseBody.has(\"\\\"first\\\":true\");",
+                  "tests[\"Response Body has numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":4\");",
+                  "tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":0\");",
+                  "tests[\"Response Body has number\"] = responseBody.has(\"\\\"number\\\":0\");",
+                  "    ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/eventLevel",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "eventLevel"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Events Type",
       "description": null,
       "item": [
         {
@@ -3162,7 +3285,7 @@
       ]
     },
     {
-      "name": "Create Packages",
+      "name": "Create Item",
       "description": null,
       "item": [
         {
@@ -3502,7 +3625,7 @@
           "response": []
         },
         {
-          "name": "createMeteredItem",
+          "name": "createLimitedItem",
           "event": [
             {
               "listen": "test",
@@ -3586,7 +3709,7 @@
           "response": []
         },
         {
-          "name": "createMeteredItem_p90x",
+          "name": "createLimitedItem_p90x",
           "event": [
             {
               "listen": "test",
@@ -3671,7 +3794,7 @@
           "response": []
         },
         {
-          "name": "createMeteredItem_aerobics",
+          "name": "createLimitedItem_aerobics",
           "event": [
             {
               "listen": "test",
@@ -3751,7 +3874,7 @@
           "response": []
         },
         {
-          "name": "createMeteredItem_pilates",
+          "name": "createLimitedItem_pilates",
           "event": [
             {
               "listen": "test",
@@ -3829,15 +3952,9 @@
             }
           },
           "response": []
-        }
-      ]
-    },
-    {
-      "name": "Create Item",
-      "description": null,
-      "item": [
+        },
         {
-          "name": "createUnlimitedItem_cycling",
+          "name": "createLimitedItem_cycling",
           "event": [
             {
               "listen": "test",
@@ -3921,7 +4038,7 @@
           "response": []
         },
         {
-          "name": "createMeteredItem_yoga",
+          "name": "createLimitedItem_yoga",
           "event": [
             {
               "listen": "test",
@@ -4007,141 +4124,7 @@
       ]
     },
     {
-      "name": "Get Purchase",
-      "description": null,
-      "item": [
-        {
-          "name": "getPurchase_metered",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "0d171367-147b-4337-b035-4c5eb4ace29d",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "} else if(responseCode.code==200) {",
-                  " ",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Yoga\\\"\");",
-                  "tests[\"Response Body has Correct type\"] = responseBody.has(\"\\\"type\\\":\\\"multiple\\\"\");",
-                  "tests[\"Response Body has Correct Unit Price\"] = responseBody.has(\"\\\"unitPrice\\\":50\");",
-                  "tests[\"Response Body has Item Id\"] = responseBody.has(postman.getEnvironmentVariable(\"itemId_metered_yoga\"));  ",
-                  "tests[\"Response Body has Correct quantity\"] = responseBody.has(\"\\\"quantity\\\":1\");",
-                  "tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":false\"); ",
-                  "tests[\"Response Body has Correct expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\\\"PURCHASE\\\"\"); ",
-                  "tests[\"Response Body has Correct currencyId\"] = responseBody.has(\"\\\"currencyId\\\":\\\"USD\\\"\");",
-                  "tests[\"Response Body has Correct metered\"] = responseBody.has(\"\\\"metered\\\":true\");",
-                  "tests[\"Response Body has Correct extendedPrice\"] = responseBody.has(\"\\\"extendedPrice\\\":50\");",
-                  "tests[\"Response Body has Correct tax\"] = responseBody.has(\"\\\"tax\\\":3\");",
-                  "tests[\"Response Body has Correct totalAmount\"] = responseBody.has(\"\\\"totalAmount\\\":53\");",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"item\" : {\r\n    \"id\" : \"{{itemId_metered_yoga}}\",\r\n    \"name\": \"Yoga\",\r\n    \"type\" : \"multiple\",\r\n    \"unitPrice\" : 50,\r\n    \"quantity\" : 1,\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"currency\" : \"USD\",\r\n    \"eligibleClasses\" : [ ]\r\n  }\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase",
-              "host": [
-                "{{purchase}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "purchase"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getPurchase_unlimited",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "f75eb847-0fef-43bf-a5f9-7b1dad27dc20",
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "} else if(responseCode.code==200) {",
-                  "    ",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Cycling\\\"\");",
-                  "tests[\"Response Body has Correct type\"] = responseBody.has(\"\\\"type\\\":\\\"multiple\\\"\");",
-                  "tests[\"Response Body has Correct Unit Price\"] = responseBody.has(\"\\\"unitPrice\\\":70\");",
-                  "tests[\"Response Body has Item Id\"] = responseBody.has(postman.getEnvironmentVariable(\"itemId_unlmtd_cycle\"));  ",
-                  "tests[\"Response Body has Correct quantity\"] = responseBody.has(\"\\\"quantity\\\":1\");",
-                  "tests[\"Response Body has Correct unlimited\"] = responseBody.has(\"\\\"unlimited\\\":true\"); ",
-                  "tests[\"Response Body has Correct expirationStart\"] = responseBody.has(\"\\\"expirationStart\\\":\\\"PURCHASE\\\"\"); ",
-                  "tests[\"Response Body has Correct currencyId\"] = responseBody.has(\"\\\"currencyId\\\":\\\"USD\\\"\");",
-                  "tests[\"Response Body has Correct metered\"] = responseBody.has(\"\\\"metered\\\":false\");",
-                  "tests[\"Response Body has Correct extendedPrice\"] = responseBody.has(\"\\\"extendedPrice\\\":70\");",
-                  "tests[\"Response Body has Correct tax\"] = responseBody.has(\"\\\"tax\\\":4.2\");",
-                  "tests[\"Response Body has Correct totalAmount\"] = responseBody.has(\"\\\"totalAmount\\\":74.2\");",
-                  "}",
-                  "",
-                  "tests[\"Response code should be 201\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"item\" : {\r\n    \"id\" : \"{{itemId_unlmtd_cycle}}\",\r\n    \"name\": \"Cycling\",\r\n    \"type\" : \"multiple\",\r\n    \"unitPrice\" : 70,\r\n    \"quantity\" : 1,\r\n    \"unlimited\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"currency\" : \"USD\",\r\n    \"eligibleClasses\" : [ ]\r\n  }\r\n}"
-            },
-            "url": {
-              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase",
-              "host": [
-                "{{purchase}}"
-              ],
-              "path": [
-                "{{organizationId}}",
-                "{{locationId}}",
-                "purchase"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Create Yoga for 10:30AM",
+      "name": "Create Yoga Event for 10:30AM",
       "description": null,
       "item": [
         {
@@ -4420,7 +4403,7 @@
       ]
     },
     {
-      "name": "Create P90X for 12PM",
+      "name": "Create P90X Event for 12PM",
       "description": null,
       "item": [
         {
@@ -4605,7 +4588,7 @@
       ]
     },
     {
-      "name": "Create Aerobics for 1PM",
+      "name": "Create Aerobics Event for 1PM",
       "description": null,
       "item": [
         {
@@ -4790,7 +4773,7 @@
       ]
     },
     {
-      "name": "Create Pilates for 2PM",
+      "name": "Create Pilates Event for 2PM",
       "description": null,
       "item": [
         {
@@ -4974,7 +4957,7 @@
       ]
     },
     {
-      "name": "Create Zumba for 3PM",
+      "name": "Create Zumba Event for 3PM",
       "description": null,
       "item": [
         {
@@ -5157,7 +5140,7 @@
       ]
     },
     {
-      "name": "Create Turbo Kick for 4:30PM",
+      "name": "Create Turbo Kick Event for 4:30PM",
       "description": null,
       "item": [
         {
@@ -5344,7 +5327,7 @@
       ]
     },
     {
-      "name": "Create Cycling for 5PM",
+      "name": "Create Cycling Event for 5PM",
       "description": null,
       "item": [
         {
@@ -6221,7 +6204,7 @@
       ]
     },
     {
-      "name": "Create Turbo Event for Deletion",
+      "name": "Turbo Event for Deletion",
       "description": null,
       "item": [
         {
@@ -8617,7 +8600,7 @@
       ]
     },
     {
-      "name": "Available Session",
+      "name": "Get Available Session",
       "description": null,
       "item": [
         {
@@ -8679,7 +8662,7 @@
       ]
     },
     {
-      "name": "Update Location",
+      "name": "Get and Update Location",
       "description": null,
       "item": [
         {
@@ -10680,7 +10663,7 @@
       ]
     },
     {
-      "name": "Promotion",
+      "name": "Promotion Code",
       "description": null,
       "item": [
         {
@@ -11428,7 +11411,7 @@
       ]
     },
     {
-      "name": "Merchant_Account",
+      "name": "Get Merchant Account",
       "description": null,
       "item": [
         {
@@ -11934,7 +11917,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randLastName}}.{{randFirstName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"{{waiverId}}\",\r\n  \"termsAndConditionsId\" : \"{{termsId}}\"\r\n}"
+              "raw": "{\r\n \"person\": {\r\n  \"photoId\": \"{{randPhotoId}}\",\r\n  \"email\": {\r\n    \"address\": \"{{randLastName}}.1{{randFirstName}}{{randPhoneNumber}}@qa4life.com\"\r\n  },\r\n  \"firstName\": \"{{randFirstName}}\",\r\n  \"lastName\": \"{{randLastName}}\",\r\n  \"phone\": {\r\n    \"extension\": \"{{$randomInt}}\",\r\n     \"number\": \"{{randPhoneNumber}}\"\r\n  }\r\n },\r\n  \"waiverId\" : \"55555d02-5555-5555-b8f8-b930e3c953f7\",\r\n  \"termsAndConditionsId\" : \"3ff27b05-793f-48ec-886d-7727e0386db2\"\r\n}"
             },
             "url": {
               "raw": "{{manageMember}}/{{organizationId}}/{{locationId}}/member/{{memberId}}",
@@ -11950,11 +11933,76 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "getMember_updated",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ed8ca277-1824-4413-8565-c586a0de4827",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "} else if(responseCode.code===200) {",
+                  "",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"memberEmailId\", jsonData.person.email.address);",
+                  "postman.setEnvironmentVariable(\"memberId\", jsonData.id);",
+                  "",
+                  "tests[\"Response Body has Correct termsAndConditionsId\"] = responseBody.has(\"\\\"termsAndConditionsId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");   ",
+                  "tests[\"Response Body has Correct waiverId\"] = responseBody.has(\"\\\"waiverId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"waiverId\")+\"\\\"\"); ",
+                  "tests[\"Response Body has Correct memberId\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"memberId\")+\"\\\"\"); ",
+                  "tests[\"Response Body has Correct userId\"] = responseBody.has(\"\\\"userId\\\":\"+\"\\\"\"+jsonData.userId+\"\\\"\"); ",
+                  "tests[\"Response Body has Correct locationId\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\"); ",
+                  "tests[\"Response Body has Correct firstName\"] = responseBody.has(\"firstName\"); ",
+                  "tests[\"Response Body has Correct lastName\"] = responseBody.has(\"lastName\");",
+                  "tests[\"Response Body has Correct number\"] = responseBody.has(\"number\");",
+                  "tests[\"Response Body has Correct address\"] = responseBody.has(\"address\");",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{manageMember}}/{{organizationId}}/member/{{memberId}}",
+              "host": [
+                "{{manageMember}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "member",
+                "{{memberId}}"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
     {
-      "name": "Get Person",
+      "name": "Get and Update Person",
       "description": null,
       "item": [
         {
@@ -12368,7 +12416,7 @@
       ]
     },
     {
-      "name": "Items",
+      "name": "Get and Delete Items",
       "description": null,
       "item": [
         {
@@ -13090,7 +13138,7 @@
       ]
     },
     {
-      "name": "Create Event Type",
+      "name": "Create Event Type for Deletion",
       "description": null,
       "item": [
         {
@@ -14331,7 +14379,7 @@
       ]
     },
     {
-      "name": "Permission",
+      "name": "Get Permission Group",
       "description": null,
       "item": [
         {
