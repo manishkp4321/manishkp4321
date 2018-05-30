@@ -1151,7 +1151,7 @@
             ],
             "body": {},
             "url": {
-              "raw": "{{omniSearch}}/{{organizationId}}/employee?pageSize=100",
+              "raw": "{{omniSearch}}/{{organizationId}}/employee?size=100",
               "host": [
                 "{{omniSearch}}"
               ],
@@ -1161,7 +1161,7 @@
               ],
               "query": [
                 {
-                  "key": "pageSize",
+                  "key": "size",
                   "value": "100"
                 }
               ]
@@ -1201,7 +1201,7 @@
             ],
             "body": {},
             "url": {
-              "raw": "{{omniSearch}}/{{organizationId}}/member?pageSize=1000",
+              "raw": "{{omniSearch}}/{{organizationId}}/member?size=1000",
               "host": [
                 "{{omniSearch}}"
               ],
@@ -1211,7 +1211,7 @@
               ],
               "query": [
                 {
-                  "key": "pageSize",
+                  "key": "size",
                   "value": "1000"
                 }
               ]
