@@ -7564,14 +7564,15 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "ea130f93-a6d5-483c-80f5-efa56bb79051",
+                "id": "301d298f-0969-4ae3-8a4c-19e03ce8e3b1",
                 "type": "text/javascript",
                 "exec": [
                   "// var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "//var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -7665,14 +7666,15 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "66fbb250-c6cb-46fe-bec5-b27e337bd67c",
+                "id": "011df686-903a-4128-87e8-0e50a647b9f1",
                 "type": "text/javascript",
                 "exec": [
                   "// var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "//var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -8468,13 +8470,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "14b8d380-03f0-42b1-90e9-ba610166dec3",
+                "id": "52a41ac3-5ba5-4dd1-9332-66db2c78dcfe",
                 "type": "text/javascript",
                 "exec": [
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "//var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -9240,13 +9243,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "23033a14-685a-46a3-a15b-1d93d6f52054",
+                "id": "d5598971-66d7-4688-b9ae-6d9d79d509ba",
                 "type": "text/javascript",
                 "exec": [
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "//var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -10873,13 +10877,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "14b8d380-03f0-42b1-90e9-ba610166dec3",
+                "id": "e20b0bbc-14f6-422c-93f5-5e68fc25dcee",
                 "type": "text/javascript",
                 "exec": [
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "//var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -11284,13 +11289,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "9c53e27b-7a62-465d-b01a-1c67e95d6d65",
+                "id": "ec5ca391-02b4-4b37-9c3a-84b595478d0b",
                 "type": "text/javascript",
                 "exec": [
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                  "//var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
+                  "var salesTax = (unitPrice * .06).toFixed(2);",
+                  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
