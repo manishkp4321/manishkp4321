@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "91fad088-1272-45cf-a31a-c80bb6e35a91",
+    "_postman_id": "b55c0de9-82b0-459d-aac3-4681ba7933b2",
     "name": "Iteration_Collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -10,12 +10,12 @@
       "description": null,
       "item": [
         {
-          "name": "createUserForOrg copy",
+          "name": "createUserForOrg",
           "event": [
             {
               "listen": "test",
               "script": {
-                "id": "5e5d46fa-3b88-41df-9aa9-e968cb2f9ac8",
+                "id": "d3a75b4a-57d9-4e58-98e0-27c55a73b18c",
                 "type": "text/javascript",
                 "exec": [
                   " var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
@@ -37,7 +37,6 @@
                   "}",
                   "",
                   "  if (responseCode.code===201) {",
-                  "           // var compareResponse = ",
                   "    ",
                   "            if(pm.environment.get(\"testType\") === \"\\\"Nominal\\\"\") {",
                   "         ",
@@ -60,23 +59,21 @@
                   " var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
                   "    if(testFirstNameIteration.length>0) {",
                   "        console.log(testFirstNameIteration);",
-                  "        postman.setNextRequest(\"createUserForOrg copy\");",
+                  "        postman.setNextRequest(\"createUserForOrg\");",
                   "    } else {",
                   "        pm.environment.unset(\"testFirstNameIteration\");",
                   "        postman.setNextRequest();",
                   "        ",
                   "    }",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  "",
-                  "",
-                  "pm.globals.unset(\"variable_key\");"
+                  ""
                 ]
               }
             },
             {
               "listen": "prerequest",
               "script": {
-                "id": "cc43079c-c7aa-454b-993a-79ebd055463b",
+                "id": "a9220c87-7cb5-469a-84be-c8903a7a82eb",
                 "type": "text/javascript",
                 "exec": [
                   "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
@@ -147,8 +144,7 @@
                   "pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
                   "pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
                   "pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
-                  "pm.environment.set(\"testType\", JSON.stringify(currentNameIteration.type));",
-                  "pm.environment.set(\"statsCode\", JSON.stringify(currentNameIteration.statusCode));"
+                  "pm.environment.set(\"testType\", JSON.stringify(currentNameIteration.type));"
                 ]
               }
             }
@@ -182,12 +178,12 @@
           "response": []
         },
         {
-          "name": "Authorization Copy",
+          "name": "Authorization",
           "event": [
             {
               "listen": "test",
               "script": {
-                "id": "1eeb1936-8705-4784-bc00-3d7820a16193",
+                "id": "734a0483-c76b-4c22-92cf-9b83cb1d33ce",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -224,12 +220,14 @@
                   "    if(testFirstNameIteration.length>0) {",
                   "        console.log(\"Going next request\");",
                   "        console.log(testFirstNameIteration);",
-                  "        postman.setNextRequest(\"Authorization Copy\");",
+                  "        postman.setNextRequest(\"Authorization\");",
                   "    } else {",
                   "      pm.environment.unset(\"currentRequest\");",
                   "      pm.environment.unset(\"currentNameIteration\");",
                   "      pm.environment.unset(\"currentNameIterationData\");",
                   "      pm.environment.unset(\"testFirstNameIteration\");",
+                  "      pm.environment.unset(\"ownerPassword\");",
+                  "      pm.environment.unset(\"ownerEmail\");",
                   "        postman.setNextRequest();",
                   "        ",
                   "        ",
@@ -307,7 +305,7 @@
           "response": []
         },
         {
-          "name": "createOrgLocation Copy",
+          "name": "createOrgLocation",
           "event": [
             {
               "listen": "test",
@@ -372,7 +370,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "6ba47e63-2595-43c6-bb6f-5b1d70ab6231",
+                "id": "6a13d53c-cce8-4dbe-a6fa-5a3703c1becf",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
@@ -390,15 +388,7 @@
                   " ",
                   "var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
                   "",
-                  "",
-                  "postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
                   "console.log(\"CurrentOrgInfo:->\"+JSON.stringify(currentOrgInfo));",
-                  "",
-                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
-                  "",
-                  "var randState = states[Math.floor(Math.random() * states.length)];",
-                  "postman.setEnvironmentVariable(\"randState\", randState);",
-                  "",
                   "",
                   "var nominalUserData={",
                   "  \"name\" : \"University Sports and Fitnes Nominal \"+orgNumber,",
@@ -1372,7 +1362,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "d829caf5-8b29-4933-a15b-ef2bf2737221",
+                "id": "f5e20d4f-2114-4cca-b83e-50c103f2beea",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -1382,10 +1372,6 @@
                   " var resBody = JSON.parse(responseBody);",
                   " if(!orgInfo) orgInfo=[];",
                   "",
-                  "",
-                  "",
-                  "",
-                  " ",
                   "function pushOrgInfoToAry(employeeUserId,employeeId,employeeTokenId,EmpTokenExpirationTime,employeeEmail) {",
                   "    ",
                   "        for(var i=0; i<orgInfo.length; i++){",
@@ -1435,7 +1421,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "aee2bc0b-da70-4ae2-8478-1d32173b8359",
+                "id": "30a44e4f-d660-46e3-93da-da2ec8568b3c",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
@@ -1453,29 +1439,13 @@
                   "",
                   "var orgNumber = Math.floor(Math.random() * 9000000) + 1000000;",
                   "",
-                  "",
-                  "postman.setEnvironmentVariable(\"orgNumber\", orgNumber);",
-                  "",
-                  "var firstNames = ['Michael,male', 'Alicia,female', 'Thomas,male', 'Olivia,female', 'Daniel,male', 'Candice,female', 'Amy,female', 'Barbara,female', 'Matthew,male', 'Ryan,male', 'Craig,male','Tammy,female','Heaven,female','Kent,male','Floretta,female','Sylvester,male','Mandi,female','Damion,male','Noel,male','Jacklyn,female','Viva,female','Taina,female','Myrtle,male','Ernest,male','Vina,female','Dorsey,female','Rico,male','Will,male','Wilber,male','Lacie,female','Orena,female','Eliana,female','Elva,female','Marilyn,female','Sharita,female','Nina,female','Tori,female','Rufina,female','Isiah,female','Lavenia,female','Coleman,male','Donald,male','Jannette,female','Zaida,female','Darius,male','Shelton,male','Jackson,male','Rochelle,female','Kermit,male','Branda,female','Casandra,female','Matt,male','Lorna,female','Angela,female','China,female','Alena,female','Barrett,male','Aaron,male','Rana,female','Jeffrey,male','Zane,male','Shane,male','Melinda,female','Valencia,female','Jacque,female','Venessa,female','Don,male','Harold,male','Charol,female','Rebbecca,female','Melissa,female','Diego,male','Jorge,male','Katie,female','Gina,female','Denise,female','Lorita,female','Mina,female','Anthony,male','Debbie,female','Jason,male','Kassie,female','Misty,female','Misti,female','Dianne,female','Lashay,female','Tonia,female','Mariana,female','Peter,male','Zack,male','Kevin,male','Vickie,female','Magda,female','Kris,male','Ralph,male','Maureen,female','Frederick,male','Emmaline,female','Marylee,female','Zoe,female','Katelyn,female','Birdee,female','Loren,female','Fran,female','Melvin,male','Delbert,male','Mittie,female','Clarence,female','Demetra,female','Nancy,female','Vaughn,male','Arminda,female','Garrett,male','Keith,male','Trudy,female','Theresia,female','Kelly,female'];",
-                  "var randFirstNameWithGender = firstNames[Math.floor(Math.random() * firstNames.length)];",
-                  "var randFirstNameWithGenderArray = randFirstNameWithGender.split(',');",
-                  "var randFirstName = randFirstNameWithGenderArray[0];",
-                  "var gender = randFirstNameWithGenderArray[1];",
-                  "",
-                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
-                  "",
-                  "var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];",
-                  "",
-                  "var randState = states[Math.floor(Math.random() * states.length)];",
-                  "postman.setEnvironmentVariable(\"randState\", randState);",
-                  "",
                   "var photoId = orgInfo[0].photoIdMale_1;",
                   "",
                   "var nominalUserData={",
                   "  ",
                   "  \"email\" : \"UniversityFitness12\"+orgNumber+\"@qa4life.com\",",
-                  "  \"firstName\" : \"{{randFirstName}}\"+orgNumber,",
-                  "  \"lastName\" : \"{{randLastName}}\"+orgNumber,",
+                  "  \"firstName\" : \"Alicia\"+orgNumber,",
+                  "  \"lastName\" : \"Savage\"+orgNumber,",
                   "  \"address\" : {",
                   "    \"address1\" :\"123 Fitness Lane \"+orgNumber,",
                   "    \"address2\" : \"PO Box \"+orgNumber,",
@@ -1631,11 +1601,9 @@
             {
               "listen": "test",
               "script": {
-                "id": "710ecff5-b193-4de2-ad71-894a4fdf9261",
+                "id": "1992a8d2-d6c7-4e2c-9999-ef8a68d5a8b7",
                 "type": "text/javascript",
                 "exec": [
-                  "",
-                  "",
                   "if (responseCode.code != 200)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
@@ -1646,26 +1614,24 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"termsId\", jsonData.location.termDocId);",
-                  "   //console.log(\"termsId\" +termsId);",
                   "    ",
                   "}",
                   "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  ""
                 ]
               }
             },
             {
               "listen": "prerequest",
               "script": {
-                "id": "72de563d-9187-4574-b442-f78550c8fbae",
+                "id": "1607f062-0e04-457d-8066-6d77891e8370",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
                   "pm.environment.set(\"locationId\",orgInfo[0].locationId);",
                   "console.log(\"upload terms and location\");",
-                  "console.log(orgInfo);",
-                  "",
-                  ""
+                  "console.log(orgInfo);"
                 ]
               }
             }
@@ -1707,7 +1673,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "96c78e06-7d02-4e9c-83f2-e2871d3027a0",
+                "id": "d4ab28c6-2278-4b93-85d0-443534e06837",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -1722,9 +1688,10 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"waiverId\", jsonData.location.waiverDocId);",
-                  "    }",
+                  "}",
                   "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  ""
                 ]
               }
             },
@@ -1787,7 +1754,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "cf517e0d-b8df-470f-b032-c2003121deaa",
+                "id": "1df1b1d5-eacd-4ffe-862c-49d2ad2827de",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
@@ -1825,9 +1792,6 @@
                   "}",
                   "",
                   "var currentNameIteration =testFirstNameIteration.shift();",
-                  "",
-                  "pm.environment.set(\"locationId\",orgInfo[0].locationId);",
-                  "",
                   "",
                   "pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
                   "pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
@@ -1923,7 +1887,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "879a7cb7-8617-41a5-88d0-9cdde06e2a73",
+                "id": "19d2d35e-081f-488f-97be-4563ad5d0e7c",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -1937,10 +1901,8 @@
                   "     console.log(resBody);",
                   "       orgInfo[0].eventTypeId=resBody.id;",
                   "    console.log(orgInfo[0].eventTypeId);",
-                  "   ",
                   "    pm.environment.set(\"orgInfoDetails\", orgInfo); ",
-                  "  console.log(orgInfo[0]);",
-                  "  console.log(orgInfo[0].eventTypeId);",
+                  "  console.log(\"complete array\"+orgInfo[0]);",
                   "  ",
                   "  } ",
                   "",
@@ -1953,7 +1915,6 @@
                   "         pm.environment.unset(\"testFirstNameIteration\");",
                   "         pm.environment.unset(\"currentNameIterationData\");",
                   "         postman.setNextRequest();",
-                  "         ",
                   "",
                   "}",
                   "",
@@ -1967,23 +1928,20 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "7ea3e3c5-d376-4602-8bd1-9971f388e435",
+                "id": "02abdf37-a5ee-4b8f-9ac6-8ad1d10e1464",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
                   "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
-                  "//var orgNum =  pm.environment.get(\"orgNumber\");",
                   "console.log(orgInfo[0].orgId);",
                   "console.log(orgInfo[0].locationId);",
                   "    ",
-                  "",
-                  "",
                   "var nominalUserData={ ",
                   " \"name\" : \"Yoga\"",
                   "};",
                   "",
                   "var maxUserData={",
-                  "     \"name\" : \"K00eqvEgpwY3ee6pU8PCAAmA2QkPoYumJtncmJ75xOJixxQuLnidUolEt9UNAwwcAwZHGFQfTFn5VDIuglhwcbSDAyarD\"",
+                  " \"name\" : \"K00eqvEgpwY3ee6pU8PCAAmA2QkPoYumJtncmJ75xOJixxQuLnidUolEt9UNAwwcAwZHGFQfTFn5VDIuglhwcbSDAyarD\"",
                   "};",
                   "",
                   "var minUserData={",
@@ -2062,7 +2020,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "f0e9706c-5dba-4df2-8aeb-da3dfd49436c",
+                "id": "dfcd1f38-35e6-4c10-a497-1c80fadf6957",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -2101,18 +2059,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "bcd4de9f-2e19-4695-ae23-19b038438f10",
+                "id": "691bb6f7-df1f-462d-a2f0-ca9cc6e8bb4f",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
                   "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
-                  "postman.setEnvironmentVariable(\"eventTypeId_yoga\", orgInfo[0].eventTypeId);",
-                  "var eventTypeIdUnlimited=pm.environment.get(\"eventTypeId_yoga\");",
-                  "",
-                  "",
                   "",
                   "var nominalUserData={ ",
-                  " \"name\" : \"Yoga{{randItemNumber}}\",",
+                  " \"name\" : \"Yoga1232\",",
                   "  \"type\" : \"SERVICE\",",
                   "  \"unitPrice\" : 100,",
                   "  \"quantity\" : 1,",
@@ -2122,13 +2076,13 @@
                   "  \"expirationUnit\" : \"DAYS\",",
                   "  \"currencyId\" : \"USD\",",
                   "  \"eligibleClasses\" : [ {",
-                  "    \"eventTypeId\" : eventTypeIdUnlimited",
+                  "    \"eventTypeId\" : orgInfo[0].eventTypeId",
                   "  } ]",
                   "};",
                   "",
                   "var maxUserData={",
                   " ",
-                  "  \"name\" : \"Yoga&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&{{randItemNumber}}\",",
+                  "  \"name\" : \"yoga name of employee for maximum characters Last Last name of employee for maximum characters  Last\",",
                   "  \"type\" : \"SERVICE\",",
                   "  \"unitPrice\" : 100,",
                   "  \"quantity\" : 1,",
@@ -2138,7 +2092,7 @@
                   "  \"expirationUnit\" : \"DAYS\",",
                   "  \"currencyId\" : \"USD\",",
                   "  \"eligibleClasses\" : [ {",
-                  "    \"eventTypeId\" : eventTypeIdUnlimited",
+                  "    \"eventTypeId\" : orgInfo[0].eventTypeId",
                   "  } ]",
                   "",
                   "};",
@@ -2154,13 +2108,13 @@
                   "  \"expirationUnit\" : \"DAYS\",",
                   "  \"currencyId\" : \"USD\",",
                   "  \"eligibleClasses\" : [ {",
-                  "    \"eventTypeId\" : eventTypeIdUnlimited",
+                  "    \"eventTypeId\" : orgInfo[0].eventTypeId",
                   "  } ]",
                   "  ",
                   "};",
                   "",
                   "var allFieldsUserData={",
-                  "  \"name\" : \"YogaALLFeilds{{randItemNumber}}\",",
+                  "  \"name\" : \"YogaALLFeilds123\",",
                   "  \"type\" : \"SERVICE\",",
                   "  \"unitPrice\" : 100,",
                   "  \"quantity\" : 1,",
@@ -2170,7 +2124,7 @@
                   "  \"expirationUnit\" : \"DAYS\",",
                   "  \"currencyId\" : \"USD\",",
                   "  \"eligibleClasses\" : [ {",
-                  "    \"eventTypeId\" : eventTypeIdUnlimited",
+                  "    \"eventTypeId\" : orgInfo[0].eventTypeId",
                   "  } ]",
                   "};",
                   "",
@@ -2234,7 +2188,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1792de58-2d30-4e65-89a8-340c3fc4e99b",
+                "id": "23dcbb46-e68e-452e-9377-14bd94f79102",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -2272,17 +2226,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "2a95fced-46c4-4c8c-8a0d-2eb3dfc0b0e0",
+                "id": "d9866cc9-2aca-4bfd-a771-0ab65aa14702",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
                   "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
                   "",
-                  "var eventTypeLimited=pm.environment.get(\"eventTypeId_yoga\");",
-                  "console.log(\"Event Type Limited:->\"+JSON.stringify(eventTypeLimited));",
-                  "",
                   "var nominalUserData={ ",
-                  " \"name\" : \"Yoga{{{{$randomInt}}}}\",",
+                  " \"name\" : \"Yoga12513\",",
                   "  \"type\" : \"SERVICE\",",
                   "  \"unitPrice\" : 100,",
                   "  \"quantity\" : 6,",
@@ -2292,13 +2243,13 @@
                   "  \"expirationUnit\" : \"DAYS\",",
                   "  \"currencyId\" : \"USD\",",
                   "  \"eligibleClasses\" : [ {",
-                  "    \"eventTypeId\" : eventTypeLimited",
+                  "    \"eventTypeId\" : orgInfo[0].eventTypeId",
                   "  } ]",
                   "};",
                   "",
                   "var maxUserData={",
                   " ",
-                  "  \"name\" : \"Yoga&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&{{{{$randomInt}}}}\",",
+                  "  \"name\" : \"yoga name of employee for maximum characters Last yoga name of employee for maximum characters  yoga\",",
                   "  \"type\" : \"SERVICE\",",
                   "  \"unitPrice\" : 100,",
                   "  \"quantity\" : 250,",
@@ -2308,7 +2259,7 @@
                   "  \"expirationUnit\" : \"DAYS\",",
                   "  \"currencyId\" : \"USD\",",
                   "  \"eligibleClasses\" : [ {",
-                  "    \"eventTypeId\" : eventTypeLimited",
+                  "    \"eventTypeId\" : orgInfo[0].eventTypeId",
                   "  } ]",
                   "",
                   "};",
@@ -2324,13 +2275,13 @@
                   "  \"expirationUnit\" : \"DAYS\",",
                   "  \"currencyId\" : \"USD\",",
                   "  \"eligibleClasses\" : [ {",
-                  "    \"eventTypeId\" : eventTypeLimited",
+                  "    \"eventTypeId\" : orgInfo[0].eventTypeId",
                   "  } ]",
                   "  ",
                   "};",
                   "",
                   "var allFieldsUserData={",
-                  "  \"name\" : \"YogaALLFeilds{{{{$randomInt}}}}\",",
+                  "  \"name\" : \"YogaALLFeilds1234578\",",
                   "  \"type\" : \"SERVICE\",",
                   "  \"unitPrice\" : 100,",
                   "  \"quantity\" : 5,",
@@ -2340,7 +2291,7 @@
                   "  \"expirationUnit\" : \"DAYS\",",
                   "  \"currencyId\" : \"USD\",",
                   "  \"eligibleClasses\" : [ {",
-                  "    \"eventTypeId\" : eventTypeLimited",
+                  "    \"eventTypeId\" : orgInfo[0].eventTypeId",
                   "  } ]",
                   "};",
                   "",
@@ -2432,51 +2383,28 @@
             {
               "listen": "test",
               "script": {
-                "id": "4885b658-0c4a-4c83-844e-900628952905",
+                "id": "c0db6467-c4ae-4730-996b-234fb9d4ed6f",
                 "type": "text/javascript",
                 "exec": [
-                  "",
-                  "",
+                  "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
+                  "var testTypeNominal =  pm.environment.get(\"testType\"); ",
                   "if (responseCode.code != 200)",
                   "{",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
-                  "else if (responseCode.code === 200)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    const levels =  jsonData.content[0].id;",
-                  "    const levels2 =  jsonData.content[1].id;",
-                  "    const levels3 =  jsonData.content[2].id;",
-                  "    ",
-                  "    postman.setEnvironmentVariable(\"eventLevelId_beginner\", levels);",
-                  "    postman.setEnvironmentVariable(\"eventLevelId_intermediate\", levels2);",
-                  "    postman.setEnvironmentVariable(\"eventLevelId_advanced\", levels3);",
-                  "    ",
-                  "    postman.setEnvironmentVariable(\"eventLevelId1\", levels);",
-                  "    postman.setEnvironmentVariable(\"eventLevelId2\", levels2);",
-                  "    postman.setEnvironmentVariable(\"eventLevelId3\", levels3);",
-                  "    ",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Beginner\\\"\");",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Intermediate\\\"\");",
-                  "tests[\"Response Body has Name\"] = responseBody.has(\"\\\"name\\\":\\\"Advanced\\\"\");",
-                  "tests[\"Response Body has Correct Event Level for Begineer\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_beginner\"));",
-                  "tests[\"Response Body has Correct Event Level for Intermediate\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_intermediate\"));",
-                  "tests[\"Response Body has Correct Event Level for Advanced\"] = responseBody.has(postman.getEnvironmentVariable(\"eventLevelId_advanced\"));",
-                  "tests[\"Response Body has pageable\"] = responseBody.has(\"INSTANCE\");",
-                  "tests[\"Response Body has totalPages\"] = responseBody.has(\"\\\"totalPages\\\":1\");",
-                  "tests[\"Response Body has last\"] = responseBody.has(\"\\\"last\\\":true\");",
-                  "tests[\"Response Body has totalElements\"] = responseBody.has(\"\\\"totalElements\\\":4\");",
-                  "tests[\"Response Body has unsorted\"] = responseBody.has(\"\\\"unsorted\\\":true\");",
-                  "tests[\"Response Body has sorted\"] = responseBody.has(\"\\\"sorted\\\":false\");",
-                  "tests[\"Response Body has first\"] = responseBody.has(\"\\\"first\\\":true\");",
-                  "tests[\"Response Body has numberOfElements\"] = responseBody.has(\"\\\"numberOfElements\\\":4\");",
-                  "tests[\"Response Body has size\"] = responseBody.has(\"\\\"size\\\":0\");",
-                  "tests[\"Response Body has number\"] = responseBody.has(\"\\\"number\\\":0\");",
-                  "    ",
-                  "}",
+                  "if(!orgInfo) orgInfo=[];",
+                  "    console.log(\"create limited Item\" + testTypeNominal);",
+                  "  if (responseCode.code===200 && testTypeNominal==\"Nominal\" ) {",
+                  "     console.log(resBody);",
+                  "      var jsonData = JSON.parse(responseBody);",
+                  "       orgInfo[0].eventLevelId_beginner=jsonData.content[0].id;",
+                  "   ",
+                  "    pm.environment.set(\"orgInfoDetails\", orgInfo); ",
+                  "    console.log(orgInfo[0]);",
+                  "    console.log(jsonData.content[0].id);",
+                  "  } ",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                 ]
@@ -2516,12 +2444,12 @@
       "description": null,
       "item": [
         {
-          "name": "CreateEventForSwap",
+          "name": "CreateEvent",
           "event": [
             {
               "listen": "test",
               "script": {
-                "id": "c73199b7-5660-4a9f-92a0-6993f7e9e7d6",
+                "id": "64834674-b074-43bf-abe7-e31d3330d349",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -2530,7 +2458,7 @@
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
                   " var resBody = JSON.parse(responseBody);",
                   " if(!orgInfo) orgInfo=[];",
-                  "    console.log(\"create Event for swap \" + testTypeNominal);",
+                  "    console.log(\"create Event \" + testTypeNominal);",
                   "  if (responseCode.code===201 && testTypeNominal==\"Nominal\" ) {",
                   "     console.log(resBody);",
                   "       orgInfo[0].eventId=resBody.id;",
@@ -2561,15 +2489,11 @@
                   "",
                   " var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
                   "  if (testFirstNameIteration.length > 0) {",
-                  "    postman.setNextRequest(\"CreateEventForSwap\");",
+                  "    postman.setNextRequest(\"CreateEvent\");",
                   "    } else {",
                   "         pm.environment.unset(\"currentNameIteration\");",
                   "         pm.environment.unset(\"testFirstNameIteration\");",
-                  "         pm.environment.unset(\"currentNameIterationData\");",
-                  "         pm.environment.unset(\"eventLevelId_beginner\");",
-                  "         pm.environment.unset(\"eventLevelId_intermediate\");",
-                  "         pm.environment.unset(\"eventLevelId_advanced\");",
-                  "        // pm.environment.unset(\"orgInfoDetails\");",
+                  "         pm.environment.unset(\"currentNameIterationData\")",
                   "         postman.setNextRequest();",
                   "",
                   "}",
@@ -2581,13 +2505,11 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "7434971d-cfa2-4dd1-b8e2-841d17e94648",
+                "id": "5a601e79-5e0b-4ddb-a594-3f957645f216",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
                   "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
-                  "",
-                  "var eventTypeIdForSwap=pm.environment.get(\"eventTypeId_yoga\");",
                   "",
                   "var current_timestamp = new Date();",
                   "var current_year = current_timestamp.getFullYear();",
@@ -2597,53 +2519,40 @@
                   "var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T17:00:00\";",
                   "var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T17:30:00\";",
                   "",
-                  "var eventLevels = [postman.getEnvironmentVariable(\"eventLevelId_beginner\"),postman.getEnvironmentVariable(\"eventLevelId_intermediate\"),postman.getEnvironmentVariable(\"eventLevelId_advanced\")];",
-                  "",
-                  "var randEventLevelId = eventLevels[Math.floor(Math.random() * eventLevels.length)];",
-                  "do {",
-                  "    randEventLevelId = eventLevels[Math.floor(Math.random() * eventLevels.length)];",
-                  "}",
-                  "while (randEventLevelId === undefined);",
-                  "",
-                  "postman.setEnvironmentVariable(\"randEventLevelId\", randEventLevelId);",
-                  "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
-                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);",
-                  "",
-                  "",
                   "var nominalUserData={ ",
-                  "  \"eventTypeId\" : eventTypeIdForSwap,",
-                  "  \"startDateTime\" : \"{{eventStartTime}}\",",
-                  "  \"endDateTime\" : \"{{eventEndTime}}\",",
-                  "  \"eventLevelId\" : \"{{randEventLevelId}}\",",
+                  "  \"eventTypeId\" : orgInfo[0].eventTypeId,",
+                  "  \"startDateTime\" : eventStartTime,",
+                  "  \"endDateTime\" : eventEndTime,",
+                  "  \"eventLevelId\" : orgInfo[0].eventLevelId_beginner,",
                   "  \"capacity\" : \"10\",",
                   "  \"locationId\" : \"{{locationId}}\"",
                   "",
                   "};",
                   "",
                   "var maxUserData={",
-                  "  \"eventTypeId\" : eventTypeIdForSwap,",
-                  "  \"startDateTime\" : \"{{eventStartTime}}\",",
-                  "  \"endDateTime\" : \"{{eventEndTime}}\",",
-                  "  \"eventLevelId\" : \"{{randEventLevelId}}\",",
+                  "  \"eventTypeId\" : orgInfo[0].eventTypeId,",
+                  "  \"startDateTime\" : eventStartTime,",
+                  "  \"endDateTime\" : eventEndTime,",
+                  "  \"eventLevelId\" : orgInfo[0].eventLevelId_beginner,",
                   "  \"capacity\" : \"1000\",",
                   "  \"locationId\" : \"{{locationId}}\"",
                   "};",
                   "",
                   "var minUserData={",
-                  "  \"eventTypeId\" :eventTypeIdForSwap,",
-                  "  \"startDateTime\" : \"{{eventStartTime}}\",",
-                  "  \"endDateTime\" : \"{{eventEndTime}}\",",
-                  "  \"eventLevelId\" : \"{{randEventLevelId}}\",",
+                  "  \"eventTypeId\" :orgInfo[0].eventTypeId,",
+                  "  \"startDateTime\" : eventStartTime,",
+                  "  \"endDateTime\" : eventEndTime,",
+                  "  \"eventLevelId\" : orgInfo[0].eventLevelId_beginner,",
                   "  \"capacity\" : \"1\",",
                   "  \"locationId\" : \"{{locationId}}\"",
                   "",
                   "};",
                   "",
                   "var allFieldsUserData={",
-                  "  \"eventTypeId\" :eventTypeIdForSwap,",
-                  "  \"startDateTime\" : \"{{eventStartTime}}\",",
-                  "  \"endDateTime\" : \"{{eventEndTime}}\",",
-                  "  \"eventLevelId\" : \"{{randEventLevelId}}\",",
+                  "  \"eventTypeId\" :orgInfo[0].eventTypeId,",
+                  " \"startDateTime\" : eventStartTime,",
+                  "  \"endDateTime\" : eventEndTime,",
+                  "  \"eventLevelId\" : orgInfo[0].eventLevelId_beginner,",
                   "  \"capacity\" : \"20\",",
                   "  \"locationId\" : \"{{locationId}}\"",
                   "",
@@ -2708,12 +2617,12 @@
           "response": []
         },
         {
-          "name": "CreateHost Copy",
+          "name": "CreateHost",
           "event": [
             {
               "listen": "test",
               "script": {
-                "id": "f7d3aa42-1afb-494c-8a96-9f9295a829f4",
+                "id": "0a455aae-b970-40de-8300-149430ac0a5a",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
@@ -2727,17 +2636,25 @@
                   "else if (responseCode.code === 201){",
                   "    ",
                   "    var resBody = JSON.parse(responseBody);",
-                  "     console.log(resBody);",
-                  "       orgInfo[0].eventHostId=resBody.id;",
+                  "    console.log(resBody);",
+                  "    orgInfo[0].eventHostId=resBody.id;",
                   "   ",
                   "    pm.environment.set(\"orgInfoDetails\", orgInfo); ",
-                  "   console.log(orgInfo[0]);",
+                  "    console.log(orgInfo[0]);",
                   "    console.log(orgInfo[0].eventHostId);",
                   "    ",
-                  "    pm.environment.unset(\"employeeId_2\");",
-                  "     pm.environment.unset(\"employeeId_3\");",
                   "}",
                   "",
+                  " var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
+                  "  if (testFirstNameIteration.length > 0) {",
+                  "    postman.setNextRequest(\"CreateHost\");",
+                  "    } else {",
+                  "         pm.environment.unset(\"currentNameIteration\");",
+                  "         pm.environment.unset(\"testFirstNameIteration\");",
+                  "         pm.environment.unset(\"currentNameIterationData\")",
+                  "         postman.setNextRequest();",
+                  "",
+                  "}",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
               }
@@ -2745,19 +2662,36 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "7af24eaf-2177-4290-b555-08aa95517988",
+                "id": "b1f009b6-c141-46ce-b407-a368e1e00f5d",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
+                  "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
                   "",
                   "console.log(\"create Host\");",
                   "console.log(orgInfo);",
                   "postman.setEnvironmentVariable(\"eventId\", orgInfo[0].eventId);",
                   "console.log(\"eventId=\" + orgInfo[0].eventId);",
-                  "postman.setEnvironmentVariable(\"employeeId_2\", orgInfo[0].employees[0].employeeId);",
-                  "console.log(\"EmployeeID2=\" +orgInfo[0].employees[0].employeeId);",
-                  "postman.setEnvironmentVariable(\"employeeId_3\", orgInfo[0].employees[1].employeeId);",
-                  "console.log(\"EmployeeID3=\" +orgInfo[0].employees[0].employeeId);",
+                  "",
+                  "var nominalUserData={ ",
+                  "  \"eventId\" : \"{{eventId}}\",",
+                  "  \"substituteId\" :orgInfo[0].employees[1].employeeId,",
+                  "  \"employeeId\" : orgInfo[0].employees[0].employeeId",
+                  "};",
+                  "",
+                  "console.log(JSON.stringify(request));",
+                  "if(!testFirstNameIteration) {",
+                  "    testFirstNameIteration =  [",
+                  "        {data: nominalUserData,statusCode :201 , type : \"Nominal\"}",
+                  "        ];",
+                  "}",
+                  "",
+                  "var currentNameIteration =testFirstNameIteration.shift();",
+                  "",
+                  "pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
+                  "pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
+                  "pm.environment.set(\"testType\", currentNameIteration.type);",
+                  "pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
                   ""
                 ]
               }
@@ -2777,7 +2711,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"eventId\" : \"{{eventId}}\",\r\n  \"substituteId\" : \"{{employeeId_3}}\",\r\n  \"employeeId\" : \"{{employeeId_2}}\"\r\n}"
+              "raw": "{{currentNameIterationData}}"
             },
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/event/{{eventId}}/host",
@@ -2807,7 +2741,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "7a82c5d2-ca98-469b-b29b-c30b9e3c6830",
+                "id": "6a1e2afd-362e-4089-a091-d61ec9d7c501",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -2826,7 +2760,6 @@
                   "  ",
                   "  } ",
                   "",
-                  "",
                   " var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
                   "  if (testFirstNameIteration.length > 0) {",
                   "    postman.setNextRequest(\"createUserMember\");",
@@ -2834,10 +2767,6 @@
                   "         pm.environment.unset(\"currentNameIteration\");",
                   "         pm.environment.unset(\"testFirstNameIteration\");",
                   "         pm.environment.unset(\"currentNameIterationData\");",
-                  "         ",
-                  "         pm.environment.unset(\"waiverId\");",
-                  "         pm.environment.unset(\"termsId\");",
-                  "         ",
                   "         postman.setNextRequest();",
                   "",
                   "}",
@@ -2851,7 +2780,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "0a315498-0199-471c-a37b-74bf8823d780",
+                "id": "701cd725-3c62-4da3-86a4-e05b9b747c86",
                 "type": "text/javascript",
                 "exec": [
                   "",
@@ -2859,26 +2788,15 @@
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
                   "console.log(\" test2\");",
                   "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
-                  "",
                   "var waiverIdValue = postman.getEnvironmentVariable(\"waiverId\");",
-                  "",
                   "var termsIdValue = postman.getEnvironmentVariable(\"termsId\");",
-                  "",
-                  "var photoIdNominal = postman.getEnvironmentVariable(\"orgInfo[0].photoIdMale_1\");",
-                  "console.log(\" test3\");",
-                  "var photoIdMax = postman.getEnvironmentVariable(\"orgInfo[0].photoIdMale_2\");",
-                  "var photoIdMin= postman.getEnvironmentVariable(\"orgInfo[0].photoIdMale_3\");",
-                  "console.log(\" test4\");",
-                  "var photoIdAllFields = postman.getEnvironmentVariable(\"orgInfo[0].photoIdMale_4\");",
-                  "console.log(\" test5\");",
-                  "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
                   "",
                   "var nominalUserData={ ",
                   "",
                   " \"person\": {",
-                  "  \"photoId\": photoIdNominal,",
+                  "  \"photoId\": orgInfo[0].photoIdMale_1,",
                   "  \"email\": {",
-                  "    \"address\":\"{{$randomInt}}bobby@boucher.com\",",
+                  "    \"address\":\"0PmxeDuJbC4ISQfN1UFdADXlgej9tFTM0jletb9iAUCzHYsx7fnoYCHBKXl28Oi03puzIUF4BKONo2eZrDH5k6mm5l2X5HYjDkjh0PmxeDuJbC4ISQfN1UFdADXlgej9tFTM0jletb9iAUCzHYsx7fnoYCHBKXl28Oi03puzIUF4BKONo22X5HYjDkjh@qa4life.com\",",
                   "  },",
                   "  \"firstName\": \"Jesse\",",
                   "  \"lastName\": \"James\",",
@@ -2894,9 +2812,9 @@
                   "",
                   "var maxUserData={",
                   " \"person\": {",
-                  "  \"photoId\": photoIdMax,",
+                  "  \"photoId\": orgInfo[0].photoIdMale_2,",
                   "  \"email\": {",
-                  "    \"address\":\"{{$randomInt}}bobby{{$randomInt}}@boucher.com\",",
+                  "    \"address\":\"bobby@boucher.com\",",
                   "  },",
                   "  \"firstName\": \"JHYs9YiOhQ1ypY8MHSw1s0BPqmH92voBcYL3NGiuxAcvFbNghu\",",
                   "  \"lastName\": \"0PmxeDuJbC4ISQfN1UFdADXlgej9tFTM0jletb9iAUCzHYsx7fnoYCHBKXl28Oi03puzIUF4BKONo2eZrDH5k6mm5l2X5HYjDkjh\",",
@@ -2911,7 +2829,7 @@
                   "",
                   "var minUserData={",
                   " \"person\": {",
-                  "  \"photoId\": photoIdMin,",
+                  "  \"photoId\": orgInfo[0].photoIdMale_3,",
                   "  \"email\": {",
                   "    \"address\":\"b@r.com\",",
                   "  },",
@@ -2928,7 +2846,7 @@
                   "",
                   "var allFieldsUserData={",
                   " \"person\": {",
-                  "  \"photoId\": photoIdAllFields,",
+                  "  \"photoId\": orgInfo[0].photoIdMale_4,",
                   "  \"email\": {",
                   "    \"address\":\"john@snow.com\",",
                   "  },",
@@ -2956,9 +2874,6 @@
                   "}",
                   "",
                   "var currentNameIteration =testFirstNameIteration.shift();",
-                  "",
-                  "",
-                  "",
                   "",
                   "pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
                   "pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
@@ -3006,7 +2921,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "7271fb18-0aae-4bd8-939c-75bfab522e55",
+                "id": "720857a3-1282-47af-81b7-11e2dd309033",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -3033,9 +2948,7 @@
                   "         pm.environment.unset(\"currentNameIteration\");",
                   "         pm.environment.unset(\"testFirstNameIteration\");",
                   "         pm.environment.unset(\"currentNameIterationData\");",
-                  "         pm.environment.unset(\"itemid\");",
-                  "         pm.environment.unset(\"userId\");",
-                  "         ",
+                  "",
                   "         postman.setNextRequest();",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
@@ -3048,23 +2961,16 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "cec5156f-cb26-431f-be6b-6f8c523f11fa",
+                "id": "8b6276d9-4474-43c0-b291-99f276ca0ec5",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
                   "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
-                  "postman.setEnvironmentVariable(\"userId\", orgInfo[0].userId);",
-                  "var userId=pm.environment.get(\"userId\");",
-                  "console.log(\"Userid\");",
-                  "var randEmp1=postman.getEnvironmentVariable(\"orgInfo[0].employees[0].employeeId\");",
-                  "var randEmp2=postman.getEnvironmentVariable(\"orgInfo[0].employees[1].employeeId\");",
-                  "var randEmp3=postman.getEnvironmentVariable(\"orgInfo[0].employees[2].employeeId\");",
-                  "var randEmp4=postman.getEnvironmentVariable(\"orgInfo[0].employees[3].employeeId\");",
-                  "postman.setEnvironmentVariable(\"item_idUnlimited\", orgInfo[0].itemId_unlimited);",
-                  "var itemid= postman.getEnvironmentVariable(\"item_idUnlimited\");",
+                  "",
+                  "",
                   "",
                   "var nominalUserData={  ",
-                  "   \"salesEmployeeId\":randEmp1,",
+                  "   \"salesEmployeeId\":orgInfo[0].employees[0].employeeId,",
                   "   \"items\":[  ",
                   "      {  ",
                   "         \"quantity\":1,",
@@ -3074,7 +2980,7 @@
                   "         \"expirationUnit\":\"MONTHS\",",
                   "         \"unitPrice\":\"2\",",
                   "         \"salesTax\":\"0.6\",",
-                  "         \"itemId\":itemid,",
+                  "         \"itemId\":orgInfo[0].itemId_unlimited,",
                   "         \"currency\":\"USD\",",
                   "         \"itemType\":\"SERVICE\"",
                   "      }",
@@ -3088,7 +2994,7 @@
                   "};",
                   "console.log(\"test max\");",
                   "var maxUserData={  ",
-                  "   \"salesEmployeeId\":randEmp2,",
+                  "   \"salesEmployeeId\":orgInfo[0].employees[1].employeeId,",
                   "   \"items\":[  ",
                   "      {  ",
                   "         \"quantity\":1,",
@@ -3098,7 +3004,7 @@
                   "         \"expirationUnit\":\"MONTHS\",",
                   "         \"unitPrice\":5555,",
                   "         \"salesTax\":0.6,",
-                  "         \"itemId\": itemid,",
+                  "         \"itemId\": orgInfo[0].itemId_unlimited,",
                   "         \"currency\":\"USD\",",
                   "         \"itemType\":\"SERVICE\"",
                   "      }",
@@ -3112,7 +3018,7 @@
                   "};",
                   "console.log(\"test min\");",
                   "var minUserData={  ",
-                  "   \"salesEmployeeId\":randEmp3,",
+                  "   \"salesEmployeeId\":orgInfo[0].employees[2].employeeId,",
                   "   \"items\":[  ",
                   "      {  ",
                   "         \"quantity\":1,",
@@ -3122,7 +3028,7 @@
                   "         \"expirationUnit\":\"MONTHS\",",
                   "         \"unitPrice\":1,",
                   "         \"salesTax\":0.6,",
-                  "         \"itemId\":itemid,",
+                  "         \"itemId\":orgInfo[0].itemId_unlimited,",
                   "         \"currency\":\"USD\",",
                   "         \"itemType\":\"SERVICE\"",
                   "      }",
@@ -3135,7 +3041,7 @@
                   "   }",
                   "};",
                   "var allFieldsUserData={",
-                  "    \t\"salesEmployeeId\" : randEmp4,",
+                  "    \t\"salesEmployeeId\" : orgInfo[0].employees[3].employeeId,",
                   "\t\"items\" : [ {",
                   "\t\"quantity\" : 1,",
                   "\t\"unlimited\" : true,",
@@ -3143,20 +3049,12 @@
                   "\t\"expirationTime\" : 2,",
                   "\t\"expirationUnit\" : \"MONTHS\",",
                   "\t\"unitPrice\" : \"2\",",
-                  "\t/*\"discountAmount\" : 5,",
-                  "\t\"netPrice\": 4,",
-                  "\t\"itemCategoryId\"  :",
-                  "\t\"metered\" : false*/",
                   "\t\"salesTax\" : \"0.6\",",
-                  "\t\"itemId\" : itemid,",
+                  "\t\"itemId\" : orgInfo[0].itemId_unlimited,",
                   "\t\"currency\" : \"USD\",",
                   "\t\"itemType\" : \"SERVICE\"",
                   "\t} ],",
                   "\t\"payment\" : {",
-                  "\t /*\"id\" :",
-                  "\t \"locationId\" :",
-                  "\t \"userId\"  :",
-                  "\t \"cardId\"  :*/",
                   "\t\"amount\": \"2.6\",",
                   "\t\"currency\": \"USD\",",
                   "\t\"email\": \"gdg55ddg@qa4life.com\",",
@@ -3168,16 +3066,15 @@
                   "if(!testFirstNameIteration) {",
                   "    testFirstNameIteration =  [",
                   "        {data: nominalUserData,statusCode :201 , type : \"Nominal\"},",
-                  "        {data: minUserData,statusCode :201 , type : \"Min\"},",
                   "        {data: maxUserData,statusCode: 201, type: \"Max\"},",
+                  "        {data: minUserData,statusCode :201 , type : \"Min\"},",
                   "        {data: allFieldsUserData,statusCode: 201 , type: \"allFields\"}",
                   "        ];",
                   "        console.log(\"test iTTERATION\");",
                   "}",
                   "",
                   "var currentNameIteration =testFirstNameIteration.shift();",
-                  "pm.environment.set(\"organizationId\",orgInfo[0].orgId);",
-                  "pm.environment.set(\"locationId\",orgInfo[0].locationId);",
+                  "",
                   "pm.environment.set(\"userId\",orgInfo[0].userId);",
                   "",
                   "pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
@@ -3219,6 +3116,723 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "createLimitedPurchase",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4272fcee-c4d6-4cb6-a28e-a7d897c7a39d",
+                "type": "text/javascript",
+                "exec": [
+                  "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
+                  "var testTypeNominal =  pm.environment.get(\"testType\"); ",
+                  "console.log(currentRequest);",
+                  "var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
+                  " var resBody = JSON.parse(responseBody);",
+                  " if(!orgInfo) orgInfo=[];",
+                  "    console.log(\"create unlimited purchase \" + testTypeNominal);",
+                  "  if (responseCode.code===201 && testTypeNominal==\"Nominal\" ) {",
+                  "     console.log(resBody);",
+                  "       orgInfo[0].invoiceId=resBody.invoiceId;",
+                  "       orgInfo[0].saleItemsId=resBody.saleItemsId;",
+                  "       pm.environment.set(\"orgInfoDetails\", orgInfo); ",
+                  "  ",
+                  "  } ",
+                  "",
+                  " var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
+                  "  if (testFirstNameIteration.length > 0) {",
+                  "       console.log(\"testa\");",
+                  "    postman.setNextRequest(\"createLimitedPurchase\");",
+                  "    console.log(\"testb\");",
+                  "    } else {",
+                  "         pm.environment.unset(\"currentNameIteration\");",
+                  "         pm.environment.unset(\"testFirstNameIteration\");",
+                  "         pm.environment.unset(\"currentNameIterationData\");",
+                  "         postman.setNextRequest();",
+                  "}",
+                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "",
+                  "",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "5d928ae2-5bbc-4fe2-98a9-013d9e69fe32",
+                "type": "text/javascript",
+                "exec": [
+                  "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
+                  "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "var nominalUserData={  ",
+                  "   \"salesEmployeeId\":orgInfo[0].employees[0].employeeId,",
+                  "   \"items\":[  ",
+                  "      {  ",
+                  "         \"quantity\":5,",
+                  "         \"metered\":true,",
+                  "         \"expirationStart\":\"PURCHASE\",",
+                  "         \"expirationTime\":\"2\",",
+                  "         \"expirationUnit\":\"MONTHS\",",
+                  "         \"unitPrice\":\"2\",",
+                  "         \"salesTax\":\"0.6\",",
+                  "         \"itemId\":orgInfo[0].itemId_limited,",
+                  "         \"currency\":\"USD\",",
+                  "         \"itemType\":\"SERVICE\"",
+                  "      }",
+                  "   ],",
+                  "   \"payment\":{  ",
+                  "      \"amount\":\"2.6\",",
+                  "      \"currency\":\"USD\",",
+                  "      \"email\":\"gdgddg@qa4life.com\",",
+                  "      \"type\":\"CASH\"",
+                  "   }",
+                  "};",
+                  "console.log(\"test max\");",
+                  "var maxUserData={  ",
+                  "   \"salesEmployeeId\":orgInfo[0].employees[1].employeeId,",
+                  "   \"items\":[  ",
+                  "      {  ",
+                  "         \"quantity\":10,",
+                  "         \"metered\":true,",
+                  "         \"expirationStart\":\"PURCHASE\",",
+                  "         \"expirationTime\":2,",
+                  "         \"expirationUnit\":\"MONTHS\",",
+                  "         \"unitPrice\":5555,",
+                  "         \"salesTax\":0.6,",
+                  "         \"itemId\": orgInfo[0].itemId_limited,",
+                  "         \"currency\":\"USD\",",
+                  "         \"itemType\":\"SERVICE\"",
+                  "      }",
+                  "   ],",
+                  "   \"payment\":{  ",
+                  "      \"amount\":5555.6,",
+                  "      \"currency\":\"USD\",",
+                  "      \"email\":\"gdgddfgfdgdg@qa4life.com\",",
+                  "      \"type\":\"CASH\"",
+                  "   }",
+                  "};",
+                  "console.log(\"test min\");",
+                  "var minUserData={  ",
+                  "   \"salesEmployeeId\":orgInfo[0].employees[2].employeeId,",
+                  "   \"items\":[  ",
+                  "      {  ",
+                  "         \"quantity\":1,",
+                  "         \"metered\":true,",
+                  "         \"expirationStart\":\"PURCHASE\",",
+                  "         \"expirationTime\":2,",
+                  "         \"expirationUnit\":\"MONTHS\",",
+                  "         \"unitPrice\":1,",
+                  "         \"salesTax\":0.6,",
+                  "         \"itemId\":orgInfo[0].itemId_limited,",
+                  "         \"currency\":\"USD\",",
+                  "         \"itemType\":\"SERVICE\"",
+                  "      }",
+                  "   ],",
+                  "   \"payment\":{  ",
+                  "      \"amount\":1.6,",
+                  "      \"currency\":\"USD\",",
+                  "      \"email\":\"g@qa4life.com\",",
+                  "      \"type\":\"CASH\"",
+                  "   }",
+                  "};",
+                  "var allFieldsUserData={",
+                  "    \t\"salesEmployeeId\" : orgInfo[0].employees[3].employeeId,",
+                  "\t\"items\" : [ {",
+                  "\t\"quantity\" : 1,",
+                  "\t\"metered\" : true,",
+                  "\t\"expirationStart\" : \"PURCHASE\",",
+                  "\t\"expirationTime\" : 2,",
+                  "\t\"expirationUnit\" : \"MONTHS\",",
+                  "\t\"unitPrice\" : \"2\",",
+                  "\t\"salesTax\" : \"0.6\",",
+                  "\t\"itemId\" : orgInfo[0].itemId_limited,",
+                  "\t\"currency\" : \"USD\",",
+                  "\t\"itemType\" : \"SERVICE\"",
+                  "\t} ],",
+                  "\t\"payment\" : {",
+                  "\t\"amount\": \"2.6\",",
+                  "\t\"currency\": \"USD\",",
+                  "\t\"email\": \"gdg55ddg@qa4life.com\",",
+                  "\t\"type\": \"CASH\"",
+                  "\t}",
+                  "};",
+                  "",
+                  "console.log(JSON.stringify(request));",
+                  "if(!testFirstNameIteration) {",
+                  "    testFirstNameIteration =  [",
+                  "        {data: nominalUserData,statusCode :201 , type : \"Nominal\"},",
+                  "        {data: maxUserData,statusCode: 201, type: \"Max\"},",
+                  "        {data: minUserData,statusCode :201 , type : \"Min\"},",
+                  "        {data: allFieldsUserData,statusCode: 201 , type: \"allFields\"}",
+                  "        ];",
+                  "        console.log(\"test iTTERATION\");",
+                  "}",
+                  "",
+                  "var currentNameIteration =testFirstNameIteration.shift();",
+                  "",
+                  "pm.environment.set(\"userId\",orgInfo[0].userId);",
+                  "pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
+                  "pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
+                  "pm.environment.set(\"testType\", currentNameIteration.type);",
+                  "pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{{currentNameIterationData}}"
+            },
+            "url": {
+              "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
+              "host": [
+                "{{purchase}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "purchase",
+                "user",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createEnrollment_yoga",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "25a4aff2-6920-4872-b25b-10432e4d9d5b",
+                "type": "text/javascript",
+                "exec": [
+                  "var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
+                  "if(!orgInfo) orgInfo=[];",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201) ",
+                  "{",
+                  "    ",
+                  "    ",
+                  "    var resBody = JSON.parse(responseBody);",
+                  "     orgInfo[0].enrollmentId=resBody.id;",
+                  "     console.log(\"enrollmentId before update: \" +orgInfo[0].enrollmentId);",
+                  "      postman.setNextRequest();",
+                  "    ",
+                  "    }",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId}}/enrollment/{{userId}}",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId}}",
+                "enrollment",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createEnrollment_yoga _updation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d6633f2a-f655-49d5-a2b2-d0c19945ef16",
+                "type": "text/javascript",
+                "exec": [
+                  "var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
+                  "if(!orgInfo) orgInfo=[];",
+                  "",
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201) ",
+                  "{",
+                  "    var resBody = JSON.parse(responseBody);",
+                  "     orgInfo[0].enrollmentId=resBody.id;",
+                  "     console.log(\"Updated enrollmentId\" +orgInfo[0].enrollmentId);",
+                  "    pm.environment.unset(\"eventId_toupdate\");",
+                  "   ",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "8983cda8-c9e7-4973-9d75-026cd7239bb4",
+                "type": "text/javascript",
+                "exec": [
+                  "var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
+                  "console.log(\"HI\");",
+                  "postman.setEnvironmentVariable(\"eventId_toupdate\", orgInfo[2].eventId_toupdate);",
+                  "console.log(\"eventId_toupdate: \" +orgInfo[2].eventId_toupdate);",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_toupdate}}/enrollment/{{userId}}",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "event",
+                "{{eventId_toupdate}}",
+                "enrollment",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "swapEnrollmentUser",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7ea605f9-ca06-47ad-9284-f14fa05ebdb0",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    ",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201) ",
+                  "{",
+                  "        var jsonData = JSON.parse(responseBody);",
+                  "        console.log(jsonData);",
+                  "        ",
+                  "       ",
+                  "}",
+                  " var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
+                  "  if (testFirstNameIteration.length > 0) {",
+                  "    postman.setNextRequest(\"swapEnrollmentUser\");",
+                  "    } else {",
+                  "         pm.environment.unset(\"currentNameIteration\");",
+                  "         pm.environment.unset(\"testFirstNameIteration\");",
+                  "         pm.environment.unset(\"currentNameIterationData\");",
+                  "    }",
+                  "",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "f98e321d-ab9a-4c75-8de2-64358bdffb60",
+                "type": "text/javascript",
+                "exec": [
+                  "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
+                  "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
+                  "",
+                  "console.log(\"swapEnrollmentUser\");",
+                  "console.log(orgInfo);",
+                  "",
+                  "var nominalUserData={",
+                  "  \"fromEventId\" : \"{{eventId}}\",",
+                  "  \"toEventId\" : orgInfo[1].eventIdForSwap,",
+                  "  \"userid\" : \"{{userId}}\"",
+                  "};",
+                  "",
+                  "",
+                  "console.log(JSON.stringify(request));",
+                  "if(!testFirstNameIteration) {",
+                  "    testFirstNameIteration =  [",
+                  "        {data: nominalUserData,statusCode :201 , type : \"Nominal\"}",
+                  "        ];",
+                  "}",
+                  "",
+                  "var currentNameIteration =testFirstNameIteration.shift();",
+                  "",
+                  "",
+                  "",
+                  "pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
+                  "pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
+                  "pm.environment.set(\"testType\", currentNameIteration.type);",
+                  "pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{{currentNameIterationData}}"
+            },
+            "url": {
+              "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/enrollment/swap",
+              "host": [
+                "{{enrollment}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "enrollment",
+                "swap"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Member SignUp",
+      "description": null,
+      "item": [
+        {
+          "name": "createMemberSignUp",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "62e81fe4-c8a7-40bf-8b7b-240ccfa606bf",
+                "type": "text/javascript",
+                "exec": [
+                  "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
+                  "var testTypeNominal =  pm.environment.get(\"testType\"); ",
+                  "console.log(currentRequest);",
+                  "var orgInfo =  pm.environment.get(\"orgInfoDetails\"); ",
+                  " var resBody = JSON.parse(responseBody);",
+                  " if(!orgInfo) orgInfo=[];",
+                  "    console.log(\"create Member Sign Up\" + testTypeNominal);",
+                  "  if (responseCode.code===201 && testTypeNominal==\"Nominal\" ) {",
+                  "     console.log(resBody);",
+                  "       pm.environment.set(\"orgInfoDetails\", orgInfo); ",
+                  "  ",
+                  "  } ",
+                  "",
+                  " var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
+                  "  if (testFirstNameIteration.length > 0) {",
+                  "       console.log(\"testa\");",
+                  "    postman.setNextRequest(\"createMemberSignUp\");",
+                  "    console.log(\"testb\");",
+                  "    } else {",
+                  "         pm.environment.unset(\"currentNameIteration\");",
+                  "         pm.environment.unset(\"testFirstNameIteration\");",
+                  "         pm.environment.unset(\"currentNameIterationData\");",
+                  "         pm.environment.unset(\"termsId\");",
+                  "         pm.environment.unset(\"waiverId\");",
+                  "         pm.environment.unset(\"eventcategoryId\");",
+                  "         pm.environment.unset(\"eventId\");",
+                  "         postman.setNextRequest();",
+                  "}",
+                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "",
+                  "",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "9c9330cd-c30e-4359-9075-1d84c22f0b8b",
+                "type": "text/javascript",
+                "exec": [
+                  "var orgInfo = pm.environment.get(\"orgInfoDetails\");",
+                  "var testFirstNameIteration=pm.environment.get(\"testFirstNameIteration\");",
+                  "console.log(\"createMemberSignUp\");",
+                  "",
+                  "var waiverId = postman.getEnvironmentVariable(\"waiverId\");",
+                  "var termsId = postman.getEnvironmentVariable(\"termsId\");",
+                  "",
+                  "console.log(\"nominalUserData\");",
+                  "var nominalUserData={",
+                  "  \"firstName\" : \"Aditi\",",
+                  "  \"lastName\" : \"Goel\",",
+                  "  \"birthDate\" : \"07/27/1992\",",
+                  "  \"email\" : {",
+                  "    \"address\" : \"john.snow123@qa4life.com\"",
+                  "  },",
+                  "  \"phone\" : {",
+                  "    \"number\" : \"9988774455\",",
+                  "    \"extension\": \"12345\"",
+                  "  },",
+                  "",
+                  "  \"healthNote\" : \"Wrist pain\",",
+                  "  \"items\" : [ {",
+                  "    \"quantity\" : 1,",
+                  "    \"metered\" : true,",
+                  "    \"expirationStart\" : \"PURCHASE\",",
+                  "    \"expirationTime\" : 60,",
+                  "    \"expirationUnit\" : \"DAYS\",",
+                  "    \"unitPrice\" : 10.0,",
+                  "    \"salesTax\" : 1.2,",
+                  "    \"itemId\" : orgInfo[0].itemId_limited,",
+                  "    \"itemType\" : \"SERVICE\"",
+                  "  } ],",
+                  "  \"payment\" : {",
+                  "    \"amount\" : 11.2,",
+                  "    \"type\" : \"CASH\",",
+                  "    \"email\" : \"john.snowKings456North@qa4life.com\",",
+                  "     \"currency\":\"USD\"",
+                  "  },",
+                  "\"salesEmployeeId\" : orgInfo[0].employees[0].employeeId,",
+                  "  \"termsAndConditionsId\" : termsId,",
+                  "  \"waiverId\" : waiverId",
+                  "",
+                  "};",
+                  "console.log(\"maxUserData\");",
+                  "",
+                  "var maxUserData={",
+                  "  \"firstName\" : \"First name of employee for maximum characters Fir\",",
+                  "  \"lastName\" : \"Last name of employee for maximum characters Last Last name of employee for maximum characters  Las\",",
+                  "  \"birthDate\" : \"07/27/1992\",",
+                  "  \"email\" : {",
+                  "    \"address\" : \"NyqSUleUKuAhRaraUVRkEmYHowqrJXaSlclOydZLDuzSpapeWJywmXgclNTJlzArhmfaLORdkHOAsWNPmUtmDTSokIYighJiUGSyXXOGaRevOtrHIlAkBhwvObeecIaAlFNbeVAexihQvoZIapPfidioMKIzVqywaHckEighPmVIBKkXDEuvKGTLcYLMKUjfHiPaWhvSQaUVoJCsZKCYcgTFTkoxJpkGZOgzjZEKDCeTjR123@qa4life.com\"",
+                  "  },",
+                  "  \"phone\" : {",
+                  "    \"number\" : \"12345678901112\",",
+                  "    \"extension\": \"1234567891\"",
+                  "  },",
+                  "",
+                  "  \"healthNote\" : \"Wrist pain\",",
+                  "  \"items\" : [ {",
+                  "    \"quantity\" : 1,",
+                  "    \"metered\" : true,",
+                  "    \"expirationStart\" : \"PURCHASE\",",
+                  "    \"expirationTime\" : 2,",
+                  "    \"expirationUnit\" : \"YEARS\",",
+                  "    \"unitPrice\" : 1.0,",
+                  "    \"salesTax\" : 1.2,",
+                  "    \"itemId\" : orgInfo[0].itemId_limited,",
+                  "    \"itemType\" : \"SERVICE\"",
+                  "  } ],",
+                  "  \"payment\" : {",
+                  "    \"amount\" : 2.2,",
+                  "    \"type\" : \"CASH\",",
+                  "    \"email\" : \"johnsnowwinteriscoming123@qa4life.com\",",
+                  "     \"currency\":\"USD\"",
+                  "  },",
+                  "\"salesEmployeeId\" : orgInfo[0].employees[1].employeeId,",
+                  "  \"termsAndConditionsId\" : termsId,",
+                  "  \"waiverId\" : waiverId",
+                  "};",
+                  "",
+                  "console.log(\"minUserData\");",
+                  "",
+                  "var minUserData={",
+                  "  \"firstName\" : \"m\",",
+                  "  \"lastName\" : \"G\",",
+                  "  \"birthDate\" : \"07/27/1992\",",
+                  "  \"email\" : {",
+                  "    \"address\" : \"jdf@qa4life.com\"",
+                  "  },",
+                  "  \"phone\" : {",
+                  "    \"number\" : \"998448774455\",",
+                  "    \"extension\": \"1\"",
+                  "  },",
+                  "",
+                  "  \"healthNote\" : \"Wrist pain\",",
+                  "  \"items\" : [ {",
+                  "    \"quantity\" : 1,",
+                  "    \"metered\" : true,",
+                  "    \"expirationStart\" : \"PURCHASE\",",
+                  "    \"expirationTime\" : 60,",
+                  "    \"expirationUnit\" : \"DAYS\",",
+                  "    \"unitPrice\" : 1.0,",
+                  "    \"salesTax\" : 1.2,",
+                  "    \"itemId\" : orgInfo[0].itemId_limited,",
+                  "    \"itemType\" : \"SERVICE\"",
+                  "  } ],",
+                  "  \"payment\" : {",
+                  "    \"amount\" : 2.2,",
+                  "    \"type\" : \"CASH\",",
+                  "    \"email\" : \"jN@qa4life.com\",",
+                  "     \"currency\":\"USD\"",
+                  "  },",
+                  "\"salesEmployeeId\" : orgInfo[0].employees[2].employeeId,",
+                  "  \"termsAndConditionsId\" : termsId,",
+                  "  \"waiverId\" : waiverId",
+                  "};",
+                  "console.log(\"allFieldsUserData\");",
+                  "",
+                  "var allFieldsUserData={",
+                  "  \"firstName\" : \"All Fields\",",
+                  "  \"lastName\" : \"Goel\",",
+                  "  \"birthDate\" : \"07/27/1992\",",
+                  "  \"email\" : {",
+                  "    \"address\" : \"john.snow1@qa4life.com\"",
+                  "  },",
+                  "  \"phone\" : {",
+                  "    \"number\" : \"998856774455\",",
+                  "    \"extension\": \"145\"",
+                  "  },",
+                  "",
+                  "  \"healthNote\" : \"Wrist pain\",",
+                  "  \"items\" : [ {",
+                  "    \"quantity\" : 1,",
+                  "    \"metered\" : true,",
+                  "    \"expirationStart\" : \"PURCHASE\",",
+                  "    \"expirationTime\" : 60,",
+                  "    \"expirationUnit\" : \"DAYS\",",
+                  "    \"unitPrice\" : 10.0,",
+                  "    \"salesTax\" : 1.2,",
+                  "    \"itemId\" : orgInfo[0].itemId_limited,",
+                  "    \"itemType\" : \"SERVICE\"",
+                  "  } ],",
+                  "  \"payment\" : {",
+                  "     \"userId\" : orgInfo[0].userId,",
+                  "    \"amount\" : 11.2,",
+                  "    \"type\" : \"CASH\",",
+                  "    \"email\" : \"john.snowKings6North@qa4life.com\",",
+                  "     \"currency\":\"USD\"",
+                  "  },",
+                  "\"salesEmployeeId\" : orgInfo[0].employees[3].employeeId,",
+                  "  \"termsAndConditionsId\" : termsId,",
+                  "  \"waiverId\" : waiverId",
+                  "",
+                  "};",
+                  "",
+                  "console.log(JSON.stringify(request));",
+                  "if(!testFirstNameIteration) {",
+                  "    testFirstNameIteration =  [",
+                  "        {data: nominalUserData,statusCode :201 , type : \"Nominal\"},",
+                  "        {data: maxUserData,statusCode: 201, type: \"Max\"},",
+                  "        {data: minUserData,statusCode :201 , type : \"Min\"},",
+                  "        {data: allFieldsUserData,statusCode: 201 , type: \"allFields\"}",
+                  "        ];",
+                  "}",
+                  "",
+                  "var currentNameIteration=testFirstNameIteration.shift();",
+                  "",
+                  "pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
+                  "pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
+                  "pm.environment.set(\"testType\", currentNameIteration.type);",
+                  "pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{{currentNameIterationData}}"
+            },
+            "url": {
+              "raw": "{{memberSignUp}}/{{organizationId}}/{{locationId}}/signUp",
+              "host": [
+                "{{memberSignUp}}"
+              ],
+              "path": [
+                "{{organizationId}}",
+                "{{locationId}}",
+                "signUp"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -3232,7 +3846,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "d442fdb5-3036-4948-8a8e-6f99375f820d",
+                "id": "358d4adb-1022-46eb-ab21-0cc5fd6833af",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -3248,6 +3862,7 @@
                   "       orgInfo[0].promoStartDate1=resBody.startDate;",
                   "       orgInfo[0].promoEndDate1=resBody.endDate;",
                   "    pm.environment.set(\"orgInfoDetails\", orgInfo); ",
+                  "    console.log( \"vsdgsgdvshdsjkfdfdjkg\"+orgInfo[0].promoCodeId1);",
                   "  ",
                   "  } ",
                   "",
@@ -3259,8 +3874,6 @@
                   "         pm.environment.unset(\"currentNameIteration\");",
                   "         pm.environment.unset(\"testFirstNameIteration\");",
                   "         pm.environment.unset(\"currentNameIterationData\");",
-                  "        ",
-                  "",
                   "}",
                   "",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
@@ -3272,7 +3885,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "0234d222-5fda-4984-a7dd-8ad3e97f3412",
+                "id": "a3f025ff-b143-4b0f-a29b-51e082e47d49",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
@@ -3376,10 +3989,6 @@
                   "pm.environment.set(\"testType\", currentNameIteration.type);",
                   "pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
                   "",
-                  "",
-                  "",
-                  "// postman.setEnvironmentVariable(\"promoCodeAmount1\", promoCodeAmount1);",
-                  "// postman.setEnvironmentVariable(\"promoCode1\", promoCode1);",
                   ""
                 ]
               }
@@ -3421,7 +4030,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "d7697bd8-22f4-4e20-b78b-386dce3a03fc",
+                "id": "ed917e27-d6fb-4f0a-aa87-3db9d9b88f68",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentNameIteration\")); ",
@@ -3448,7 +4057,12 @@
                   "         pm.environment.unset(\"currentNameIteration\");",
                   "         pm.environment.unset(\"testFirstNameIteration\");",
                   "         pm.environment.unset(\"currentNameIterationData\");",
+                  "          pm.environment.unset(\"testType\");",
+                  "         pm.environment.unset(\"organizationId\");",
                   "         pm.environment.unset(\"orgInfoDetails\");",
+                  "         pm.environment.unset(\"locationId\");",
+                  "         pm.environment.unset(\"userId\");",
+                  "         pm.environment.unset(\"accessToken\");",
                   "       ",
                   "",
                   "}",
@@ -3462,7 +4076,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "1f662581-82e5-48d6-92da-ab4f15f00b9d",
+                "id": "df8eab8d-ece8-4f4b-9617-fe20b533cf6f",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
@@ -3558,12 +4172,7 @@
                   "pm.environment.set(\"testFirstNameIteration\", testFirstNameIteration);",
                   "pm.environment.set(\"currentNameIteration\", JSON.stringify(currentNameIteration));",
                   "pm.environment.set(\"testType\", currentNameIteration.type);",
-                  "pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));",
-                  "",
-                  "",
-                  "",
-                  "",
-                  ""
+                  "pm.environment.set(\"currentNameIterationData\", JSON.stringify(currentNameIteration.data));"
                 ]
               }
             }
