@@ -310,7 +310,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "2f583b56-0c76-4fc3-a203-6bb707928194",
+                "id": "8cd87a3a-1e86-4a67-89ae-b1c9caa07347",
                 "type": "text/javascript",
                 "exec": [
                   "var currentRequest =  JSON.parse(pm.environment.get(\"currentOrgInfo\")); ",
@@ -349,7 +349,7 @@
                   "",
                   " var testFirstNameIteration = pm.environment.get(\"testFirstNameIteration\");",
                   "  if (testFirstNameIteration.length > 0) {",
-                  "    postman.setNextRequest(\"createOrgLocation Copy\");",
+                  "    postman.setNextRequest(\"createOrgLocation\");",
                   "    } else {",
                   "         pm.environment.unset(\"currentRequest\");",
                   "         pm.environment.unset(\"currentNameIteration\");",
@@ -4076,7 +4076,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "df8eab8d-ece8-4f4b-9617-fe20b533cf6f",
+                "id": "98d639b5-e1f2-4840-89c8-6674fcd7f703",
                 "type": "text/javascript",
                 "exec": [
                   "var orgInfo =  pm.environment.get(\"orgInfoDetails\");",
@@ -4142,7 +4142,7 @@
                   "  \"type\" : \"PERCENTAGE\",",
                   "  \"startDate\" : promoStartDate,",
                   "  \"endDate\" : promoEndDate,",
-                  "  \"amount\" : \"0\"",
+                  "  \"amount\" : \"1\"",
                   "  ",
                   "};",
                   "",
