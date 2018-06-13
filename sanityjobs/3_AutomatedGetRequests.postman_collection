@@ -34,11 +34,15 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"University Fitness Center #{{orgNumber}}\",\r\n    \"address\" : {\r\n      \"address1\" : \"123 Fitness Lane\",\r\n      \"address2\" : \"PO Box {{$randomInt}}\",\r\n      \"city\" : \"Little Rock\",\r\n      \"state\" : \"{{randState}}\",\r\n      \"country\" : \"United States\",\r\n      \"zipCode\" : \"33935\"\r\n    },\r\n  \"email\" : {\r\n    \"address\" : \"UniversityFitness{{orgNumber}}@ufit.com\"\r\n  },\r\n  \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"411\"\r\n    }\r\n}\r\n\r\n"
+              "raw": "{\r\n  \"name\" : \"University Fitness Center #{{orgNumber}}\",\r\n    \"address\" : {\r\n      \"address1\" : \"123 Fitness Lane\",\r\n      \"address2\" : \"PO Box {{$randomInt}}\",\r\n      \"city\" : \"Little Rock\",\r\n      \"state\" : \"{{randState}}\",\r\n      \"country\" : \"United States\",\r\n      \"zipCode\" : \"33935\"\r\n    },\r\n  \"email\" : {\r\n    \"address\" : \"UniversityFitness{{orgNumber}}@qa4life.com\"\r\n  },\r\n  \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"411\"\r\n    }\r\n}\r\n\r\n"
             },
             "url": {
               "raw": "{{my-organization}}/{{organizationId}}/location/{{locationId}}",
@@ -142,7 +146,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{schedule}}/{{organizationId}}/{{locationId}}/schedule?startDateTime={{eventStartTime}}&endDateTime={{eventEndTime}}",
@@ -195,7 +204,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{registration}}/{{organizationId}}/user/token/{{employeeTokenId}}",
@@ -239,7 +253,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1030am}}/enrollment",
@@ -278,7 +297,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_1200pm}}/enrollment",
@@ -317,7 +341,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_100pm}}/enrollment",
@@ -356,7 +385,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_200pm}}/enrollment",
@@ -395,7 +429,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_300pm}}/enrollment",
@@ -434,7 +473,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_430pm}}/enrollment",
@@ -473,7 +517,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{enrollment}}/{{organizationId}}/{{locationId}}/event/{{eventId_500pm}}/enrollment",
@@ -595,7 +644,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"password\": \"Sydney@32\",\r\n  \"username\": \"animesh.kumar@abcfinancial.com\"\r\n}"
+              "raw": "{\r\n  \"password\": \"abc1234$\",\r\n  \"username\": \"Test5ABC3@abcfinancial.com\"\r\n}"
             },
             "url": {
               "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
@@ -645,7 +694,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_yoga}}?userId={{userId}}",
@@ -689,7 +743,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_p90x}}?userId={{userId}}",
@@ -733,7 +792,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_pilates}}?userId={{userId}}",
@@ -777,7 +841,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_zumba}}?userId={{userId}}",
@@ -821,7 +890,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_cycling}}?userId={{userId}}",
@@ -865,7 +939,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_aerobics}}?userId={{userId}}",
@@ -909,7 +988,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{package}}/{{organizationId}}/{{locationId}}/package/{{eventTypeId_turboKick}}?userId={{userId}}",
@@ -935,7 +1019,7 @@
       ]
     },
     {
-      "name": "Omni Seearch",
+      "name": "Omni Search",
       "description": "",
       "item": [
         {
@@ -962,7 +1046,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{omniSearch}}/{{organizationId}}/organization",
@@ -1001,7 +1090,12 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
               "raw": "{{omniSearch}}/{{organizationId}}/location",
@@ -1022,6 +1116,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "80dc14ff-25b3-44f7-98c2-ef8a64c9c6cb",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -1032,12 +1127,14 @@
                   "",
                   "var ownerEmailToSearchFor = postman.getEnvironmentVariable(\"ownerEmail\");",
                   "var ownerIdToSearchFor = postman.getEnvironmentVariable(\"ownerId\");",
+                  "var ownerEmployeeIdToSearchFor = postman.getEnvironmentVariable(\"employeeId_10\");",
                   "var employeeIdToSearchFor = postman.getEnvironmentVariable(\"employeeId\");",
                   "var employeeEmailToSearchFor = postman.getEnvironmentVariable(\"employeeEmail\");",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   "tests[\"Searching for specific Owner Email in response\"] = responseBody.has(ownerEmailToSearchFor);",
                   "tests[\"Searching for specific Owner UUID in response\"] = responseBody.has(ownerIdToSearchFor);",
+                  "tests[\"Searching for specific Owner Employee ID in response\"] = responseBody.has(ownerEmployeeIdToSearchFor);",
                   "tests[\"Searching for specific Employee Email in response\"] = responseBody.has(employeeEmailToSearchFor);",
                   "tests[\"Searching for specific Employee UUID in response\"] = responseBody.has(employeeIdToSearchFor);"
                 ]
@@ -1046,16 +1143,27 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
-              "raw": "{{omniSearch}}/{{organizationId}}/employee",
+              "raw": "{{omniSearch}}/{{organizationId}}/employee?size=100",
               "host": [
                 "{{omniSearch}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "employee"
+              ],
+              "query": [
+                {
+                  "key": "size",
+                  "value": "100"
+                }
               ]
             }
           },
@@ -1085,16 +1193,27 @@
           ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
             "body": {},
             "url": {
-              "raw": "{{omniSearch}}/{{organizationId}}/member",
+              "raw": "{{omniSearch}}/{{organizationId}}/member?size=1000",
               "host": [
                 "{{omniSearch}}"
               ],
               "path": [
                 "{{organizationId}}",
                 "member"
+              ],
+              "query": [
+                {
+                  "key": "size",
+                  "value": "1000"
+                }
               ]
             }
           },
