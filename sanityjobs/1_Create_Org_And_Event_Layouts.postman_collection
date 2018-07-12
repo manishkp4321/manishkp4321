@@ -216,7 +216,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box {{$randomInt}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"abcqatesting2017@gmail.com\"\n    }\n  }\n}"
+                "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"timezone\" : \"US/Central\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box {{$randomInt}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"abcqatesting2017@gmail.com\"\n    }\n  }\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/organization",
