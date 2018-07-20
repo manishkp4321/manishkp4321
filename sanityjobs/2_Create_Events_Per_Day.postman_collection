@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "d267f7e0-522a-4cf4-b303-56710f20b66f",
-    "name": "2_Create_Events_Per_Day copy_newest",
+    "_postman_id": "3d244c70-a663-4de3-a462-b6d89ebe1d71",
+    "name": "2_Create_Events_Per_Day copy_newest copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -36,7 +36,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "f568b086-df2f-451d-8259-fc44294cec1a",
+                "id": "cde9cade-cec5-431c-b391-404a714f3699",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -45,15 +45,16 @@
                   "if (date === 'today')",
                   "{",
                   "    var current_timestamp = new Date();",
+                  "    //current_timestamp = current_timestamp.setDate(current_timestamp.getDate() + 1);",
                   "    var current_year = current_timestamp.getFullYear();",
                   "    var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
                   "    var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
                   "    ",
-                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T15:30:00\";",
-                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T16:00:00\";",
+                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T15:30:00Z\";",
+                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T16:00:00Z\";",
                   "} else {",
-                  "    var eventStartTime = date + \"T15:30:00\";",
-                  "    var eventEndTime = date + \"T16:00:00\";",
+                  "    var eventStartTime = date + \"T15:30:00Z\";",
+                  "    var eventEndTime = date + \"T16:00:00Z\";",
                   "}",
                   "",
                   "var eventLevels = [postman.getEnvironmentVariable(\"eventLevelId_beginner\"),postman.getEnvironmentVariable(\"eventLevelId_intermediate\"),postman.getEnvironmentVariable(\"eventLevelId_advanced\")];",
@@ -76,7 +77,8 @@
                   "",
                   "postman.setEnvironmentVariable(\"randEventLevelId\", randEventLevelId);",
                   "postman.setEnvironmentVariable(\"eventStartTime\", eventStartTime);",
-                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);"
+                  "postman.setEnvironmentVariable(\"eventEndTime\", eventEndTime);",
+                  ""
                 ]
               }
             }
@@ -144,7 +146,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "a1e10dae-6995-4965-9f52-a21549db216f",
+                "id": "a1c64c1e-93a7-424f-8645-9b0560af9c56",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -156,11 +158,11 @@
                   "    var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
                   "    var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
                   "    ",
-                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T17:00:00\";",
-                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T17:30:00\";",
+                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T17:00:00Z\";",
+                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T17:30:00Z\";",
                   "} else {",
-                  "    var eventStartTime = date + \"T17:00:00\";",
-                  "    var eventEndTime = date + \"T17:30:00\";",
+                  "    var eventStartTime = date + \"T17:00:00Z\";",
+                  "    var eventEndTime = date + \"T17:30:00Z\";",
                   "}",
                   "",
                   "var eventLevels = [postman.getEnvironmentVariable(\"eventLevelId_beginner\"),postman.getEnvironmentVariable(\"eventLevelId_intermediate\"),postman.getEnvironmentVariable(\"eventLevelId_advanced\")];",
@@ -251,7 +253,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "eff01989-f312-4c3a-afdd-46fe7bc1593e",
+                "id": "ff3f8613-9919-419e-9091-8ecf578a471f",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -263,11 +265,11 @@
                   "    var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
                   "    var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
                   "    ",
-                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T18:00:00\";",
-                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T18:30:00\";",
+                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T18:00:00Z\";",
+                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T18:30:00Z\";",
                   "} else {",
-                  "    var eventStartTime = date + \"T18:00:00\";",
-                  "    var eventEndTime = date + \"T18:30:00\";",
+                  "    var eventStartTime = date + \"T18:00:00Z\";",
+                  "    var eventEndTime = date + \"T18:30:00Z\";",
                   "}",
                   "",
                   "var eventLevels = [postman.getEnvironmentVariable(\"eventLevelId_beginner\"),postman.getEnvironmentVariable(\"eventLevelId_intermediate\"),postman.getEnvironmentVariable(\"eventLevelId_advanced\")];",
@@ -358,7 +360,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "7e8365c9-934c-41ea-b30e-8e490bfe69ad",
+                "id": "5e50daaa-41cd-4bd8-a5a9-8f81cc313a91",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -370,11 +372,11 @@
                   "    var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
                   "    var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
                   "    ",
-                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T19:00:00\";",
-                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T19:30:00\";",
+                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T19:00:00Z\";",
+                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T19:30:00Z\";",
                   "} else {",
-                  "    var eventStartTime = date + \"T19:00:00\";",
-                  "    var eventEndTime = date + \"T19:30:00\";",
+                  "    var eventStartTime = date + \"T19:00:00Z\";",
+                  "    var eventEndTime = date + \"T19:30:00Z\";",
                   "}",
                   "",
                   "var eventLevels = [postman.getEnvironmentVariable(\"eventLevelId_beginner\"),postman.getEnvironmentVariable(\"eventLevelId_intermediate\"),postman.getEnvironmentVariable(\"eventLevelId_advanced\")];",
@@ -465,7 +467,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "fdba48fb-d37c-45f1-9b8e-b60ad90d8e66",
+                "id": "9f35b79e-7d2f-4c40-8775-cd8a9f718327",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -477,11 +479,11 @@
                   "    var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
                   "    var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
                   "    ",
-                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T20:00:00\";",
-                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T20:30:00\";",
+                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T20:00:00Z\";",
+                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T20:30:00Z\";",
                   "} else {",
-                  "    var eventStartTime = date + \"T20:00:00\";",
-                  "    var eventEndTime = date + \"T20:30:00\";",
+                  "    var eventStartTime = date + \"T20:00:00Z\";",
+                  "    var eventEndTime = date + \"T20:30:00Z\";",
                   "}",
                   "",
                   "var eventLevels = [postman.getEnvironmentVariable(\"eventLevelId_beginner\"),postman.getEnvironmentVariable(\"eventLevelId_intermediate\"),postman.getEnvironmentVariable(\"eventLevelId_advanced\")];",
@@ -572,7 +574,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "17d73906-1cd9-451d-92f0-502be599377f",
+                "id": "073f3900-dac1-4637-bf0e-38689e8a9429",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -584,11 +586,11 @@
                   "    var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
                   "    var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
                   "",
-                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T21:30:00\";",
-                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T22:00:00\";",
+                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T21:30:00Z\";",
+                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T22:00:00Z\";",
                   "} else {",
-                  "    var eventStartTime = date + \"T21:30:00\";",
-                  "    var eventEndTime = date + \"T22:00:00\";",
+                  "    var eventStartTime = date + \"T21:30:00Z\";",
+                  "    var eventEndTime = date + \"T22:00:00Z\";",
                   "}",
                   "",
                   "var eventLevels = [postman.getEnvironmentVariable(\"eventLevelId_beginner\"),postman.getEnvironmentVariable(\"eventLevelId_intermediate\"),postman.getEnvironmentVariable(\"eventLevelId_advanced\")];",
@@ -679,7 +681,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "1a92e086-cae1-40f7-928b-f6cf76bb123d",
+                "id": "5619f821-3ec0-4a8e-bd72-16bead185aff",
                 "type": "text/javascript",
                 "exec": [
                   "var date = data.dateForEventCreation;",
@@ -691,11 +693,11 @@
                   "    var current_date = ('0' + current_timestamp.getDate()).slice(-2);",
                   "    var current_month = ('0' + (current_timestamp.getMonth()+1)).slice(-2);",
                   "    ",
-                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T22:00:00\";",
-                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T22:30:00\";",
+                  "    var eventStartTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T22:00:00Z\";",
+                  "    var eventEndTime = current_year + \"-\" + current_month + \"-\" + current_date + \"T22:30:00Z\";",
                   "} else {",
-                  "    var eventStartTime = date + \"T22:00:00\";",
-                  "    var eventEndTime = date + \"T22:30:00\";",
+                  "    var eventStartTime = date + \"T22:00:00Z\";",
+                  "    var eventEndTime = date + \"T22:30:00Z\";",
                   "}",
                   "",
                   "var eventLevels = [postman.getEnvironmentVariable(\"eventLevelId_beginner\"),postman.getEnvironmentVariable(\"eventLevelId_intermediate\"),postman.getEnvironmentVariable(\"eventLevelId_advanced\")];",
