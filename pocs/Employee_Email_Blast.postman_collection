@@ -6,7 +6,7 @@
   },
   "item": [
     {
-      "_postman_id": "c6d5b609-efd6-486e-adfe-88cab1766d50",
+      "_postman_id": "09f83577-c26a-4ac5-ab34-01b7f03f2b67",
       "name": "createEmployeeForEmail",
       "event": [
         {
@@ -98,7 +98,7 @@
           },
           {
             "key": "Authorization",
-            "value": "Bearer {{accessToken}}"
+            "value": "Bearer 8267c717-50d0-42b9-9952-bca2922ead48"
           }
         ],
         "body": {
