@@ -103,7 +103,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"email\" : \"abcqatesting2017+{{randPhoneNumber}}@gmail.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
+          "raw": "{\r\n  \"email\" : \"abcqatesting2017+{{randPhoneNumber}}@qa4life.com\",\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"address\" : {\r\n    \"address1\" : \"10 Fit Lane\",\r\n    \"address2\" : \"PO Box {{$randomInt}}\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"{{randState}}\",\r\n    \"country\" : \"United States\",\r\n    \"zipCode\" : \"{{randZipCode}}\"\r\n  },\r\n  \"phone\": {\r\n    \"number\": \"{{randPhoneNumber}}\"\r\n  },\r\n  \"userType\" : \"Customer\",\r\n  \"photoId\" : \"{{randPhotoId}}\"\r\n}"
         },
         "url": {
           "raw": "{{registration}}/ef1c8d23-30d1-4f04-bce6-819acb2aad37/employee",
