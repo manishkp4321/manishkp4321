@@ -1,15 +1,16 @@
 {
   "info": {
-    "_postman_id": "13e516a2-0b45-4c05-b6ea-e33dbdf7e124",
-    "name": "1_Create_Org_And_Event_Layouts copy_newest",
+    "_postman_id": "d3130b76-6d79-4892-9ca4-9cb271e13d86",
+    "name": "1_Create_Org_And_Event_Layouts copy_newest copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
+      "_postman_id": "04b4a1b3-d387-4813-93d4-9a791aafc220",
       "name": "Create Org, Location and User",
-      "description": null,
       "item": [
         {
+          "_postman_id": "5b9d7a00-effe-4a1f-abe9-18a71c10fc13",
           "name": "createUserForOrg",
           "event": [
             {
@@ -91,6 +92,7 @@
           "response": []
         },
         {
+          "_postman_id": "87d5c497-a0cd-45bd-aefd-50481d19cb32",
           "name": "Authorization",
           "event": [
             {
@@ -158,6 +160,7 @@
           "response": []
         },
         {
+          "_postman_id": "c1a8dbab-014f-4bd4-b1e1-f5ce42585ddd",
           "name": "createOrgLocation",
           "event": [
             {
@@ -216,7 +219,7 @@
             ],
             "body": {
               "mode": "raw",
-                "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"timezone\" : \"US/Central\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box {{$randomInt}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"abcqatesting2017@gmail.com\"\n    }\n  }\n}"
+              "raw": "{\n  \"name\" : \"University Sports and Fitness #{{orgNumber}}\",\n  \"ownerId\" : \"{{ownerId}}\",\n  \"location\" : {\n    \"name\" : \"University Fitness Center #{{orgNumber}}\",\n    \"timezone\" : \"US/Central\",\n    \"address\" : {\n      \"address1\" : \"123 Fitness Lane\",\n      \"address2\" : \"PO Box {{$randomInt}}\",\n      \"city\" : \"Little Rock\",\n      \"state\" : \"{{randState}}\",\n      \"country\" : \"United States\",\n      \"zipCode\" : \"33935\"\n    },\n    \"phone\" : {\n      \"number\" : \"{{phoneNumber}}\",\n      \"extension\" : \"411\"\n    },\n    \"email\" : {\n      \"address\" : \"abcqatesting2017@gmail.com\"\n    }\n  }\n}"
             },
             "url": {
               "raw": "{{registration}}/{{organizationId}}/organization",
@@ -234,10 +237,11 @@
       ]
     },
     {
+      "_postman_id": "5049cc35-51da-4800-bfdf-e33eda50fc6e",
       "name": "Create Photos For Org",
-      "description": null,
       "item": [
         {
+          "_postman_id": "871df4ad-a15d-4673-a8ca-f3fe2d66f716",
           "name": "SaveEmployeePhoto1_male",
           "event": [
             {
@@ -291,6 +295,7 @@
           "response": []
         },
         {
+          "_postman_id": "58cdabf7-d0c5-4319-8d7a-e6060ea0c5db",
           "name": "SaveEmployeePhoto2_male",
           "event": [
             {
@@ -344,6 +349,7 @@
           "response": []
         },
         {
+          "_postman_id": "c752417b-0249-4ae9-b3f5-ffa9c4123343",
           "name": "SaveEmployeePhoto3_male",
           "event": [
             {
@@ -397,6 +403,7 @@
           "response": []
         },
         {
+          "_postman_id": "9ed6e502-509c-4522-9c04-5ec002472714",
           "name": "SaveEmployeePhoto4_male",
           "event": [
             {
@@ -450,6 +457,7 @@
           "response": []
         },
         {
+          "_postman_id": "a9cc953f-581d-412b-8d5d-49a49f9d6496",
           "name": "SaveEmployeePhoto5_male",
           "event": [
             {
@@ -503,6 +511,7 @@
           "response": []
         },
         {
+          "_postman_id": "85ba7e17-07f9-48e8-b079-2f7dd433bb8c",
           "name": "SaveEmployeePhoto6_male",
           "event": [
             {
@@ -556,6 +565,7 @@
           "response": []
         },
         {
+          "_postman_id": "8043e1fe-ece3-4b3f-915f-79a5e7b1a9a8",
           "name": "SaveEmployeePhoto7_male",
           "event": [
             {
@@ -609,6 +619,7 @@
           "response": []
         },
         {
+          "_postman_id": "5f2e1150-ffae-44f2-b5c0-c2e587530ee1",
           "name": "SaveEmployeePhoto8_male",
           "event": [
             {
@@ -662,6 +673,7 @@
           "response": []
         },
         {
+          "_postman_id": "11186e62-d8b7-4acd-bf7e-f871369c453d",
           "name": "SaveEmployeePhoto1_female",
           "event": [
             {
@@ -715,6 +727,7 @@
           "response": []
         },
         {
+          "_postman_id": "6f9b8ba6-1e98-491c-b5a6-e828b4475ee0",
           "name": "SaveEmployeePhoto2_female",
           "event": [
             {
@@ -768,6 +781,7 @@
           "response": []
         },
         {
+          "_postman_id": "625bf30d-141b-4e0e-8ce9-5013cea642fd",
           "name": "SaveEmployeePhoto3_female",
           "event": [
             {
@@ -823,6 +837,7 @@
           "response": []
         },
         {
+          "_postman_id": "5592e18d-83f5-43b0-8109-436c85b6d140",
           "name": "SaveEmployeePhoto4_female",
           "event": [
             {
@@ -876,6 +891,7 @@
           "response": []
         },
         {
+          "_postman_id": "2ca529a8-cb3a-4bcf-b6d7-57f8fb1e3cf6",
           "name": "SaveEmployeePhoto5_female",
           "event": [
             {
@@ -929,6 +945,7 @@
           "response": []
         },
         {
+          "_postman_id": "2e4b3b4b-2b17-4ebf-bb50-97a1f1a44627",
           "name": "SaveEmployeePhoto6_female",
           "event": [
             {
@@ -982,6 +999,7 @@
           "response": []
         },
         {
+          "_postman_id": "c254f71f-481e-4ca4-89c9-56740b8b70db",
           "name": "SaveEmployeePhoto7_female",
           "event": [
             {
@@ -1035,6 +1053,7 @@
           "response": []
         },
         {
+          "_postman_id": "6e788b3b-9789-4137-bf56-eeb7a07ae677",
           "name": "SaveEmployeePhoto8_female",
           "event": [
             {
@@ -1090,10 +1109,11 @@
       ]
     },
     {
+      "_postman_id": "bc927358-d6ec-4d74-a1de-9cbaf71fe97e",
       "name": "Create Employees",
-      "description": null,
       "item": [
         {
+          "_postman_id": "8ab9a39b-7bbd-42a5-b460-f7dd3dddfa5f",
           "name": "createEmployee",
           "event": [
             {
@@ -1206,6 +1226,7 @@
           "response": []
         },
         {
+          "_postman_id": "3d0bca84-a2ac-4ef9-910c-a252b9288230",
           "name": "createEmployee 2",
           "event": [
             {
@@ -1315,6 +1336,7 @@
           "response": []
         },
         {
+          "_postman_id": "9de17460-c3af-4170-89a6-c2d2e423b76c",
           "name": "createEmployee 3",
           "event": [
             {
@@ -1424,6 +1446,7 @@
           "response": []
         },
         {
+          "_postman_id": "149801df-6759-4f40-be85-bba5a1edd09e",
           "name": "createEmployee 4",
           "event": [
             {
@@ -1533,6 +1556,7 @@
           "response": []
         },
         {
+          "_postman_id": "f1077717-6465-4e4b-9a28-e66e131c23b1",
           "name": "createEmployee 5",
           "event": [
             {
@@ -1642,6 +1666,7 @@
           "response": []
         },
         {
+          "_postman_id": "81a47023-283a-4c99-a515-e01905f4f218",
           "name": "createEmployee 6",
           "event": [
             {
@@ -1751,6 +1776,7 @@
           "response": []
         },
         {
+          "_postman_id": "1bd82f1e-70a2-4bf7-a031-1b2952125b9d",
           "name": "createEmployee 7",
           "event": [
             {
@@ -1860,6 +1886,7 @@
           "response": []
         },
         {
+          "_postman_id": "20f4e3cb-a954-49a8-a46e-2a8209f81b8e",
           "name": "createEmployee 8",
           "event": [
             {
@@ -1969,6 +1996,7 @@
           "response": []
         },
         {
+          "_postman_id": "8bbcb08e-964f-41cc-a8aa-0516d983fca3",
           "name": "createEmployee 9",
           "event": [
             {
@@ -2080,10 +2108,11 @@
       ]
     },
     {
+      "_postman_id": "5489f167-e21f-42e1-a30e-f83f5707134d",
       "name": "Create Documents",
-      "description": null,
       "item": [
         {
+          "_postman_id": "d66d18bf-128d-4cf2-90fe-9d6faacb2b6d",
           "name": "uploadTermsAndConditionsDoc",
           "event": [
             {
@@ -2140,6 +2169,7 @@
           "response": []
         },
         {
+          "_postman_id": "c1921d9a-4b4e-41fb-8633-aeab3a654264",
           "name": "uploadWaiverDoc",
           "event": [
             {
@@ -2199,10 +2229,11 @@
       ]
     },
     {
+      "_postman_id": "db9ef984-dabf-4f09-a6cd-d9ac03835bae",
       "name": "Create Event/Item Category and Promo Code",
-      "description": null,
       "item": [
         {
+          "_postman_id": "d8cd3a7e-c2aa-4039-ae3d-47b7b3d72dfc",
           "name": "CreateEventCategory",
           "event": [
             {
@@ -2268,6 +2299,7 @@
           "response": []
         },
         {
+          "_postman_id": "19692416-95a5-4c57-9dc9-1f619cc75340",
           "name": "CreatePromoCode",
           "event": [
             {
@@ -2344,10 +2376,11 @@
       ]
     },
     {
+      "_postman_id": "a51f25fd-241d-4917-b16c-f2e3caa38007",
       "name": "Get Event Levels",
-      "description": null,
       "item": [
         {
+          "_postman_id": "5fbffab7-46ab-483c-b247-3305c02c6ed4",
           "name": "getEventLevels",
           "event": [
             {
@@ -2410,10 +2443,11 @@
       ]
     },
     {
+      "_postman_id": "f5434598-acfb-4a8b-b7df-29a7e1a73e6e",
       "name": "Create Events",
-      "description": null,
       "item": [
         {
+          "_postman_id": "33b757ec-3ab1-4227-94a8-c2761eb5f889",
           "name": "Create Event Type - Yoga",
           "event": [
             {
@@ -2471,6 +2505,7 @@
           "response": []
         },
         {
+          "_postman_id": "66f2a192-de05-40fd-8c57-4b3c095a2eeb",
           "name": "Create Event Type - P90X",
           "event": [
             {
@@ -2528,6 +2563,7 @@
           "response": []
         },
         {
+          "_postman_id": "1f883fdc-e2eb-4f6b-9ef2-56f6c164a409",
           "name": "Create Event Type - Pilates",
           "event": [
             {
@@ -2585,6 +2621,7 @@
           "response": []
         },
         {
+          "_postman_id": "a1b3baf1-4eb2-43a6-aafa-94d955551aea",
           "name": "Create Event Type - Zumba",
           "event": [
             {
@@ -2642,6 +2679,7 @@
           "response": []
         },
         {
+          "_postman_id": "9208823f-39e2-4ef1-a79d-c01c8a2ee6c7",
           "name": "Create Event Type - Cycling",
           "event": [
             {
@@ -2699,6 +2737,7 @@
           "response": []
         },
         {
+          "_postman_id": "ba74600e-9541-49f4-a401-5e4fe9f48d9a",
           "name": "Create Event Type - Aerobics",
           "event": [
             {
@@ -2756,6 +2795,7 @@
           "response": []
         },
         {
+          "_postman_id": "5fafd952-c23c-4baa-a192-9d55bd08cd6c",
           "name": "Create Event Type - Turbo Kick",
           "event": [
             {
@@ -2815,10 +2855,11 @@
       ]
     },
     {
+      "_postman_id": "c1454c31-92fa-4c8d-b6e0-0e9f8d030c40",
       "name": "Create Packages",
-      "description": null,
       "item": [
         {
+          "_postman_id": "61a5af1f-b19a-40f7-95bc-3e50bc72f6bc",
           "name": "createUnlimitedItem",
           "event": [
             {
@@ -2867,7 +2908,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"Unlimited Package for All\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 200,\r\n  \"quantity\" : 1,\r\n  \"unlimited\" : true,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_p90x}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_pilates}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_aerobics}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_turboKick}}\"\r\n    }  \r\n  ]\r\n}\r\n"
+              "raw": "{\r\n  \"name\" : \"Unlimited Package for All\",\r\n  \"type\" : \"SERVICE\",\r\n  \"unitPrice\" : 200,\r\n  \"quantity\" : null,\r\n  \"unlimited\" : true,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 2,\r\n  \"expirationUnit\" : \"MONTHS\",\r\n  \"currencyId\" : \"USD\",\r\n  \"eligibleClasses\" : [ {\r\n    \"eventTypeId\" : \"{{eventTypeId_yoga}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_p90x}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_pilates}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_zumba}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_cycling}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_aerobics}}\"\r\n    },\r\n    {\r\n      \"eventTypeId\" : \"{{eventTypeId_turboKick}}\"\r\n    }  \r\n  ]\r\n}\r\n"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/inventory/item",
@@ -2885,6 +2926,7 @@
           "response": []
         },
         {
+          "_postman_id": "28780599-ae1c-44c3-acec-769d1856a965",
           "name": "createMeteredItem",
           "event": [
             {
@@ -2951,6 +2993,7 @@
           "response": []
         },
         {
+          "_postman_id": "29037a4c-fc09-4a78-8cf3-bb3cbabc7344",
           "name": "createMeteredItem_yoga",
           "event": [
             {
@@ -3017,6 +3060,7 @@
           "response": []
         },
         {
+          "_postman_id": "03ac3d00-6c6a-4ac6-a1c7-600b0caa7962",
           "name": "createMeteredItem_p90x",
           "event": [
             {
@@ -3083,6 +3127,7 @@
           "response": []
         },
         {
+          "_postman_id": "ae094970-8214-436e-923e-3c32dae77e1e",
           "name": "createMeteredItem_aerobics",
           "event": [
             {
@@ -3149,6 +3194,7 @@
           "response": []
         },
         {
+          "_postman_id": "8854e187-4e41-4200-86df-3cd5cac56217",
           "name": "createMeteredItem_pilates",
           "event": [
             {
@@ -3215,6 +3261,7 @@
           "response": []
         },
         {
+          "_postman_id": "990ea7fc-4af3-4ef1-83f4-0ee9d1647d7d",
           "name": "createMeteredItem_zumba",
           "event": [
             {
@@ -3281,6 +3328,7 @@
           "response": []
         },
         {
+          "_postman_id": "a1914772-0131-44fa-b8ed-a9536b407c16",
           "name": "createMeteredItem_cycling",
           "event": [
             {
@@ -3347,6 +3395,7 @@
           "response": []
         },
         {
+          "_postman_id": "c78ac0bf-ee08-436b-9a13-b001de71e73c",
           "name": "createMeteredItem_turboKick",
           "event": [
             {
