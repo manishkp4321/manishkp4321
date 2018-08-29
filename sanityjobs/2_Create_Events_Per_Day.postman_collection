@@ -906,8 +906,8 @@
                   "// var randItemQuantity = Math.floor(Math.random() * 10) + 1;",
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+		  "var salesTax = (unitPrice * .06).toFixed(2);",
+		  "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -932,7 +932,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
+         	"raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : null,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -1282,7 +1282,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+	      "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -1632,7 +1632,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+	      "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -1956,8 +1956,8 @@
                 "exec": [
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+		  "var salesTax = (unitPrice * .06).toFixed(2);",
+	          "var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -1982,7 +1982,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
+	      "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" :null,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -2332,7 +2332,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+	      "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -2682,7 +2682,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+	      "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -3006,8 +3006,8 @@
                 "exec": [
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+		  "var salesTax = (unitPrice * .06).toFixed(2);",
+		  "var purchaseAmount =  unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -3032,7 +3032,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
+        	"raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : null,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -3382,7 +3382,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+	      "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n     \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -3732,7 +3732,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+        	"raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -4056,8 +4056,8 @@
                 "exec": [
                   "var randItemQuantity = 1",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+	        	"var salesTax = (unitPrice * .06).toFixed(2);",
+			"var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -4082,7 +4082,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
+        	"raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : null,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -4432,7 +4432,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+	      "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n   \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -4782,7 +4782,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+    		"raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -5106,8 +5106,8 @@
                 "exec": [
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+		  "var salesTax = (unitPrice * .06).toFixed(2);",
+	        	"var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -5132,7 +5132,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
+		"raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : null,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -5482,7 +5482,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+		"raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -5832,7 +5832,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+	     "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n   \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -6156,8 +6156,8 @@
                 "exec": [
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+	        "var salesTax = (unitPrice * .06).toFixed(2);",
+		"var purchaseAmount = unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -6182,7 +6182,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
+		"raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : null,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -6532,7 +6532,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+    	"raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n   \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -6882,7 +6882,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+		"raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -7206,8 +7206,8 @@
                 "exec": [
                   "var randItemQuantity = 1;",
                   "var unitPrice = 22.5;",
-                  "var salesTax = (unitPrice * randItemQuantity * .06).toFixed(2);",
-                  "var purchaseAmount = randItemQuantity * unitPrice;",
+                "var salesTax = (unitPrice * .06).toFixed(2);",
+		"var purchaseAmount =  unitPrice;",
                   "purchaseAmount = +purchaseAmount + +salesTax;",
                   "",
                   "postman.setEnvironmentVariable(\"salesTax\", salesTax);",
@@ -7232,7 +7232,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : 1,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
+     		"raw": "{\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\n  \"items\" : [ {\n    \"quantity\" : null,\n    \"unlimited\" : true,\n    \"expirationStart\" : \"PURCHASE\",\n    \"expirationTime\" : 2,\n    \"expirationUnit\" : \"MONTHS\",\n    \"unitPrice\" : \"{{unitPrice}}\",\n    \"salesTax\" : \"{{salesTax}}\",\n    \"itemId\" : \"{{itemId_unlimited}}\",\n    \"currency\" : \"USD\",\n    \"itemType\" : \"SERVICE\"\n  } ],\n  \"payment\" : {\n    \"amount\": \"{{purchaseAmount}}\",\n    \"currency\": \"USD\",\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\n    \"type\": \"CASH\"\n  }\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -7582,7 +7582,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+		"raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",
@@ -7932,7 +7932,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"metered\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
+    							"raw": "{\r\n  \"salesEmployeeId\" : \"{{randEmployee}}\",\r\n  \"items\" : [ {\r\n    \"quantity\" : \"{{randItemQuantity}}\",\r\n    \"unlimited\" : false,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"unitPrice\" : \"{{unitPrice}}\",\r\n    \"salesTax\" : \"{{salesTax}}\",\r\n    \"itemId\" : \"{{itemId_metered}}\",\r\n    \"currency\" : \"USD\",\r\n    \"itemType\" : \"SERVICE\"\r\n  } ],\r\n  \"payment\" : {\r\n    \"amount\": \"{{purchaseAmount}}\",\r\n    \"currency\": \"USD\",\r\n    \"email\": \"{{randFirstName}}.{{randLastName}}{{randPhoneNumber}}@qa4life.com\",\r\n    \"type\": \"CASH\"\r\n  }\r\n}"
             },
             "url": {
               "raw": "{{purchase}}/{{organizationId}}/{{locationId}}/purchase/user/{{userId}}",

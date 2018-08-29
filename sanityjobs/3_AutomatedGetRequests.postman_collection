@@ -644,7 +644,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"password\": \"abc1234$\",\r\n  \"username\": \"Test5ABC3@abcfinancial.com\"\r\n}"
+              "raw": "{\r\n  \"password\": \"abc1234!\",\r\n  \"username\": \"Test5ABC3@abcfinancial.com\"\r\n}"
             },
             "url": {
               "raw": "{{authentication}}/organization/{{organizationId}}/login?clientId=automated-testing-client",
