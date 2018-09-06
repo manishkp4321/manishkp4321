@@ -1,0 +1,611 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Bigbox_Sanity copy",
+		"_postman_id": "877e4a45-b812-5a2c-6e1f-6c6151971569",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"authId\", jsonData.access_token);",
+							"}",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{authorization}}/token?grant_type=client_credentials",
+					"host": [
+						"{{authorization}}"
+					],
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create_Organization_With_Location",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"orgId\", jsonData.organization.id);",
+							"    postman.setEnvironmentVariable(\"locId\", jsonData.locations[0].id);",
+							"}",
+							"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{organization}}/registration/organization-with-locations",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"organization\" : {\r\n  \r\n    \"name\" : \"ABC Financial WithLoc\",\r\n    \"email\" : \"noreply@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : 7645218238,\r\n      \"extension\" : \"91\"\r\n    }\r\n  },\r\n  \"locations\" : [ {\r\n    \"name\" : \"ABC Location\",\r\n    \"email\" : \"noreplyLoc@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : 7645218238,\r\n      \"extension\" : \"91\"\r\n    },\r\n    \"timezone\" : \"US/Alaska\",\r\n    \"addresses\" : [ {\r\n      \"address1\" : \"AR-107\",\r\n      \"address2\" : \"Sherwood\",\r\n      \"city\" : \"Little Rock\",\r\n      \"zipCode\" : \"72120\",\r\n      \"state\" : \"AR\",\r\n      \"country\" : \"USA\",\r\n      \"addressType\" : \"BILLING\"\r\n    }, {\r\n      \"address1\" : \"AR-107\",\r\n      \"address2\" : \"Sherwood\",\r\n      \"city\" : \"Little Rock\",\r\n      \"zipCode\" : \"72120\",\r\n      \"state\" : \"AL\",\r\n      \"country\" : \"USA\",\r\n      \"addressType\" : \"SHIPPING\"\r\n    } ]\r\n  } ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create_User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{authorization}}/user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "ABCFS-ORGANIZATION-ID",
+						"value": "{{orgId}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"identity\": \"noreply@mail.com\",\r\n  \"password\": \"123Qht!343yy\",\r\n  \"organizationId\": \"{{orgId}}\",\r\n  \"phone\": {\r\n    \"number\": \"98765432\",\r\n    \"extension\": \"132\"\r\n  }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login_User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"accessTokenId\", jsonData.access_token);",
+							"}",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{authorization}}/token?grant_type=password&username=noreply@mail.com&password=123Qht!343yy",
+					"host": [
+						"{{authorization}}"
+					],
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "username",
+							"value": "noreply@mail.com",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "123Qht!343yy",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "ABCFS-ORGANIZATION-ID",
+						"value": "{{orgId}}",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Upload_Waiver",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"waiverId\", jsonData.documentId);",
+							"}",
+							"",
+							"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{organization}}/document/upload/waiver",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenId}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"locationId\" : \"{{locId}}\", \r\n  \"content\" : \"Waiver: Our employees are encouraged to be pro-active in expressing their ideas and contributing to the company's future.\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Upload_Terms",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"termsId\", jsonData.documentId);",
+							"}",
+							"",
+							"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{organization}}/document/upload/terms",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenId}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"locationId\" : \"{{locId}}\", \r\n  \"content\" : \"Terms: Our employees are encouraged to be pro-active in expressing their ideas and contributing to the company's future.\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Member",
+			"request": {
+				"url": "http://qa.30preprod.com/member",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthID}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"birthDate\" : \"1977-07-07T12:00\",\r\n  \"email\" : \"john.doe@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.doe@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : 1234567890,\r\n    \"extension\" : \"11\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : 9876543210,\r\n    \"extension\" : \"22\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"123456\",\r\n  \"waiverDocumentId\" : \"e71eb888-5c16-4ebf-b075-752c29bad459\",\r\n  \"termsDocumentId\" : \"d19fae92-e9a4-4df2-85de-dd7c96aa764f\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"digitalSignatureId\" : \"df5947aa-f845-4c5a-b3d5-2ae52785b32b\",\r\n  \"organizationId\" : \"33afdd6d-68bb-4bb6-94ef-3a31769d96c7\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  } ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Member",
+			"request": {
+				"url": "http://qa.30preprod.com/member",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthID}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Member Checkin",
+			"request": {
+				"url": "http://qa.30preprod.com/checkin",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthID}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"memberId\" : \"e0186a44-4bf8-45fb-adbf-cf36a0ab5976\",\r\n  \"source\" : \"BAR_CODE\",\r\n  \"alerts\" : [ {\r\n    \"alertCheckinId\" : {\r\n      \"alertId\" : \"b8ffd236-0e35-4b47-b2d5-da72731021cd\"\r\n    }\r\n  } ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Member By Phone Number",
+			"request": {
+				"url": {
+					"raw": "http://qa.30preprod.com/member?search={{phoneNumber}}",
+					"protocol": "http",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"member"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "{{phoneNumber}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthID}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Member By Name",
+			"request": {
+				"url": {
+					"raw": "http://qa.30preprod.com/member?search={{firstName}}",
+					"protocol": "http",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"member"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "{{firstName}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthID}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Member By Email",
+			"request": {
+				"url": {
+					"raw": "http://qa.30preprod.com/member?search={{emailId}}",
+					"protocol": "http",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"member"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "{{emailId}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthID}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Access Code To Existing Member",
+			"request": {
+				"url": "http://qa.30preprod.com/member/{{memberId}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthID}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"birthDate\" : \"1977-07-07T12:00\",\r\n  \"email\" : \"john.doe@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.doe@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : 1234567890,\r\n    \"extension\" : \"11\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : 9876543210,\r\n    \"extension\" : \"22\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"123456\",\r\n  \"waiverDocumentId\" : \"e71eb888-5c16-4ebf-b075-752c29bad459\",\r\n  \"termsDocumentId\" : \"d19fae92-e9a4-4df2-85de-dd7c96aa764f\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"digitalSignatureId\" : \"df5947aa-f845-4c5a-b3d5-2ae52785b32b\",\r\n  \"organizationId\" : \"33afdd6d-68bb-4bb6-94ef-3a31769d96c7\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  }],\r\n  \"accessCode\":\"123456\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Authorization copy",
+			"request": {
+				"url": "http://qa.30preprod.com/api/authorization/token?client_id=AUTOMATED_TESTING&grant_type=client_credentials",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
