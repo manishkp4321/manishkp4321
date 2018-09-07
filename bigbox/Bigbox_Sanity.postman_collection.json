@@ -1,10 +1,8 @@
 {
-	"variables": [],
 	"info": {
-		"name": "Bigbox_Sanity copy",
-		"_postman_id": "877e4a45-b812-5a2c-6e1f-6c6151971569",
-		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"_postman_id": "a7a8139b-84fd-4a8a-ab14-bd9a6df9091f",
+		"name": "Bigbox_Sanity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -33,6 +31,26 @@
 				}
 			],
 			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{authorization}}/token?grant_type=client_credentials",
 					"host": [
@@ -44,37 +62,10 @@
 					"query": [
 						{
 							"key": "grant_type",
-							"value": "client_credentials",
-							"equals": true,
-							"description": ""
+							"value": "client_credentials"
 						}
-					],
-					"variable": []
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw==",
-						"description": ""
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					},
-					{
-						"key": "",
-						"value": "",
-						"description": "",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
+					]
+				}
 			},
 			"response": []
 		},
@@ -84,6 +75,7 @@
 				{
 					"listen": "test",
 					"script": {
+						"id": "0008bcc7-5dd6-4ab4-96d9-a01f9445f6d2",
 						"type": "text/javascript",
 						"exec": [
 							"if (responseCode.code != 201)",
@@ -101,34 +93,69 @@
 							"tests[\"Response code should be 201\"] = responseCode.code === 201;"
 						]
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+						"type": "text/javascript",
+						"exec": [
+							"var orgName = Math.floor(Math.random() * 9000000) + 1000000;",
+							"var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+							"var address1 = \"AR-107\";",
+							"var address2 = \"Sherwood\";",
+							"var city = \"Little Rock\";",
+							"var state = \"AR\";",
+							"var country = \"USA\";",
+							"var zipCode = \"72120\";",
+							"var extension= \"231\";",
+							"",
+							"postman.setEnvironmentVariable(\"orgName\", orgName);",
+							"postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
+							"postman.setEnvironmentVariable(\"extension\", extension);",
+							"postman.setEnvironmentVariable(\"address1\", address1);",
+							"postman.setEnvironmentVariable(\"address2\", address2);",
+							"postman.setEnvironmentVariable(\"city\", city);",
+							"postman.setEnvironmentVariable(\"state\", state);",
+							"postman.setEnvironmentVariable(\"zipCode\", zipCode);",
+							"postman.setEnvironmentVariable(\"country\", country);",
+							"",
+							"console.log(\"orgName \", orgName);"
+						]
+					}
 				}
 			],
 			"request": {
-				"url": "{{organization}}/registration/organization-with-locations",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer {{authId}}",
-						"description": ""
+						"value": "Bearer {{authId}}"
 					},
 					{
 						"key": "",
 						"value": "",
-						"description": "",
 						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"organization\" : {\r\n  \r\n    \"name\" : \"ABC Financial WithLoc\",\r\n    \"email\" : \"noreply@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : 7645218238,\r\n      \"extension\" : \"91\"\r\n    }\r\n  },\r\n  \"locations\" : [ {\r\n    \"name\" : \"ABC Location\",\r\n    \"email\" : \"noreplyLoc@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : 7645218238,\r\n      \"extension\" : \"91\"\r\n    },\r\n    \"timezone\" : \"US/Alaska\",\r\n    \"addresses\" : [ {\r\n      \"address1\" : \"AR-107\",\r\n      \"address2\" : \"Sherwood\",\r\n      \"city\" : \"Little Rock\",\r\n      \"zipCode\" : \"72120\",\r\n      \"state\" : \"AR\",\r\n      \"country\" : \"USA\",\r\n      \"addressType\" : \"BILLING\"\r\n    }, {\r\n      \"address1\" : \"AR-107\",\r\n      \"address2\" : \"Sherwood\",\r\n      \"city\" : \"Little Rock\",\r\n      \"zipCode\" : \"72120\",\r\n      \"state\" : \"AL\",\r\n      \"country\" : \"USA\",\r\n      \"addressType\" : \"SHIPPING\"\r\n    } ]\r\n  } ]\r\n}"
+					"raw": "{\r\n  \"organization\" : {\r\n  \r\n    \"name\" : \"University of Winterfell #{{orgName}}\",\r\n    \"email\" : \"WinterfellUniversity{{orgName}}@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"231\"\r\n    }\r\n  },\r\n  \"locations\" : [ {\r\n    \"name\" : \"Winterfell Location {{orgName}}\",\r\n    \"email\" : \"noreplyLoc{{orgName}}@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"{{extension}}\"\r\n    },\r\n    \"timezone\" : \"US/Alaska\",\r\n    \"addresses\" : [ {\r\n      \"address1\" : \"{{address1}}\",\r\n      \"address2\" : \"{{address2}}\",\r\n      \"city\" : \"{{city}}\",\r\n      \"zipCode\" : \"{{zipCode}}\",\r\n      \"state\" : \"{{state}}\",\r\n      \"country\" : \"{{country}}\",\r\n      \"addressType\" : \"BILLING\"\r\n    }, {\r\n      \"address1\" : \"{{address1}}\",\r\n      \"address2\" : \"{{address2}}\",\r\n      \"city\" : \"{{city}}\",\r\n      \"zipCode\" : \"{{zipCode}}\",\r\n      \"state\" : \"{{state}}\",\r\n      \"country\" : \"{{country}}\",\r\n      \"addressType\" : \"SHIPPING\"\r\n    } ]\r\n  } ]\r\n}"
 				},
-				"description": ""
+				"url": {
+					"raw": "{{organization}}/registration/organization-with-locations",
+					"host": [
+						"{{organization}}"
+					],
+					"path": [
+						"registration",
+						"organization-with-locations"
+					]
+				}
 			},
 			"response": []
 		},
@@ -138,42 +165,70 @@
 				{
 					"listen": "test",
 					"script": {
+						"id": "4750fb31-da35-4ea8-b7a9-e7d367b15196",
 						"type": "text/javascript",
 						"exec": [
 							"if (responseCode.code != 201)",
 							"{",
 							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
 							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-							"}"
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"userName\", jsonData.identity);",
+							"  ",
+							"}",
+							"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d5640b1f-b64f-4ca2-8d3b-ed824a7ccff1",
+						"type": "text/javascript",
+						"exec": [
+							"var ranIdentityNo = Math.floor(Math.random() * 9000000) + 1000000;",
+							"var password= \"Password01\";",
+							"",
+							"postman.setEnvironmentVariable(\"ranIdentityNo\", ranIdentityNo);",
+							"",
+							"postman.setEnvironmentVariable(\"password\", password);"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "{{authorization}}/user",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{authId}}",
-						"description": ""
+						"value": "Bearer {{authId}}"
 					},
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					},
 					{
 						"key": "ABCFS-ORGANIZATION-ID",
-						"value": "{{orgId}}",
-						"description": ""
+						"value": "{{orgId}}"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"identity\": \"noreply@mail.com\",\r\n  \"password\": \"123Qht!343yy\",\r\n  \"organizationId\": \"{{orgId}}\",\r\n  \"phone\": {\r\n    \"number\": \"98765432\",\r\n    \"extension\": \"132\"\r\n  }\r\n}"
+					"raw": "{\r\n  \"identity\": \"noreply{{ranIdentityNo}}@qa4life.com\",\r\n  \"password\": \"{{password}}\",\r\n  \"organizationId\": \"{{orgId}}\",\r\n  \"phone\": {\r\n    \"number\": \"{{phoneNumber}}\",\r\n    \"extension\": \"{{extension}}\"\r\n  }\r\n  \r\n  \r\n}"
 				},
-				"description": ""
+				"url": {
+					"raw": "{{authorization}}/user",
+					"host": [
+						"{{authorization}}"
+					],
+					"path": [
+						"user"
+					]
+				}
 			},
 			"response": []
 		},
@@ -203,8 +258,32 @@
 				}
 			],
 			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ABCFS-ORGANIZATION-ID",
+						"value": "{{orgId}}"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "{{authorization}}/token?grant_type=password&username=noreply@mail.com&password=123Qht!343yy",
+					"raw": "{{authorization}}/token?grant_type=password&username={{userName}}&password={{password}}",
 					"host": [
 						"{{authorization}}"
 					],
@@ -214,54 +293,18 @@
 					"query": [
 						{
 							"key": "grant_type",
-							"value": "password",
-							"equals": true,
-							"description": ""
+							"value": "password"
 						},
 						{
 							"key": "username",
-							"value": "noreply@mail.com",
-							"equals": true,
-							"description": ""
+							"value": "{{userName}}"
 						},
 						{
 							"key": "password",
-							"value": "123Qht!343yy",
-							"equals": true,
-							"description": ""
+							"value": "{{password}}"
 						}
-					],
-					"variable": []
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw==",
-						"description": ""
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					},
-					{
-						"key": "ABCFS-ORGANIZATION-ID",
-						"value": "{{orgId}}",
-						"description": ""
-					},
-					{
-						"key": "",
-						"value": "",
-						"description": "",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
+					]
+				}
 			},
 			"response": []
 		},
@@ -291,25 +334,32 @@
 				}
 			],
 			"request": {
-				"url": "{{organization}}/document/upload/waiver",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessTokenId}}",
-						"description": ""
+						"value": "Bearer {{accessTokenId}}"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"locationId\" : \"{{locId}}\", \r\n  \"content\" : \"Waiver: Our employees are encouraged to be pro-active in expressing their ideas and contributing to the company's future.\"\r\n}"
 				},
-				"description": ""
+				"url": {
+					"raw": "{{organization}}/document/upload/waiver",
+					"host": [
+						"{{organization}}"
+					],
+					"path": [
+						"document",
+						"upload",
+						"waiver"
+					]
+				}
 			},
 			"response": []
 		},
@@ -339,271 +389,455 @@
 				}
 			],
 			"request": {
-				"url": "{{organization}}/document/upload/terms",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer {{accessTokenId}}",
-						"description": ""
+						"value": "Bearer {{accessTokenId}}"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"locationId\" : \"{{locId}}\", \r\n  \"content\" : \"Terms: Our employees are encouraged to be pro-active in expressing their ideas and contributing to the company's future.\"\r\n}"
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Create Member",
-			"request": {
-				"url": "http://qa.30preprod.com/member",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AuthID}}",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"birthDate\" : \"1977-07-07T12:00\",\r\n  \"email\" : \"john.doe@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.doe@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : 1234567890,\r\n    \"extension\" : \"11\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : 9876543210,\r\n    \"extension\" : \"22\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"123456\",\r\n  \"waiverDocumentId\" : \"e71eb888-5c16-4ebf-b075-752c29bad459\",\r\n  \"termsDocumentId\" : \"d19fae92-e9a4-4df2-85de-dd7c96aa764f\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"digitalSignatureId\" : \"df5947aa-f845-4c5a-b3d5-2ae52785b32b\",\r\n  \"organizationId\" : \"33afdd6d-68bb-4bb6-94ef-3a31769d96c7\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  } ]\r\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Get Member",
-			"request": {
-				"url": "http://qa.30preprod.com/member",
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AuthID}}",
-						"description": ""
-					}
-				],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Member Checkin",
-			"request": {
-				"url": "http://qa.30preprod.com/checkin",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AuthID}}",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"memberId\" : \"e0186a44-4bf8-45fb-adbf-cf36a0ab5976\",\r\n  \"source\" : \"BAR_CODE\",\r\n  \"alerts\" : [ {\r\n    \"alertCheckinId\" : {\r\n      \"alertId\" : \"b8ffd236-0e35-4b47-b2d5-da72731021cd\"\r\n    }\r\n  } ]\r\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Get Member By Phone Number",
-			"request": {
 				"url": {
-					"raw": "http://qa.30preprod.com/member?search={{phoneNumber}}",
-					"protocol": "http",
+					"raw": "{{organization}}/document/upload/terms",
 					"host": [
-						"qa",
-						"30preprod",
-						"com"
+						"{{organization}}"
 					],
 					"path": [
-						"member"
-					],
-					"query": [
-						{
-							"key": "search",
-							"value": "{{phoneNumber}}",
-							"equals": true,
-							"description": ""
-						}
-					],
-					"variable": []
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AuthID}}",
-						"description": ""
-					}
-				],
-				"body": {},
-				"description": ""
+						"document",
+						"upload",
+						"terms"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get Member By Name",
-			"request": {
-				"url": {
-					"raw": "http://qa.30preprod.com/member?search={{firstName}}",
-					"protocol": "http",
-					"host": [
-						"qa",
-						"30preprod",
-						"com"
-					],
-					"path": [
-						"member"
-					],
-					"query": [
-						{
-							"key": "search",
-							"value": "{{firstName}}",
-							"equals": true,
-							"description": ""
-						}
-					],
-					"variable": []
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AuthID}}",
-						"description": ""
+			"name": "Create_Member",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11b291e1-35b8-4dc1-ba14-8dd347b94137",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"memberId\", jsonData.id);",
+							"    postman.setEnvironmentVariable(\"phoneNumber\", jsonData.phone.number);",
+							"    postman.setEnvironmentVariable(\"firstName\", jsonData.firstName);",
+							"    postman.setEnvironmentVariable(\"email\", jsonData.email);",
+							"}",
+							"",
+							"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+						]
 					}
-				],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Get Member By Email",
-			"request": {
-				"url": {
-					"raw": "http://qa.30preprod.com/member?search={{emailId}}",
-					"protocol": "http",
-					"host": [
-						"qa",
-						"30preprod",
-						"com"
-					],
-					"path": [
-						"member"
-					],
-					"query": [
-						{
-							"key": "search",
-							"value": "{{emailId}}",
-							"equals": true,
-							"description": ""
-						}
-					],
-					"variable": []
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AuthID}}",
-						"description": ""
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a294d652-8a69-48b1-ba1f-7b5247126c68",
+						"type": "text/javascript",
+						"exec": [
+							"var randEmail = Math.floor(Math.random() * 9000000) + 1000000;",
+							"postman.setEnvironmentVariable(\"randEmail\", randEmail);"
+						]
 					}
-				],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Add Access Code To Existing Member",
+				}
+			],
 			"request": {
-				"url": "http://qa.30preprod.com/member/{{memberId}}",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AuthID}}",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"birthDate\" : \"1977-07-07T12:00\",\r\n  \"email\" : \"john.doe@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.doe@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : 1234567890,\r\n    \"extension\" : \"11\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : 9876543210,\r\n    \"extension\" : \"22\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"123456\",\r\n  \"waiverDocumentId\" : \"e71eb888-5c16-4ebf-b075-752c29bad459\",\r\n  \"termsDocumentId\" : \"d19fae92-e9a4-4df2-85de-dd7c96aa764f\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"digitalSignatureId\" : \"df5947aa-f845-4c5a-b3d5-2ae52785b32b\",\r\n  \"organizationId\" : \"33afdd6d-68bb-4bb6-94ef-3a31769d96c7\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  }],\r\n  \"accessCode\":\"123456\"\r\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Authorization copy",
-			"request": {
-				"url": "http://qa.30preprod.com/api/authorization/token?client_id=AUTOMATED_TESTING&grant_type=client_credentials",
 				"method": "POST",
 				"header": [
-					{
-						"key": "Authorization",
-						"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw=="
-					},
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenId}}"
+					},
+					{
+						"key": "ABCFS-LOCATION-ID",
+						"value": "{{locId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"email\" : \"john{{randEmail}}@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.dooe{{randEmail}}@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"{{phoneNumber}}\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"{{address1}}\",\r\n    \"address2\" : \"{{address2}}\",\r\n    \"city\" : \"{{city}}\",\r\n    \"state\" : \"{{state}}\",\r\n    \"country\" : \"{{country}}\",\r\n    \"zipCode\" : \"{{zipCode}}\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  } ]\r\n}"
+				},
+				"url": {
+					"raw": "{{organization}}/member",
+					"host": [
+						"{{organization}}"
+					],
+					"path": [
+						"member"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Member",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bff99e3c-9ede-444a-86b9-78ec5a213385",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenId}}"
+					},
+					{
+						"key": "ABCFS-LOCATION-ID",
+						"value": "{{locId}}"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": ""
+				"url": {
+					"raw": "{{organization}}/member/{{memberId}}",
+					"host": [
+						"{{organization}}"
+					],
+					"path": [
+						"member",
+						"{{memberId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Member_Checkin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "166df908-ca23-49f6-a2f6-1eae1133dfcf",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"",
+							"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenId}}"
+					},
+					{
+						"key": "ABCFS-LOCATION-ID",
+						"value": "{{locId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"memberId\" : \"{{memberId}}\",\r\n  \"source\" : \"QR_CODE\"\r\n}"
+				},
+				"url": {
+					"raw": "{{schedule}}/checkin",
+					"host": [
+						"{{schedule}}"
+					],
+					"path": [
+						"checkin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Member_By_Phone_Number",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1494c28-c706-41d2-994a-6adca0b5788f",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenId}}"
+					},
+					{
+						"key": "ABCFS-LOCATION-ID",
+						"value": "{{locId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{organization}}/member?search={{phoneNumber}}",
+					"host": [
+						"{{organization}}"
+					],
+					"path": [
+						"member"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "{{phoneNumber}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Member_By_Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2b6e946-557c-446f-b71a-f0be2f6192af",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenId}}"
+					},
+					{
+						"key": "ABCFS-LOCATION-ID",
+						"value": "{{locId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{organization}}/member?search={{firstName}}",
+					"host": [
+						"{{organization}}"
+					],
+					"path": [
+						"member"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "{{firstName}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Member_By_Email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e618a25b-6d75-4c95-ae7c-c602a7990b1f",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessTokenId}}"
+					},
+					{
+						"key": "ABCFS-LOCATION-ID",
+						"value": "{{locId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{organization}}/member?search={{email}}",
+					"host": [
+						"{{organization}}"
+					],
+					"path": [
+						"member"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "{{email}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add_Access_Code_To_Existing_Member",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa93576c-ca51-4d0e-9bf2-38d043e41231",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "968d48b9-2ab9-4d66-adcd-3548f45ee072",
+						"type": "text/javascript",
+						"exec": [
+							"var randNum = Math.floor(Math.random() * 9000000) + 1000000;",
+							"",
+							"postman.setEnvironmentVariable(\"randNum\", randNum);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					},
+					{
+						"key": "ABCFS-LOCATION-ID",
+						"value": "{{locId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"birthDate\" : \"1977-07-07T12:00\",\r\n  \"email\" : \"{{email}}\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.doe@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"11\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"22\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"123456\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"digitalSignatureId\" : \"df5947aa-f845-4c5a-b3d5-2ae52785b32b\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  }],\r\n  \"accessCode\":\"{{randNum}}\"\r\n}"
+				},
+				"url": {
+					"raw": "{{organization}}/member/{{memberId}}",
+					"host": [
+						"{{organization}}"
+					],
+					"path": [
+						"member",
+						"{{memberId}}"
+					]
+				}
 			},
 			"response": []
 		}
