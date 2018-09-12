@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "56878b47-667a-466a-9f07-da235b3c6950",
+    "_postman_id": "9b304499-6ab4-4674-ab2d-445981daa198",
     "name": "Bigbox_Sanity",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -419,6 +419,65 @@
       "response": []
     },
     {
+      "name": "Assign_Bank_Account",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (responseCode.code != 201)",
+              "{",
+              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201)",
+              "{",
+              "    var jsonData = JSON.parse(responseBody);",
+              "    postman.setEnvironmentVariable(\"termsId\", jsonData.documentId);",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessTokenId}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"locationId\" : \"{{locId}}\",\r\n\"account\" : {\r\n\"name\" : \"Arvind Kandi name on account\",\r\n\"email\" : \"kandi@qa4life.com\",\r\n\"phone\" : \"1907552644\",\r\n\"paymentMethod\":\r\n{\r\n\"type\" : \"BANK_ACCOUNT\",\r\n\"routingNumber\" : \"4565671\",\r\n\"accountNumber\" : \"454556454\"\r\n}\r\n}\r\n} "
+        },
+        "url": {
+          "raw": "https://qa.30preprod.com/api-deprecated/billing/account/location",
+          "protocol": "https",
+          "host": [
+            "qa",
+            "30preprod",
+            "com"
+          ],
+          "path": [
+            "api-deprecated",
+            "billing",
+            "account",
+            "location"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "Create_Member",
       "event": [
         {
@@ -449,11 +508,20 @@
         {
           "listen": "prerequest",
           "script": {
-            "id": "a294d652-8a69-48b1-ba1f-7b5247126c68",
+            "id": "524cba3d-3f2e-4fea-91b4-0b96bfd1a8f0",
             "type": "text/javascript",
             "exec": [
               "var randEmail = Math.floor(Math.random() * 9000000) + 1000000;",
-              "postman.setEnvironmentVariable(\"randEmail\", randEmail);"
+              "postman.setEnvironmentVariable(\"randEmail\", randEmail);",
+              "",
+              "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig','Tammy','Heaven','Kent','Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Orena','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Donald','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angela','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Denise','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+              "",
+              "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+              "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+              "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+              "",
+              "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+              "postman.setEnvironmentVariable(\"randLastName\", randLastName);"
             ]
           }
         }
@@ -476,7 +544,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"email\" : \"john{{randEmail}}@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.dooe{{randEmail}}@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"{{phoneNumber}}\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"{{address1}}\",\r\n    \"address2\" : \"{{address2}}\",\r\n    \"city\" : \"{{city}}\",\r\n    \"state\" : \"{{state}}\",\r\n    \"country\" : \"{{country}}\",\r\n    \"zipCode\" : \"{{zipCode}}\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  } ]\r\n}"
+          "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : \"john{{randEmail}}@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.dooe{{randEmail}}@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"{{phoneNumber}}\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"{{address1}}\",\r\n    \"address2\" : \"{{address2}}\",\r\n    \"city\" : \"{{city}}\",\r\n    \"state\" : \"{{state}}\",\r\n    \"country\" : \"{{country}}\",\r\n    \"zipCode\" : \"{{zipCode}}\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  } ]\r\n}"
         },
         "url": {
           "raw": "{{organization}}/member",
@@ -566,11 +634,18 @@
         {
           "listen": "prerequest",
           "script": {
-            "id": "a294d652-8a69-48b1-ba1f-7b5247126c68",
+            "id": "a02b1dbc-d053-43d2-9fef-334bd90c078c",
             "type": "text/javascript",
             "exec": [
               "var randEmail = Math.floor(Math.random() * 9000000) + 1000000;",
-              "postman.setEnvironmentVariable(\"randEmail\", randEmail);"
+              "postman.setEnvironmentVariable(\"randEmail\", randEmail);",
+              "",
+              "",
+              "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig','Tammy','Heaven','Kent','Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Orena','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Donald','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angela','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Denise','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+              "",
+              "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+              "",
+              "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);"
             ]
           }
         }
@@ -593,7 +668,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"DoePoe\",\r\n  \"email\" : \"john{{randEmail}}@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.dooe{{randEmail}}@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"{{phoneNumber}}\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"{{address1}}\",\r\n    \"address2\" : \"{{address2}}\",\r\n    \"city\" : \"{{city}}\",\r\n    \"state\" : \"{{state}}\",\r\n    \"country\" : \"{{country}}\",\r\n    \"zipCode\" : \"{{zipCode}}\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  } ]\r\n}"
+          "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"DoePoe\",\r\n  \"email\" : \"john{{randEmail}}@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.dooe{{randEmail}}@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"{{phoneNumber}}\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"{{address1}}\",\r\n    \"address2\" : \"{{address2}}\",\r\n    \"city\" : \"{{city}}\",\r\n    \"state\" : \"{{state}}\",\r\n    \"country\" : \"{{country}}\",\r\n    \"zipCode\" : \"{{zipCode}}\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  } ]\r\n}"
         },
         "url": {
           "raw": "{{organization}}/member/{{memberId}}",
@@ -702,6 +777,59 @@
         "body": {
           "mode": "raw",
           "raw": "{\r\n  \"memberId\" : \"{{memberId}}\",\r\n  \"source\" : \"QR_CODE\"\r\n}"
+        },
+        "url": {
+          "raw": "{{schedule}}/checkin",
+          "host": [
+            "{{schedule}}"
+          ],
+          "path": [
+            "checkin"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get_Member_CheckIn_List",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "bff99e3c-9ede-444a-86b9-78ec5a213385",
+            "type": "text/javascript",
+            "exec": [
+              "if (responseCode.code != 200)",
+              "{",
+              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "",
+              "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessTokenId}}"
+          },
+          {
+            "key": "ABCFS-LOCATION-ID",
+            "value": "{{locId}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
         },
         "url": {
           "raw": "{{schedule}}/checkin",
@@ -944,7 +1072,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"birthDate\" : \"1977-07-07T12:00\",\r\n  \"email\" : \"{{email}}\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.doe@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"11\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"22\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"123456\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"digitalSignatureId\" : \"df5947aa-f845-4c5a-b3d5-2ae52785b32b\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  }],\r\n  \"accessCode\":\"{{randNum}}\"\r\n}"
+          "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"birthDate\" : \"1977-07-07T12:00\",\r\n  \"email\" : \"{{email}}\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.doe@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"11\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"22\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"123456\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"digitalSignatureId\" : \"df5947aa-f845-4c5a-b3d5-2ae52785b32b\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  }],\r\n  \"accessCode\":\"{{randNum}}\"\r\n}"
         },
         "url": {
           "raw": "{{organization}}/member/{{memberId}}",
@@ -1053,7 +1181,10 @@
             "value": "{{locId}}"
           }
         ],
-        "body": {},
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
         "url": {
           "raw": "{{catalog}}/subscription-plan/{{membershipId}}",
           "host": [
@@ -1156,7 +1287,10 @@
             "value": "{{locId}}"
           }
         ],
-        "body": {},
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
         "url": {
           "raw": "{{catalog}}/subscription-plan",
           "host": [
@@ -1274,59 +1408,6 @@
             "taxRate",
             "location",
             "{{locId}}"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Reset_Password",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "9efa7bde-fdd2-4ac3-adc9-b2a208315a13",
-            "type": "text/javascript",
-            "exec": [
-              "if (responseCode.code != 201)",
-              "{",
-              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-              "}",
-              "",
-              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-            ]
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{accessTokenId}}"
-          },
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "ABCFS-ORGANIZATION-ID",
-            "value": "{{orgId}}"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"originUrl\" : \"{{authorization}}/reset-password-token?token=\",\r\n  \"email\" : \"{{userName}}\"\r\n}"
-        },
-        "url": {
-          "raw": "{{authorization}}/user/reset-password-token",
-          "host": [
-            "{{authorization}}"
-          ],
-          "path": [
-            "user",
-            "reset-password-token"
           ]
         }
       },
