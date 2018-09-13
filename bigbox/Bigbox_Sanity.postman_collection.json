@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "9b304499-6ab4-4674-ab2d-445981daa198",
+    "_postman_id": "0bb9151d-4d69-4f91-9fe8-a931cc409626",
     "name": "Bigbox_Sanity",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -75,7 +75,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "0008bcc7-5dd6-4ab4-96d9-a01f9445f6d2",
+            "id": "e065ae79-367f-49f1-abfb-a4643d508ed6",
             "type": "text/javascript",
             "exec": [
               "if (responseCode.code != 201)",
@@ -424,6 +424,7 @@
         {
           "listen": "test",
           "script": {
+            "id": "34419587-63bc-44fe-abcd-8d1f63cebf43",
             "type": "text/javascript",
             "exec": [
               "if (responseCode.code != 201)",
@@ -431,13 +432,6 @@
               "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
               "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
               "}",
-              "",
-              "else if (responseCode.code === 201)",
-              "{",
-              "    var jsonData = JSON.parse(responseBody);",
-              "    postman.setEnvironmentVariable(\"termsId\", jsonData.documentId);",
-              "}",
-              "",
               "tests[\"Response code should be 201\"] = responseCode.code === 201;"
             ]
           }
@@ -457,19 +451,14 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n\"locationId\" : \"{{locId}}\",\r\n\"account\" : {\r\n\"name\" : \"Arvind Kandi name on account\",\r\n\"email\" : \"kandi@qa4life.com\",\r\n\"phone\" : \"1907552644\",\r\n\"paymentMethod\":\r\n{\r\n\"type\" : \"BANK_ACCOUNT\",\r\n\"routingNumber\" : \"4565671\",\r\n\"accountNumber\" : \"454556454\"\r\n}\r\n}\r\n} "
+          "raw": "{\r\n\"locationId\" : \"{{locId}}\",\r\n\"account\" : {\r\n\"name\" : \"Arvind Kandi name on account\",\r\n\"email\" : \"kandi@qa4life.com\",\r\n\"phone\" : \"{{phoneNumber}}\",\r\n\"paymentMethod\":\r\n{\r\n\"type\" : \"BANK_ACCOUNT\",\r\n\"routingNumber\" : \"4565671\",\r\n\"accountNumber\" : \"454556454\"\r\n}\r\n}\r\n} "
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api-deprecated/billing/account/location",
-          "protocol": "https",
+          "raw": "{{billing}}/account/location",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{billing}}"
           ],
           "path": [
-            "api-deprecated",
-            "billing",
             "account",
             "location"
           ]
@@ -483,7 +472,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "11b291e1-35b8-4dc1-ba14-8dd347b94137",
+            "id": "e61d1a5a-a928-4aea-89ce-cd0dd1878de6",
             "type": "text/javascript",
             "exec": [
               "if (responseCode.code != 201)",
@@ -497,8 +486,6 @@
               "    var jsonData = JSON.parse(responseBody);",
               "    postman.setEnvironmentVariable(\"memberId\", jsonData.id);",
               "    postman.setEnvironmentVariable(\"phoneNumber\", jsonData.phone.number);",
-              "    postman.setEnvironmentVariable(\"firstName\", jsonData.firstName);",
-              "    postman.setEnvironmentVariable(\"email\", jsonData.email);",
               "}",
               "",
               "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -618,7 +605,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "1d743922-9a12-420d-af0d-60a79a191575",
+            "id": "6f29aa01-e93b-47e6-83f3-41015a51a09c",
             "type": "text/javascript",
             "exec": [
               "if (responseCode.code != 200)",
@@ -626,6 +613,14 @@
               "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
               "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
               "}",
+              "",
+              "else if (responseCode.code === 200)",
+              "{",
+              "    var jsonData = JSON.parse(responseBody);",
+              "    postman.setEnvironmentVariable(\"firstName\", jsonData.firstName);",
+              "    postman.setEnvironmentVariable(\"email\", jsonData.email);",
+              "}",
+              "",
               "",
               "tests[\"Response code should be 200\"] = responseCode.code === 200;"
             ]
@@ -732,112 +727,6 @@
           "path": [
             "member",
             "{{memberId}}"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Member_Checkin",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "166df908-ca23-49f6-a2f6-1eae1133dfcf",
-            "type": "text/javascript",
-            "exec": [
-              "if (responseCode.code != 201)",
-              "{",
-              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-              "}",
-              "",
-              "",
-              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-            ]
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "Authorization",
-            "value": "Bearer {{accessTokenId}}"
-          },
-          {
-            "key": "ABCFS-LOCATION-ID",
-            "value": "{{locId}}"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"memberId\" : \"{{memberId}}\",\r\n  \"source\" : \"QR_CODE\"\r\n}"
-        },
-        "url": {
-          "raw": "{{schedule}}/checkin",
-          "host": [
-            "{{schedule}}"
-          ],
-          "path": [
-            "checkin"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get_Member_CheckIn_List",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "bff99e3c-9ede-444a-86b9-78ec5a213385",
-            "type": "text/javascript",
-            "exec": [
-              "if (responseCode.code != 200)",
-              "{",
-              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-              "}",
-              "",
-              "",
-              "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-            ]
-          }
-        }
-      ],
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "Authorization",
-            "value": "Bearer {{accessTokenId}}"
-          },
-          {
-            "key": "ABCFS-LOCATION-ID",
-            "value": "{{locId}}"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": ""
-        },
-        "url": {
-          "raw": "{{schedule}}/checkin",
-          "host": [
-            "{{schedule}}"
-          ],
-          "path": [
-            "checkin"
           ]
         }
       },
@@ -1026,13 +915,18 @@
         {
           "listen": "test",
           "script": {
-            "id": "fa93576c-ca51-4d0e-9bf2-38d043e41231",
+            "id": "0d6914f4-7a2c-4f4b-85fe-581dd5b988a0",
             "type": "text/javascript",
             "exec": [
               "if (responseCode.code != 200)",
               "{",
               "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
               "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "else if (responseCode.code === 200)",
+              "{",
+              "    var jsonData = JSON.parse(responseBody);",
+              "    postman.setEnvironmentVariable(\"accessCode\", jsonData.accessCode);",
               "}",
               "",
               "",
@@ -1063,7 +957,7 @@
           },
           {
             "key": "Authorization",
-            "value": "Bearer {{authId}}"
+            "value": "Bearer {{accessTokenId}}"
           },
           {
             "key": "ABCFS-LOCATION-ID",
@@ -1082,6 +976,166 @@
           "path": [
             "member",
             "{{memberId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get_Member_By_Access_Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "df16ae6b-de97-4b3f-bcec-8f5a2c64b0b8",
+            "type": "text/javascript",
+            "exec": [
+              "if (responseCode.code != 200)",
+              "{",
+              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessTokenId}}"
+          },
+          {
+            "key": "ABCFS-LOCATION-ID",
+            "value": "{{locId}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{organization}}/member/access-code/{{accessCode}}",
+          "host": [
+            "{{organization}}"
+          ],
+          "path": [
+            "member",
+            "access-code",
+            "{{accessCode}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Member_Checkin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "166df908-ca23-49f6-a2f6-1eae1133dfcf",
+            "type": "text/javascript",
+            "exec": [
+              "if (responseCode.code != 201)",
+              "{",
+              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessTokenId}}"
+          },
+          {
+            "key": "ABCFS-LOCATION-ID",
+            "value": "{{locId}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"memberId\" : \"{{memberId}}\",\r\n  \"source\" : \"QR_CODE\"\r\n}"
+        },
+        "url": {
+          "raw": "{{schedule}}/checkin",
+          "host": [
+            "{{schedule}}"
+          ],
+          "path": [
+            "checkin"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get_Member_CheckIn_List",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "bff99e3c-9ede-444a-86b9-78ec5a213385",
+            "type": "text/javascript",
+            "exec": [
+              "if (responseCode.code != 200)",
+              "{",
+              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "",
+              "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessTokenId}}"
+          },
+          {
+            "key": "ABCFS-LOCATION-ID",
+            "value": "{{locId}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{schedule}}/checkin",
+          "host": [
+            "{{schedule}}"
+          ],
+          "path": [
+            "checkin"
           ]
         }
       },
@@ -1343,7 +1397,7 @@
           },
           {
             "key": "Authorization",
-            "value": "Bearer {{authId}}"
+            "value": "Bearer {{accessTokenId}}"
           }
         ],
         "body": {
