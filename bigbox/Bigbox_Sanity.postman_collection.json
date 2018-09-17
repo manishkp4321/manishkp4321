@@ -1,13 +1,12 @@
 {
   "info": {
-    "_postman_id": "63078960-0e90-4c45-9c74-7d9f4d3fe162",
+    "_postman_id": "0bb9151d-4d69-4f91-9fe8-a931cc409626",
     "name": "Bigbox_Sanity",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
       "name": "Authorization and Login",
-      "description": null,
       "item": [
         {
           "name": "Authorization",
@@ -15,6 +14,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "5452a091-3c9c-47f0-aacf-52e59e459e5d",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -29,7 +29,8 @@
                   "    postman.setEnvironmentVariable(\"authId\", jsonData.access_token);",
                   "}",
                   "",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  ""
                 ]
               }
             }
@@ -316,7 +317,6 @@
     },
     {
       "name": "Upload Waiver and Terms",
-      "description": null,
       "item": [
         {
           "name": "Upload_Waiver",
@@ -432,7 +432,6 @@
     },
     {
       "name": "Create/Get/Update Member",
-      "description": null,
       "item": [
         {
           "name": "Create_Member",
@@ -726,7 +725,6 @@
     },
     {
       "name": "Get Member by Fields",
-      "description": null,
       "item": [
         {
           "name": "Get_Member_By_Phone_Number",
@@ -909,7 +907,6 @@
     },
     {
       "name": "Add Access Code",
-      "description": null,
       "item": [
         {
           "name": "Add_Access_Code_To_Existing_Member",
@@ -987,7 +984,6 @@
     },
     {
       "name": "Get Member after Access Code",
-      "description": null,
       "item": [
         {
           "name": "Get_Member_By_Access_Code",
@@ -1047,7 +1043,6 @@
     },
     {
       "name": "Member Check-in",
-      "description": null,
       "item": [
         {
           "name": "Member_Checkin",
@@ -1159,7 +1154,6 @@
     },
     {
       "name": "Create/View Membership",
-      "description": null,
       "item": [
         {
           "name": "Create_Membership_1",
@@ -1328,7 +1322,6 @@
     },
     {
       "name": "View List of Membership",
-      "description": null,
       "item": [
         {
           "name": "View_List_Of_Membership",
@@ -1387,7 +1380,6 @@
     },
     {
       "name": "Update/Get Location Tax Rate",
-      "description": null,
       "item": [
         {
           "name": "Update_Location_Tax_rate",
@@ -1503,7 +1495,6 @@
     },
     {
       "name": "Create Org/Processor/Account/Purchase of Dimebox",
-      "description": null,
       "item": [
         {
           "name": "Create_Organisation_DimeBox",
@@ -1561,7 +1552,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "00ad1e57-3423-4795-a19d-9d75e4a901d9",
+                "id": "8b3463b2-ca8d-4d5e-9f07-7075ddb72010",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -1571,7 +1562,7 @@
                   "}",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
+                  " var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"processorId\", jsonData._id);",
                   "}",
                   "",
@@ -1716,7 +1707,6 @@
     },
     {
       "name": "Create Location of Billing",
-      "description": null,
       "item": [
         {
           "name": "Assign_Bank_Account",
@@ -1770,7 +1760,6 @@
     },
     {
       "name": "Create/Get Member Account",
-      "description": null,
       "item": [
         {
           "name": "Create_Member_Account_Billing",
@@ -1829,7 +1818,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"locationId\":\"{{locId}}\",\n \"memberId\":\"8afb363c-954c-11e8-9eb6-{{randMemberId}}fb1750\",\n \"account\":\n {\n \"name\":\"Test\",\n \"email\":\"test@qa4life.com\",\n \"paymentMethod\":\n {\n \"type\":\"CREDIT_CARD\",\n \"token\":\"{{tokenId}}\"\n }\n }\n }"
+              "raw": "{\n\"locationId\":\"{{locId}}\",\n \"memberId\":\"8afb363c-954c-11e8-9eb6-{{randMemberId}}fb1750\",\n \"account\":\n {\n \"name\":\"Test\",\n \"email\":\"test@qa4life.com\",\n \"paymentMethod\":\n {\n \"type\":\"BANK_ACCOUNT\",\n  \"routingNumber\" : \"9282\",\n  \"accountNumber\" : \"454556\",\n  \"alias\" : \"testingbilling\"\n \n }\n }\n }"
             },
             "url": {
               "raw": "{{billing}}/account/member",
@@ -1907,8 +1896,76 @@
       ]
     },
     {
+      "name": "Update Member Account",
+      "item": [
+        {
+          "name": "Update_Member_Account_Billing",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ab7a7f1f-fd77-4568-9f6d-dd0dbce1dccb",
+                "type": "text/javascript",
+                "exec": [
+                  "var randMemberId = Math.floor(Math.random() * 900000) + 100000;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"randMemberId\", randMemberId);",
+                  "",
+                  "console.log(\"randMemberId: \"+randMemberId);"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "3ff888bd-f3f5-467a-adc4-9a83e5356bbf",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"locationId\":\"{{locId}}\",\n \"memberId\":\"{{billingMemberId}}\",\n \"account\":\n {\n \"name\":\"Test\",\n \"email\":\"test@qa4life.com\",\n \"paymentMethod\":\n {\n \"type\":\"CREDIT_CARD\",\n \"token\":\"{{tokenId}}\"\n }\n }\n }"
+            },
+            "url": {
+              "raw": "{{billing}}/account/{{memberAccountId}}",
+              "host": [
+                "{{billing}}"
+              ],
+              "path": [
+                "account",
+                "{{memberAccountId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Create Processor and Subscription",
-      "description": null,
       "item": [
         {
           "name": "Create_Processor_Billing",
@@ -1990,7 +2047,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"locationId\": \"{{locId}}\",\r\n\"memberId\": \"{{billingMemberId}}\",\r\n\"accountId\": \"{{memberAccountId}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c29\",\r\n\"planVersion\": 1,\r\n\"start\": \"09-14-2018\",\r\n\"frequency\":\"DAILY\",\r\n\"duration\": \"2\",\r\n\"durationUnit\": \"DAYS\",\r\n\"name\": \"monika\",\r\n\"items\": [{\r\n\"itemName\":\"monika1\",\r\n\"itemId\":\"fd1ebc5e-1fab-120f-879f-4e930cc25c01\",\r\n\"version\": 1,\r\n\"price\": \"100000\",\r\n\"quantity\": \"10\",\r\n\"expirationStart\": \"\",\r\n\"type\": \"SERVICE\",\r\n\"unlimited\": \"true\"\r\n},\r\n{\r\n\"itemName\":\"monika2\",\r\n\"itemId\":\"fd1ebc5e-1fab-120f-879f-4e930cc25c02\",\r\n\"version\": 1,\r\n\"price\": \"100000\",\r\n\"quantity\": \"10\",\r\n\"expirationStart\": \"\",\r\n\"type\": \"SERVICE\",\r\n\"unlimited\": \"true\"\r\n}\r\n]\r\n}"
+              "raw": "{\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"locationId\": \"{{locId}}\",\r\n\"memberId\": \"{{billingMemberId}}\",\r\n\"accountId\": \"{{memberAccountId}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c29\",\r\n\"planVersion\": 1,\r\n\"frequency\":\"DAILY\",\r\n\"duration\": \"2\",\r\n\"durationUnit\": \"DAYS\",\r\n\"name\": \"monika\",\r\n\"items\": [{\r\n\"itemName\":\"monika1\",\r\n\"itemId\":\"fd1ebc5e-1fab-120f-879f-4e930cc25c01\",\r\n\"version\": 1,\r\n\"price\": \"100000\",\r\n\"quantity\": \"10\",\r\n\"expirationStart\": \"\",\r\n\"type\": \"SERVICE\",\r\n\"unlimited\": \"true\"\r\n},\r\n{\r\n\"itemName\":\"monika2\",\r\n\"itemId\":\"fd1ebc5e-1fab-120f-879f-4e930cc25c02\",\r\n\"version\": 1,\r\n\"price\": \"100000\",\r\n\"quantity\": \"10\",\r\n\"expirationStart\": \"\",\r\n\"type\": \"SERVICE\",\r\n\"unlimited\": \"true\"\r\n}\r\n]\r\n}"
             },
             "url": {
               "raw": "{{billing}}/subscription/",
