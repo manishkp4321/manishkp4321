@@ -1,0 +1,2068 @@
+{
+  "info": {
+    "_postman_id": "0bb9151d-4d69-4f91-9fe8-a931cc409626",
+    "name": "Bigbox_Sanity",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authorization and Login",
+      "item": [
+        {
+          "name": "Authorization",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5452a091-3c9c-47f0-aacf-52e59e459e5d",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"authId\", jsonData.access_token);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw=="
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{authorization}}/token?grant_type=client_credentials",
+              "host": [
+                "{{authorization}}"
+              ],
+              "path": [
+                "token"
+              ],
+              "query": [
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Organization_With_Location",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e065ae79-367f-49f1-abfb-a4643d508ed6",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"orgId\", jsonData.organization.id);",
+                  "    postman.setEnvironmentVariable(\"locId\", jsonData.locations[0].id);",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+                "type": "text/javascript",
+                "exec": [
+                  "var orgName = Math.floor(Math.random() * 9000000) + 1000000;",
+                  "var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+                  "var address1 = \"AR-107\";",
+                  "var address2 = \"Sherwood\";",
+                  "var city = \"Little Rock\";",
+                  "var state = \"AR\";",
+                  "var country = \"USA\";",
+                  "var zipCode = \"72120\";",
+                  "var extension= \"231\";",
+                  "",
+                  "postman.setEnvironmentVariable(\"orgName\", orgName);",
+                  "postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
+                  "postman.setEnvironmentVariable(\"extension\", extension);",
+                  "postman.setEnvironmentVariable(\"address1\", address1);",
+                  "postman.setEnvironmentVariable(\"address2\", address2);",
+                  "postman.setEnvironmentVariable(\"city\", city);",
+                  "postman.setEnvironmentVariable(\"state\", state);",
+                  "postman.setEnvironmentVariable(\"zipCode\", zipCode);",
+                  "postman.setEnvironmentVariable(\"country\", country);",
+                  "",
+                  "console.log(\"orgName \", orgName);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"organization\" : {\r\n  \r\n    \"name\" : \"University of Winterfell #{{orgName}}\",\r\n    \"email\" : \"WinterfellUniversity{{orgName}}@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"231\"\r\n    }\r\n  },\r\n  \"locations\" : [ {\r\n    \"name\" : \"Winterfell Location {{orgName}}\",\r\n    \"email\" : \"noreplyLoc{{orgName}}@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"{{extension}}\"\r\n    },\r\n    \"timezone\" : \"US/Alaska\",\r\n    \"addresses\" : [ {\r\n      \"address1\" : \"{{address1}}\",\r\n      \"address2\" : \"{{address2}}\",\r\n      \"city\" : \"{{city}}\",\r\n      \"zipCode\" : \"{{zipCode}}\",\r\n      \"state\" : \"{{state}}\",\r\n      \"country\" : \"{{country}}\",\r\n      \"addressType\" : \"BILLING\"\r\n    }, {\r\n      \"address1\" : \"{{address1}}\",\r\n      \"address2\" : \"{{address2}}\",\r\n      \"city\" : \"{{city}}\",\r\n      \"zipCode\" : \"{{zipCode}}\",\r\n      \"state\" : \"{{state}}\",\r\n      \"country\" : \"{{country}}\",\r\n      \"addressType\" : \"SHIPPING\"\r\n    } ]\r\n  } ]\r\n}"
+            },
+            "url": {
+              "raw": "{{organization}}/registration/organization-with-locations",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "registration",
+                "organization-with-locations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4750fb31-da35-4ea8-b7a9-e7d367b15196",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"userName\", jsonData.identity);",
+                  "  ",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d5640b1f-b64f-4ca2-8d3b-ed824a7ccff1",
+                "type": "text/javascript",
+                "exec": [
+                  "var ranIdentityNo = Math.floor(Math.random() * 9000000) + 1000000;",
+                  "var password= \"Password01\";",
+                  "",
+                  "postman.setEnvironmentVariable(\"ranIdentityNo\", ranIdentityNo);",
+                  "",
+                  "postman.setEnvironmentVariable(\"password\", password);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "ABCFS-ORGANIZATION-ID",
+                "value": "{{orgId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"identity\": \"noreply{{ranIdentityNo}}@qa4life.com\",\r\n  \"password\": \"{{password}}\",\r\n  \"organizationId\": \"{{orgId}}\",\r\n  \"phone\": {\r\n    \"number\": \"{{phoneNumber}}\",\r\n    \"extension\": \"{{extension}}\"\r\n  }\r\n  \r\n  \r\n}"
+            },
+            "url": {
+              "raw": "{{authorization}}/user",
+              "host": [
+                "{{authorization}}"
+              ],
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login_User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"accessTokenId\", jsonData.access_token);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw=="
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "ABCFS-ORGANIZATION-ID",
+                "value": "{{orgId}}"
+              },
+              {
+                "key": "",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{authorization}}/token?grant_type=password&username={{userName}}&password={{password}}",
+              "host": [
+                "{{authorization}}"
+              ],
+              "path": [
+                "token"
+              ],
+              "query": [
+                {
+                  "key": "grant_type",
+                  "value": "password"
+                },
+                {
+                  "key": "username",
+                  "value": "{{userName}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Upload Waiver and Terms",
+      "item": [
+        {
+          "name": "Upload_Waiver",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"waiverId\", jsonData.documentId);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"locationId\" : \"{{locId}}\", \r\n  \"content\" : \"Waiver: Our employees are encouraged to be pro-active in expressing their ideas and contributing to the company's future.\"\r\n}"
+            },
+            "url": {
+              "raw": "{{organization}}/document/upload/waiver",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "document",
+                "upload",
+                "waiver"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload_Terms",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"termsId\", jsonData.documentId);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"locationId\" : \"{{locId}}\", \r\n  \"content\" : \"Terms: Our employees are encouraged to be pro-active in expressing their ideas and contributing to the company's future.\"\r\n}"
+            },
+            "url": {
+              "raw": "{{organization}}/document/upload/terms",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "document",
+                "upload",
+                "terms"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create/Get/Update Member",
+      "item": [
+        {
+          "name": "Create_Member",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e61d1a5a-a928-4aea-89ce-cd0dd1878de6",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"memberId\", jsonData.id);",
+                  "    postman.setEnvironmentVariable(\"phoneNumber\", jsonData.phone.number);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "524cba3d-3f2e-4fea-91b4-0b96bfd1a8f0",
+                "type": "text/javascript",
+                "exec": [
+                  "var randEmail = Math.floor(Math.random() * 9000000) + 1000000;",
+                  "postman.setEnvironmentVariable(\"randEmail\", randEmail);",
+                  "",
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig','Tammy','Heaven','Kent','Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Orena','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Donald','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angela','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Denise','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "",
+                  "var lastNames = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "var randLastName = lastNames[Math.floor(Math.random() * lastNames.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);",
+                  "postman.setEnvironmentVariable(\"randLastName\", randLastName);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"email\" : \"john{{randEmail}}@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.dooe{{randEmail}}@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"{{phoneNumber}}\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"{{address1}}\",\r\n    \"address2\" : \"{{address2}}\",\r\n    \"city\" : \"{{city}}\",\r\n    \"state\" : \"{{state}}\",\r\n    \"country\" : \"{{country}}\",\r\n    \"zipCode\" : \"{{zipCode}}\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  } ]\r\n}"
+            },
+            "url": {
+              "raw": "{{organization}}/member",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get_Member",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "bff99e3c-9ede-444a-86b9-78ec5a213385",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{organization}}/member/{{memberId}}",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member",
+                "{{memberId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update_Member",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6f29aa01-e93b-47e6-83f3-41015a51a09c",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"firstName\", jsonData.firstName);",
+                  "    postman.setEnvironmentVariable(\"email\", jsonData.email);",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "a02b1dbc-d053-43d2-9fef-334bd90c078c",
+                "type": "text/javascript",
+                "exec": [
+                  "var randEmail = Math.floor(Math.random() * 9000000) + 1000000;",
+                  "postman.setEnvironmentVariable(\"randEmail\", randEmail);",
+                  "",
+                  "",
+                  "var firstNames = ['Michael', 'Alicia', 'Thomas', 'Olivia', 'Daniel', 'Candice', 'Amy', 'Barbara', 'Matthew', 'Ryan', 'Craig','Tammy','Heaven','Kent','Floretta','Sylvester','Mandi','Damion','Noel','Jacklyn','Viva','Taina','Myrtle','Ernest','Vina','Dorsey','Rico','Will','Wilber','Lacie','Orena','Eliana','Elva','Marilyn','Sharita','Nina','Tori','Rufina','Isiah','Lavenia','Coleman','Donald','Jannette','Zaida','Darius','Shelton','Jackson','Rochelle','Kermit','Branda','Casandra','Matt','Lorna','Angela','China','Alena','Barrett','Aaron','Rana','Jeffrey','Zane','Shane','Melinda','Valencia','Jacque','Venessa','Don','Harold','Charol','Rebbecca','Melissa','Diego','Jorge','Katie','Gina','Denise','Lorita','Mina','Anthony','Debbie','Jason','Kassie','Misty','Misti','Dianne','Lashay','Tonia','Mariana','Peter','Zack','Kevin','Vickie','Magda','Kris','Ralph','Maureen','Frederick','Emmaline','Marylee','Zoe','Katelyn','Birdee','Loren','Fran','Melvin','Delbert','Mittie','Clarence','Demetra','Nancy','Vaughn','Arminda','Garrett','Keith','Trudy','Theresia','Kelly'];",
+                  "",
+                  "var randFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];",
+                  "",
+                  "postman.setEnvironmentVariable(\"randFirstName\", randFirstName);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"DoePoe\",\r\n  \"email\" : \"john{{randEmail}}@qa4life.com\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.dooe{{randEmail}}@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : \"{{phoneNumber}}\",\r\n    \"extension\" : \"{{extension}}\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"{{phoneNumber}}\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"{{address1}}\",\r\n    \"address2\" : \"{{address2}}\",\r\n    \"city\" : \"{{city}}\",\r\n    \"state\" : \"{{state}}\",\r\n    \"country\" : \"{{country}}\",\r\n    \"zipCode\" : \"{{zipCode}}\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  } ]\r\n}"
+            },
+            "url": {
+              "raw": "{{organization}}/member/{{memberId}}",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member",
+                "{{memberId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get_Member_After_Updation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "bff99e3c-9ede-444a-86b9-78ec5a213385",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{organization}}/member/{{memberId}}",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member",
+                "{{memberId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "d44773c5-c88a-4748-a6b3-8460f69fe3be",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "80c0bb91-381d-4c5d-8f7d-abd1d85b932d",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Member by Fields",
+      "item": [
+        {
+          "name": "Get_Member_By_Phone_Number",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d1494c28-c706-41d2-994a-6adca0b5788f",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{organization}}/member?search={{phoneNumber}}",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "{{phoneNumber}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get_Member_By_Name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b2b6e946-557c-446f-b71a-f0be2f6192af",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{organization}}/member?search={{firstName}}",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "{{firstName}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get_Member_By_Email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e618a25b-6d75-4c95-ae7c-c602a7990b1f",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{organization}}/member?search={{email}}",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "{{email}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Add Access Code",
+      "item": [
+        {
+          "name": "Add_Access_Code_To_Existing_Member",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0d6914f4-7a2c-4f4b-85fe-581dd5b988a0",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"accessCode\", jsonData.accessCode);",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "968d48b9-2ab9-4d66-adcd-3548f45ee072",
+                "type": "text/javascript",
+                "exec": [
+                  "var randNum = Math.floor(Math.random() * 9000000) + 1000000;",
+                  "",
+                  "postman.setEnvironmentVariable(\"randNum\", randNum);",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\" : \"{{randFirstName}}\",\r\n  \"lastName\" : \"{{randLastName}}\",\r\n  \"birthDate\" : \"1977-07-07T12:00\",\r\n  \"email\" : \"{{email}}\",\r\n  \"emails\" : [ {\r\n    \"email\" : \"john.doe@qa4life.com\",\r\n    \"type\" : \"DEFAULT\"\r\n  } ],\r\n  \"phones\" : [ {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"11\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  }, {\r\n    \"number\" : {{phoneNumber}},\r\n    \"extension\" : \"22\",\r\n    \"phoneType\" : \"DEFAULT\"\r\n  } ],\r\n  \"phone\" : \"123456\",\r\n  \"waiverDocumentId\" : \"{{waiverId}}\",\r\n  \"termsDocumentId\" : \"{{termsId}}\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"digitalSignatureId\" : \"df5947aa-f845-4c5a-b3d5-2ae52785b32b\",\r\n  \"organizationId\" : \"{{orgId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\",\r\n    \"addressType\" : \"PRIMARY\"\r\n  }],\r\n  \"accessCode\":\"{{randNum}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{organization}}/member/{{memberId}}",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member",
+                "{{memberId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get Member after Access Code",
+      "item": [
+        {
+          "name": "Get_Member_By_Access_Code",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "df16ae6b-de97-4b3f-bcec-8f5a2c64b0b8",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{organization}}/member/access-code/{{accessCode}}",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member",
+                "access-code",
+                "{{accessCode}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Member Check-in",
+      "item": [
+        {
+          "name": "Member_Checkin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "166df908-ca23-49f6-a2f6-1eae1133dfcf",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"memberId\" : \"{{memberId}}\",\r\n  \"source\" : \"QR_CODE\"\r\n}"
+            },
+            "url": {
+              "raw": "{{schedule}}/checkin",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "checkin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get_Member_CheckIn_List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "bff99e3c-9ede-444a-86b9-78ec5a213385",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{schedule}}/checkin",
+              "host": [
+                "{{schedule}}"
+              ],
+              "path": [
+                "checkin"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create/View Membership",
+      "item": [
+        {
+          "name": "Create_Membership_1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "700fb568-11bd-4086-b8d5-7c7c24afc2ae",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"membershipId\", jsonData.id.id);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\" : \"MembershipPlanTestOne\",\r\n  \"active\" : true,\r\n  \"open\" : true,\r\n  \"frequency\" : \"MONTHLY\",\r\n  \"duration\" : 3,\r\n  \"durationUnit\" : \"DAYS\",\r\n  \"description\" : \"Test Description is very descriptive\",\r\n  \"items\" : [ {\r\n    \"active\" : true,\r\n    \"name\" : \"First Test Item\",\r\n    \"type\" : \"AMENITY\",\r\n    \"price\" : \"12\",\r\n    \"quantity\" : \"1\",\r\n    \"unlimited\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 14,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"version\" : \"1\",\r\n    \"currencyId\" : \"USD\"\r\n  }, {\r\n    \"active\" : true,\r\n    \"name\" : \"Second Test Item\",\r\n    \"type\" : \"AMENITY\",\r\n    \"price\" : \"15\",\r\n    \"quantity\" : \"1\",\r\n    \"unlimited\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"version\" : \"1\",\r\n    \"currencyId\" : \"USD\"\r\n  } ]\r\n}"
+            },
+            "url": {
+              "raw": "{{catalog}}/subscription-plan",
+              "host": [
+                "{{catalog}}"
+              ],
+              "path": [
+                "subscription-plan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Membership_2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9fbd0cad-b14b-4392-8279-0cdafa9786cf",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\" : \"MembershipPlanTestTwo\",\r\n  \"active\" : true,\r\n  \"open\" : true,\r\n  \"frequency\" : \"MONTHLY\",\r\n  \"duration\" : 5,\r\n  \"durationUnit\" : \"DAYS\",\r\n  \"description\" : \"Test Description is very descriptive\",\r\n  \"items\" : [ {\r\n    \"active\" : true,\r\n    \"name\" : \"First Test Item\",\r\n    \"type\" : \"AMENITY\",\r\n    \"price\" : \"12\",\r\n    \"quantity\" : \"1\",\r\n    \"unlimited\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 14,\r\n    \"expirationUnit\" : \"DAYS\",\r\n    \"version\" : \"1\",\r\n    \"currencyId\" : \"USD\"\r\n  }, {\r\n    \"active\" : true,\r\n    \"name\" : \"Second Test Item\",\r\n    \"type\" : \"AMENITY\",\r\n    \"price\" : \"15\",\r\n    \"quantity\" : \"1\",\r\n    \"unlimited\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"expirationTime\" : 2,\r\n    \"expirationUnit\" : \"MONTHS\",\r\n    \"version\" : \"1\",\r\n    \"currencyId\" : \"USD\"\r\n  } ]\r\n}"
+            },
+            "url": {
+              "raw": "{{catalog}}/subscription-plan",
+              "host": [
+                "{{catalog}}"
+              ],
+              "path": [
+                "subscription-plan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "View_Membership_Details",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "69e449e3-1c9e-4872-a4e2-9c0d399d3e4f",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{catalog}}/subscription-plan/{{membershipId}}",
+              "host": [
+                "{{catalog}}"
+              ],
+              "path": [
+                "subscription-plan",
+                "{{membershipId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "View List of Membership",
+      "item": [
+        {
+          "name": "View_List_Of_Membership",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "169762e0-f8b7-4295-a5cc-b91317514bfe",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "ABCFS-LOCATION-ID",
+                "value": "{{locId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{catalog}}/subscription-plan",
+              "host": [
+                "{{catalog}}"
+              ],
+              "path": [
+                "subscription-plan"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Update/Get Location Tax Rate",
+      "item": [
+        {
+          "name": "Update_Location_Tax_rate",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "fa93576c-ca51-4d0e-9bf2-38d043e41231",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "5bc01f5c-39be-46f4-8135-9738464671c1",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"location\" : \"{{locId}}\",\r\n  \"taxRate\" : \"87.7\"\r\n}"
+            },
+            "url": {
+              "raw": "{{billing}}/taxRate",
+              "host": [
+                "{{billing}}"
+              ],
+              "path": [
+                "taxRate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get_Location_Tax_Rate",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b2b6e946-557c-446f-b71a-f0be2f6192af",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{billing}}/taxRate/location/{{locId}}",
+              "host": [
+                "{{billing}}"
+              ],
+              "path": [
+                "taxRate",
+                "location",
+                "{{locId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Org/Processor/Account/Purchase of Dimebox",
+      "item": [
+        {
+          "name": "Create_Organisation_DimeBox",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ed52474e-e809-48a0-bdc3-c280c9e8fb3e",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"dimeBoxOrgId\", jsonData._id);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"country_code\": \"US\",\r\n\"disabled\": false,\r\n\"email\": \"my1org@qagmail.com\",\r\n\"extended_address\": \"Black Hill Mountains\",\r\n\"generate_invoice\": true,\r\n\"locality\": \"Single Fork Street12\",\r\n\"name\": \"Alen Jackson\",\r\n\"parent_id\": \"5b115891b6cdfd755de3d4bd\",\r\n\"phone\": \"98798765\",\r\n\"postal_code\": \"72116\",\r\n\"region\": \"AR\",\r\n\"street\": \"Willow spring street\",\r\n\"street_number\": 5901,\r\n\"tax_number\": \"23423423\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{dimebox}}/setup/organisation",
+              "host": [
+                "{{dimebox}}"
+              ],
+              "path": [
+                "setup",
+                "organisation"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Processor_DimeBox",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8b3463b2-ca8d-4d5e-9f07-7075ddb72010",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  " var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"processorId\", jsonData._id);",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"configuration\": {\r\n    \"_type\": \"card_dummy\"\r\n  },\r\n  \"name\": \"Processor\",\r\n  \"organisation\": \"{{dimeBoxOrgId}}\",\r\n  \"mcc\": \"3131\"\r\n}"
+            },
+            "url": {
+              "raw": "{{dimebox}}/setup/processor",
+              "host": [
+                "{{dimebox}}"
+              ],
+              "path": [
+                "setup",
+                "processor"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Account_Dimebox",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f07c9362-ff48-4024-a10b-659e4553d7e0",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"dimeBoxAccountId\", jsonData._id);",
+                  "",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"currency_code\": \"EUR\",\r\n\"description\": \"This is test account\",\r\n\"disabled\": false,\r\n\"monthly_fee\": 10,\r\n\"name\": \"My Test Name\",\r\n\"organisation\": \"{{dimeBoxOrgId}}\",\r\n\"processors\": [\"{{processorId}}\"],\r\n\"inspectors\": [\r\n\"c5d9d4b856f0faccc8446100\"\r\n],\r\n\"importers\": [\r\n\"c5d9d4b856f0faccc8446100\"\r\n]\r\n}"
+            },
+            "url": {
+              "raw": "{{dimebox}}/setup/account",
+              "host": [
+                "{{dimebox}}"
+              ],
+              "path": [
+                "setup",
+                "account"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateCard_Transaction_Dimebox",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e83f856c-3509-41d3-867f-7f65e9a9ca1d",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"tokenId\", jsonData._id);",
+                  "",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"card_number\": \"4573925237958787\",\r\n\"cvv\": \"123\",\r\n\"expiry_month\": \"7\",\r\n\"expiry_year\": \"21\",\r\n\"organisation\": \"{{dimeBoxOrgId}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{dimebox}}/transaction/card",
+              "host": [
+                "{{dimebox}}"
+              ],
+              "path": [
+                "transaction",
+                "card"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Location of Billing",
+      "item": [
+        {
+          "name": "Assign_Bank_Account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "34419587-63bc-44fe-abcd-8d1f63cebf43",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"locationId\" : \"{{locId}}\",\r\n\"account\" : {\r\n\"name\" : \"Arvind Kandi name on account\",\r\n\"email\" : \"kandi@qa4life.com\",\r\n\"phone\" : \"{{phoneNumber}}\",\r\n\"paymentMethod\":\r\n{\r\n\"type\" : \"BANK_ACCOUNT\",\r\n\"routingNumber\" : \"4565671\",\r\n\"accountNumber\" : \"454556454\"\r\n}\r\n}\r\n} "
+            },
+            "url": {
+              "raw": "{{billing}}/account/location",
+              "host": [
+                "{{billing}}"
+              ],
+              "path": [
+                "account",
+                "location"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create/Get Member Account",
+      "item": [
+        {
+          "name": "Create_Member_Account_Billing",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ab7a7f1f-fd77-4568-9f6d-dd0dbce1dccb",
+                "type": "text/javascript",
+                "exec": [
+                  "var randMemberId = Math.floor(Math.random() * 900000) + 100000;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"randMemberId\", randMemberId);",
+                  "",
+                  "console.log(\"randMemberId: \"+randMemberId);"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "4f60c389-76ae-410f-bf10-db9dc623bc27",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"billingMemberId\", jsonData.memberId);",
+                  "postman.setEnvironmentVariable(\"memberAccountId\", jsonData.account.accountId);",
+                  "",
+                  "",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"locationId\":\"{{locId}}\",\n \"memberId\":\"8afb363c-954c-11e8-9eb6-{{randMemberId}}fb1750\",\n \"account\":\n {\n \"name\":\"Test\",\n \"email\":\"test@qa4life.com\",\n \"paymentMethod\":\n {\n \"type\":\"BANK_ACCOUNT\",\n  \"routingNumber\" : \"9282\",\n  \"accountNumber\" : \"454556\",\n  \"alias\" : \"testingbilling\"\n \n }\n }\n }"
+            },
+            "url": {
+              "raw": "{{billing}}/account/member",
+              "host": [
+                "{{billing}}"
+              ],
+              "path": [
+                "account",
+                "member"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get_Member_Account",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "04bcfb54-b108-451d-ac01-ad199ad648a8",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "86599dc6-2497-42e6-804a-3690cbaa5626",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"locationId\":\"{{billingLocationId}}\",\n \"memberId\":\"8afb363c-954c-11e8-9eb6-{{randMemberId}}fb1750\",\n \"account\":\n {\n \"name\":\"Test\",\n \"email\":\"test@qa4life.com\",\n \"paymentMethod\":\n {\n \"type\":\"CREDIT_CARD\",\n \"token\":\"{{tokenId}}\"\n }\n }\n }"
+            },
+            "url": {
+              "raw": "{{billing}}/account/member/{{billingMemberId}}",
+              "host": [
+                "{{billing}}"
+              ],
+              "path": [
+                "account",
+                "member",
+                "{{billingMemberId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Update Member Account",
+      "item": [
+        {
+          "name": "Update_Member_Account_Billing",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ab7a7f1f-fd77-4568-9f6d-dd0dbce1dccb",
+                "type": "text/javascript",
+                "exec": [
+                  "var randMemberId = Math.floor(Math.random() * 900000) + 100000;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"randMemberId\", randMemberId);",
+                  "",
+                  "console.log(\"randMemberId: \"+randMemberId);"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "3ff888bd-f3f5-467a-adc4-9a83e5356bbf",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"locationId\":\"{{locId}}\",\n \"memberId\":\"{{billingMemberId}}\",\n \"account\":\n {\n \"name\":\"Test\",\n \"email\":\"test@qa4life.com\",\n \"paymentMethod\":\n {\n \"type\":\"CREDIT_CARD\",\n \"token\":\"{{tokenId}}\"\n }\n }\n }"
+            },
+            "url": {
+              "raw": "{{billing}}/account/{{memberAccountId}}",
+              "host": [
+                "{{billing}}"
+              ],
+              "path": [
+                "account",
+                "{{memberAccountId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create Processor and Subscription",
+      "item": [
+        {
+          "name": "Create_Processor_Billing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "113a13ea-82b5-44d7-aa45-39d2302308e9",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"accountId\":\"{{dimeBoxAccountId}}\",\n\"organizationId\":\"{{dimeBoxOrgId}}\",\n\"locationId\":\"{{locId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{billing}}/processor",
+              "host": [
+                "{{billing}}"
+              ],
+              "path": [
+                "processor"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Subscription_Billing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "37b14ebe-4820-47ea-82f2-80c4d0a8dec6",
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessTokenId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"locationId\": \"{{locId}}\",\r\n\"memberId\": \"{{billingMemberId}}\",\r\n\"accountId\": \"{{memberAccountId}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c29\",\r\n\"planVersion\": 1,\r\n\"frequency\":\"DAILY\",\r\n\"duration\": \"2\",\r\n\"durationUnit\": \"DAYS\",\r\n\"name\": \"monika\",\r\n\"items\": [{\r\n\"itemName\":\"monika1\",\r\n\"itemId\":\"fd1ebc5e-1fab-120f-879f-4e930cc25c01\",\r\n\"version\": 1,\r\n\"price\": \"100000\",\r\n\"quantity\": \"10\",\r\n\"expirationStart\": \"\",\r\n\"type\": \"SERVICE\",\r\n\"unlimited\": \"true\"\r\n},\r\n{\r\n\"itemName\":\"monika2\",\r\n\"itemId\":\"fd1ebc5e-1fab-120f-879f-4e930cc25c02\",\r\n\"version\": 1,\r\n\"price\": \"100000\",\r\n\"quantity\": \"10\",\r\n\"expirationStart\": \"\",\r\n\"type\": \"SERVICE\",\r\n\"unlimited\": \"true\"\r\n}\r\n]\r\n}"
+            },
+            "url": {
+              "raw": "{{billing}}/subscription/",
+              "host": [
+                "{{billing}}"
+              ],
+              "path": [
+                "subscription",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
