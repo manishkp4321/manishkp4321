@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "0bb9151d-4d69-4f91-9fe8-a931cc409626",
+    "_postman_id": "56dc71b2-cd51-44ae-bafc-b18e6d5abe12",
     "name": "Bigbox_Sanity",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -14,7 +14,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "5452a091-3c9c-47f0-aacf-52e59e459e5d",
+                "id": "68757ffd-0d2a-467d-9a9f-c76de181b016",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -27,6 +27,11 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"authId\", jsonData.access_token);",
+                  "   ",
+                  "    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"token_type\\\":\\\"bearer\\\"\");",
+                  "    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"access_token\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"authId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Expiration Field\"] = responseBody.has(\"expires_in\");",
+                  "    tests[\"Response Body has Correct Scope\"] = responseBody.has(\"\\\"scope\\\":\"+\"\\\"\"+jsonData.scope+\"\\\"\");",
                   "}",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;",
@@ -80,7 +85,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "e065ae79-367f-49f1-abfb-a4643d508ed6",
+                "id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -94,6 +99,31 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"orgId\", jsonData.organization.id);",
                   "    postman.setEnvironmentVariable(\"locId\", jsonData.locations[0].id);",
+                  "",
+                  "    var org_name = \"University of Winterfell #\"+postman.getEnvironmentVariable(\"orgName\");",
+                  "    var org_email = \"WinterfellUniversity\"+postman.getEnvironmentVariable(\"orgName\")+\"@qa4life.com\";",
+                  "    ",
+                  "    var loc_name = \"Winterfell Location \"+postman.getEnvironmentVariable(\"orgName\");",
+                  "    var loc_email = \"winteriscoming\"+postman.getEnvironmentVariable(\"orgName\")+\"@qa4life.com\";",
+                  "    console.log(\"orgname\",postman.getEnvironmentVariable(\"phoneNumber\"));",
+                  "    tests[\"Response Body has Correct Organization id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"orgId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Organization name\"] = responseBody.has(org_name);",
+                  "    tests[\"Response Body has Correct Organization email\"] = responseBody.has(org_email);",
+                  "    tests[\"Response Body has Correct Organization Phone number\"] =  responseBody.has(\"\\\"number\\\":\"+postman.getEnvironmentVariable(\"phoneNumber\"));",
+                  "    tests[\"Response Body has Correct Organization extension\"] = responseBody.has(\"\\\"extension\\\":\\\"231\\\"\");  ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Location name\"] = responseBody.has(loc_name);",
+                  "    tests[\"Response Body has Correct Location email\"] = responseBody.has(loc_email);",
+                  "",
+                  "    tests[\"Response Body has Correct Location Address Id\"] =  responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.locations[0].addresses[0].id+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Location Address 1\"] =  responseBody.has(\"\\\"address1\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"address1\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Location Address 2\"] =  responseBody.has(\"\\\"address2\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"address2\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Location Address City\"] =  responseBody.has(\"\\\"city\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"city\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Location Address State\"] =  responseBody.has(\"\\\"state\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"state\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Location Address Zipcode\"] =  responseBody.has(\"\\\"zipCode\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"zipCode\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Location Address Country\"] =  responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"country\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct timezone\"] = responseBody.has(\"\\\"timezone\\\":\\\"US/Alaska\\\"\"); ",
+                  "    ",
                   "}",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
                 ]
@@ -149,7 +179,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"organization\" : {\r\n  \r\n    \"name\" : \"University of Winterfell #{{orgName}}\",\r\n    \"email\" : \"WinterfellUniversity{{orgName}}@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"231\"\r\n    }\r\n  },\r\n  \"locations\" : [ {\r\n    \"name\" : \"Winterfell Location {{orgName}}\",\r\n    \"email\" : \"noreplyLoc{{orgName}}@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"{{extension}}\"\r\n    },\r\n    \"timezone\" : \"US/Alaska\",\r\n    \"addresses\" : [ {\r\n      \"address1\" : \"{{address1}}\",\r\n      \"address2\" : \"{{address2}}\",\r\n      \"city\" : \"{{city}}\",\r\n      \"zipCode\" : \"{{zipCode}}\",\r\n      \"state\" : \"{{state}}\",\r\n      \"country\" : \"{{country}}\",\r\n      \"addressType\" : \"BILLING\"\r\n    }, {\r\n      \"address1\" : \"{{address1}}\",\r\n      \"address2\" : \"{{address2}}\",\r\n      \"city\" : \"{{city}}\",\r\n      \"zipCode\" : \"{{zipCode}}\",\r\n      \"state\" : \"{{state}}\",\r\n      \"country\" : \"{{country}}\",\r\n      \"addressType\" : \"SHIPPING\"\r\n    } ]\r\n  } ]\r\n}"
+              "raw": "{\r\n  \"organization\" : {\r\n    \"name\" : \"University of Winterfell #{{orgName}}\",\r\n    \"email\" : \"WinterfellUniversity{{orgName}}@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"231\"\r\n    }\r\n  },\r\n  \"locations\" : [ {\r\n    \"name\" : \"Winterfell Location {{orgName}}\",\r\n    \"email\" : \"winteriscoming{{orgName}}@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"{{extension}}\"\r\n    },\r\n    \"timezone\" : \"US/Alaska\",\r\n    \"addresses\" : [ {\r\n      \"address1\" : \"{{address1}}\",\r\n      \"address2\" : \"{{address2}}\",\r\n      \"city\" : \"{{city}}\",\r\n      \"zipCode\" : \"{{zipCode}}\",\r\n      \"state\" : \"{{state}}\",\r\n      \"country\" : \"{{country}}\",\r\n      \"addressType\" : \"BILLING\"\r\n    }, {\r\n      \"address1\" : \"{{address1}}\",\r\n      \"address2\" : \"{{address2}}\",\r\n      \"city\" : \"{{city}}\",\r\n      \"zipCode\" : \"{{zipCode}}\",\r\n      \"state\" : \"{{state}}\",\r\n      \"country\" : \"{{country}}\",\r\n      \"addressType\" : \"SHIPPING\"\r\n    } ]\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{organization}}/registration/organization-with-locations",
@@ -170,7 +200,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "4750fb31-da35-4ea8-b7a9-e7d367b15196",
+                "id": "f97fc396-c5b5-4c76-acf6-a68b30ea3a1e",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -183,6 +213,13 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"userName\", jsonData.identity);",
+                  "    ",
+                  "    tests[\"Response Body has Correct userid\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.id+\"\\\"\");",
+                  "    tests[\"Response Body has Correct provider\"] = responseBody.has(\"\\\"provider\\\":\\\"PLATFORM_USER\\\"\"); ",
+                  "    tests[\"Response Body has Correct identity\"] =  responseBody.has(\"\\\"identity\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"userName\")+\"\\\"\");",
+                  "    ",
+                  "    ",
+                  "    ",
                   "  ",
                   "}",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -243,6 +280,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "04360043-5b30-4ba5-82ac-d687e592d5a0",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 200)",
@@ -255,6 +293,15 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"accessTokenId\", jsonData.access_token);",
+                  "    ",
+                  "    ",
+                  "    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"access_token\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"accessTokenId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"token_type\\\":\\\"bearer\\\"\");",
+                  "    tests[\"Response Body has Expiration Field\"] = responseBody.has(\"expires_in\");",
+                  "    tests[\"Response Body has Scope\"] = responseBody.has(\"\\\"scope\\\":\"+\"\\\"\"+jsonData.scope+\"\\\"\");",
+                  "    tests[\"Response Body has Refresh Token\"] = responseBody.has(\"\\\"refresh_token\\\":\"+\"\\\"\"+jsonData.refresh_token+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Organization id\"] = responseBody.has(\"\\\"organization_id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"orgId\")+\"\\\"\");",
+                  "    ",
                   "}",
                   "",
                   "tests[\"Response code should be 200\"] = responseCode.code === 200;"
@@ -324,6 +371,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "9a805283-fe26-4e2c-8fce-e4e2e0b36bf5",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -336,6 +384,11 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"waiverId\", jsonData.documentId);",
+                  "    ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Waiver id\"] = responseBody.has(\"\\\"documentId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"waiverId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Document Type\"] = responseBody.has(\"\\\"documentType\\\":\\\"waiver\\\"\");",
+                  "    ",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -379,6 +432,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "b06b216d-24a6-4fff-bd1b-ac8cf96e6892",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -391,6 +445,11 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"termsId\", jsonData.documentId);",
+                  "    ",
+                  "    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Terms id\"] = responseBody.has(\"\\\"documentId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Document Type\"] = responseBody.has(\"\\\"documentType\\\":\\\"terms\\\"\");",
+                  "    ",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
@@ -439,7 +498,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "e61d1a5a-a928-4aea-89ce-cd0dd1878de6",
+                "id": "cedd1218-6bbd-439a-b0eb-444ed14df36b",
                 "type": "text/javascript",
                 "exec": [
                   "if (responseCode.code != 201)",
@@ -452,7 +511,25 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"memberId\", jsonData.id);",
-                  "    postman.setEnvironmentVariable(\"phoneNumber\", jsonData.phone.number);",
+                  "    ",
+                  "    tests[\"Response Body has Member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"memberId\")+\"\\\"\");",
+                  "     tests[\"Response Body has Correct FirstName\"] = responseBody.has(\"\\\"firstName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randFirstName\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Last phoneTypeName\"] = responseBody.has(\"\\\"lastName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randLastName\")+\"\\\"\");",
+                  "",
+                  "     tests[\"Response Body has Correct Phone Type\"] = responseBody.has(\"\\\"phoneType\\\":\\\"DEFAULT\\\"\");",
+                  "     ",
+                  "    tests[\"Response Body has Correct Address 1\"] =  responseBody.has(\"\\\"address1\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"address1\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Address 2\"] =  responseBody.has(\"\\\"address2\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"address2\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Address City\"] =  responseBody.has(\"\\\"city\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"city\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Address State\"] =  responseBody.has(\"\\\"state\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"state\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Address Zipcode\"] =  responseBody.has(\"\\\"zipCode\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"zipCode\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Address Country\"] =  responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"country\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Address Type\"] = responseBody.has(\"\\\"addressType\\\":\\\"PRIMARY\\\"\"); ",
+                  "    tests[\"Response Body has Correct Organization id\"] = responseBody.has(\"\\\"organizationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"orgId\")+\"\\\"\");",
+                  "       tests[\"Response Body has Correct Waiver id\"] = responseBody.has(\"\\\"waiverDocumentId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"waiverId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Terms id\"] = responseBody.has(\"\\\"termsDocumentId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"termsId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Correct Address Type\"] = responseBody.has(\"\\\"healthNote\\\":\\\"High BP\\\"\");",
+                  "",
                   "}",
                   "",
                   "tests[\"Response code should be 201\"] = responseCode.code === 201;"
