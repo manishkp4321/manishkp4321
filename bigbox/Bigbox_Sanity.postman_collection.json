@@ -996,20 +996,40 @@
             }
           ],
           "request": {
-            "url": "{{organization}}/member/access-code/{{accessCode}}",
+            "url": {
+              "raw": "{{organization}}/member?access-code={{accessCode}}",
+              "host": [
+                "{{organization}}"
+              ],
+              "path": [
+                "member"
+              ],
+              "query": [
+                {
+                  "key": "access-code",
+                  "value": "{{accessCode}}",
+                  "equals": true,
+                  "description": ""
+                }
+              ],
+              "variable": []
+            },
             "method": "GET",
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/json"
+                "value": "application/json",
+                "description": ""
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{accessTokenId}}"
+                "value": "Bearer {{accessTokenId}}",
+                "description": ""
               },
               {
                 "key": "ABCFS-LOCATION-ID",
-                "value": "{{locId}}"
+                "value": "{{locId}}",
+                "description": ""
               }
             ],
             "body": {
