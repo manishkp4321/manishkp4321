@@ -2465,7 +2465,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"companyId\": \"{{company_ID}}\",\r\n  \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"Bobby Boucher\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
+							"raw": "{\r\n  \"companyId\": \"{{company_id}}\",\r\n  \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"Bobby Boucher\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
 						},
 						"url": {
 							"raw": "{{URL}}/payment-method",
@@ -2671,7 +2671,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"merchantId\": \"{{merchant_id}}\",\n    \"paymentMethodId\": \"{{payment_method_id}}\",\n    \"amount\": \"300.34 \",\n    \"source\": \"BILLING\",\n    \"referenceId\": \"{{$guid}}\",\n    \"metadata\": {\n        \"clientId\": \"{{$guid}}\",\n        \"payorId\": \"{{$guid}}\"\n    }\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{URL}}/charge/{{charge_id}}",
