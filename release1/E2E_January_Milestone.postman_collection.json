@@ -1518,7 +1518,7 @@
 							"script": {
 								"id": "76522c16-caf6-49fd-bfd2-a941f7d41dd6",
 								"exec": [
-									"postman.setEnvironmentVariable(\"processor_id\", \"9cf43a2c-37c3-4b32-85aa-e96411a17dbe\");"
+									""
 								],
 								"type": "text/javascript"
 							}
