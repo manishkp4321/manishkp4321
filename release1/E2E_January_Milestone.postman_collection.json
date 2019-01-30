@@ -706,7 +706,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\"companyId\": \"c73673cf-9c75-4807-8348-f2a4adc7a6fe\",\n\"type\" : \"CHECKING_ACH\",\n\"accountHolderName\" : \"{{name}}\",\n\"bankRouting\" : \"082000073\",\n\"accountNumber\" : \"852937164973\"\n}"
+											"raw": "{\n\"companyId\": \"{{companyId}}\",\n\"type\" : \"CHECKING_ACH\",\n\"accountHolderName\" : \"{{name}}\",\n\"bankRouting\" : \"082000073\",\n\"accountNumber\" : \"852937164973\"\n}"
 										},
 										"url": {
 											"raw": "{{URL}}/payment-method",
@@ -775,7 +775,7 @@
 													"var randlocId = Math.floor(Math.random() * 90000) + 10000;",
 													"postman.setEnvironmentVariable(\"randlocId\", randlocId);",
 													"",
-													"var randPayorId = Math.floor(Math.random() * 9000) + 1000;",
+													"var randPayorId = Math.floor(Math.random() * 90000) + 10000;",
 													"postman.setEnvironmentVariable(\"randPayorId\", randPayorId);",
 													"",
 													"var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
@@ -836,7 +836,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{randPayorId}}a030-a23b-4fd4-adf1-db0ab123b602\",\r\n   \"memberId\": \"{{memberId}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{randName}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"DAILY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n      \"type\" : \"BANK_ACCOUNT\",\r\n      \"tokenId\":\"{{payment_method_id}}\"\r\n    }\r\n   }\r\n}"
+											"raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{randPayorId}}c6d-8d53-4553-b03b-59b8757d1734\",\r\n   \"memberId\": \"{{memberId}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{name}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"DAILY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n      \"type\" : \"BANK_ACCOUNT\",\r\n      \"tokenId\":\"{{payment_method_id}}\"\r\n    }\r\n   }\r\n}"
 										},
 										"url": {
 											"raw": "{{URL}}/account/member",
@@ -2477,7 +2477,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"companyId\": \"c73673cf-9c75-4807-8348-f2a4adc7a6fe\",\n\"type\" : \"CHECKING_ACH\",\n\"accountHolderName\" : \"{{name}}\",\n\"bankRouting\" : \"082000073\",\n\"accountNumber\" : \"852937164973\"\n}"
+									"raw": "{\n\"companyId\": \"{{companyId}}\",\n\"type\" : \"CHECKING_ACH\",\n\"accountHolderName\" : \"{{name}}\",\n\"bankRouting\" : \"082000073\",\n\"accountNumber\" : \"852937164973\"\n}"
 								},
 								"url": {
 									"raw": "{{URL}}/payment-method",
@@ -2546,7 +2546,7 @@
 											"var randlocId = Math.floor(Math.random() * 90000) + 10000;",
 											"postman.setEnvironmentVariable(\"randlocId\", randlocId);",
 											"",
-											"var randPayorId = Math.floor(Math.random() * 9000) + 1000;",
+											"var randPayorId = Math.floor(Math.random() * 90000) + 10000;",
 											"postman.setEnvironmentVariable(\"randPayorId\", randPayorId);",
 											"",
 											"var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
@@ -2607,7 +2607,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{randPayorId}}a030-a23b-4fd4-adf1-db0ab123b602\",\r\n   \"memberId\": \"{{memberId}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{randName}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"DAILY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n      \"type\" : \"BANK_ACCOUNT\",\r\n      \"tokenId\":\"{{payment_method_id}}\"\r\n    }\r\n   }\r\n}"
+									"raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n \"payorId\":\"{{randPayorId}}c6d-8d53-4553-b03b-59b8757d1734\",\r\n   \"memberId\": \"{{memberId}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{name}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"DAILY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n      \"type\" : \"BANK_ACCOUNT\",\r\n      \"tokenId\":\"{{payment_method_id}}\"\r\n    }\r\n   }\r\n}"
 								},
 								"url": {
 									"raw": "{{URL}}/account/member",
