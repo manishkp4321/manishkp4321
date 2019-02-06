@@ -1,3 +1,4 @@
+
 {
   "info": {
     "_postman_id": "bba0585e-0dcf-332a-2687-55dc9abc6aa6",
@@ -204,7 +205,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n \"locationId\" : \"5c7cf7f9-de1d-4cc1-8f3b-147965c{{randlocId}}\",\n \"clientId\" : \"{{randClientId}}c6d-8d53-4553-b03b-59b8757d1734\",\n \"account\" : {\n   \"name\" : \"{{UniqueClient}}\",\n   \"email\" : \"{{randName}}@qa4life.com\",\n   \"phone\" : \"1234567890\",\n   \"sevaluation\" : \"{{seval}}\",\n   \"billingDate\" : \"{{today}}\",\n   \"paymentMethod\" : {\n \"type\":\"BANK_ACCOUNT\",\n \"bankAccountType\" :\"SAVING\",\n  \"routingNumber\" : \"021000021\",\n  \"accountNumber\" : \"454556\",\n  \"alias\" : \"testingbilling\"\n \n }\n }\n}"
+          "raw": "{\n \"locationId\" : \"{{$guid}}\",\n \"clientId\" : \"{{$guid}}\",\n \"account\" : {\n   \"name\" : \"{{UniqueClient}}\",\n   \"email\" : \"{{randName}}@qa4life.com\",\n   \"phone\" : \"1234567890\",\n   \"sevaluation\" : \"{{seval}}\",\n   \"billingDate\" : \"{{today}}\",\n   \"paymentMethod\" : {\n \"type\":\"BANK_ACCOUNT\",\n \"bankAccountType\" :\"SAVING\",\n  \"routingNumber\" : \"021000021\",\n  \"accountNumber\" : \"454556\",\n  \"alias\" : \"testingbilling\"\n \n }\n }\n}"
         },
         "url": {
           "raw": "{{URL}}/account/location",
@@ -312,7 +313,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{randPayorId}}a030-a23b-4fd4-adf1-db0ab123b602\",\r\n   \"memberId\": \"{{randMemberId}}f7f-3d70-470b-9c3c-002ab0a37ee3\",\r\n   \"account\":{  \r\n      \"name\":\"{{randName}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"CASH\"\r\n\r\n   }\r\n   }\r\n}"
+          "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{$guid}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{randName}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"CASH\"\r\n\r\n   }\r\n   }\r\n}"
         },
         "url": {
           "raw": "{{URL}}/account/member",
@@ -430,6 +431,8 @@
               "",
               "var seval = sevaluation[Math.floor(Math.random() * sevaluation.length)];",
               "postman.setEnvironmentVariable(\"seval\", seval);",
+              "",
+              "",
               ""
             ],
             "type": "text/javascript"
@@ -455,6 +458,7 @@
               "    tests[\"Response Body has Payor Sevaluation\"] = responseBody.has(\"sevaluation\");",
               "   ",
               "    tests[\"Response Body has Billing Date\"] = responseBody.has(\"billingDate\");",
+              "postman.setEnvironmentVariable(\"payorname\", jsonData.account.name);",
               "",
               "   ",
               "}",
@@ -1275,15 +1279,11 @@
           "raw": "\r\n{\r\n\"payAmount\" : 1000\r\n}"
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/apply-payment/account/{{accountIdpayor}}",
-          "protocol": "https",
+          "raw": "{{URL}}/apply-payment/account/{{accountIdpayor}}",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "apply-payment",
             "account",
             "{{accountIdpayor}}"
@@ -1341,15 +1341,11 @@
           "raw": ""
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/account/payor/{{payorId}}",
-          "protocol": "https",
+          "raw": "{{URL}}/account/payor/{{payorId}}",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "account",
             "payor",
             "{{payorId}}"
@@ -1407,22 +1403,18 @@
           "raw": ""
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/account/payor?name=Zepp&page=0&size=2",
-          "protocol": "https",
+          "raw": "{{URL}}/account/payor?name={{payorname}}&page=0&size=2",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "account",
             "payor"
           ],
           "query": [
             {
               "key": "name",
-              "value": "Zepp"
+              "value": "{{payorname}}"
             },
             {
               "key": "page",
@@ -1517,18 +1509,14 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n\t \"subCancellationDate\": \"{{CfutureDate}}\"\n}\n\n04-04-2019"
+          "raw": "{\n\t \"subCancellationDate\": \"{{CfutureDate}}\"\n}"
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/subscription/{{subId}}/cancel",
-          "protocol": "https",
+          "raw": "{{URL}}/subscription/{{subId}}/cancel",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "subscription",
             "{{subId}}",
             "cancel"
@@ -1557,12 +1545,12 @@
               " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
               "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
               "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
-              "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+              "    ",
               "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
               "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
               "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
               "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
-              "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+              "",
               "    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
               "    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
               "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
@@ -1662,15 +1650,11 @@
           "raw": "{\n\t \"subCancellationDate\": \"01-22-2019\"\n}"
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/subscription/{{subId}}/removeCancel",
-          "protocol": "https",
+          "raw": "{{URL}}/subscription/{{subId}}/removeCancel",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "subscription",
             "{{subId}}",
             "removeCancel"
@@ -1699,7 +1683,11 @@
               "else if (responseCode.code === 201)",
               "{",
               "    var jsonData = JSON.parse(responseBody);",
-              "",
+              " tests[\"Response Body has Freeze id\"] = responseBody.has(\"id\");",
+              "    tests[\"Response Body has freezeStartDate\"] = responseBody.has(\"freezeStartDate\");",
+              "    tests[\"Response Body has freezeEndDate\"] = responseBody.has(\"freezeEndDate\");",
+              "    tests[\"Response Body has freezeAmount\"] = responseBody.has(\"freezeAmount\");",
+              "   ",
               "}",
               "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
               ""
@@ -1750,15 +1738,11 @@
           "raw": "{\r\n\t\"freezeStartDate\" : \"{{today}} 00:00\",\r\n  \"freezeEndDate\" : \"{{FfutureDate}} 00:00\"\r\n}"
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/subscription/freeze/{{subId}}",
-          "protocol": "https",
+          "raw": "{{URL}}/subscription/freeze/{{subId}}",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "subscription",
             "freeze",
             "{{subId}}"
@@ -1911,15 +1895,11 @@
           "raw": "{\r\n  \"freezeEndDate\" : \"{{FFfutureDate}} 09:49\"\r\n}"
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/subscription/freeze/{{freezeid}}",
-          "protocol": "https",
+          "raw": "{{URL}}/subscription/freeze/{{freezeid}}",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "subscription",
             "freeze",
             "{{freezeid}}"
@@ -1974,15 +1954,11 @@
           "raw": "{\n\t \n}"
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/subscription/unfreeze/{{freezeid}}",
-          "protocol": "https",
+          "raw": "{{URL}}/subscription/unfreeze/{{freezeid}}",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "subscription",
             "unfreeze",
             "{{freezeid}}"
@@ -2050,15 +2026,11 @@
           "raw": "{\r\n  \"salesEmployeeId\" : \"ddb4e6e8-6ae9-46a6-8b72-f5cae9259cc2\"\r\n}"
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/subscription/{{subId}}",
-          "protocol": "https",
+          "raw": "{{URL}}/subscription/{{subId}}",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "subscription",
             "{{subId}}"
           ]
@@ -2121,15 +2093,11 @@
           "raw": ""
         },
         "url": {
-          "raw": "https://qa.30preprod.com/api/subscription/member/{{memberId}}",
-          "protocol": "https",
+          "raw": "{{URL}}/subscription/member/{{memberId}}",
           "host": [
-            "qa",
-            "30preprod",
-            "com"
+            "{{URL}}"
           ],
           "path": [
-            "api",
             "subscription",
             "member",
             "{{memberId}}"
