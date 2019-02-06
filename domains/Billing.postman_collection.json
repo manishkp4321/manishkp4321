@@ -161,8 +161,26 @@
 							"",
 							"else if (responseCode.code === 201)",
 							"{",
-							"    var jsonData = JSON.parse(responseBody);",
+							"var jsonData = JSON.parse(responseBody);",
 							"",
+							"   tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   tests[\"Response Body has Correct Client Id\"] = responseBody.has(\"clientId\");",
+							"   tests[\"Response Body has MerchantId\"] = responseBody.has(\"merchantId\");",
+							"   tests[\"Response Body has Client Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has Client Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has Client Email\"] = responseBody.has(\"email\");",
+							"    tests[\"Response Body has Client Phone\"] = responseBody.has(\"phone\");",
+							"    tests[\"Response Body has Client Sevaluation\"] = responseBody.has(\"sevaluation\");",
+							"    tests[\"Response Body has Client Billing Date\"] = responseBody.has(\"billingDate\");",
+							"    tests[\"Response Body has Payment Method\"] = responseBody.has(\"paymentMethod\");",
+							"    tests[\"Response Body has Payment Method ID\"] = responseBody.has(\"id\");",
+							"    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
+							"    tests[\"Response Body has Payment Method bankAccountType\"] = responseBody.has(\"bankAccountType\");",
+							"    tests[\"Response Body has Payment Method bankAccountType\"] = responseBody.has(\"bankAccountType\");",
+							"    tests[\"Response Body has Payment Method display\"] = responseBody.has(\"display\");",
+							"    tests[\"Response Body has Payment Method routingNumber\"] = responseBody.has(\"routingNumber\");",
+							"    tests[\"Response Body has Payment Method accountNumber\"] = responseBody.has(\"accountNumber\");",
+							"    tests[\"Response Body has Payment Method alias\"] = responseBody.has(\"alias\");",
 							"}",
 							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
 							"",
@@ -257,7 +275,19 @@
 							"else if (responseCode.code === 201)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							"tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   tests[\"Response Body has Correct memberId\"] = responseBody.has(\"memberId\");",
+							"   tests[\"Response Body has payorId\"] = responseBody.has(\"payorId\");",
+							"   tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has Payor Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has Payor Phone\"] = responseBody.has(\"phone\");",
+							"    tests[\"Response Body has Payor Sevaluation\"] = responseBody.has(\"sevaluation\");",
+							"    tests[\"Response Body has Payor Billing Date\"] = responseBody.has(\"billingDate\");",
+							"    tests[\"Response Body has Payment Method\"] = responseBody.has(\"paymentMethod\");",
+							"    tests[\"Response Body has Payment Method ID\"] = responseBody.has(\"id\");",
+							"    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
+							"   ",
+							"        ",
 							"}",
 							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
 							"",
@@ -336,6 +366,14 @@
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
 							"",
+							"   tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has Payor Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has Payor Phone\"] = responseBody.has(\"phone\");",
+							"    tests[\"Response Body has Payor Sevaluation\"] = responseBody.has(\"sevaluation\");",
+							"   ",
+							"    tests[\"Response Body has Payment Method\"] = responseBody.has(\"paymentMethod\");",
+							"",
+							"    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -411,7 +449,14 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
+							" tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has Payor Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has Payor Phone\"] = responseBody.has(\"phone\");",
+							"    tests[\"Response Body has Payor Sevaluation\"] = responseBody.has(\"sevaluation\");",
+							"   ",
+							"    tests[\"Response Body has Billing Date\"] = responseBody.has(\"billingDate\");",
 							"",
+							"   ",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -434,7 +479,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "\t{\r\n\t\"account\" :\r\n\t\r\n\t{ \"name\" : \"{{randName}}\",\r\n\t\"email\" : \"{{randName}}@qa4life.com\", \r\n\t\"phone\" : \"8009578010\",\r\n\t\t\"sevaluation\" : \"SEMIANNUALLY\"\r\n\r\n\t\t\r\n\t}\r\n\t}"
+					"raw": "\t{\r\n\t\"account\" :\r\n\t\r\n\t{ \"name\" : \"{{randName}}\",\r\n\t\"email\" : \"{{randName}}@qa4life.com\", \r\n\t\"phone\" : \"8009578010\",\r\n\t\t\"sevaluation\" : \"SEMIANNUALLY\"\r\n\t}\r\n\t}"
 				},
 				"url": {
 					"raw": "{{URL}}/account-details/account/{{accountIdpayor}}",
@@ -467,6 +512,9 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
+							"tests[\"Response Body has Payor Payment Method Id\"] = responseBody.has(\"id\");",
+							"    tests[\"Response Body has Payor Payment Method Type\"] = responseBody.has(\"type\");",
+							"",
 							"",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
@@ -544,6 +592,19 @@
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
 							"",
+							"   tests[\"Response Body has Client Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has Client Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has Client Email\"] = responseBody.has(\"email\");",
+							"    tests[\"Response Body has Client Phone\"] = responseBody.has(\"phone\");",
+							"    tests[\"Response Body has Client Sevaluation\"] = responseBody.has(\"sevaluation\");",
+							"        tests[\"Response Body has Payment Method\"] = responseBody.has(\"paymentMethod\");",
+							"    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
+							"    tests[\"Response Body has Payment Method bankAccountType\"] = responseBody.has(\"bankAccountType\");",
+							"   ",
+							"    tests[\"Response Body has Payment Method display\"] = responseBody.has(\"display\");",
+							"    tests[\"Response Body has Payment Method routingNumber\"] = responseBody.has(\"routingNumber\");",
+							"    tests[\"Response Body has Payment Method accountNumber\"] = responseBody.has(\"accountNumber\");",
+							"    tests[\"Response Body has Payment Method alias\"] = responseBody.has(\"alias\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -619,7 +680,19 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has Client Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has Client Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has Client Email\"] = responseBody.has(\"email\");",
+							"    tests[\"Response Body has Client Phone\"] = responseBody.has(\"phone\");",
+							"    tests[\"Response Body has Client Sevaluation\"] = responseBody.has(\"sevaluation\");",
+							"        tests[\"Response Body has Payment Method\"] = responseBody.has(\"paymentMethod\");",
+							"    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
+							"    tests[\"Response Body has Payment Method bankAccountType\"] = responseBody.has(\"bankAccountType\");",
+							"   ",
+							"    tests[\"Response Body has Payment Method display\"] = responseBody.has(\"display\");",
+							"    tests[\"Response Body has Payment Method routingNumber\"] = responseBody.has(\"routingNumber\");",
+							"    tests[\"Response Body has Payment Method accountNumber\"] = responseBody.has(\"accountNumber\");",
+							"    tests[\"Response Body has Payment Method alias\"] = responseBody.has(\"alias\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -675,6 +748,14 @@
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
 							"",
+							"    tests[\"Response Body has Payment Method ID\"] = responseBody.has(\"id\");",
+							"    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
+							"    tests[\"Response Body has Payment Method bankAccountType\"] = responseBody.has(\"bankAccountType\");",
+							"    tests[\"Response Body has Payment Method bankAccountType\"] = responseBody.has(\"bankAccountType\");",
+							"    tests[\"Response Body has Payment Method display\"] = responseBody.has(\"display\");",
+							"    tests[\"Response Body has Payment Method routingNumber\"] = responseBody.has(\"routingNumber\");",
+							"    tests[\"Response Body has Payment Method accountNumber\"] = responseBody.has(\"accountNumber\");",
+							"    tests[\"Response Body has Payment Method alias\"] = responseBody.has(\"alias\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -720,7 +801,22 @@
 					"script": {
 						"id": "7a5c849f-1892-432f-9b72-a07da50776b0",
 						"exec": [
-							""
+							"var futureDate = new Date();",
+							"var dd = futureDate.getDate();",
+							"var mm = futureDate.getMonth() +10//January is 0!",
+							"var yyyy = futureDate.getFullYear()+1;",
+							"",
+							"if(dd<10) {",
+							"    dd = '0'+dd",
+							"} ",
+							"",
+							"if(mm<10) {",
+							"    mm = '0'+mm",
+							"} ",
+							"",
+							"futureDate = mm + '-' + dd + '-' + yyyy;",
+							"",
+							"postman.setEnvironmentVariable(\"futureDate\", futureDate);"
 						],
 						"type": "text/javascript"
 					}
@@ -742,7 +838,24 @@
 							"else if (responseCode.code === 201)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
+							"   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
+							"   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+							"    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+							"    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+							"    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
+							"    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+							"    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+							"    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+							"    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+							"    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+							"    tests[\"Response Body has Payment Method salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+							"    tests[\"Response Body has Payment Method price\"] = responseBody.has(\"price\");",
+							"    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+							"   ",
 							"}",
 							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
 							""
@@ -765,7 +878,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberId\": \"{{memberId}}\",\n\"accountId\": \"{{accountIdpayor}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"expirationDate\": \"01-28-2020\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"04-25-2020\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100 }\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+					"raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberId\": \"{{memberId}}\",\n\"accountId\": \"{{accountIdpayor}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"expirationDate\": \"{{futureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"04-25-2021\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100 }\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
 				},
 				"url": {
 					"raw": "{{URL}}/subscription/",
@@ -798,7 +911,20 @@
 							"else if (responseCode.code === 201)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   tests[\"Response Body has Correct totalNetPrice\"] = responseBody.has(\"totalNetPrice\");",
+							"   tests[\"Response Body has totalDiscountAmount\"] = responseBody.has(\"totalDiscountAmount\");",
+							"       tests[\"Response Body has discountCode\"] = responseBody.has(\"discountCode\");",
+							"   ",
+							"    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+							"    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+							"    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+							"    tests[\"Response Body has  salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+							"    tests[\"Response Body has  price\"] = responseBody.has(\"price\");",
+							"    tests[\"Response Body has invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+							"    tests[\"Response Body has invoiceType\"] = responseBody.has(\"invoiceType\");",
+							"    tests[\"Response Body has invoiceNumber\"] = responseBody.has(\"invoiceNumber\");",
+							"    tests[\"Response Body has itemCategoryId\"] = responseBody.has(\"itemCategoryId\");",
 							"}",
 							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
 							""
@@ -859,7 +985,11 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has statementId\"] = responseBody.has(\"statementId\");",
+							"    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+							"    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has totalAmount\"] = responseBody.has(\"totalAmount\");",
+							"    ",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -915,6 +1045,14 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
+							"    tests[\"Response Body has statementId\"] = responseBody.has(\"statementId\");",
+							"    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+							"    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
+							"    tests[\"Response Body has statementCreated\"] = responseBody.has(\"statementCreated\");",
+							"    tests[\"Response Body has statementModified\"] = responseBody.has(\"statementModified\");",
+							"    tests[\"Response Body has statementDate\"] = responseBody.has(\"statementDate\");",
+							"    ",
 							"",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
@@ -973,7 +1111,21 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
+							"   tests[\"Response Body has itemCategoryId\"] = responseBody.has(\"itemCategoryId\");",
+							"   ",
+							"    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has  taxAmount\"] = responseBody.has(\"taxAmount\");",
+							"    tests[\"Response Body has amountRemaining\"] = responseBody.has(\"amountRemaining\");",
+							"    tests[\"Response Body has type\"] = responseBody.has(\"type\");",
+							"    ",
+							"    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+							"    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+							"    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+							"    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+							"    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
+							"    tests[\"Response Body has invoiceDate\"] = responseBody.has(\"invoiceDate\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -1031,7 +1183,13 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							"tests[\"Response Body has statementId\"] = responseBody.has(\"statementId\");",
+							"    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+							"    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
+							"    tests[\"Response Body has statementCreated\"] = responseBody.has(\"statementCreated\");",
+							"    tests[\"Response Body has statementModified\"] = responseBody.has(\"statementModified\");",
+							"    tests[\"Response Body has statementDate\"] = responseBody.has(\"statementDate\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -1090,7 +1248,8 @@
 							"else if (responseCode.code === 201)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							"tests[\"Response Body has payStatus\"] = responseBody.has(\"payStatus\");",
+							"    tests[\"Response Body has message\"] = responseBody.has(\"message\");",
 							"}",
 							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
 							""
@@ -1150,7 +1309,17 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							"tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   tests[\"Response Body has Correct memberId\"] = responseBody.has(\"memberId\");",
+							"   tests[\"Response Body has payorId\"] = responseBody.has(\"payorId\");",
+							"   tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has Payor Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has Payor Phone\"] = responseBody.has(\"phone\");",
+							"    tests[\"Response Body has Payor Sevaluation\"] = responseBody.has(\"sevaluation\");",
+							"    tests[\"Response Body has Payor Billing Date\"] = responseBody.has(\"billingDate\");",
+							"    tests[\"Response Body has Payment Method\"] = responseBody.has(\"paymentMethod\");",
+							"    tests[\"Response Body has Payment Method ID\"] = responseBody.has(\"id\");",
+							"    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -1206,7 +1375,17 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							"tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   tests[\"Response Body has Correct memberId\"] = responseBody.has(\"memberId\");",
+							"   tests[\"Response Body has payorId\"] = responseBody.has(\"payorId\");",
+							"   tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has Payor Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has Payor Phone\"] = responseBody.has(\"phone\");",
+							"    tests[\"Response Body has Payor Sevaluation\"] = responseBody.has(\"sevaluation\");",
+							"    tests[\"Response Body has Payor Billing Date\"] = responseBody.has(\"billingDate\");",
+							"    tests[\"Response Body has Payment Method\"] = responseBody.has(\"paymentMethod\");",
+							"    tests[\"Response Body has Payment Method ID\"] = responseBody.has(\"id\");",
+							"    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -1275,10 +1454,50 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
+							"   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+							"    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+							"    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+							"    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
+							"    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+							"    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+							"    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+							"    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+							"    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+							"    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+							"    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
+							"    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "66940dd5-2a64-47e3-9cc6-de2d11046fc3",
+						"exec": [
+							"var CfutureDate = new Date();",
+							"var dd = CfutureDate.getDate();",
+							"var mm = CfutureDate.getMonth() +2//January is 0!",
+							"var yyyy = CfutureDate.getFullYear();",
+							"",
+							"if(dd<10) {",
+							"    dd = '0'+dd",
+							"} ",
+							"",
+							"if(mm<10) {",
+							"    mm = '0'+mm",
+							"} ",
+							"",
+							"CfutureDate = mm + '-' + dd + '-' + yyyy;",
+							"",
+							"postman.setEnvironmentVariable(\"CfutureDate\", CfutureDate);"
 						],
 						"type": "text/javascript"
 					}
@@ -1298,7 +1517,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t \"subCancellationDate\": \"04-04-2019\"\n}"
+					"raw": "{\n\t \"subCancellationDate\": \"{{CfutureDate}}\"\n}\n\n04-04-2019"
 				},
 				"url": {
 					"raw": "https://qa.30preprod.com/api/subscription/{{subId}}/cancel",
@@ -1320,6 +1539,45 @@
 		},
 		{
 			"name": "GetCancelSubscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c39447a-e00e-4b16-ab2d-ff101818e46f",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							" tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
+							"   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+							"    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+							"    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+							"    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
+							"    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+							"    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+							"    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+							"    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+							"    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+							"    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+							"    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
+							"    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -1333,15 +1591,11 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://qa.30preprod.com/api/subscription/{{accountIdpayor}}/cancel",
-					"protocol": "https",
+					"raw": "{{URL}}/subscription/{{accountIdpayor}}/cancel",
 					"host": [
-						"qa",
-						"30preprod",
-						"com"
+						"{{URL}}"
 					],
 					"path": [
-						"api",
 						"subscription",
 						"{{accountIdpayor}}",
 						"cancel"
@@ -1351,43 +1605,46 @@
 			"response": []
 		},
 		{
-			"name": "UpdateCancel",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{authId}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t \"subCancellationDate\": \"01-21-2019\"\n}"
-				},
-				"url": {
-					"raw": "https://qa.30preprod.com/api/subscription/{{subId}}/updateCancel",
-					"protocol": "https",
-					"host": [
-						"qa",
-						"30preprod",
-						"com"
-					],
-					"path": [
-						"api",
-						"subscription",
-						"{{subId}}",
-						"updateCancel"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "RemoveCancel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "618e69c6-a82e-4ae5-8c98-b3a77a0dda1f",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							" tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							" ",
+							"   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+							"    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+							"    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+							"    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
+							"    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+							"    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+							"    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+							"    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+							"    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+							"    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+							"    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
+							"   ",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -1449,6 +1706,31 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1aa1e45d-5249-4944-b807-f1cf7eac1f7c",
+						"exec": [
+							"var FfutureDate = new Date();",
+							"var dd = FfutureDate.getDate();",
+							"var mm = FfutureDate.getMonth() +2//January is 0!",
+							"var yyyy = FfutureDate.getFullYear();",
+							"",
+							"if(dd<10) {",
+							"    dd = '0'+dd",
+							"} ",
+							"",
+							"if(mm<10) {",
+							"    mm = '0'+mm",
+							"} ",
+							"",
+							"FfutureDate = mm + '-' + dd + '-' + yyyy;",
+							"",
+							"postman.setEnvironmentVariable(\"FfutureDate\", FfutureDate);"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -1465,7 +1747,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"freezeStartDate\" : \"{{today}} 00:00\",\r\n  \"freezeEndDate\" : \"03-04-2019 00:00\"\r\n}"
+					"raw": "{\r\n\t\"freezeStartDate\" : \"{{today}} 00:00\",\r\n  \"freezeEndDate\" : \"{{FfutureDate}} 00:00\"\r\n}"
 				},
 				"url": {
 					"raw": "https://qa.30preprod.com/api/subscription/freeze/{{subId}}",
@@ -1502,7 +1784,26 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
+							" tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
 							"",
+							"   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+							"",
+							"    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+							"    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+							"    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
+							"    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+							"    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+							"    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+							"    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+							"    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+							"    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+							"    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
+							"",
+							"     tests[\"Response Body has Freeze id\"] = responseBody.has(\"id\");",
+							"    tests[\"Response Body has freezeStartDate\"] = responseBody.has(\"freezeStartDate\");",
+							"    tests[\"Response Body has freezeEndDate\"] = responseBody.has(\"freezeEndDate\");",
+							"    tests[\"Response Body has freezeAmount\"] = responseBody.has(\"freezeAmount\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -1556,10 +1857,38 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has subId\"] = responseBody.has(\"subId\");",
+							"    tests[\"Response Body has freezeStartDate\"] = responseBody.has(\"freezeStartDate\");",
+							"    tests[\"Response Body has freezeEndDate\"] = responseBody.has(\"freezeEndDate\");",
+							"    tests[\"Response Body has freezeAmount\"] = responseBody.has(\"freezeAmount\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3ea91fe9-3566-4aba-ac03-b74fe4633fed",
+						"exec": [
+							"var FFfutureDate = new Date();",
+							"var dd = FFfutureDate.getDate();",
+							"var mm = FFfutureDate.getMonth() +4//January is 0!",
+							"var yyyy = FFfutureDate.getFullYear();",
+							"",
+							"if(dd<10) {",
+							"    dd = '0'+dd",
+							"} ",
+							"",
+							"if(mm<10) {",
+							"    mm = '0'+mm",
+							"} ",
+							"",
+							"FFfutureDate = mm + '-' + dd + '-' + yyyy;",
+							"",
+							"postman.setEnvironmentVariable(\"FFfutureDate\", FFfutureDate);"
 						],
 						"type": "text/javascript"
 					}
@@ -1579,7 +1908,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"freezeEndDate\" : \"06-05-2019 09:49\"\r\n}"
+					"raw": "{\r\n  \"freezeEndDate\" : \"{{FFfutureDate}} 09:49\"\r\n}"
 				},
 				"url": {
 					"raw": "https://qa.30preprod.com/api/subscription/freeze/{{freezeid}}",
@@ -1616,7 +1945,10 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has Freeze id\"] = responseBody.has(\"id\");",
+							"    tests[\"Response Body has freezeStartDate\"] = responseBody.has(\"freezeStartDate\");",
+							"    tests[\"Response Body has freezeEndDate\"] = responseBody.has(\"freezeEndDate\");",
+							"    tests[\"Response Body has freezeAmount\"] = responseBody.has(\"freezeAmount\");",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -1676,7 +2008,23 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   ",
+							"   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
+							"   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+							"    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+							"    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+							"    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
+							"    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+							"    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+							"    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+							"    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+							"    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+							"    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+							"    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
+							"  ",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
@@ -1735,7 +2083,23 @@
 							"else if (responseCode.code === 200)",
 							"{",
 							"    var jsonData = JSON.parse(responseBody);",
-							"",
+							" tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+							"   ",
+							"   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
+							"   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+							"    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+							"    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
+							"    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+							"    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+							"    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
+							"    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+							"    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+							"    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+							"    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+							"    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+							"    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+							"    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
+							"  ",
 							"}",
 							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
 							""
