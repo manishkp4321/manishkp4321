@@ -1,0 +1,1778 @@
+{
+	"info": {
+		"_postman_id": "bba0585e-0dcf-332a-2687-55dc9abc6aa6",
+		"name": "Billing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b49fb61-2244-4ebe-8877-c12942d44c9b",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"authId\", jsonData.access_token);",
+							"   ",
+							"    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"token_type\\\":\\\"bearer\\\"\");",
+							"    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"access_token\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"authId\")+\"\\\"\");",
+							"    tests[\"Response Body has Expiration Field\"] = responseBody.has(\"expires_in\");",
+							"    tests[\"Response Body has Correct Scope\"] = responseBody.has(\"\\\"scope\\\":\"+\"\\\"\"+jsonData.scope+\"\\\"\");",
+							"}",
+							"",
+							"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/token?client_id=AUTOMATED_TESTING&grant_type=client_credentials",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "AUTOMATED_TESTING"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateClientAccount",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e8b2e784-73c8-4d3e-a7a2-1b7e69cf587a",
+						"exec": [
+							"var today = new Date();",
+							"var dd = today.getDate();",
+							"var mm = today.getMonth()+1; //January is 0!",
+							"var yyyy = today.getFullYear();",
+							"",
+							"if(dd<10) {",
+							"    dd = '0'+dd",
+							"} ",
+							"",
+							"if(mm<10) {",
+							"    mm = '0'+mm",
+							"} ",
+							"",
+							"today = mm + '-' + dd + '-' + yyyy;",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"today\", today);",
+							"",
+							"",
+							"",
+							"var randlocId = Math.floor(Math.random() * 90000) + 10000;",
+							"postman.setEnvironmentVariable(\"randlocId\", randlocId);",
+							"",
+							"var randClientId = Math.floor(Math.random() * 90000) + 10000;",
+							"postman.setEnvironmentVariable(\"randClientId\", randClientId);",
+							"",
+							"var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+							"",
+							"var randName = names[Math.floor(Math.random() * names.length)];",
+							"postman.setEnvironmentVariable(\"randName\", randName);",
+							"",
+							"function stringGen(len) {",
+							"var text = \"\";",
+							"",
+							"var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+							"",
+							"for (var i = 0; i < len; i++)",
+							" text += charset.charAt(Math.floor(Math.random() * charset.length));",
+							"",
+							"return text;",
+							"}",
+							"var uniqueClient= stringGen(8)",
+							"postman.setEnvironmentVariable(\"UniqueClient\", \"Client \"+uniqueClient);",
+							"",
+							"",
+							"var sevaluation = [ 'DAILY', 'WEEKLY',' EVERY_OTHER_WEEK',' MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY','SEMIANNUALLY'];",
+							"",
+							"var seval = sevaluation[Math.floor(Math.random() * sevaluation.length)];",
+							"postman.setEnvironmentVariable(\"seval\", seval);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f895b06-b44c-4457-80c7-721c46cb9ac2",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"accountIdClient\", jsonData.account.accountId);",
+							"postman.setEnvironmentVariable(\"locationId\", jsonData.locationId);",
+							"postman.setEnvironmentVariable(\"paymentMethodIdC\", jsonData.account.paymentMethod.id);",
+							"",
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"locationId\" : \"5c7cf7f9-de1d-4cc1-8f3b-147965c{{randlocId}}\",\n \"clientId\" : \"{{randClientId}}c6d-8d53-4553-b03b-59b8757d1734\",\n \"account\" : {\n   \"name\" : \"{{UniqueClient}}\",\n   \"email\" : \"{{randName}}@qa4life.com\",\n   \"phone\" : \"1234567890\",\n   \"sevaluation\" : \"{{seval}}\",\n   \"billingDate\" : \"{{today}}\",\n   \"paymentMethod\" : {\n \"type\":\"BANK_ACCOUNT\",\n \"bankAccountType\" :\"SAVING\",\n  \"routingNumber\" : \"021000021\",\n  \"accountNumber\" : \"454556\",\n  \"alias\" : \"testingbilling\"\n \n }\n }\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/account/location",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"account",
+						"location"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePayorAccount",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3d1c35df-b9fd-4995-9cfa-69a3de58b6bb",
+						"exec": [
+							"var randMemberId = Math.floor(Math.random() * 90000) + 10000;",
+							"postman.setEnvironmentVariable(\"randMemberId\", randMemberId);",
+							"",
+							"var randlocId = Math.floor(Math.random() * 90000) + 10000;",
+							"postman.setEnvironmentVariable(\"randlocId\", randlocId);",
+							"",
+							"var randPayorId = Math.floor(Math.random() * 9000) + 1000;",
+							"postman.setEnvironmentVariable(\"randPayorId\", randPayorId);",
+							"",
+							"postman.setEnvironmentVariable(\"randPayorId\", randPayorId);",
+							"",
+							"var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+							"",
+							"var randName = names[Math.floor(Math.random() * names.length)];",
+							"postman.setEnvironmentVariable(\"randName\", randName);",
+							"",
+							"",
+							"var sevaluation = [ 'DAILY', 'WEEKLY',' EVERY_OTHER_WEEK',' MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY','SEMIANNUALLY'];",
+							"",
+							"var seval = sevaluation[Math.floor(Math.random() * sevaluation.length)];",
+							"postman.setEnvironmentVariable(\"seval\", seval);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "52d10cd3-2057-4747-b332-ba5ec2ed1924",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"memberId\", jsonData.memberId);",
+							"postman.setEnvironmentVariable(\"accountIdpayor\", jsonData.account.accountId);",
+							"postman.setEnvironmentVariable(\"payorId\", jsonData.payorId);",
+							"",
+							"postman.setEnvironmentVariable(\"paymentMethodIdP\", jsonData.account.paymentMethod.id);",
+							"",
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{randPayorId}}a030-a23b-4fd4-adf1-db0ab123b602\",\r\n   \"memberId\": \"{{randMemberId}}f7f-3d70-470b-9c3c-002ab0a37ee3\",\r\n   \"account\":{  \r\n      \"name\":\"{{randName}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"CASH\"\r\n\r\n   }\r\n   }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/account/member",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"account",
+						"member"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Account Payor",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "653f2710-6fee-4d1a-801f-9533d654472e",
+						"exec": [
+							"",
+							"",
+							"var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+							"",
+							"var randName = names[Math.floor(Math.random() * names.length)];",
+							"postman.setEnvironmentVariable(\"randName\", randName);",
+							"",
+							"var sevaluation = [ 'DAILY', 'WEEKLY',' EVERY_OTHER_WEEK',' MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY','SEMIANNUALLY'];",
+							"",
+							"var seval = sevaluation[Math.floor(Math.random() * sevaluation.length)];",
+							"postman.setEnvironmentVariable(\"seval\", seval);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe96e46d-4d1a-48b2-973f-80ab779f4185",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n  \"account\" : {\r\n    \"name\" : \"{{randName}}\",\r\n    \"phone\" : \"8009578015\",\r\n    \"sevaluation\" : \"{{seval}}\"\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/account/{{accountIdpayor}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"account",
+						"{{accountIdpayor}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Account Details Payor",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f147ecdc-33e1-4141-9a78-6d89f9ba7e30",
+						"exec": [
+							"",
+							"",
+							"var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+							"",
+							"var randName = names[Math.floor(Math.random() * names.length)];",
+							"postman.setEnvironmentVariable(\"randName\", randName);",
+							"",
+							"var sevaluation = [ 'DAILY', 'WEEKLY',' EVERY_OTHER_WEEK',' MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY','SEMIANNUALLY'];",
+							"",
+							"var seval = sevaluation[Math.floor(Math.random() * sevaluation.length)];",
+							"postman.setEnvironmentVariable(\"seval\", seval);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f5edbed-063f-4434-b3ca-b60a05f5d809",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\r\n\t\"account\" :\r\n\t\r\n\t{ \"name\" : \"{{randName}}\",\r\n\t\"email\" : \"{{randName}}@qa4life.com\", \r\n\t\"phone\" : \"8009578010\",\r\n\t\t\"sevaluation\" : \"SEMIANNUALLY\"\r\n\r\n\t\t\r\n\t}\r\n\t}"
+				},
+				"url": {
+					"raw": "{{URL}}/account-details/account/{{accountIdpayor}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"account-details",
+						"account",
+						"{{accountIdpayor}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Payment method payor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757ab54d-2c1c-44ac-b894-0be5ea9ce0a4",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"type\" : \"CASH\"\r\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/paymentMethod/{{paymentMethodIdP}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"paymentMethod",
+						"{{paymentMethodIdP}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Account Client",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "653f2710-6fee-4d1a-801f-9533d654472e",
+						"exec": [
+							"",
+							"",
+							"var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+							"",
+							"var randName = names[Math.floor(Math.random() * names.length)];",
+							"postman.setEnvironmentVariable(\"randName\", randName);",
+							"",
+							"var sevaluation = [ 'DAILY', 'WEEKLY',' EVERY_OTHER_WEEK',' MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY','SEMIANNUALLY'];",
+							"",
+							"var seval = sevaluation[Math.floor(Math.random() * sevaluation.length)];",
+							"postman.setEnvironmentVariable(\"seval\", seval);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe96e46d-4d1a-48b2-973f-80ab779f4185",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n  \"account\" : {\r\n    \"name\" : \"{{randName}}\",\r\n    \"phone\" : \"8009578015\",\r\n    \"sevaluation\" : \"{{seval}}\",\r\n    \"paymentMethod\" : { \"type\":\"BANK_ACCOUNT\" }\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/account/{{accountIdClient}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"account",
+						"{{accountIdClient}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Account Deatils Client",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "653f2710-6fee-4d1a-801f-9533d654472e",
+						"exec": [
+							"",
+							"",
+							"var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+							"",
+							"var randName = names[Math.floor(Math.random() * names.length)];",
+							"postman.setEnvironmentVariable(\"randName\", randName);",
+							"",
+							"var sevaluation = [ 'DAILY', 'WEEKLY',' EVERY_OTHER_WEEK',' MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY','SEMIANNUALLY'];",
+							"",
+							"var seval = sevaluation[Math.floor(Math.random() * sevaluation.length)];",
+							"postman.setEnvironmentVariable(\"seval\", seval);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe96e46d-4d1a-48b2-973f-80ab779f4185",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n  \"account\" : {\r\n    \"name\" : \"{{randName}}\",\r\n    \"phone\" : \"8009578015\",\r\n    \"sevaluation\" : \"{{seval}}\",\r\n    \"paymentMethod\" : { \"type\":\"BANK_ACCOUNT\" }\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/account/{{accountIdClient}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"account",
+						"{{accountIdClient}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Payment method Client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757ab54d-2c1c-44ac-b894-0be5ea9ce0a4",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"type\" : \"BANK_ACCOUNT\"\r\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/paymentMethod/{{paymentMethodIdC}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"paymentMethod",
+						"{{paymentMethodIdC}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateSubscription",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7a5c849f-1892-432f-9b72-a07da50776b0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f6605cb7-22f4-41aa-9904-3cf8fb89b2ed",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"subId\",jsonData.subId);",
+							"",
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberId\": \"{{memberId}}\",\n\"accountId\": \"{{accountIdpayor}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"expirationDate\": \"01-28-2020\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"04-25-2020\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100 }\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/subscription/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"subscription",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice payor Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7cc4b0be-b603-4b22-9f6a-18d684445c59",
+						"exec": [
+							"",
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"locationId\":\"{{locationId}}\",\r\n   \"memberId\": \"{{memberId}}\",\r\n  \"accountId\": \"{{accountIdpayor}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c74\",\r\n\"totalTax\": 0,\r\n\"totalAmount\": 0,\r\n\"totalDiscountAmount\": 0,\r\n\"totalNetPrice\": 1000,\r\n\"items\": [\r\n\r\n{ \"itemName\": \"{{randName}}\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c12\" }\r\n]\r\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/account/payor/invoice",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"account",
+						"payor",
+						"invoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Evaluate Statement",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+							"",
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n        \"accountId\": \"{{accountIdpayor}}\"\r\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/statement",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"statement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review Statement",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "babdc9dc-2db1-4af5-a2b3-7401bc24905b",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/account/statement/{{statementId}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"account",
+						"statement",
+						"{{statementId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Invoices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e41a8be1-aa62-4307-a627-87751f377737",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/invoice/member/{{memberId}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"invoice",
+						"member",
+						"{{memberId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Review Available Statement",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "83a7b373-c8ed-4460-b52d-2992ab6c92f9",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/account/statement/account/{{accountIdpayor}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"account",
+						"statement",
+						"account",
+						"{{accountIdpayor}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apply payment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "819b2428-b198-4930-9ab0-de9d0c14c716",
+						"exec": [
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\"payAmount\" : 1000\r\n}"
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/apply-payment/account/{{accountIdpayor}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"apply-payment",
+						"account",
+						"{{accountIdpayor}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReviewPayorAccount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cbc233f8-6c37-461c-b607-18945dda70be",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/account/payor/{{payorId}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"account",
+						"payor",
+						"{{payorId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReviewPayorAccounts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4abfbb71-ada5-403b-be54-0e6b7a05573d",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/account/payor?name=Zepp&page=0&size=2",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"account",
+						"payor"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Zepp"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Subscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "34baa38f-7126-466d-8e04-641f8f6a3e0c",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"subCancellationDate\": \"04-04-2019\"\n}"
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/subscription/{{subId}}/cancel",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"subscription",
+						"{{subId}}",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCancelSubscription",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/subscription/{{accountIdpayor}}/cancel",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"subscription",
+						"{{accountIdpayor}}",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCancel",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"subCancellationDate\": \"01-21-2019\"\n}"
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/subscription/{{subId}}/updateCancel",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"subscription",
+						"{{subId}}",
+						"updateCancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveCancel",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"subCancellationDate\": \"01-22-2019\"\n}"
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/subscription/{{subId}}/removeCancel",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"subscription",
+						"{{subId}}",
+						"removeCancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateFreezeSubscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e8c3912b-343d-4393-9106-0b8d398182e4",
+						"exec": [
+							"var jsonData= JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"freezeid\",jsonData.id);",
+							"",
+							"if (responseCode.code != 201)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 201)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 201\"] = responseCode.code === 201;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"freezeStartDate\" : \"{{today}} 00:00\",\r\n  \"freezeEndDate\" : \"03-04-2019 00:00\"\r\n}"
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/subscription/freeze/{{subId}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"subscription",
+						"freeze",
+						"{{subId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFreezeSubscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "33cf1ec9-7def-4c3b-8efb-9511bdb14f14",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/subscription/freeze/{{freezeid}}/location/{{locationId}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"subscription",
+						"freeze",
+						"{{freezeid}}",
+						"location",
+						"{{locationId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateFreezeSubscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6325c4e-02ac-41fd-9680-c156def33613",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"freezeEndDate\" : \"06-05-2019 09:49\"\r\n}"
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/subscription/freeze/{{freezeid}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"subscription",
+						"freeze",
+						"{{freezeid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveFreezeSubscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fbff2f66-46c5-4af8-ab4f-18d3b5db0883",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \n}"
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/subscription/unfreeze/{{freezeid}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"subscription",
+						"unfreeze",
+						"{{freezeid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateSalesEmpid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cd5f017-3bd6-4b2e-b282-39dcb794e6eb",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"salesEmployeeId\" : \"ddb4e6e8-6ae9-46a6-8b72-f5cae9259cc2\"\r\n}"
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/subscription/{{subId}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"subscription",
+						"{{subId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMemberSuscriptionList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "95a1a71a-9c36-45f9-b427-d64d04fd9bda",
+						"exec": [
+							"if (responseCode.code != 200)",
+							"{",
+							"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+							"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+							"}",
+							"",
+							"else if (responseCode.code === 200)",
+							"{",
+							"    var jsonData = JSON.parse(responseBody);",
+							"",
+							"}",
+							"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authId}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://qa.30preprod.com/api/subscription/member/{{memberId}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"30preprod",
+						"com"
+					],
+					"path": [
+						"api",
+						"subscription",
+						"member",
+						"{{memberId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
