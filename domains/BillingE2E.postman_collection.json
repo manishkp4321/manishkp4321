@@ -1,0 +1,2096 @@
+{
+  "info": {
+    "_postman_id": "16acceb8-c87e-4725-b514-91bf7781649f",
+    "name": "E2E January Milestone Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "E2E Testing_Senarios",
+      "item": [
+        {
+          "name": "Authorization",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "24ec140a-d8be-4a2f-badd-47552560a90b",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    postman.setEnvironmentVariable(\"authId\", jsonData.access_token);",
+                  "   ",
+                  "    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"token_type\\\":\\\"bearer\\\"\");",
+                  "    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"access_token\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"authId\")+\"\\\"\");",
+                  "    tests[\"Response Body has Expiration Field\"] = responseBody.has(\"expires_in\");",
+                  "    tests[\"Response Body has Correct Scope\"] = responseBody.has(\"\\\"scope\\\":\"+\"\\\"\"+jsonData.scope+\"\\\"\");",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw=="
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{URL}}/token?client_id=AUTOMATED_TESTING&grant_type=client_credentials",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "token"
+              ],
+              "query": [
+                {
+                  "key": "client_id",
+                  "value": "AUTOMATED_TESTING"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Organization_With_Location",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+                "exec": [
+                  "",
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "   var jsonData = JSON.parse(responseBody);",
+                  "   postman.setEnvironmentVariable(\"orgId\", jsonData.id);",
+                  "   postman.setEnvironmentVariable(\"locationId\", jsonData.locations[0].id);",
+                  "",
+                  "   tests[\"Response Body has Correct Organization id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"orgId\")+\"\\\"\");",
+                  "   tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "   tests[\"Response Body has Correct name \"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"name\")+\"\\\"\");",
+                  "   tests[\"Response Body has Correct email \"] = responseBody.has(\"email\");",
+                  "   tests[\"Response Body has Correct timezone \"] = responseBody.has(\"timezone\");",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+                "exec": [
+                  "function stringGen(len) {",
+                  "var text = \"\";",
+                  "",
+                  "var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+                  "",
+                  "for (var i = 0; i < len; i++)",
+                  "  text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                  "",
+                  "return text;",
+                  "}",
+                  "var name= stringGen(5);",
+                  "postman.setEnvironmentVariable(\"name\", \"Singh\"+name);",
+                  "",
+                  "",
+                  "var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "",
+                  "var randName1 = names[Math.floor(Math.random() * names.length)];",
+                  "postman.setEnvironmentVariable(\"randName\", randName1);",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\" : \"{{name}}\",\r\n  \"email\" : \"{{name}}@qa4life.com\",\r\n  \"phone\" : \"1310629874\", \r\n  \"signInLink\" : \"https://test.url.qa4{{name}}.com\",\r\n  \"websiteUrl\" : \"www.planet-fitness.com\",\r\n  \"timezone\" : \"US/Alaska\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\"\r\n  } ],\r\n  \"locations\" : [ {\r\n    \"name\" : \"{{name}}\",\r\n    \"email\" : \"noreply@qa4{{name}}.com\",\r\n    \"phone\" :\"1310629874\",\r\n    \"timezone\" : \"US/Alaska\",\r\n    \"addresses\" : [ {\r\n      \"address1\" : \"AR-107\",\r\n      \"address2\" : \"Sherwood1\",\r\n      \"city\" : \"Little Rock\",\r\n      \"zipCode\" : \"72121\",\r\n      \"country\" : \"USA\",\r\n      \"state\" : \"AL\"\r\n    } ]\r\n  } ]\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/organization",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "organization"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Item_Category",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+                "exec": [
+                  "",
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"itemcategoryId\", jsonData.id);",
+                  "",
+                  "",
+                  "tests[\"Response Body has correct item Category id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemcategoryId\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct name \"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct description \"] = responseBody.has(\"\\\"description\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randDescription\")+\"\\\"\");",
+                  "tests[\"Response Body has Correct locationId \"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "   tests[\"Response Body has status \"] = responseBody.has(\"status\");",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+                "exec": [
+                  "var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "",
+                  "var name1 = names[Math.floor(Math.random() * names.length)];",
+                  "",
+                  "function stringGen(len) {",
+                  "var text = \"\";",
+                  "",
+                  "var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+                  "",
+                  "for (var i = 0; i < len; i++)",
+                  "  text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                  "",
+                  "return text;",
+                  "}",
+                  "var name2= stringGen(5);",
+                  "var randName=name1+\" \"+name2;",
+                  "var description= stringGen(6);",
+                  "var randDescription=name1+\" \"+description+name1;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"randDescription\", randDescription);",
+                  "postman.setEnvironmentVariable(\"randName\", randName);",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "ABCFS-ORGANIZATION-ID",
+                "value": "{{orgId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"name\" : \"{{randName}}\",\r\n \"locationId\" : \"{{locationId}}\",\r\n \"description\" : \"{{randDescription}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/item-category",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "item-category"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Item",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+                "exec": [
+                  "",
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "postman.setEnvironmentVariable(\"itemId\", jsonData.id.id);",
+                  "postman.setEnvironmentVariable(\"version\", jsonData.id.version);",
+                  "",
+                  "tests[\"Response Body has correct location id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "tests[\"Response Body has correct item id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemId\")+\"\\\"\");",
+                  "tests[\"Response Body has correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemName\")+\"\\\"\");",
+                  "tests[\"Response Body has correct expirationUnit\"] = responseBody.has(\"\\\"expirationUnit\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"expirationUnit\")+\"\\\"\");",
+                  "tests[\"Response Body has correct type\"] = responseBody.has(\"\\\"type\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"itemType\")+\"\\\"\");",
+                  "tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+                  "tests[\"Response Body has price\"] = responseBody.has(\"price\");",
+                  "tests[\"Response Body has quantity\"] = responseBody.has(\"quantity\");",
+                  "tests[\"Response Body has unlimited\"] = responseBody.has(\"unlimited\");",
+                  "tests[\"Response Body has expirationStart\"] = responseBody.has(\"expirationStart\");",
+                  "tests[\"Response Body has description\"] = responseBody.has(\"description\");",
+                  "",
+                  "tests[\"Response Body has currencyId\"] = responseBody.has(\"currencyId\");",
+                  "",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+                "exec": [
+                  "var randName=pm.environment.get(\"randName\");",
+                  "var itemName= \"Item Name \"+randName;",
+                  "var itemType= ['SERVICE', 'PRODUCT', 'AMENITY', 'FEE'];",
+                  "",
+                  "var itemType = itemType[Math.floor(Math.random() * itemType.length)];",
+                  "postman.setEnvironmentVariable(\"itemType\", itemType);",
+                  "",
+                  "var expirationUnit =['DAYS', 'WEEKS', 'MONTHS', 'YEARS'];",
+                  "var expirationUnit = expirationUnit[Math.floor(Math.random() * expirationUnit.length)];",
+                  "postman.setEnvironmentVariable(\"expirationUnit\", expirationUnit);",
+                  "",
+                  "postman.setEnvironmentVariable(\"itemName\", itemName);",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "ABCFS-ORGANIZATION-ID",
+                "value": "{{orgId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"active\" : true,\r\n  \"name\" : \"{{itemName}}\",\r\n  \"type\" : \"{{itemType}}\",\r\n  \"price\" : \"12\",\r\n  \"quantity\" : \"1\",\r\n  \"unlimited\" : true,\r\n  \"expirationStart\" : \"PURCHASE\",\r\n  \"expirationTime\" : 14,\r\n  \"expirationUnit\" : \"{{expirationUnit}}\",\r\n  \"currencyId\" : \"USD\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"itemCategoryId\" : \"{{itemcategoryId}}\",\r\n  \"description\" : \"Test Description\"\r\n}\r\n"
+            },
+            "url": {
+              "raw": "{{URL}}/item",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "item"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Subscription_Plan",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+                "exec": [
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "postman.setEnvironmentVariable(\"planId\", jsonData.id.id);",
+                  "tests[\"Response Body has correct location id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "tests[\"Response Body has correct Plan id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"planId\")+\"\\\"\");",
+                  "tests[\"Response Body has correct frequency\"] = responseBody.has(\"\\\"frequency\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"frequencyForPlan\")+\"\\\"\");",
+                  "tests[\"Response Body has correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"subscriptionPlanName\")+\"\\\"\");",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+                "exec": [
+                  "var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "",
+                  "var randName = names[Math.floor(Math.random() * names.length)];",
+                  "postman.setEnvironmentVariable(\"subscriptionPlanName\", randName);",
+                  "",
+                  "var frequency= ['DAILY', 'WEEKLY', 'EVERY_OTHER_WEEK', 'MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY', 'SEMIANNUALLY'];",
+                  "var frequencyForPlan = frequency[Math.floor(Math.random() * frequency.length)];",
+                  "postman.setEnvironmentVariable(\"frequencyForPlan\", frequencyForPlan);",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "ABCFS-ORGANIZATION-ID",
+                "value": "{{orgId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\" : \"{{subscriptionPlanName}}\",\r\n  \"active\" : true,\r\n  \"open\" : true,\r\n  \"frequency\" : \"{{frequencyForPlan}}\",\r\n  \"description\" : \"Donald Trump\",\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"items\" : [ {\r\n    \"id\" : {\r\n      \"id\" : \"{{itemId}}\",\r\n      \"version\" : \"{{version}}\"\r\n    },\r\n    \"active\" : true,\r\n    \"name\" : \"First Test Item1\",\r\n    \"type\" : \"AMENITY\",\r\n    \"price\" : \"729\",\r\n    \"quantity\" : \"8\",\r\n    \"unlimited\" : true,\r\n    \"expirationStart\" : \"PURCHASE\",\r\n    \"currencyId\" : \"USD\",\r\n    \"locationId\" : \"{{locationId}}\"\r\n  }]}"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription-plan",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription-plan"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Member",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+                "exec": [
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "postman.setEnvironmentVariable(\"memberId\", jsonData.id);",
+                  "tests[\"Response Body has correct location id\"] = responseBody.has(\"\\\"locationId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locationId\")+\"\\\"\");",
+                  "tests[\"Response Body has correct Member id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"memberId\")+\"\\\"\");",
+                  "tests[\"Response Body has waiverDocumentId\"] = responseBody.has(\"waiverDocumentId\");",
+                  "tests[\"Response Body has termsDocumentId\"] = responseBody.has(\"termsDocumentId\");",
+                  "tests[\"Response Body has digitalSignatureId\"] = responseBody.has(\"digitalSignatureId\");",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+                "exec": [
+                  "var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "",
+                  "var randName = names[Math.floor(Math.random() * names.length)];",
+                  "postman.setEnvironmentVariable(\"randName\", randName);",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "ABCFS-ORGANIZATION-ID",
+                "value": "{{orgId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\" : \"{{name}}\",\n  \"lastName\" : \"Doe\",\n  \"middleInitial\" : \"S.\",\n  \"birthDate\" : \"1977-07-07\",\n  \"email\" : \"1{{randName}}.doe@qa4{{randName}}.com\",\n  \"phones\" : [ {\n    \"number\" : \"1123456\",\n    \"phoneType\" : \"PRIMARY\"\n  } ],\n  \"waiverDocumentId\" : \"e2ed6924-f650-489d-9a1b-f6d7109353b7\",\n  \"termsDocumentId\" : \"16e0f594-822c-46f0-84dc-6e1e0d7e985b\",\n  \"digitalSignatureId\" : \"5804058d-1966-4d9f-8bc3-662781e2d25c\",\n  \"healthNote\" : \"High BP\",\n  \"locationId\" : \"{{locationId}}\",\n  \"addresses\" : [ {\n    \"address1\" : \"AR-107\",\n    \"address2\" : \"Sherwood\",\n    \"city\" : \"Little Rock\",\n    \"state\" : \"AR\",\n    \"country\" : \"USA\",\n    \"zipCode\" : \"72120\"\n  } ],\n  \"employmentData\" : {\n    \"employer\" : \"Bhavna\",\n    \"occupation\" : \"programmer\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/member",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "member"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateClientAccount",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "3d1c35df-b9fd-4995-9cfa-69a3de58b6bb",
+                "exec": [
+                  "var today = new Date();",
+                  "var dd = today.getDate();",
+                  "var mm = today.getMonth()+1; //January is 0!",
+                  "var yyyy = today.getFullYear();",
+                  "",
+                  "if(dd<10) {",
+                  "    dd = '0'+dd",
+                  "} ",
+                  "",
+                  "if(mm<10) {",
+                  "    mm = '0'+mm",
+                  "} ",
+                  "",
+                  "today = mm + '-' + dd + '-' + yyyy;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"today\", today);",
+                  "",
+                  "",
+                  "var randlocId = Math.floor(Math.random() * 90000) + 10000;",
+                  "postman.setEnvironmentVariable(\"randlocId\", randlocId);",
+                  "",
+                  "var randClientId = Math.floor(Math.random() * 90000) + 10000;",
+                  "postman.setEnvironmentVariable(\"randClientId\", randClientId);",
+                  "",
+                  "function stringGen(len) {",
+                  "var text = \"\";",
+                  "",
+                  "var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+                  "",
+                  "for (var i = 0; i < len; i++)",
+                  " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                  "",
+                  "return text;",
+                  "}",
+                  "var uniqueClient= stringGen(8)",
+                  "postman.setEnvironmentVariable(\"UniqueClient\", \"Client \"+uniqueClient);",
+                  "",
+                  "var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "",
+                  "var randName = names[Math.floor(Math.random() * names.length)];",
+                  "postman.setEnvironmentVariable(\"randName\", randName);",
+                  "",
+                  "",
+                  "var sevaluation = [ 'DAILY', 'WEEKLY',' EVERY_OTHER_WEEK',' MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY','SEMIANNUALLY'];",
+                  "",
+                  "var seval = sevaluation[Math.floor(Math.random() * sevaluation.length)];",
+                  "postman.setEnvironmentVariable(\"seval\", seval);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "52d10cd3-2057-4747-b332-ba5ec2ed1924",
+                "exec": [
+                  "",
+                  "",
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"accountIdClient\", jsonData.account.accountId);",
+                  "postman.setEnvironmentVariable(\"merchantId\", jsonData.merchantId);",
+                  "",
+                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+                  "    tests[\"Response Body has clientId\"] = responseBody.has(\"clientId\");",
+                  "    tests[\"Response Body has merchantId\"] = responseBody.has(\"merchantId\");",
+                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
+                  "    tests[\"Response Body has sevaluation\"] = responseBody.has(\"sevaluation\");",
+                  "    tests[\"Response Body has billingDate\"] = responseBody.has(\"billingDate\");",
+                  "    ",
+                  "    tests[\"Response Body has paymentmethodId\"] = responseBody.has(\"id\");",
+                  "    tests[\"Response Body has type\"] = responseBody.has(\"type\");",
+                  "    tests[\"Response Body has bankAccountType\"] = responseBody.has(\"bankAccountType\");",
+                  "    tests[\"Response Body has routingNumber\"] = responseBody.has(\"routingNumber\");",
+                  "    tests[\"Response Body has accountNumber\"] = responseBody.has(\"accountNumber\");",
+                  "    ",
+                  "",
+                  "",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"locationId\" : \"{{locationId}}\",\n \"clientId\" : \"{{randClientId}}c6d-8d53-4553-b03b-59b8757d1734\",\n \"account\" : {\n   \"name\" : \"{{UniqueClient}}\",\n   \"email\" : \"{{randName}}@qa4life.com\",\n   \"phone\" : \"1234567890\",\n   \"sevaluation\" : \"{{seval}}\",\n   \"billingDate\" : \"{{today}}\",\n   \"paymentMethod\" : {\n     \"type\" : \"BANK_ACCOUNT\",\n     \"bankAccountType\": \"SAVING\",\n     \"routingNumber\" : \"101000967\",\n     \"accountNumber\" : \"457578\",\n     \"alias\" : \"testalias2\"\n   }\n }\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/account/location",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "account",
+                "location"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create_Payment_Method",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "bc3c36c0-1227-4e1e-ac0f-ebf2fc92be8b",
+                "exec": [
+                  "if (responseCode.code != 201)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "   var jsonData = JSON.parse(responseBody);",
+                  "   postman.setEnvironmentVariable(\"payment_method_id\", jsonData.id);",
+                  "",
+                  "   tests[\"Response Body has Payment Method  Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payment_method_id\")+\"\\\"\");",
+                  "   tests[\"Response Body has accountHolderName\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+jsonData.accountHolderName+\"\\\"\");",
+                  "}",
+                  "   ",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 201;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"companyId\": \"{{companyId}}\",\n\"type\" : \"CHECKING_ACH\",\n\"accountHolderName\" : \"{{name}}\",\n\"bankRouting\" : \"082000073\",\n\"accountNumber\" : \"852937164973\"\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/payment-method",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "payment-method"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Response_200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{payment_gateway_server}}/accountinfotoken",
+                  "host": [
+                    "{{payment_gateway_server}}"
+                  ],
+                  "path": [
+                    "accountinfotoken"
+                  ]
+                }
+              },
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "CreatePayorAccount_Bank",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "3d1c35df-b9fd-4995-9cfa-69a3de58b6bb",
+                "exec": [
+                  "",
+                  "",
+                  "var randMemberId = Math.floor(Math.random() * 90000) + 10000;",
+                  "postman.setEnvironmentVariable(\"randMemberId\", randMemberId);",
+                  "",
+                  "var randlocId = Math.floor(Math.random() * 90000) + 10000;",
+                  "postman.setEnvironmentVariable(\"randlocId\", randlocId);",
+                  "",
+                  "var randPayorId = Math.floor(Math.random() * 90000) + 10000;",
+                  "postman.setEnvironmentVariable(\"randPayorId\", randPayorId);",
+                  "",
+                  "var names = ['Savage', 'Stephens', 'Sparks', 'Stark', 'Sparks', 'Bottin', 'Jones', 'Arthurson', 'Harden', 'Gray', 'Bryson', 'Matthison', 'Wilson', 'Ivey', 'Netzley', 'Piche','Metz','Cass','Kuzma','Reno','Avis','Saville','Selvey','Stoecker','Auerbach','Eilerman','Holsey','Zepp','Davids','Foster','Sim','Messana','Schloss','Sylvester','Leathers','Niles','Combs','Phillips','Augsburger','Stroman','Beveridge','Gattis','Minnis','Fortes','Ullman','Bunkley','Spivey','Sterrett','Crist','Chow','Lierman','Ashalintubbi','Laura','Crawford','Balmer','Mcmullin','Dussault','Holbrook','Dion','Lechler','Beaton','Elzey','Sams','Irby','Hollaway','Levert','Gough','Croom','Dedman','Hatmaker','Tippetts','Odoms','Banaszak','Viveros','Hempstead','Tower','Atlas','Lozoya','Fulp','Corbo','Chapell','Monier','Selle','Parenti','Karl','Kuehn','Speers','Cambron','Blossom','Peart','Gunter','Hagenbuch','Amend','Tiernan','Ayala','Maclenn','Golden','Colone','Golding','Landreth','Shams','Liddle','Alley','Levy','Barajas','Tetrault','Shue','Lenton','Boss','Weedman','Bergeron','Valls','Pooler','Mollett','Viger','Donnellan','Dedeaux'];",
+                  "",
+                  "var randName = names[Math.floor(Math.random() * names.length)];",
+                  "postman.setEnvironmentVariable(\"randName\", randName);",
+                  "",
+                  "",
+                  "var sevaluation = [ 'DAILY', 'WEEKLY',' EVERY_OTHER_WEEK',' MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY','SEMIANNUALLY'];",
+                  "",
+                  "var seval = sevaluation[Math.floor(Math.random() * sevaluation.length)];",
+                  "postman.setEnvironmentVariable(\"seval\", seval);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "52d10cd3-2057-4747-b332-ba5ec2ed1924",
+                "exec": [
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "postman.setEnvironmentVariable(\"payoraccountId\", jsonData.account.accountId);",
+                  "postman.setEnvironmentVariable(\"payorId\", jsonData.payorId);",
+                  "",
+                  "tests[\"Response Body has correct Payor Account id\"] = responseBody.has(\"\\\"accountId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payoraccountId\")+\"\\\"\");",
+                  "",
+                  "tests[\"Response Body has correct Payor id\"] = responseBody.has(\"\\\"payorId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payorId\")+\"\\\"\");",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n \"payorId\":\"{{randPayorId}}c6d-8d53-4553-b03b-59b8757d1734\",\r\n   \"memberId\": \"{{memberId}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{name}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"DAILY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n       \"paymentMethod\" : {\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\": \"{{payment_method_id}}\"\r\n    \r\n    }\r\n   }\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/account/member",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "account",
+                "member"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateLocationTaxRate",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "3d1c35df-b9fd-4995-9cfa-69a3de58b6bb",
+                "exec": [
+                  "var randEmpId = Math.floor(Math.random() * 90000) + 10000;",
+                  "postman.setEnvironmentVariable(\"randEmpId\", randEmpId);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "52d10cd3-2057-4747-b332-ba5ec2ed1924",
+                "exec": [
+                  "if (responseCode.code != 201) {",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "} else if (responseCode.code === 201) {",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "    postman.setEnvironmentVariable(\"id\", jsonData.id);",
+                  "",
+                  "    tests[\"Response Body has correct location tax rate id\"] = responseBody.has(\"\\\"id\\\":\" + \"\\\"\" + postman.getEnvironmentVariable(\"id\") + \"\\\"\");",
+                  "",
+                  "    tests[\"Response Body has taxRate\"] = responseBody.has(\"taxRate\");",
+                  "    tests[\"Response Body has taxCode\"] = responseBody.has(\"taxCode\");",
+                  "    tests[\"Response Body has isOverriden\"] = responseBody.has(\"isOverriden\");",
+                  "    tests[\"Response Body has suggestedTaxRate\"] = responseBody.has(\"suggestedTaxRate\");",
+                  "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+                  "",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"empId\" : \"{{randEmpId}}c6d-8d53-4553-b03b-59b8757d1734\",\r\n  \"taxRate\" : 20.25745,\r\n  \"taxCode\" : \"rtr\",\r\n  \"isOverriden\" : true,\r\n  \"suggestedTaxRate\" : 100\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/taxRate",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "taxRate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetLocationTaxRate",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "88ec3e17-caed-4a53-90a2-594e86ce266d",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "   tests[\"Response Body has locTaxRateId Id\"] = responseBody.has(\"locTaxRateId\");",
+                  "   tests[\"Response Body has empId \"] = responseBody.has(\"empId\");",
+                  "   tests[\"Response Body has taxCode\"] = responseBody.has(\"taxCode\");",
+                  "   tests[\"Response Body has suggestedTaxRate\"] = responseBody.has(\"suggestedTaxRate\");",
+                  "   tests[\"Response Body has isOverriden\"] = responseBody.has(\"isOverriden\");",
+                  "   tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{URL}}/taxRate/{{locationId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "taxRate",
+                "{{locationId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdateTaxRate",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "2f04f32f-0008-44f4-bcd5-3449e886523f",
+                "exec": [
+                  "var randEmpId = Math.floor(Math.random() * 90000) + 10000;",
+                  "postman.setEnvironmentVariable(\"randEmpId\", randEmpId);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "1c536bf2-bd10-4687-9283-1a9d72b4392b",
+                "exec": [
+                  "if ( responseCode.code!=200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "postman.setEnvironmentVariable(\"id\", jsonData.id);",
+                  "",
+                  "tests[\"Response Body has correct location tax rate id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"id\")+\"\\\"\");",
+                  "",
+                  "tests[\"Response Body has taxRate\"] = responseBody.has(\"taxRate\");",
+                  "tests[\"Response Body has taxCode\"] = responseBody.has(\"taxCode\");",
+                  "tests[\"Response Body has isOverriden\"] = responseBody.has(\"isOverriden\");",
+                  "tests[\"Response Body has suggestedTaxRate\"] = responseBody.has(\"suggestedTaxRate\");",
+                  "tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+                  "",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"empId\" : \"{{randEmpId}}c6d-8d53-4553-b03b-59b8757d1734\",\r\n    \"taxRate\" : 30,\r\n    \"taxCode\" : \"rtr\",\r\n    \"isOverriden\": true,\r\n    \"suggestedTaxRate\": 50\r\n \r\n}\r\n "
+            },
+            "url": {
+              "raw": "{{URL}}/taxRate/{{locationId}}?",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "taxRate",
+                "{{locationId}}"
+              ],
+              "query": [
+                {
+                  "key": "itemCategoryId",
+                  "value": "f1422b9a-e195-43b2-922f-04c33a9c19a4",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateSubscription",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "7a5c849f-1892-432f-9b72-a07da50776b0",
+                "exec": [
+                  "var frequencyTypes = ['DAILY', 'WEEKLY', 'EVERY_OTHER_WEEK', 'MONTHLY', 'EVERY_OTHER_MONTH', 'ANNUALLY', 'QUARTERLY', 'SEMIANNUALLY']",
+                  "",
+                  "var frequency = frequencyTypes[Math.floor(Math.random() * frequencyTypes.length)];",
+                  "postman.setEnvironmentVariable(\"frequency\", frequency);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "2e379ca3-0bdb-4515-bdb5-942b84db6baa",
+                "exec": [
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "postman.setEnvironmentVariable(\"subId\", jsonData.subId);",
+                  "",
+                  "tests[\"Response Body has correct subscription id\"] = responseBody.has(\"\\\"subId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"subId\")+\"\\\"\");",
+                  "",
+                  " tests[\"Response Body has planId\"] = responseBody.has(\"planId\");",
+                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
+                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+                  "    tests[\"Response Body has memberId\"] = responseBody.has(\"memberId\");",
+                  "    tests[\"Response Body has frequency\"] = responseBody.has(\"frequency\");",
+                  "     tests[\"Response Body has invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+                  "    tests[\"Response Body has expirationDate\"] = responseBody.has(\"expirationDate\");",
+                  "    tests[\"Response Body has name\"] = responseBody.has(\"name\");",
+                  "    tests[\"Response Body has autoRenew\"] = responseBody.has(\"autoRenew\");",
+                  "    tests[\"Response Body has openEnded\"] = responseBody.has(\"openEnded\");",
+                  "      tests[\"Response Body has renew Date\"] = responseBody.has(\"renewDate\");",
+                  "    tests[\"Response Body has renew Frequency\"] = responseBody.has(\"renewFrequency\");",
+                  "      tests[\"Response Body has renew Sub Id\"] = responseBody.has(\"renewSubId\");",
+                  "    tests[\"Response Body has renew Amount\"] = responseBody.has(\"renewAmount\");",
+                  "    ",
+                  "    ",
+                  "    ",
+                  "    ",
+                  "",
+                  "",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"planId\": \"{{planId}}\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n      \"locationId\": \"{{locationId}}\",\n    \"memberId\": \"{{memberId}}\",\n        \"accountId\": \"{{payoraccountId}}\",\n\"planVersion\": 11,\n\"start\" : \"{{today}}\",\n\"invoiceDate\" : \"{{today}}\",\n\"duration\":\"10\",\n\"expirationDate\":\"05-10-2019\",\n\"frequency\" : \"{{frequency}}\",\n\"name\" : \"Praveen_Cancel_1\",\n\"autoRenew\":\"true\",\n\"renewalOptions\" :\n{ \n\"renewDate\" : \"06-16-2019\", \n\"renewFrequency\" : \"DAILY\", \n\"renewDuration\" : \"5\",\n\"renewAmount\":10 ,\n\"renewType\" : \"TERM\"\n\n}\n,\n\"openEnded\": false,\n\"renewType\" : \"TERM\", \n\n\"items\": [\n\n{ \"itemName\": \"dance\", \"itemId\": \"{{itemId}}\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"{{itemcategoryId}}\" }\n]\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CancelSubscription",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3a520b09-e548-4fb9-bc18-a0f235977d46",
+                "exec": [
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "",
+                  "tests[\"Response Body has correct subscription id\"] = responseBody.has(\"\\\"subId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"subId\")+\"\\\"\");",
+                  "        ",
+                  "     tests[\"Response Body has planId\"] = responseBody.has(\"planId\");",
+                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
+                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+                  "  ",
+                  "    tests[\"Response Body has frequency\"] = responseBody.has(\"frequency\");",
+                  "     tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+                  "      tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+                  "     tests[\"Response Body has subCancellationDate\"] = responseBody.has(\"subCancellationDate\");",
+                  "      tests[\"Response Body has itemCategoryId\"] = responseBody.has(\"itemCategoryId\");",
+                  "     tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+                  "      tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+                  "     tests[\"Response Body has itemprice\"] = responseBody.has(\"price\");",
+                  "",
+                  "",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subCancellationDate\":\"05-02-2019\"\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/{{subId}}/cancel",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                "{{subId}}",
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdateCancelSubscription",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3a520b09-e548-4fb9-bc18-a0f235977d46",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "",
+                  "tests[\"Response Body has correct subscription id\"] = responseBody.has(\"\\\"subId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"subId\")+\"\\\"\");",
+                  "        ",
+                  "",
+                  " tests[\"Response Body has planId\"] = responseBody.has(\"planId\");",
+                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
+                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+                  "   ",
+                  "    tests[\"Response Body has frequency\"] = responseBody.has(\"frequency\");",
+                  "     tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+                  "      tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+                  "     tests[\"Response Body has subCancellationDate\"] = responseBody.has(\"subCancellationDate\");",
+                  "      tests[\"Response Body has itemCategoryId\"] = responseBody.has(\"itemCategoryId\");",
+                  "     tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+                  "      tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+                  "     tests[\"Response Body has itemprice\"] = responseBody.has(\"price\");",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subCancellationDate\":\"03-30-2019\"\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/{{subId}}/updateCancel",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                "{{subId}}",
+                "updateCancel"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RemoveCancelSubscription",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3a520b09-e548-4fb9-bc18-a0f235977d46",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "",
+                  " tests[\"Response Body has planId\"] = responseBody.has(\"planId\");",
+                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
+                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+                  "",
+                  "    tests[\"Response Body has frequency\"] = responseBody.has(\"frequency\");",
+                  "     tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+                  "      tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+                  "      tests[\"Response Body has itemCategoryId\"] = responseBody.has(\"itemCategoryId\");",
+                  "     tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+                  "      tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+                  "     tests[\"Response Body has itemprice\"] = responseBody.has(\"price\");",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \n}"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/{{subId}}/removeCancel",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                "{{subId}}",
+                "removeCancel"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ExpireSubscription",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "58f8ed42-c97e-41e4-8af1-6eb1689c02ca",
+                "exec": [
+                  "",
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "",
+                  "tests[\"Response Body has correct subscription id\"] = responseBody.has(\"\\\"subId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"subId\")+\"\\\"\");",
+                  " tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+                  "     tests[\"Response Body has memberId\"] = responseBody.has(\"memberId\");",
+                  "      tests[\"Response Body has expirationDate\"] = responseBody.has(\"expirationDate\");",
+                  "      tests[\"Response Body has expired\"] = responseBody.has(\"expired\");",
+                  "",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expirationDate\": \"04-28-2019\"\n}\n"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/{{subId}}/expire",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                "{{subId}}",
+                "expire"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateFreezeSubscription",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "7a5c849f-1892-432f-9b72-a07da50776b0",
+                "exec": [
+                  "var today = new Date();",
+                  "var dd = today.getDate();",
+                  "var mm = today.getMonth()+1; //January is 0!",
+                  "var yyyy = today.getFullYear();",
+                  "",
+                  "if(dd<10) {",
+                  "    dd = '0'+dd",
+                  "} ",
+                  "",
+                  "if(mm<10) {",
+                  "    mm = '0'+mm",
+                  "} ",
+                  "",
+                  "today = mm + '-' + dd + '-' + yyyy;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"today\", today);",
+                  "",
+                  "////////////////////////////////////////////////////////////"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "2e379ca3-0bdb-4515-bdb5-942b84db6baa",
+                "exec": [
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "postman.setEnvironmentVariable(\"freezeid\", jsonData.id);",
+                  "",
+                  "tests[\"Response Body has correct freeze subscription id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"freezeid\")+\"\\\"\");",
+                  "    ",
+                  "    tests[\"Response Body has freeze Start Date\"] = responseBody.has(\"freezeStartDate\");",
+                  "     tests[\"Response Body has freeze End Date\"] = responseBody.has(\"freezeEndDate\");",
+                  "      tests[\"Response Body has freeze Amount\"] = responseBody.has(\"freezeAmount\");",
+                  "     ",
+                  "",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"freezeStartDate\" : \"{{today}} 00:00\",\n\"freezeEndDate\" : \"05-12-2019 00:00\",\n\"freezeAmount\": \"10\"\n\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/freeze/{{subId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                "freeze",
+                "{{subId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetFreezeSubscription",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "88ec3e17-caed-4a53-90a2-594e86ce266d",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "",
+                  "      tests[\"Response Body has freeze Id\"] = responseBody.has(\"freezeSubId\");",
+                  "      tests[\"Response Body has freeze Start Date\"] = responseBody.has(\"freezeStartDate\");",
+                  "      tests[\"Response Body has freeze End Date\"] = responseBody.has(\"freezeEndDate\");",
+                  "        tests[\"Response Body has freeze Amount\"] = responseBody.has(\"freezeAmount\");",
+                  "       tests[\"Response Body has freeze status\"] = responseBody.has(\"freeze\");",
+                  "      tests[\"Response Body has sales Employee Id\"] = responseBody.has(\"salesEmployeeId\");",
+                  "      tests[\"Response Body has susbcription planId\"] = responseBody.has(\"planId\");",
+                  "       tests[\"Response Body has location Id\"] = responseBody.has(\"locationId\");",
+                  "      tests[\"Response Body has susbcription Start Date\"] = responseBody.has(\"start\");",
+                  "      tests[\"Response Body has subscription expiration Date\"] = responseBody.has(\"expirationDate\");",
+                  "        tests[\"Response Body has susbcription frequency\"] = responseBody.has(\"frequency\");",
+                  "      tests[\"Response Body has subscription duration\"] = responseBody.has(\"duration\");",
+                  "",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/freeze/{{freezeid}}/location/{{locationId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                "freeze",
+                "{{freezeid}}",
+                "location",
+                "{{locationId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdateFreezeSubscription",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3a520b09-e548-4fb9-bc18-a0f235977d46",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "",
+                  "      tests[\"Response Body has freeze Id\"] = responseBody.has(\"subId\");",
+                  "      tests[\"Response Body has freeze Start Date\"] = responseBody.has(\"freezeStartDate\");",
+                  "      tests[\"Response Body has freeze End Date\"] = responseBody.has(\"freezeEndDate\");",
+                  "      tests[\"Response Body has freeze Amount\"] = responseBody.has(\"freezeAmount\");",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"freezeEndDate\" : \"05-07-2019 07:56\"\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/freeze/{{freezeid}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                "freeze",
+                "{{freezeid}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RemoveFreezeSubscription",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3f55d3c1-9ed8-4b03-b559-14fb344c451c",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "",
+                  "      tests[\"Response Body has freeze Id\"] = responseBody.has(\"id\");",
+                  "      tests[\"Response Body has freeze Start Date\"] = responseBody.has(\"freezeStartDate\");",
+                  "      tests[\"Response Body has freeze End Date\"] = responseBody.has(\"freezeEndDate\");",
+                  "      tests[\"Response Body has freeze Amount\"] = responseBody.has(\"freezeAmount\");",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\r\n\t\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/unfreeze/{{freezeid}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                "unfreeze",
+                "{{freezeid}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdateSubscription",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cd4dbd97-2757-4f98-a858-ca305cd2e9bd",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "",
+                  "    tests[\"Response Body has subId\"] = responseBody.has(\"subId\");",
+                  "    tests[\"Response Body has planId\"] = responseBody.has(\"planId\");",
+                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
+                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+                  "    tests[\"Response Body has frequency\"] = responseBody.has(\"frequency\");",
+                  " ",
+                  "    tests[\"Response Body has expirationDate\"] = responseBody.has(\"expirationDate\");",
+                  "    tests[\"Response Body has name\"] = responseBody.has(\"name\");",
+                  "    tests[\"Response Body has autoRenew\"] = responseBody.has(\"autoRenew\");",
+                  "    tests[\"Response Body has openEnded\"] = responseBody.has(\"openEnded\");",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"salesEmployeeId\": \t\"4ad3b8a8-6b24-4d72-b9b8-01b7f107c174\"\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/subscription/{{subId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "subscription",
+                "{{subId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invoice payor Account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "248d8db8-7db6-4e0d-bf69-2c0fe5ea4d7b",
+                "exec": [
+                  "",
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "postman.setEnvironmentVariable(\"invoiceId\", jsonData.id);",
+                  "tests[\"Response Body has correct Invoice id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"invoiceId\")+\"\\\"\");",
+                  "",
+                  "     tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
+                  "    tests[\"Response Body has total Net Price\"] = responseBody.has(\"totalNetPrice\");",
+                  "    tests[\"Response Body has total Discount Amount\"] = responseBody.has(\"totalDiscountAmount\");",
+                  "    tests[\"Response Body has total Amount\"] = responseBody.has(\"totalAmount\");",
+                  "    tests[\"Response Body has sales Employee Id\"] = responseBody.has(\"salesEmployeeId\");",
+                  "     tests[\"Response Body has invoice Date\"] = responseBody.has(\"invoiceDate\");",
+                  "    tests[\"Response Body has invoice Number\"] = responseBody.has(\"invoiceNumber\");",
+                  "     tests[\"Response Body has total Amount\"] = responseBody.has(\"totalAmount\");",
+                  "    tests[\"Response Body has sales Employee Id\"] = responseBody.has(\"salesEmployeeId\");",
+                  "     tests[\"Response Body has item Name\"] = responseBody.has(\"itemName\");",
+                  "    tests[\"Response Body has item Id\"] = responseBody.has(\"itemId\");",
+                  "     tests[\"Response Body has item Category Id\"] = responseBody.has(\"itemCategoryId\");",
+                  "     tests[\"Response Body has item Name\"] = responseBody.has(\"itemName\");",
+                  "    tests[\"Response Body has item loc Id\"] = responseBody.has(\"locId\");",
+                  "    ",
+                  "    ",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"locationId\": \"{{locationId}}\",\r\n        \"accountId\": \"{{payoraccountId}}\",\r\n         \"memberId\": \"{{memberId}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c74\",\r\n\"totalTax\": 0,\r\n\"totalAmount\": 1000,\r\n\"totalDiscountAmount\": 0,\r\n\"totalNetPrice\": 1000,\r\n\"items\": [\r\n\r\n{ \"itemName\": \"dance\", \"itemId\": \"{{itemId}}\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"{{itemcategoryId}}\" }\r\n\r\n]\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/account/payor/invoice",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "account",
+                "payor",
+                "invoice"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Apply payment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3ee78c95-2e5e-40a2-9c6a-788ab197f991",
+                "exec": [
+                  "",
+                  "if ( responseCode.code!=201)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 201)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "   tests[\"Response Body has correct payment status\"] = responseBody.has(\"payStatus\");",
+                  "    tests[\"Response Body has correct payment message\"] = responseBody.has(\"message\");",
+                  "",
+                  "}",
+                  "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"payAmount\" : 1400 \r\n\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/apply-payment/account/{{payoraccountId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "apply-payment",
+                "account",
+                "{{payoraccountId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Evaluate Statement",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
+                "exec": [
+                  "if ( responseCode.code!=200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "var jsonData = JSON.parse(responseBody);",
+                  "",
+                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "",
+                  "",
+                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
+                  "",
+                  "",
+                  "   tests[\"Response Body has correct location Id\"] = responseBody.has(\"locationId\");",
+                  "    tests[\"Response Body has correct account Id\"] = responseBody.has(\"accountId\");",
+                  "    tests[\"Response Body has correct total Amount\"] = responseBody.has(\"totalAmount\");",
+                  "}",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{     \"locationId\": \"{{locationId}}\",\r\n        \"accountId\": \"{{payoraccountId}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/statement",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "statement"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Review Statement",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "88ec3e17-caed-4a53-90a2-594e86ce266d",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "   tests[\"Response Body has Statement Id\"] = responseBody.has(\"statementId\");",
+                  "   tests[\"Response Body has Account ID\"] = responseBody.has(\"accountId\");",
+                  "   tests[\"Response Body has Statement Created\"] = responseBody.has(\"statementCreated\");",
+                  "   tests[\"Response Body has Statement Amount\"] = responseBody.has(\"statementAmount\");",
+                  "}",
+                  "",
+                  "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "type": "text",
+                "value": "Bearer {{authId}}"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{URL}}/account/statement/{{statementId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "account",
+                "statement",
+                "{{statementId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
