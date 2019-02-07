@@ -1,7 +1,6 @@
-
 {
   "info": {
-    "_postman_id": "e4268b41-ef01-4504-9c3f-571f605f14a0",
+    "_postman_id": "bba0585e-0dcf-332a-2687-55dc9abc6aa6",
     "name": "Billing",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -313,7 +312,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{$guid}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{randName}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"CASH\"\r\n\r\n   }\r\n   }\r\n}"
+          "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{$guid}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"CASH\"\r\n\r\n   }\r\n   }\r\n}"
         },
         "url": {
           "raw": "{{URL}}/account/member",
@@ -483,7 +482,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "\t{\r\n\t\"account\" :\r\n\t\r\n\t{ \"name\" : \"{{randName}}\",\r\n\t\"email\" : \"{{randName}}@qa4life.com\", \r\n\t\"phone\" : \"8009578010\",\r\n\t\t\"sevaluation\" : \"SEMIANNUALLY\"\r\n\t}\r\n\t}"
+          "raw": "\t{\r\n\t\"account\" :\r\n\t\r\n\t{ \"name\" : \"{{UniqueClient}}\",\r\n\t\"email\" : \"{{randName}}@qa4life.com\", \r\n\t\"phone\" : \"8009578010\",\r\n\t\t\"sevaluation\" : \"SEMIANNUALLY\"\r\n\t}\r\n\t}"
         },
         "url": {
           "raw": "{{URL}}/account-details/account/{{accountIdpayor}}",
@@ -798,7 +797,7 @@
       "response": []
     },
     {
-      "name": "CreateSubscription",
+      "name": "CreateSubscription_Renew_Type_TERM",
       "event": [
         {
           "listen": "prerequest",
@@ -807,20 +806,105 @@
             "exec": [
               "var futureDate = new Date();",
               "var dd = futureDate.getDate();",
-              "var mm = futureDate.getMonth() +10//January is 0!",
-              "var yyyy = futureDate.getFullYear()+1;",
+              "var mm = futureDate.getMonth()+1; //January is 0!",
+              "var yyyy = futureDate.getFullYear();",
               "",
               "if(dd<10) {",
-              "    dd = '0'+dd",
-              "} ",
+              "  dd = '0'+dd;",
+              "}",
+              "",
+              "mm=mm+5;",
+              "if(mm>12)",
+              "{",
+              "   mm=mm-12;",
+              "}",
               "",
               "if(mm<10) {",
-              "    mm = '0'+mm",
-              "} ",
+              "  mm = '0'+mm;",
+              "",
+              "",
+              "}",
+              "",
+              "console.log(\"dd  \" + dd);",
+              "console.log(\"mm  \"+ mm);",
+              "console.log(\"yyyy  \"+yyyy);",
+              "",
               "",
               "futureDate = mm + '-' + dd + '-' + yyyy;",
               "",
-              "postman.setEnvironmentVariable(\"futureDate\", futureDate);"
+              "",
+              "postman.setEnvironmentVariable(\"futureDate\", futureDate);",
+              "",
+              "",
+              "",
+              "//",
+              "",
+              "var RfutureDate = new Date();",
+              "var dd = RfutureDate.getDate();",
+              "var mm = RfutureDate.getMonth()+1; //January is 0!",
+              "var yyyy = RfutureDate.getFullYear();",
+              "",
+              "if(dd<10) {",
+              "  dd = '0'+dd;",
+              "}",
+              "",
+              "mm=mm+9;",
+              "if(mm>12)",
+              "{",
+              "   mm=mm-12;",
+              "}",
+              "",
+              "if(mm<10) {",
+              "  mm = '0'+mm;",
+              "",
+              "",
+              "}",
+              "",
+              "console.log(\"dd  \" + dd);",
+              "console.log(\"mm  \"+ mm);",
+              "console.log(\"yyyy  \"+yyyy);",
+              "",
+              "",
+              "RfutureDate = mm + '-' + dd + '-' + yyyy;",
+              "",
+              "",
+              "postman.setEnvironmentVariable(\"RfutureDate\", RfutureDate);",
+              "",
+              "",
+              "",
+              "",
+              "//",
+              "",
+              "var URfutureDate = new Date();",
+              "var dd = URfutureDate.getDate();",
+              "var mm = URfutureDate.getMonth()+1; //January is 0!",
+              "var yyyy = URfutureDate.getFullYear();",
+              "",
+              "if(dd<10) {",
+              "  dd = '0'+dd;",
+              "}",
+              "",
+              "mm=mm+10;",
+              "if(mm>12)",
+              "{",
+              "   mm=mm-12;",
+              "}",
+              "",
+              "if(mm<10) {",
+              "  mm = '0'+mm;",
+              "",
+              "",
+              "}",
+              "",
+              "console.log(\"dd  \" + dd);",
+              "console.log(\"mm  \"+ mm);",
+              "console.log(\"yyyy  \"+yyyy);",
+              "",
+              "",
+              "URfutureDate = mm + '-' + dd + '-' + yyyy;",
+              "",
+              "",
+              "postman.setEnvironmentVariable(\"URfutureDate\", URfutureDate);"
             ],
             "type": "text/javascript"
           }
@@ -882,7 +966,92 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberId\": \"{{memberId}}\",\n\"accountId\": \"{{accountIdpayor}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"expirationDate\": \"{{futureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"04-25-2021\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100 }\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+          "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberId\": \"{{memberId}}\",\n\"accountId\": \"{{accountIdpayor}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"expirationDate\": \"{{futureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{RfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100,\"renewExpireDate\": \"{{URfutureDate}}\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+        },
+        "url": {
+          "raw": "{{URL}}/subscription/",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "subscription",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CreateSubscription_Renew_Type_OPEN",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "7a5c849f-1892-432f-9b72-a07da50776b0",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "f6605cb7-22f4-41aa-9904-3cf8fb89b2ed",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "postman.setEnvironmentVariable(\"subId\",jsonData.subId);",
+              "",
+              "if (responseCode.code != 201)",
+              "{",
+              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201)",
+              "{",
+              "    var jsonData = JSON.parse(responseBody);",
+              " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+              "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
+              "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
+              "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+              "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+              "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
+              "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+              "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+              "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
+              "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+              "    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+              "    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+              "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+              "    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+              "    tests[\"Response Body has Payment Method salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+              "    tests[\"Response Body has Payment Method price\"] = responseBody.has(\"price\");",
+              "    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+              "   ",
+              "}",
+              "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberId\": \"{{memberId}}\",\n\"accountId\": \"{{accountIdpayor}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"expirationDate\": \"{{futureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{RfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewType\": \"OPEN\", \"renewAmount\": 100}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" },\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
         },
         "url": {
           "raw": "{{URL}}/subscription/",
@@ -1476,18 +1645,32 @@
             "exec": [
               "var CfutureDate = new Date();",
               "var dd = CfutureDate.getDate();",
-              "var mm = CfutureDate.getMonth() +2//January is 0!",
+              "var mm = CfutureDate.getMonth()+1; //January is 0!",
               "var yyyy = CfutureDate.getFullYear();",
               "",
               "if(dd<10) {",
-              "    dd = '0'+dd",
-              "} ",
+              "  dd = '0'+dd;",
+              "}",
+              "",
+              "mm=mm+4;",
+              "if(mm>12)",
+              "{",
+              "   mm=mm-12;",
+              "}",
               "",
               "if(mm<10) {",
-              "    mm = '0'+mm",
-              "} ",
+              "  mm = '0'+mm;",
+              "",
+              "",
+              "}",
+              "",
+              "console.log(\"dd  \" + dd);",
+              "console.log(\"mm  \"+ mm);",
+              "console.log(\"yyyy  \"+yyyy);",
+              "",
               "",
               "CfutureDate = mm + '-' + dd + '-' + yyyy;",
+              "",
               "",
               "postman.setEnvironmentVariable(\"CfutureDate\", CfutureDate);"
             ],
@@ -1520,6 +1703,116 @@
             "subscription",
             "{{subId}}",
             "cancel"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Cancel Subscription",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "34baa38f-7126-466d-8e04-641f8f6a3e0c",
+            "exec": [
+              "if (responseCode.code != 200)",
+              "{",
+              "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 200)",
+              "{",
+              "    var jsonData = JSON.parse(responseBody);",
+              " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+              "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
+              "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+              "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+              "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
+              "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+              "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+              "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
+              "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
+              "    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
+              "    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
+              "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
+              "    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
+              "    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+              "    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
+              "    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+              "}",
+              "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "66940dd5-2a64-47e3-9cc6-de2d11046fc3",
+            "exec": [
+              "var UCfutureDate = new Date();",
+              "var dd = UCfutureDate.getDate();",
+              "var mm = UCfutureDate.getMonth()+1; //January is 0!",
+              "var yyyy = UCfutureDate.getFullYear();",
+              "",
+              "if(dd<10) {",
+              "  dd = '0'+dd;",
+              "}",
+              "",
+              "mm=mm+5;",
+              "if(mm>12)",
+              "{",
+              "   mm=mm-12;",
+              "}",
+              "",
+              "if(mm<10) {",
+              "  mm = '0'+mm;",
+              "",
+              "",
+              "}",
+              "",
+              "console.log(\"dd  \" + dd);",
+              "console.log(\"mm  \"+ mm);",
+              "console.log(\"yyyy  \"+yyyy);",
+              "",
+              "",
+              "UCfutureDate = mm + '-' + dd + '-' + yyyy;",
+              "",
+              "",
+              "postman.setEnvironmentVariable(\"UCfutureDate\", UCfutureDate);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t \"subCancellationDate\": \"{{UCfutureDate}}\"\n}"
+        },
+        "url": {
+          "raw": "{{URL}}/subscription/{{subId}}/updateCancel",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "subscription",
+            "{{subId}}",
+            "updateCancel"
           ]
         }
       },
@@ -1631,6 +1924,16 @@
             ],
             "type": "text/javascript"
           }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "59b6e4f2-b58c-45fc-9d56-445f493b1a15",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
         }
       ],
       "request": {
@@ -1647,7 +1950,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n\t \"subCancellationDate\": \"01-22-2019\"\n}"
+          "raw": ""
         },
         "url": {
           "raw": "{{URL}}/subscription/{{subId}}/removeCancel",
@@ -1702,18 +2005,32 @@
             "exec": [
               "var FfutureDate = new Date();",
               "var dd = FfutureDate.getDate();",
-              "var mm = FfutureDate.getMonth() +2//January is 0!",
+              "var mm = FfutureDate.getMonth()+1; //January is 0!",
               "var yyyy = FfutureDate.getFullYear();",
               "",
               "if(dd<10) {",
-              "    dd = '0'+dd",
-              "} ",
+              "  dd = '0'+dd;",
+              "}",
+              "",
+              "mm=mm+7;",
+              "if(mm>12)",
+              "{",
+              "   mm=mm-12;",
+              "}",
               "",
               "if(mm<10) {",
-              "    mm = '0'+mm",
-              "} ",
+              "  mm = '0'+mm;",
+              "",
+              "",
+              "}",
+              "",
+              "console.log(\"dd  \" + dd);",
+              "console.log(\"mm  \"+ mm);",
+              "console.log(\"yyyy  \"+yyyy);",
+              "",
               "",
               "FfutureDate = mm + '-' + dd + '-' + yyyy;",
+              "",
               "",
               "postman.setEnvironmentVariable(\"FfutureDate\", FfutureDate);"
             ],
@@ -1859,18 +2176,32 @@
             "exec": [
               "var FFfutureDate = new Date();",
               "var dd = FFfutureDate.getDate();",
-              "var mm = FFfutureDate.getMonth() +4//January is 0!",
+              "var mm = FFfutureDate.getMonth()+1; //January is 0!",
               "var yyyy = FFfutureDate.getFullYear();",
               "",
               "if(dd<10) {",
-              "    dd = '0'+dd",
-              "} ",
+              "  dd = '0'+dd;",
+              "}",
+              "",
+              "mm=mm+8;",
+              "if(mm>12)",
+              "{",
+              "   mm=mm-12;",
+              "}",
               "",
               "if(mm<10) {",
-              "    mm = '0'+mm",
-              "} ",
+              "  mm = '0'+mm;",
+              "",
+              "",
+              "}",
+              "",
+              "console.log(\"dd  \" + dd);",
+              "console.log(\"mm  \"+ mm);",
+              "console.log(\"yyyy  \"+yyyy);",
+              "",
               "",
               "FFfutureDate = mm + '-' + dd + '-' + yyyy;",
+              "",
               "",
               "postman.setEnvironmentVariable(\"FFfutureDate\", FFfutureDate);"
             ],
