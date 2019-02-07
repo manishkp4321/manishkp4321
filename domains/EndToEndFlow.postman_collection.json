@@ -1,12 +1,12 @@
 {
   "info": {
     "_postman_id": "16acceb8-c87e-4725-b514-91bf7781649f",
-    "name": "E2E Feb Milestone",
+    "name": "E2E Jan Milestone",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "E2E Testing_Senarios",
+      "name": "E2E Testing_Scenarios",
       "item": [
         {
           "name": "Authorization",
@@ -957,12 +957,12 @@
               "raw": "{\r\n  \"locationId\" : \"{{locationId}}\",\r\n  \"empId\" : \"{{randEmpId}}c6d-8d53-4553-b03b-59b8757d1734\",\r\n  \"taxRate\" : 20.25745,\r\n  \"taxCode\" : \"rtr\",\r\n  \"isOverriden\" : true,\r\n  \"suggestedTaxRate\" : 100\r\n}"
             },
             "url": {
-              "raw": "{{URL}}/taxRate",
+              "raw": "{{URL}}/tax-rate",
               "host": [
                 "{{URL}}"
               ],
               "path": [
-                "taxRate"
+                "tax-rate"
               ]
             }
           },
@@ -1017,12 +1017,12 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/taxRate/{{locationId}}",
+              "raw": "{{URL}}/tax-rate/{{locationId}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
-                "taxRate",
+                "tax-rate",
                 "{{locationId}}"
               ]
             }
@@ -1100,12 +1100,12 @@
               "raw": "{\r\n   \"empId\" : \"{{randEmpId}}c6d-8d53-4553-b03b-59b8757d1734\",\r\n    \"taxRate\" : 30,\r\n    \"taxCode\" : \"rtr\",\r\n    \"isOverriden\": true,\r\n    \"suggestedTaxRate\": 50\r\n \r\n}\r\n "
             },
             "url": {
-              "raw": "{{URL}}/taxRate/{{locationId}}?",
+              "raw": "{{URL}}/tax-rate/{{locationId}}?",
               "host": [
                 "{{URL}}"
               ],
               "path": [
-                "taxRate",
+                "tax-rate",
                 "{{locationId}}"
               ],
               "query": [
@@ -1197,7 +1197,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"{{planId}}\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n      \"locationId\": \"{{locationId}}\",\n    \"memberId\": \"{{memberId}}\",\n        \"accountId\": \"{{payoraccountId}}\",\n\"planVersion\": 11,\n\"start\" : \"{{today}}\",\n\"invoiceDate\" : \"{{today}}\",\n\"duration\":\"10\",\n\"expirationDate\":\"05-10-2019\",\n\"frequency\" : \"{{frequency}}\",\n\"name\" : \"Praveen_Cancel_1\",\n\"autoRenew\":\"true\",\n\"renewalOptions\" :\n{ \n\"renewDate\" : \"06-16-2019\", \n\"renewFrequency\" : \"DAILY\", \n\"renewDuration\" : \"5\",\n\"renewAmount\":10 ,\n\"renewType\" : \"TERM\"\n\n}\n,\n\"openEnded\": false,\n\"renewType\" : \"TERM\", \n\n\"items\": [\n\n{ \"itemName\": \"dance\", \"itemId\": \"{{itemId}}\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"{{itemcategoryId}}\" }\n]\n}"
+              "raw": "{\n\"planId\": \"{{planId}}\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n      \"locationId\": \"{{locationId}}\",\n    \"memberId\": \"{{memberId}}\",\n        \"accountId\": \"{{payoraccountId}}\",\n\"planVersion\": 11,\n\"start\" : \"{{today}}\",\n\"invoiceDate\" : \"{{today}}\",\n\"duration\":\"10\",\n\"expirationDate\":\"05-10-2019\",\n\"frequency\" : \"{{frequency}}\",\n\"name\" : \"Praveen_Cancel_1\",\n\"autoRenew\":\"true\",\n\"renewalOptions\" :\n{ \n\"renewDate\" : \"06-16-2019\", \n\"renewFrequency\" : \"DAILY\", \n\"renewDuration\" : \"5\",\n\"renewAmount\":10 ,\n\"renewType\" : \"TERM\",\n\"renewExpireDate\" : \"09-20-2019\"\n\n}\n,\n\"openEnded\": false,\n\"renewType\" : \"TERM\", \n\n\"items\": [\n\n{ \"itemName\": \"dance\", \"itemId\": \"{{itemId}}\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"{{itemcategoryId}}\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
