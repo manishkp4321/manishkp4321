@@ -562,7 +562,6 @@
               "   postman.setEnvironmentVariable(\"company_id\", jsonData.id);",
               "",
               "   tests[\"Response Body has Correct Company Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_id\")+\"\\\"\");",
-              "   tests[\"Response Body has Company AccountToken\"] = responseBody.has(\"\\\"accountToken\\\":\"+\"\\\"\"+jsonData.accountToken+\"\\\"\");",
               "   tests[\"Response Body has Company Name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.name+\"\\\"\");",
               "   postman.setEnvironmentVariable(\"companyname\", jsonData.name);",
               "}",
@@ -614,7 +613,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\" : \"{{UniqueCompany}}\",\r\n  \"accountNumber\" : \"36658\",\r\n  \"accountHolderName\" : \"Mr Test Account Holder\",\r\n  \"routing\" : \"087654321\"\r\n}"
+          "raw": "{\r\n  \"name\" : \"{{UniqueCompany}}\"\r\n\r\n}"
         },
         "url": {
           "raw": "{{URL}}/company",
@@ -688,7 +687,7 @@
               "   postman.setEnvironmentVariable(\"company_id\", jsonData.id);",
               "",
               "   tests[\"Response Body has Correct Company Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_id\")+\"\\\"\");",
-              "   tests[\"Response Body has Company AccountToken\"] = responseBody.has(\"\\\"accountToken\\\":\"+\"\\\"\"+jsonData.accountToken+\"\\\"\");",
+              " ",
               "   tests[\"Response Body has Company Name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.name+\"\\\"\");",
               "   postman.setEnvironmentVariable(\"companyname\", jsonData.name);",
               "}",
@@ -812,7 +811,6 @@
               "{",
               "   tests[\"Response Body has Company Id\"] = responseBody.has(\"id\");",
               "   tests[\"Response Body has Company Name\"] = responseBody.has(\"name\");",
-              "   tests[\"Response Body has Company Account Token\"] = responseBody.has(\"accountToken\");",
               "   tests[\"Response Body has Payment Active\"] = responseBody.has(\"active\");",
               "}",
               "",
@@ -906,7 +904,7 @@
               "",
               "  tests[\"Response Body has Merchant Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_id\")+\"\\\"\");",
               "  tests[\"Response Body has companyId\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_id\")+\"\\\"\");",
-              "  tests[\"Response Body has merchantAccountToken\"] = responseBody.has(\"\\\"merchantAccountToken\\\":\"+\"\\\"\"+jsonData.merchantAccountToken+\"\\\"\");",
+              "",
               "",
               "}",
               "",
@@ -1032,7 +1030,7 @@
               "   postman.setEnvironmentVariable(\"merchant_id\", jsonData.id);",
               "",
               "   tests[\"Response Body has Merchant Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_id\")+\"\\\"\");",
-              "   tests[\"Response Body has merchantAccountToken\"] = responseBody.has(\"\\\"merchantAccountToken\\\":\"+\"\\\"\"+jsonData.merchantAccountToken+\"\\\"\");",
+              "",
               "}",
               "",
               "tests[\"Response code should be 200\"] = responseCode.code === 200;"
@@ -1136,7 +1134,7 @@
               "  postman.setEnvironmentVariable(\"merchant_id\", jsonData.id);",
               "",
               "  tests[\"Response Body has Merchant Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_id\")+\"\\\"\");",
-              "  tests[\"Response Body has merchantAccountToken\"] = responseBody.has(\"\\\"merchantAccountToken\\\":\"+\"\\\"\"+jsonData.merchantAccountToken+\"\\\"\");",
+              " ",
               "",
               "}",
               "",
@@ -1372,7 +1370,7 @@
       ]
     },
     {
-      "name": "Payment Method",
+      "name": "Payment Method Bank",
       "event": [
         {
           "listen": "test",
@@ -1418,7 +1416,107 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"companyId\": \"{{company_id}}\",\r\n  \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"Tom samm\",\r\n  \"bankRouting\" : \"082000059\",\r\n  \"accountNumber\" : \"852937164955\"\r\n}"
+          "raw": "{\r\n  \"companyId\" : \"0fc96c85-5045-4ebd-bd58-6a06c23130e6\",\r\n  \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"Bobby Boucher\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
+        },
+        "url": {
+          "raw": "{{URL}}/payment-method",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "payment-method"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "Payment Method Card",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a588ba23-1ff4-4c40-a87e-fdd35804b4ac",
+            "exec": [
+              "if (responseCode.code != 201)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"payment_method_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Payment Method  Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payment_method_id\")+\"\\\"\");",
+              "   tests[\"Response Body has accountHolderName\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+jsonData.accountHolderName+\"\\\"\");",
+              "}",
+              "   ",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"companyId\":\"{{company_id}}\",\r\n\"type\" : \"DISCOVER\",\r\n\"accountHolderName\":\"s\",\r\n\"expiration\":\"9919-01\",\r\n\"accountNumber\":\"6011894492395579\"\r\n}"
         },
         "url": {
           "raw": "{{URL}}/payment-method",
@@ -1529,6 +1627,1034 @@
           ],
           "path": [
             "charge"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "CreateBank",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201 )",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"bank_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Bank Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"bank_id\")+\"\\\"\");",
+              "",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201 ;"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "338b77f7-d651-42dc-8948-d97bacddf17e",
+            "exec": [
+              "function stringGen(len) {",
+              "var text = \"\";",
+              "",
+              "var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+              "",
+              "for (var i = 0; i < len; i++)",
+              " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+              "",
+              "return text;",
+              "}",
+              "var UniqueBank= stringGen(5);",
+              "postman.setEnvironmentVariable(\"UniqueBank\", \"Bank \"+UniqueBank);",
+              "",
+              "function stringNum(len) {",
+              "",
+              "var num = \"\";",
+              "",
+              "var numset = \"012345678\";",
+              "",
+              "for (var i = 0; i < len; i++)",
+              " num += numset.charAt(Math.floor(Math.random() * numset.length));",
+              "",
+              "return num;",
+              "}",
+              "var UniqueRouting= stringNum(7);",
+              "postman.setEnvironmentVariable(\"UniqueRouting\", \"08\"+UniqueRouting);",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"name\" : \"{{UniqueBank}}\",\n\"routingList\": [\"{{UniqueRouting}}\"] }"
+        },
+        "url": {
+          "raw": "{{URL}}/bank",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "bank"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "UpdateBank",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201 || 202)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201 || 202)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"bank_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Bank Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"bank_id\")+\"\\\"\");",
+              "",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201 || 202;"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "0e59ae39-8f0b-4696-b5e1-06253ee6302a",
+            "exec": [
+              "function stringNum(len) {",
+              "",
+              "var num = \"\";",
+              "",
+              "var numset = \"012345678\";",
+              "",
+              "for (var i = 0; i < len; i++)",
+              " num += numset.charAt(Math.floor(Math.random() * numset.length));",
+              "",
+              "return num;",
+              "}",
+              "var UniqueRouting= stringNum(6);",
+              "postman.setEnvironmentVariable(\"UniqueRouting\", \"089\"+UniqueRouting);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \n\"routingList\": [\"{{UniqueRouting}}\"] }"
+        },
+        "url": {
+          "raw": "{{URL}}/bank/{{bank_id}}",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "bank",
+            "{{bank_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "GetBank",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201 || 202)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201 || 202)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"bank_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Bank Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"bank_id\")+\"\\\"\");",
+              "",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201 || 202;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{URL}}/bank",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "bank"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "GetBankById",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201 || 202)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201 || 202)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"bank_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Bank Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"bank_id\")+\"\\\"\");",
+              "",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201 || 202;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{URL}}/bank/{{bank_id}}",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "bank",
+            "{{bank_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "DeleteBank",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201 || 202)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201 || 202)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"bank_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Bank Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"bank_id\")+\"\\\"\");",
+              "",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201 || 202;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{URL}}/bank/{{bank_id}}",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "bank",
+            "{{bank_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "GetAllFileInfo",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201 || 202)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201 || 202)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"charge_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Charge Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"charge_id\")+\"\\\"\");",
+              "   tests[\"Response Body has Amount\"] = responseBody.has(\"\\\"amount\\\":\"+\"\\\"\"+jsonData.amount+\"\\\"\");",
+              "  tests[\"Response Body has referenceId\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+jsonData.referenceId+\"\\\"\");",
+              "  tests[\"Response Body has paymentMethodId\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+jsonData.paymentMethodId+\"\\\"\");",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201 || 202;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{URL}}/payment-file/information?page=1",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "payment-file",
+            "information"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "GetFileInfoWithProcessor",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201 || 202)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201 || 202)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"charge_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Charge Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"charge_id\")+\"\\\"\");",
+              "   tests[\"Response Body has Amount\"] = responseBody.has(\"\\\"amount\\\":\"+\"\\\"\"+jsonData.amount+\"\\\"\");",
+              "  tests[\"Response Body has referenceId\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+jsonData.referenceId+\"\\\"\");",
+              "  tests[\"Response Body has paymentMethodId\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+jsonData.paymentMethodId+\"\\\"\");",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201 || 202;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{URL}}/payment-file/information/?page=1&processorId={{processor_id}}",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "payment-file",
+            "information",
+            ""
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "processorId",
+              "value": "{{processor_id}}"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "GetFileInfoWithStatus",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201 || 202)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201 || 202)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"charge_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Charge Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"charge_id\")+\"\\\"\");",
+              "   tests[\"Response Body has Amount\"] = responseBody.has(\"\\\"amount\\\":\"+\"\\\"\"+jsonData.amount+\"\\\"\");",
+              "  tests[\"Response Body has referenceId\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+jsonData.referenceId+\"\\\"\");",
+              "  tests[\"Response Body has paymentMethodId\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+jsonData.paymentMethodId+\"\\\"\");",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201 || 202;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{URL}}/payment-file/information/?status=VALID",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "payment-file",
+            "information",
+            ""
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "VALID"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "GetFileInfoWithStatus&Processor",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201 || 202)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201 || 202)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"charge_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Charge Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"charge_id\")+\"\\\"\");",
+              "   tests[\"Response Body has Amount\"] = responseBody.has(\"\\\"amount\\\":\"+\"\\\"\"+jsonData.amount+\"\\\"\");",
+              "  tests[\"Response Body has referenceId\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+jsonData.referenceId+\"\\\"\");",
+              "  tests[\"Response Body has paymentMethodId\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+jsonData.paymentMethodId+\"\\\"\");",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201 || 202;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{URL}}/payment-file/information/?processorId={{processor_id}}&status=VALID",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "payment-file",
+            "information",
+            ""
+          ],
+          "query": [
+            {
+              "key": "processorId",
+              "value": "{{processor_id}}"
+            },
+            {
+              "key": "status",
+              "value": "VALID"
+            }
           ]
         }
       },
