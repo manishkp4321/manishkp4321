@@ -1296,7 +1296,6 @@
               "{",
               "   tests[\"Response Body has Company Merchant Id\"] = responseBody.has(\"id\");",
               "   tests[\"Response Body has Company company Id\"] = responseBody.has(\"companyId\");",
-              "   tests[\"Response Body has Company MerchantAccountToken\"] = responseBody.has(\"merchantAccountToken\");",
               "   tests[\"Response Body has Payment Active\"] = responseBody.has(\"active\");",
               "}",
               "",
@@ -1416,7 +1415,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"companyId\" : \"0fc96c85-5045-4ebd-bd58-6a06c23130e6\",\r\n  \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"Bobby Boucher\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
+          "raw": "{\r\n  \"companyId\" : \"{{company_id}}\",\r\n  \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"Bobby Boucher\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
         },
         "url": {
           "raw": "{{URL}}/payment-method",
