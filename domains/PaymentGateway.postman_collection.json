@@ -426,7 +426,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{}"
+          "raw": "{\r\n\r\n  \"processorFormatDetail\": {\r\n        \"id\": \"05a26d98-d38a-403f-99f5-bba6855bacc5\",\r\n        \"fileType\": \"NACHA\",\r\n        \"fileFormat\": \"abc\",\r\n        \"fileExtention\": \"ach\",\r\n        \"active\": true,\r\n        \"batchCount\": 5,\r\n        \"transactionCount\": 4\r\n\r\n    }\r\n  \r\n}"
         },
         "url": {
           "raw": "{{URL}}/processors/{{processor_id}}",
@@ -1204,7 +1204,6 @@
               "{",
               "   tests[\"Response Body has Company Merchant Id\"] = responseBody.has(\"id\");",
               "   tests[\"Response Body has Company company Id\"] = responseBody.has(\"companyId\");",
-              "   tests[\"Response Body has Company MerchantAccountToken\"] = responseBody.has(\"merchantAccountToken\");",
               "   tests[\"Response Body has Payment Active\"] = responseBody.has(\"active\");",
               "}",
               "",
@@ -1395,6 +1394,27 @@
             ],
             "type": "text/javascript"
           }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "4788dec8-5d5e-477c-8205-ee7ea64a79a2",
+            "exec": [
+              "function stringGen(len) {",
+              "var text = \"\";",
+              "",
+              "var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+              "",
+              "for (var i = 0; i < len; i++)",
+              " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+              "",
+              "return text;",
+              "}",
+              "var UniqueNAME= stringGen(9)",
+              "postman.setEnvironmentVariable(\"UniqueNAME\", \"ABC \"+UniqueNAME);"
+            ],
+            "type": "text/javascript"
+          }
         }
       ],
       "request": {
@@ -1415,7 +1435,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"companyId\" : \"{{company_id}}\",\r\n  \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"Bobby Boucher\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
+          "raw": "{\r\n  \"companyId\" : \"{{company_id}}\",\r\n  \"type\" : \"SAVING_ACH\",\r\n  \"accountHolderName\" : \"{{UniqueNAME}}\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
         },
         "url": {
           "raw": "{{URL}}/payment-method",
@@ -1495,6 +1515,27 @@
             ],
             "type": "text/javascript"
           }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "84196024-463f-45fe-b70c-5f89051022c8",
+            "exec": [
+              "function stringGen(len) {",
+              "var text = \"\";",
+              "",
+              "var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+              "",
+              "for (var i = 0; i < len; i++)",
+              " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+              "",
+              "return text;",
+              "}",
+              "var UniqueNAME= stringGen(9)",
+              "postman.setEnvironmentVariable(\"UniqueNAME\", \"ABC \"+UniqueNAME);"
+            ],
+            "type": "text/javascript"
+          }
         }
       ],
       "request": {
@@ -1515,7 +1556,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n\"companyId\":\"{{company_id}}\",\r\n\"type\" : \"DISCOVER\",\r\n\"accountHolderName\":\"s\",\r\n\"expiration\":\"9919-01\",\r\n\"accountNumber\":\"6011894492395579\"\r\n}"
+          "raw": "{\r\n\"companyId\":\"{{company_id}}\",\r\n\"type\" : \"VISA\",\r\n\"accountHolderName\":\"{{UniqueNAME}}\",\r\n\"expiration\":\"9919-01\",\r\n\"accountNumber\":\"4916338506082832\"\r\n}"
         },
         "url": {
           "raw": "{{URL}}/payment-method",
@@ -1617,7 +1658,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"merchantId\": \"{{merchant_id}}\",\n    \"paymentMethodId\": \"{{payment_method_id}}\",\n    \"amount\": \"125.34 \",\n    \"source\": \"BILLING\",\n    \"referenceId\": \"{{$guid}}\",\n    \"metadata\": {\n        \"clientId\": \"{{$guid}}\",\n        \"payorId\": \"{{$guid}}\"\n    }\n}"
+          "raw": "{\n    \"merchantId\": \"{{merchant_id}}\",\n    \"paymentMethodId\": \"{{payment_method_id}}\",\n    \"amount\": \"099\",\n    \"source\": \"BILLING\",\n    \"referenceId\": \"{{$guid}}\",\n    \"metadata\": {\n        \"clientId\": \"{{$guid}}\",\n        \"payorId\": \"{{$guid}}\"\n    }\n}"
         },
         "url": {
           "raw": "{{URL}}/charge",
@@ -2824,7 +2865,7 @@
               "  tests[\"Response Body has paymentMethodId\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+jsonData.paymentMethodId+\"\\\"\");",
               "}",
               "",
-              "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+              "tests[\"Response code should be 200\"] = responseCode.code === 200||201||202;"
             ],
             "type": "text/javascript"
           }
