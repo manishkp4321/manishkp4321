@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "47a37670-dff7-4c60-a318-38fbf39134c0",
-    "name": "Payment Gateway Collection",
+    "name": "Updated Payment Gateway Collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -794,6 +794,136 @@
       ]
     },
     {
+      "name": "GetCompanyById",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "49e95ee0-7e54-4d03-a660-927f94cd03ff",
+            "exec": [
+              "",
+              "if (responseCode.code != 200)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 200)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"company_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Correct Company Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_id\")+\"\\\"\");",
+              " ",
+              "   tests[\"Response Body has Company Name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+jsonData.name+\"\\\"\");",
+              "   postman.setEnvironmentVariable(\"companyname\", jsonData.name);",
+              "}",
+              "",
+              "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "ef96ef78-aaae-4756-8867-e263b40219c4",
+            "exec": [
+              "function stringGen(len) {",
+              "var text = \"\";",
+              "",
+              "var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+              "",
+              "for (var i = 0; i < len; i++)",
+              "  text += charset.charAt(Math.floor(Math.random() * charset.length));",
+              "",
+              "return text;",
+              "}",
+              "var UniqueCompany= stringGen(5)",
+              "postman.setEnvironmentVariable(\"UniqueCompany\", \"Company \"+UniqueCompany);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\r\n}"
+        },
+        "url": {
+          "raw": "{{URL}}/company/{{company_id}}",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "company",
+            "{{company_id}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Daniels ABC Financial Services LLC\",\r\n  \"accountNumber\": 36658,\r\n  \"accountHolderName\": \"Mr Test Account Holder\",\r\n  \"routing\": \"086543217\",\r\n  \"businessContact\": {\r\n    \"name\": \"company\",\r\n    \"phone\": 435685869,\r\n    \"email\": \"testing@kd.com\",\r\n    \"extention\": \"481\"\r\n  },\r\n  \"technicalContact\": {\r\n    \"name\": \"company\",\r\n    \"phone\": 435975869,\r\n    \"email\": \"testing@tc.com\",\r\n    \"extention\": \"481\"\r\n  }\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/company",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "company"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
       "name": "Get Companies",
       "event": [
         {
@@ -1368,7 +1498,7 @@
       ]
     },
     {
-      "name": "Payment Method Bank",
+      "name": "CreatePayment Method Bank",
       "event": [
         {
           "listen": "test",
@@ -1390,7 +1520,7 @@
               "   tests[\"Response Body has accountHolderName\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+jsonData.accountHolderName+\"\\\"\");",
               "}",
               "   ",
-              "tests[\"Response code should be 200\"] = responseCode.code === 201;"
+              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
             ],
             "type": "text/javascript"
           }
@@ -1419,6 +1549,224 @@
       ],
       "request": {
         "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"companyId\" : \"{{company_id}}\",\r\n  \"type\" : \"SAVING_ACH\",\r\n  \"accountHolderName\" : \"{{UniqueNAME}}\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
+        },
+        "url": {
+          "raw": "{{URL}}/payment-method",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "payment-method"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "GetPayment Method Bank",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a588ba23-1ff4-4c40-a87e-fdd35804b4ac",
+            "exec": [
+              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "4788dec8-5d5e-477c-8205-ee7ea64a79a2",
+            "exec": [
+              "function stringGen(len) {",
+              "var text = \"\";",
+              "",
+              "var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+              "",
+              "for (var i = 0; i < len; i++)",
+              " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+              "",
+              "return text;",
+              "}",
+              "var UniqueNAME= stringGen(9)",
+              "postman.setEnvironmentVariable(\"UniqueNAME\", \"ABC \"+UniqueNAME);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"companyId\" : \"{{company_id}}\",\r\n  \"type\" : \"SAVING_ACH\",\r\n  \"accountHolderName\" : \"{{UniqueNAME}}\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
+        },
+        "url": {
+          "raw": "{{URL}}/payment-method",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "payment-method"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "UpdatePaymentMethodBank",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a588ba23-1ff4-4c40-a87e-fdd35804b4ac",
+            "exec": [
+              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "4788dec8-5d5e-477c-8205-ee7ea64a79a2",
+            "exec": [
+              "function stringGen(len) {",
+              "var text = \"\";",
+              "",
+              "var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+              "",
+              "for (var i = 0; i < len; i++)",
+              " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+              "",
+              "return text;",
+              "}",
+              "var UniqueNAME= stringGen(9)",
+              "postman.setEnvironmentVariable(\"UniqueNAME\", \"ABC \"+UniqueNAME);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
         "header": [
           {
             "key": "Content-Type",
@@ -1559,12 +1907,13 @@
           "raw": "{\r\n\"companyId\":\"{{company_id}}\",\r\n\"type\" : \"VISA\",\r\n\"accountHolderName\":\"{{UniqueNAME}}\",\r\n\"expiration\":\"9919-01\",\r\n\"accountNumber\":\"4916338506082832\"\r\n}"
         },
         "url": {
-          "raw": "{{URL}}/payment-method",
+          "raw": "{{URL}}/payment-method/",
           "host": [
             "{{URL}}"
           ],
           "path": [
-            "payment-method"
+            "payment-method",
+            ""
           ]
         }
       },
@@ -1667,6 +2016,108 @@
           ],
           "path": [
             "charge"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Response_200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
+            },
+            "url": {
+              "raw": "{{payment_gateway_server}}/accountinfotoken",
+              "host": [
+                "{{payment_gateway_server}}"
+              ],
+              "path": [
+                "accountinfotoken"
+              ]
+            }
+          },
+          "code": 200,
+          "_postman_previewlanguage": "Text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "CreateRefund",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
+            "exec": [
+              "if (responseCode.code != 201)",
+              "{",
+              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+              "}",
+              "",
+              "else if (responseCode.code === 201)",
+              "{",
+              "   var jsonData = JSON.parse(responseBody);",
+              "   postman.setEnvironmentVariable(\"charge_id\", jsonData.id);",
+              "",
+              "   tests[\"Response Body has Charge Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"charge_id\")+\"\\\"\");",
+              "   tests[\"Response Body has Amount\"] = responseBody.has(\"\\\"amount\\\":\"+\"\\\"\"+jsonData.amount+\"\\\"\");",
+              "  tests[\"Response Body has referenceId\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+jsonData.referenceId+\"\\\"\");",
+              "  tests[\"Response Body has paymentMethodId\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+jsonData.paymentMethodId+\"\\\"\");",
+              "}",
+              "",
+              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{authId}}"
+          },
+          {
+            "key": "Accept",
+            "value": "*/*"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"merchantId\": \"{{merchant_id}}\",\n    \"paymentMethodId\": \"{{payment_method_id}}\",\n    \"amount\": \"899.34 \",\n    \"source\": \"BILLINGRefund\",\n    \"referenceId\": \"{{$guid}}\",\n    \"metadata\": {\n        \"clientId\": \"{{$guid}}\",\n        \"payorId\": \"{{$guid}}\"\n    }\n}"
+        },
+        "url": {
+          "raw": "{{URL}}/refund",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "refund"
           ]
         }
       },
@@ -1918,7 +2369,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{ \n\"routingList\": [\"{{UniqueRouting}}\"] }"
+          "raw": "{ \"name\" : \"{{UniqueBank}}\"\n }"
         },
         "url": {
           "raw": "{{URL}}/bank/{{bank_id}}",
@@ -2695,108 +3146,6 @@
               "key": "status",
               "value": "VALID"
             }
-          ]
-        }
-      },
-      "response": [
-        {
-          "name": "Response_200",
-          "originalRequest": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Accept",
-                "value": "*/*"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"merchantId\": \"{{merchant_id}}\",\r\n  \"type\": \"SAVING\",\r\n  \"accountHolderName\": \"Patrick\",\r\n  \"routing\": \"172899966\",\r\n  \"number\": \"519844\",\r\n  \"acinIsactive\": \"true\"\r\n}"
-            },
-            "url": {
-              "raw": "{{payment_gateway_server}}/accountinfotoken",
-              "host": [
-                "{{payment_gateway_server}}"
-              ],
-              "path": [
-                "accountinfotoken"
-              ]
-            }
-          },
-          "code": 200,
-          "_postman_previewlanguage": "Text",
-          "header": [],
-          "cookie": [],
-          "body": ""
-        }
-      ]
-    },
-    {
-      "name": "CreateRefund",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "78c6efe2-67c9-4e5e-ab25-39cb5d010024",
-            "exec": [
-              "if (responseCode.code != 201)",
-              "{",
-              "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-              "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
-              "}",
-              "",
-              "else if (responseCode.code === 201)",
-              "{",
-              "   var jsonData = JSON.parse(responseBody);",
-              "   postman.setEnvironmentVariable(\"charge_id\", jsonData.id);",
-              "",
-              "   tests[\"Response Body has Charge Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"charge_id\")+\"\\\"\");",
-              "   tests[\"Response Body has Amount\"] = responseBody.has(\"\\\"amount\\\":\"+\"\\\"\"+jsonData.amount+\"\\\"\");",
-              "  tests[\"Response Body has referenceId\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+jsonData.referenceId+\"\\\"\");",
-              "  tests[\"Response Body has paymentMethodId\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+jsonData.paymentMethodId+\"\\\"\");",
-              "}",
-              "",
-              "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "Authorization",
-            "value": "Bearer {{authId}}"
-          },
-          {
-            "key": "Accept",
-            "value": "*/*"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"merchantId\": \"{{merchant_id}}\",\n    \"paymentMethodId\": \"{{payment_method_id}}\",\n    \"amount\": \"899.34 \",\n    \"source\": \"BILLINGRefund\",\n    \"referenceId\": \"{{$guid}}\",\n    \"metadata\": {\n        \"clientId\": \"{{$guid}}\",\n        \"payorId\": \"{{$guid}}\"\n    }\n}"
-        },
-        "url": {
-          "raw": "{{URL}}/refund",
-          "host": [
-            "{{URL}}"
-          ],
-          "path": [
-            "refund"
           ]
         }
       },
