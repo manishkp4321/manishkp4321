@@ -1029,7 +1029,7 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Accept",
@@ -1169,6 +1169,7 @@
                   "var jsonData = JSON.parse(responseBody);",
                   "postman.setEnvironmentVariable(\"accountIdClient\", jsonData.account.accountId);",
                   "postman.setEnvironmentVariable(\"merchantId\", jsonData.merchantId);",
+                  "postman.setEnvironmentVariable(\"paymentMethodIdC\", jsonData.account.paymentMethod.id);",
                   "",
                   "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
                   "    tests[\"Response Body has clientId\"] = responseBody.has(\"clientId\");",
@@ -1280,7 +1281,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -1364,7 +1365,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -1389,7 +1390,7 @@
           "response": []
         },
         {
-          "name": "ReviewClientAccount Copy",
+          "name": "ReviewClientAccount",
           "event": [
             {
               "listen": "test",
@@ -1428,7 +1429,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               }
             ],
             "body": {
@@ -1483,7 +1484,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -1545,7 +1546,7 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Accept",
@@ -1678,12 +1679,12 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n \"payorId\":\"{{randPayorId}}c6d-8d53-4553-b03b-59b8757d1734\",\r\n   \"memberId\": \"{{memberId}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{name}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"DAILY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n       \"paymentMethod\" : {\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\": \"{{payment_method_Payor}}\"\r\n    \r\n    }\r\n   }\r\n}"
+              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n \"payorId\":\"{{randPayorId}}c6d-8d53-4553-b03b-59b8757d1734\",\r\n   \"account\":{  \r\n      \"name\":\"{{name}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"DAILY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n       \"paymentMethod\" : {\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\": \"{{payment_method_Payor}}\"\r\n    \r\n    }\r\n   }\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/member",
@@ -1770,13 +1771,13 @@
               "raw": "{\r\n\r\n  \"account\" : {\r\n    \"name\" : \"{{randName}}\",\r\n    \"phone\" : \"8009578015\",\r\n    \"sevaluation\" : \"{{seval}}\"\r\n  }\r\n}"
             },
             "url": {
-              "raw": "{{URL}}/account/{{accountIdpayor}}",
+              "raw": "{{URL}}/account/{{payoraccountId}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "account",
-                "{{accountIdpayor}}"
+                "{{payoraccountId}}"
               ]
             }
           },
@@ -1823,7 +1824,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               }
             ],
             "body": {
@@ -1885,7 +1886,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               }
             ],
             "body": {
@@ -1981,7 +1982,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -1993,14 +1994,14 @@
               "raw": "\t{\r\n\t\"account\" :\r\n\t\r\n\t{ \"name\" : \"{{UniqueClient}}\",\r\n\t\"email\" : \"{{randName}}@qa4life.com\", \r\n\t\"phone\" : \"8009578010\",\r\n\t\t\"sevaluation\" : \"SEMIANNUALLY\"\r\n\t}\r\n\t}"
             },
             "url": {
-              "raw": "{{URL}}/account-details/account/{{accountIdpayor}}",
+              "raw": "{{URL}}/account-details/account/{{payoraccountId}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "account-details",
                 "account",
-                "{{accountIdpayor}}"
+                "{{payoraccountId}}"
               ]
             }
           },
@@ -2118,7 +2119,7 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               }
             ],
             "body": {
@@ -2173,7 +2174,7 @@
               {
                 "key": "Authorization",
                 "type": "text",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -2255,7 +2256,7 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "",
@@ -2340,7 +2341,7 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "",
@@ -2508,8 +2509,6 @@
                   "",
                   "postman.setEnvironmentVariable(\"subIdAccount\", jsonData.subId);",
                   "",
-                  "tests[\"Response Body has correct subscription id\"] = responseBody.has(\"\\\"subId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"subId\")+\"\\\"\");",
-                  "",
                   " tests[\"Response Body has planId\"] = responseBody.has(\"planId\");",
                   "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
                   "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
@@ -2544,7 +2543,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -2618,7 +2617,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -2778,8 +2777,7 @@
                   "",
                   "postman.setEnvironmentVariable(\"subIdPayment\", jsonData.subId);",
                   "",
-                  "tests[\"Response Body has correct subscription id\"] = responseBody.has(\"\\\"subId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"subId\")+\"\\\"\");",
-                  "",
+                  "tests[\"Response Body has correct subscriptionId\"] = responseBody.has(\"subId\");",
                   " tests[\"Response Body has planId\"] = responseBody.has(\"planId\");",
                   "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
                   "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
@@ -2814,7 +2812,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -2823,7 +2821,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"{{planId}}\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n      \"locationId\": \"{{locationId}}\",\n    \"memberIdList\": [\"{{memberId}}\"],\n        \"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\" : \"{{today}}\",\n\"invoiceDate\" : \"{{today}}\",\n\"duration\":\"10\",\n\"expirationDate\":\"{{RfutureDate}}\",\n\"frequency\" : \"{{frequency}}\",\n\"name\" : \"E2E_Testing\",\n\"autoRenew\":\"true\",\n\"renewalOptions\":\n\n{ \n\"renewDate\": \"{{RfutureDate}}\", \n\"renewFrequency\": \"{{frequency}}\", \n\"renewDuration\": \"4\", \n\"renewType\": \"TERM\", \n\"renewAmount\": 100, \n\"renewInvoiceDate\" : \"{{RfutureDate}}\" , \n\"renewExpireDate\": \"{{RfutureDate}}\"\n\t\n},\n\"openEnded\": false,\n\"renewType\" : \"TERM\", \n\n\"items\": [\n\n{ \"itemName\": \"dance\", \"itemId\": \"{{itemId}}\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"{{itemcategoryId}}\" }\n]\n}"
+              "raw": "{\n\"planId\": \"{{planId}}\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n      \"locationId\": \"{{locationId}}\",\n    \"memberIdList\": [\"39707e47-fc58-4195-ada0-e9880153ad9a\"],\n        \"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\" : \"{{today}}\",\n\"invoiceDate\" : \"{{today}}\",\n\"duration\":\"10\",\n\"expirationDate\":\"{{RfutureDate}}\",\n\"frequency\" : \"{{frequency}}\",\n\"name\" : \"E2E_Testing\",\n\"autoRenew\":\"true\",\n\"renewalOptions\":\n\n{ \n\"renewDate\": \"{{RfutureDate}}\", \n\"renewFrequency\": \"{{frequency}}\", \n\"renewDuration\": \"4\", \n\"renewType\": \"TERM\", \n\"renewAmount\": 100, \n\"renewInvoiceDate\" : \"{{RfutureDate}}\" , \n\"renewExpireDate\": \"{{RfutureDate}}\"\n\t\n},\n\"openEnded\": false,\n\"renewType\" : \"TERM\", \n\n\"items\": [\n\n{ \"itemName\": \"dance\", \"itemId\": \"{{itemId}}\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"{{itemcategoryId}}\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -2869,9 +2867,9 @@
                   "    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
                   "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
                   "    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
-                  "    tests[\"Response Body has Payment Method salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
-                  "    tests[\"Response Body has Payment Method price\"] = responseBody.has(\"price\");",
-                  "    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+                  "    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+                  "    tests[\"Response Body has Correct Payment Method price\"] = responseBody.has(\"price\");",
+                  "   ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
@@ -2888,7 +2886,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -2900,13 +2898,13 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/subscription/{{subId}}",
+              "raw": "{{URL}}/subscription/{{subIdPayment}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "subscription",
-                "{{subId}}"
+                "{{subIdPayment}}"
               ]
             }
           },
@@ -2947,9 +2945,9 @@
                   "    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
                   "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
                   "    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
-                  "    tests[\"Response Body has Payment Method salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
-                  "    tests[\"Response Body has Payment Method price\"] = responseBody.has(\"price\");",
-                  "    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+                  "    tests[\"Response Body has Correct salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+                  "    tests[\"Response Body has Correct price\"] = responseBody.has(\"price\");",
+                  "   ",
                   "   ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
@@ -2978,14 +2976,13 @@
               "raw": "{\r\n\t \"memberId\" : \"{{memberId}}\"\r\n}"
             },
             "url": {
-              "raw": "{{URL}}/subscription/{{subId}}//member",
+              "raw": "{{URL}}/subscription/{{subIdPayment}}/member",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "subscription",
-                "{{subId}}",
-                "",
+                "{{subIdPayment}}",
                 "member"
               ]
             }
@@ -3025,9 +3022,8 @@
                   "    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
                   "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
                   "    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
-                  "    tests[\"Response Body has Payment Method salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
-                  "    tests[\"Response Body has Payment Method price\"] = responseBody.has(\"price\");",
-                  "    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+                  "       tests[\"Response Body has Correct salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
+                  "    tests[\"Response Body has Correct price\"] = responseBody.has(\"price\");",
                   "   ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
@@ -3062,15 +3058,15 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/subscription/{{subId}}/member/{{memberId}}",
+              "raw": "{{URL}}/subscription/{{subIdPayment}}/member/11e93f2c-db32-0574-ae2f-718d9bd0c66b",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "subscription",
-                "{{subId}}",
+                "{{subIdPayment}}",
                 "member",
-                "{{memberId}}"
+                "11e93f2c-db32-0574-ae2f-718d9bd0c66b"
               ]
             }
           },
@@ -3122,18 +3118,18 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}",
-                "type": "text"
+                "type": "text",
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
+                "type": "text",
+                "value": "application/json"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n   \"locationId\":\"{{locationId}}\",\r\n   \"memberId\": \"{{memberId}}\",\r\n  \"accountId\": \"{{accountIdpayor}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c74\",\r\n\"totalTax\": 0,\r\n\"totalAmount\": 0,\r\n\"totalDiscountAmount\": 0,\r\n\"totalNetPrice\": 40,\r\n\"items\": [\r\n\r\n{ \"itemName\": \"{{randName}}\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c12\" }\r\n]\r\n}"
+              "raw": "{\r\n   \"locationId\":\"{{locationId}}\",\r\n   \"memberId\": \"{{memberId}}\",\r\n  \"accountId\": \"{{payoraccountId}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c74\",\r\n\"totalTax\": 0,\r\n\"totalAmount\": 0,\r\n\"totalDiscountAmount\": 0,\r\n\"totalNetPrice\": 40,\r\n\"items\": [\r\n\r\n{ \"itemName\": \"{{randName}}\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c12\" }\r\n]\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor/invoice",
@@ -3194,13 +3190,13 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}",
-                "type": "text"
+                "type": "text",
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
+                "type": "text",
+                "value": "application/json"
               }
             ],
             "body": {
@@ -3281,7 +3277,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -3345,13 +3341,13 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}",
-                "type": "text"
+                "type": "text",
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
+                "type": "text",
+                "value": "application/json"
               }
             ],
             "body": {
@@ -3359,14 +3355,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{accountIdpayor}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{payoraccountId}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{accountIdpayor}}"
+                "{{payoraccountId}}"
               ]
             }
           },
@@ -3414,7 +3410,7 @@
               {
                 "key": "Authorization",
                 "type": "text",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -3424,7 +3420,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{accountIdpayor}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{payoraccountId}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -3478,7 +3474,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}",
+                "value": "Bearer {{access_token}}",
                 "type": "text"
               },
               {
@@ -3548,7 +3544,7 @@
               {
                 "key": "Authorization",
                 "type": "text",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -3615,7 +3611,7 @@
               {
                 "key": "Authorization",
                 "type": "text",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -3680,7 +3676,7 @@
               {
                 "key": "Authorization",
                 "type": "text",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -3749,6 +3745,47 @@
                 ],
                 "type": "text/javascript"
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "f2d7024f-a490-4e92-9ee6-d22c5f85103c",
+                "exec": [
+                  "var CfutureDate = new Date();",
+                  "var dd = CfutureDate.getDate();",
+                  "var mm = CfutureDate.getMonth()+1; //January is 0!",
+                  "var yyyy = CfutureDate.getFullYear();",
+                  "",
+                  "if(dd<10) {",
+                  "  dd = '0'+dd;",
+                  "}",
+                  "",
+                  "mm=mm+1;",
+                  "if(mm>12)",
+                  "{",
+                  "   mm=mm-12;",
+                  "}",
+                  "",
+                  "if(mm<10) {",
+                  "  mm = '0'+mm;",
+                  "",
+                  "",
+                  "}",
+                  "",
+                  "console.log(\"dd  \" + dd);",
+                  "console.log(\"mm  \"+ mm);",
+                  "console.log(\"yyyy  \"+yyyy);",
+                  "",
+                  "",
+                  "CfutureDate = mm + '-' + dd + '-' + yyyy;",
+                  "",
+                  "",
+                  "postman.setEnvironmentVariable(\"CfutureDate\", CfutureDate);",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
             }
           ],
           "request": {
@@ -3756,7 +3793,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -3765,16 +3802,16 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"subCancellationDate\":\"05-02-2019\"\n}"
+              "raw": "{\n  \"subCancellationDate\":\"{{CfutureDate}}\"\n}"
             },
             "url": {
-              "raw": "{{URL}}/subscription/{{subId}}/cancel",
+              "raw": "{{URL}}/subscription/{{subIdPayment}}/cancel",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "subscription",
-                "{{subId}}",
+                "{{subIdPayment}}",
                 "cancel"
               ]
             }
@@ -3825,7 +3862,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -3834,7 +3871,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"subCancellationDate\":\"03-30-2019\"\n}"
+              "raw": "{\n  \"subCancellationDate\":\"{{CfutureDate}}\"\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/{{subId}}/updateCancel",
@@ -3890,7 +3927,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -3953,7 +3990,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -4047,7 +4084,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -4114,7 +4151,7 @@
               {
                 "key": "Authorization",
                 "type": "text",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -4200,7 +4237,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -4257,7 +4294,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
@@ -4320,7 +4357,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer {{authId}}"
+                "value": "Bearer {{access_token}}"
               },
               {
                 "key": "Content-Type",
