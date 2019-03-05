@@ -1170,6 +1170,7 @@
                   "postman.setEnvironmentVariable(\"accountIdClient\", jsonData.account.accountId);",
                   "postman.setEnvironmentVariable(\"merchantId\", jsonData.merchantId);",
                   "postman.setEnvironmentVariable(\"paymentMethodIdC\", jsonData.account.paymentMethod.id);",
+                  "postman.setEnvironmentVariable(\"clientId\", jsonData.clientId);",
                   "",
                   "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
                   "    tests[\"Response Body has clientId\"] = responseBody.has(\"clientId\");",
