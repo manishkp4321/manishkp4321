@@ -1171,6 +1171,7 @@
                   "postman.setEnvironmentVariable(\"merchantId\", jsonData.merchantId);",
                   "postman.setEnvironmentVariable(\"paymentMethodIdC\", jsonData.account.paymentMethod.id);",
                   "postman.setEnvironmentVariable(\"clientId\", jsonData.clientId);",
+                  "postman.setEnvironmentVariable(\"ClientName\",jsonData.account.name);",
                   "",
                   "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
                   "    tests[\"Response Body has clientId\"] = responseBody.has(\"clientId\");",
@@ -1431,6 +1432,11 @@
               {
                 "key": "Authorization",
                 "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
               }
             ],
             "body": {
@@ -1438,14 +1444,85 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/account/client/{{clientId}}",
+              "raw": "{{URL}}/account/client/{{accountIdClient}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "account",
                 "client",
-                "{{clientId}}"
+                "{{accountIdClient}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ReviewClientAccounts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cbc233f8-6c37-461c-b607-18945dda70be",
+                "exec": [
+                  "if (responseCode.code != 200)",
+                  "{",
+                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "}",
+                  "",
+                  "else if (responseCode.code === 200)",
+                  "{",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+                  " ",
+                  "   tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+                  "    tests[\"Response Body has Payor Name\"] = responseBody.has(\"name\");",
+                  "    tests[\"Response Body has Payor Phone\"] = responseBody.has(\"phone\");",
+                  "    tests[\"Response Body has Payor Sevaluation\"] = responseBody.has(\"sevaluation\");",
+                  "    tests[\"Response Body has Payor Billing Date\"] = responseBody.has(\"billingDate\");",
+                  "    tests[\"Response Body has Payment Method\"] = responseBody.has(\"paymentMethod\");",
+                  "    tests[\"Response Body has Payment Method ID\"] = responseBody.has(\"id\");",
+                  "    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
+                  "}",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{URL}}/account/client?name={{ClientName}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "account",
+                "client"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "{{ClientName}}"
+                }
               ]
             }
           },
@@ -1801,10 +1878,9 @@
                   "else if (responseCode.code === 200)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
-                  "   tests[\"Response Body has Correct memberId\"] = responseBody.has(\"memberId\");",
-                  "   tests[\"Response Body has payorId\"] = responseBody.has(\"payorId\");",
-                  "   tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+                  "    tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
+                  "    tests[\"Response Body has payorId\"] = responseBody.has(\"payorId\");",
+                  "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
                   "    tests[\"Response Body has Payor Name\"] = responseBody.has(\"name\");",
                   "    tests[\"Response Body has Payor Phone\"] = responseBody.has(\"phone\");",
                   "    tests[\"Response Body has Payor Sevaluation\"] = responseBody.has(\"sevaluation\");",
@@ -2974,7 +3050,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\t \"memberId\" : \"{{memberId}}\"\r\n}"
+              "raw": "{\r\n\t \"memberId\" : \"{{memberId2}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/{{subIdPayment}}/member",
@@ -3059,7 +3135,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/subscription/{{subIdPayment}}/member/11e93f2c-db32-0574-ae2f-718d9bd0c66b",
+              "raw": "{{URL}}/subscription/{{subIdPayment}}/member/{{memberId2}}",
               "host": [
                 "{{URL}}"
               ],
@@ -3067,7 +3143,7 @@
                 "subscription",
                 "{{subIdPayment}}",
                 "member",
-                "11e93f2c-db32-0574-ae2f-718d9bd0c66b"
+                "{{memberId2}}"
               ]
             }
           },
