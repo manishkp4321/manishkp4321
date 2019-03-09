@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "f1e7645a-a35a-4f01-a3ec-cb41053f59d6",
+    "_postman_id": "23dc9d97-3d62-42bc-9ec4-d9a1991cd446",
     "name": "E2E Payment_Gateway",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -2622,7 +2622,7 @@
                       "",
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMmethod\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
                       " tests[\"Response Body has Correct bank routing\"] =responseBody.has(\"082000072\");",
                       "  tests[\"Response Body has correct Payment method Status\"] = responseBody.has(\"NEW\");",
                       " ",
@@ -2653,8 +2653,8 @@
                       "",
                       "return text;",
                       "}",
-                      "var paymentMmethod= stringGen(10)",
-                      "postman.setEnvironmentVariable(\"paymentMmethod\", paymentMmethod);",
+                      "var paymentMethod= stringGen(10)",
+                      "postman.setEnvironmentVariable(\"paymentMethod\", paymentMethod);",
                       ""
                     ],
                     "type": "text/javascript"
@@ -2678,7 +2678,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"companyId\" : \"{{company_ID}}\",\r\n \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"{{paymentMmethod}}\",\r\n  \"bankRouting\" : \"082000072\",\r\n  \"accountNumber\" : \"8529371649731215\"\r\n}\r\n"
+                  "raw": "{\r\n  \"companyId\" : \"{{company_ID}}\",\r\n \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"{{paymentMethod}}\",\r\n  \"bankRouting\" : \"082000072\",\r\n  \"accountNumber\" : \"8529371649731215\"\r\n}\r\n"
                 },
                 "url": {
                   "raw": "{{URL}}/payment-method",
@@ -2712,7 +2712,7 @@
                       "",
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMmethod\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
                       " tests[\"Response Body has Correct bank routing\"] =responseBody.has(\"082000072\");",
                       "  tests[\"Response Body has correct Payment method Status\"] = responseBody.has(\"NEW\");",
                       " ",
@@ -2785,7 +2785,7 @@
                       "",
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMmethod\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
                       " tests[\"Response Body has Correct bank routing\"] =responseBody.has(\"082000072\");",
                       "  tests[\"Response Body has correct Payment method Status\"] = responseBody.has(\"NEW\");",
                       " ",
@@ -2822,7 +2822,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"companyId\" : \"f2322522-b2cf-46d4-b2c0-39f3cd0b639a\",\r\n  \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"Bobby Boucher\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
+                  "raw": ""
                 },
                 "url": {
                   "raw": "{{URL}}/payment-method/company/{{company_ID}}",
@@ -2935,7 +2935,7 @@
                       "",
                       "tests[\"Response Body has Correct card payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"UpdatecardPaymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod1\")+\"\\\"\");",
                       " tests[\"Response Body has Correct type\"] =responseBody.has(\"VISA\");",
                       " ",
                       "   tests[\"Response Body has correct card active Status\"] = responseBody.has(\"true\");",
@@ -2955,18 +2955,18 @@
                   "script": {
                     "id": "8e034930-9912-4fdf-939f-fec4e1f7b27d",
                     "exec": [
-                      "// function stringGen(len) {",
-                      "// var text = \"\";",
+                      "function stringGen(len) {",
+                      "var text = \"\";",
                       "",
-                      "// var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
+                      "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
                       "",
-                      "// for (var i = 0; i < len; i++)",
-                      "//  text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                      "for (var i = 0; i < len; i++)",
+                      " text += charset.charAt(Math.floor(Math.random() * charset.length));",
                       "",
-                      "// return text;",
-                      "// }",
-                      "// var paymentMmethod= stringGen(10)",
-                      "// postman.setEnvironmentVariable(\"paymentMethod1\", paymentMmethod);",
+                      "return text;",
+                      "}",
+                      "var paymentMmethod= stringGen(10)",
+                      "postman.setEnvironmentVariable(\"paymentMmethod1\", paymentMmethod);",
                       ""
                     ],
                     "type": "text/javascript"
@@ -2990,7 +2990,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n\"accountHolderName\":\"{{paymentMethod}}\"\r\n}"
+                  "raw": "{\r\n\"accountHolderName\":\"{{paymentMethod1}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{URL}}/payment-method/{{cardPaymentMethod_ID}}",
@@ -3025,7 +3025,7 @@
                       "",
                       "tests[\"Response Body has Correct card payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"UpdatecardPaymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod1\")+\"\\\"\");",
                       " tests[\"Response Body has Correct type\"] =responseBody.has(\"VISA\");",
                       " ",
                       "   tests[\"Response Body has correct card active Status\"] = responseBody.has(\"false\");",
@@ -3045,18 +3045,6 @@
                   "script": {
                     "id": "8e034930-9912-4fdf-939f-fec4e1f7b27d",
                     "exec": [
-                      "function stringGen(len) {",
-                      "var text = \"\";",
-                      "",
-                      "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
-                      "",
-                      "for (var i = 0; i < len; i++)",
-                      " text += charset.charAt(Math.floor(Math.random() * charset.length));",
-                      "",
-                      "return text;",
-                      "}",
-                      "var paymentMmethod= stringGen(10)",
-                      "postman.setEnvironmentVariable(\"paymentMmethod\", paymentMmethod);",
                       ""
                     ],
                     "type": "text/javascript"
@@ -3101,8 +3089,30 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "940d67a0-c2e7-4982-8eca-18b72e502572",
+                    "id": "2724a7f9-c930-43af-97c4-44d0849a720d",
                     "exec": [
+                      "if (responseCode.code != 200)",
+                      "{",
+                      "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                      "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                      "}",
+                      "",
+                      "else if (responseCode.code === 200)",
+                      "{",
+                      "   var jsonData = JSON.parse(responseBody);",
+                      "",
+                      "tests[\"Response Body has Correct card payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"UpdatecardPaymentMethod_ID\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
+                      "//  tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct type\"] =responseBody.has(\"VISA\");",
+                      " ",
+                      "   tests[\"Response Body has correct card active Status\"] = responseBody.has(\"false\");",
+                      "   ",
+                      "",
+                      "   ",
+                      "}",
+                      "",
+                      "tests[\"Response code should be 200\"] = responseCode.code === 200;",
                       ""
                     ],
                     "type": "text/javascript"
@@ -3111,20 +3121,8 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "8e034930-9912-4fdf-939f-fec4e1f7b27d",
+                    "id": "c46a262d-b5cc-4e8c-ad83-ea66ead090be",
                     "exec": [
-                      "function stringGen(len) {",
-                      "var text = \"\";",
-                      "",
-                      "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
-                      "",
-                      "for (var i = 0; i < len; i++)",
-                      " text += charset.charAt(Math.floor(Math.random() * charset.length));",
-                      "",
-                      "return text;",
-                      "}",
-                      "var paymentMmethod= stringGen(10)",
-                      "postman.setEnvironmentVariable(\"paymentMmethod\", paymentMmethod);",
                       ""
                     ],
                     "type": "text/javascript"
