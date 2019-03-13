@@ -7366,7 +7366,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
+                  "    postman.setEnvironmentVariable(\"price\",jsonData.subscriptionList[0].items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -7602,7 +7602,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
+                  "  postman.setEnvironmentVariable(\"price\",jsonData.subscriptionList[0].items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -7916,13 +7916,13 @@
                   "{",
                   "    if (statementAmount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=9);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=10);",
                   "    }",
                   "    ",
                   "    else if (statementAmount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=9);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=10);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -8727,7 +8727,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    postman.setEnvironmentVariable(\"subIdFreeze\",jsonData.subId);",
-                  "",
+                  "postman.setEnvironmentVariable(\"priceP\",jsonData.items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -8792,25 +8792,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (price != statementAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == statementAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "675ab875-1d25-400d-8a0f-7b554ec500da",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -8860,28 +8884,49 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
+                  "",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (price != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount!=price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "f36c8509-15fb-4e21-9354-fddc509a3ea1",
+                "exec": [
+                  "setTimeout(function(){}, [5000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -8926,26 +8971,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount!=price);",
+                  "    }",
                   "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fe5d6cfa-c4f3-44af-b650-f27966168052",
+                "exec": [
+                  "setTimeout(function(){}, [5000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -8995,25 +9063,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount!=price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "9f98873f-d2ed-4bfb-8359-2afeab995680",
+                "exec": [
+                  "setTimeout(function(){}, [5000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -9185,7 +9277,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
+                  "   postman.setEnvironmentVariable(\"priceP\",jsonData.items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -9226,7 +9318,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId}}\"],\n\"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\": \"03-04-2019\",\n\"invoiceDate\": \"03-04-2019\",\n\"expirationDate\": \"{{futureDate}}\",\n\"frequency\": \"DAILY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"false\",\n\"openEnded\": false,\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{paymentMethodIdP2}}\",\n\"planVersion\": 11,\n\"start\": \"03-04-2019\",\n\"invoiceDate\": \"03-04-2019\",\n\"expirationDate\": \"{{futureDate}}\",\n\"frequency\": \"DAILY\",\n\"duration\": \"2\",\n\"name\": \"ankit\",\n\"autoRenew\": \"false\",\n\"openEnded\": false,\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -9250,25 +9342,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var priceP=postman.getEnvironmentVariable(\"priceP\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (priceP*2 != statementAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(priceP);",
+                  "    }",
+                  "    ",
+                  "    else if (priceP *2== statementAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(priceP*2);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "b40b1572-d24f-473a-bf7c-128642ec70e6",
+                "exec": [
+                  "//setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -9296,14 +9410,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP2}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
+                "{{paymentMethodIdP2}}"
               ]
             }
           },
@@ -9313,32 +9427,51 @@
           "name": "Generate Statement_Payment Method_Id",
           "event": [
             {
+              "listen": "prerequest",
+              "script": {
+                "id": "62d5bb3f-47f3-4bb4-b84f-f1a527a9bbb5",
+                "exec": [
+                  "//setTimeout(function(){}, [15000]);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
               "listen": "test",
               "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
+                "id": "2d47a650-0759-4cf0-9f9d-5746939fee4e",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var priceP=postman.getEnvironmentVariable(\"priceP\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (priceP*2 != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(priceP);",
+                  "    }",
+                  "    ",
+                  "    else if (priceP *2== totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(priceP*2);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
                 ],
                 "type": "text/javascript"
@@ -9361,7 +9494,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP2}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -9384,26 +9517,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var priceP=postman.getEnvironmentVariable(\"priceP\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (priceP*2 != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(priceP);",
+                  "    }",
                   "    ",
+                  "    else if (priceP *2== amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(priceP*2);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "4a4f69b4-e166-4383-ba1e-e6563404ba81",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -9453,25 +9609,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var priceP=postman.getEnvironmentVariable(\"priceP\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (priceP*2 != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(priceP);",
+                  "    }",
+                  "    ",
+                  "    else if (priceP *2== amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(priceP*2);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "78153b46-c605-4fa9-93d9-003b9ed29734",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -9685,7 +9865,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
+                  "   postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -9726,7 +9906,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId}}\"],\n\"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\": \"{{subfutureDate}}\",\n\"invoiceDate\": \"{{subfutureDate}}\",\n\"expirationDate\": \"{{futureDate}}\",\n\"frequency\": \"DAILY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"false\",\n\"openEnded\": false,\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId3}}\"],\n\"accountId\": \"{{paymentMethodIdP3}}\",\n\"planVersion\": 11,\n\"start\": \"{{subfutureDate}}\",\n\"invoiceDate\": \"{{subfutureDate}}\",\n\"expirationDate\": \"{{futureDate}}\",\n\"frequency\": \"DAILY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"false\",\n\"openEnded\": false,\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -9750,25 +9930,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (statementAmount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount-price);",
+                  "    }",
+                  "    ",
+                  "    else if (statementAmount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "891b19c8-e377-4c69-a7f8-d684decd5295",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -9796,14 +9998,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP3}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
+                "{{paymentMethodIdP3}}"
               ]
             }
           },
@@ -9818,28 +10020,47 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (totalAmount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount-price);",
+                  "    }",
+                  "    ",
+                  "    else if (totalAmount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "5e1cc53d-097e-4737-ae08-d63328c87137",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -9861,7 +10082,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP3}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -9884,26 +10105,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (amount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount-price);",
+                  "    }",
                   "    ",
+                  "    else if (amount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "5efd31f6-9d3f-4e79-8556-3da243adb6dd",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -9953,25 +10195,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (amount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount-price);",
+                  "    }",
+                  "    ",
+                  "    else if (amount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "c327441f-c0b5-4a48-8450-ef79a2b19e09",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10044,7 +10308,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "  postman.setEnvironmentVariable(\"addMemberforSub\",jsonData.subId);",
-                  "",
+                  "  postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -10085,7 +10349,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId}}\"],\n\"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"frequency\": \"WEEKLY\",\n\"name\": \"ankit\",\n\n\"openEnded\": true,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId4}}\"],\n\"accountId\": \"{{paymentMethodIdP4}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"frequency\": \"WEEKLY\",\n\"name\": \"ankit\",\n\n\"openEnded\": true,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -10109,25 +10373,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (price != statementAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == statementAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "62d9ea2c-90e7-49c3-a4e9-f6102f557b3c",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10155,14 +10441,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP4}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
+                "{{paymentMethodIdP4}}"
               ]
             }
           },
@@ -10177,28 +10463,47 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (price != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "871c08d7-62f5-49e5-b8a9-1bda9c89acc4",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10220,7 +10525,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP4}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -10243,26 +10548,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount!=price);",
+                  "    }",
                   "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "00750e7e-9d6c-4d54-b979-e78bd9ab46f8",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10312,25 +10640,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount!=price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "416d5214-5551-4122-b36c-df6cf0d83d72",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10402,7 +10754,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
+                  "     postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -10443,7 +10795,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId}}\"],\n\"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\": \"03-04-2019\",\n\"invoiceDate\": \"03-04-2019\",\n\"frequency\": \"WEEKLY\",\n\"name\": \"ankit\",\n\n\"openEnded\": true,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId5}}\"],\n\"accountId\": \"{{paymentMethodIdP5}}\",\n\"planVersion\": 11,\n\"start\": \"03-04-2019\",\n\"invoiceDate\": \"03-04-2019\",\n\"frequency\": \"WEEKLY\",\n\"name\": \"ankit\",\n\n\"openEnded\": true,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -10467,25 +10819,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (price*2 != statementAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price *2== statementAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price*2);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "0c3ad868-3098-41b4-bae2-672d621d1a8e",
+                "exec": [
+                  "setTimeout(function(){}, [40000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10513,14 +10887,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP5}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
+                "{{paymentMethodIdP5}}"
               ]
             }
           },
@@ -10535,28 +10909,47 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.statementAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (price*2 != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price*2);",
+                  "    }",
+                  "    ",
+                  "    else if (price *2== totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "901c3057-61da-4fb5-89bf-02a2ec4cf89d",
+                "exec": [
+                  "setTimeout(function(){}, [40000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10578,7 +10971,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP5}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -10596,27 +10989,50 @@
           "name": "Evaluate Settlement",
           "event": [
             {
+              "listen": "prerequest",
+              "script": {
+                "id": "0b8e4b2a-61f9-4e96-82a5-ea344f8efade",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
               "listen": "test",
               "script": {
-                "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
+                "id": "197fd788-9cb4-4ad8-a49f-37f167e240f4",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (price*2 != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(price);",
+                  "    }",
                   "    ",
+                  "    else if (price*2== amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(price*2);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
@@ -10670,25 +11086,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (price*2 != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price*2== amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(price*2);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "bc60533d-3877-4cab-93f5-47907d9a769c",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10760,6 +11200,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
+                  "     postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
                   "   ",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
@@ -10801,7 +11242,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId}}\"],\n\"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\": \"{{subfutureDate}}\",\n\"invoiceDate\": \"{{subfutureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"name\": \"ankit\",\n\n\"openEnded\": true,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId6}}\"],\n\"accountId\": \"{{paymentMethodIdP6}}\",\n\"planVersion\": 11,\n\"start\": \"{{subfutureDate}}\",\n\"invoiceDate\": \"{{subfutureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"name\": \"ankit\",\n\n\"openEnded\": true,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -10825,25 +11266,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (statementAmount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount-price);",
+                  "    }",
+                  "    ",
+                  "    else if (statementAmount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "4ee184c2-8b39-4ec2-bf0d-d05bd23ea742",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10871,14 +11334,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP6}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
+                "{{paymentMethodIdP6}}"
               ]
             }
           },
@@ -10893,28 +11356,47 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (totalAmount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount-price);",
+                  "    }",
+                  "    ",
+                  "    else if (totalAmount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "c353709e-8251-4ebe-b0f0-1b0042c80f0c",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10936,7 +11418,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP6}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -10959,26 +11441,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (amount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount-price);",
+                  "    }",
                   "    ",
+                  "    else if (amount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "9eddcbd8-8cf3-4e4f-a71f-a76b55d005c6",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -11028,25 +11531,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (amount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount-price);",
+                  "    }",
+                  "    ",
+                  "    else if (amount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "98057c01-24fe-4e83-92f4-9c09143999a1",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -11220,7 +11745,7 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "  ",
                   "postman.setEnvironmentVariable(\"addMemberforSub\",jsonData.subId);",
-                  "",
+                  " postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -11285,25 +11810,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (price != statementAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == statementAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "38cae8f8-853e-401d-806a-afd2a6390d2e",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -11353,28 +11900,47 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (price != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e02b430f-4e41-4e71-b6fc-eb8aafba7bfb",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -11419,26 +11985,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount!=price);",
+                  "    }",
                   "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "504e197b-ecbb-4695-83e9-476cba4fe1ac",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -11488,25 +12077,49 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "console.log(jsonData.statementAmount);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                  "    tests[\"[INFO]  Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount!=price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "633a6d35-9448-4f89-90c7-a2af9a37b2d4",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -11713,7 +12326,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "   ",
-                  "",
+                  " postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -11754,7 +12367,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId}}\"],\n\"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\": \"03-04-2019\",\n\"invoiceDate\": \"03-04-2019\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"03-04-2019\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"03-04-2019\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{paymentMethodIdP2}}\",\n\"planVersion\": 11,\n\"start\": \"03-04-2019\",\n\"invoiceDate\": \"03-04-2019\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"03-04-2019\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"03-04-2019\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -11824,214 +12437,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP2}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Generate Statement_Payment Method Id",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "if ( responseCode.code!=200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 200)",
-                  "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
-                  "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{accountIdpayor}}\"\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/statement",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "statement"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Evaluate Settlement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 200)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
-                  "    ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{URL}}/evaluate-settlement/account/{{accountIdClient}}",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "evaluate-settlement",
-                "account",
-                "{{accountIdClient}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Generate Settlement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{URL}}/settlement/account/{{accountIdClient}}",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "settlement",
-                "account",
-                "{{accountIdClient}}"
+                "{{paymentMethodIdP2}}"
               ]
             }
           },
@@ -12205,7 +12618,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
+                  "    postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -12246,7 +12659,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId}}\"],\n\"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\": \"{{subfutureDate}}\",\n\"invoiceDate\": \"{{subfutureDate}}\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{subfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{subfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId3}}\"],\n\"accountId\": \"{{paymentMethodIdP3}}\",\n\"planVersion\": 11,\n\"start\": \"{{subfutureDate}}\",\n\"invoiceDate\": \"{{subfutureDate}}\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{subfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{subfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -12270,25 +12683,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (statementAmount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount-price);",
+                  "    }",
+                  "    ",
+                  "    else if (statementAmount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1c65a562-ba47-4733-833b-7d83ff99efc8",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -12316,14 +12751,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP3}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
+                "{{paymentMethodIdP3}}"
               ]
             }
           },
@@ -12338,28 +12773,47 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (totalAmount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount-price);",
+                  "    }",
+                  "    ",
+                  "    else if (totalAmount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ad7dea8c-c764-45f2-b218-1b935ab828f1",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -12381,7 +12835,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP3}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -12404,26 +12858,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (amount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount-price);",
+                  "    }",
                   "    ",
+                  "    else if (amount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1e3c253a-36e0-4c87-9c40-01b697190e4f",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -12473,25 +12948,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (amount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(amount-price);",
+                  "    }",
+                  "    ",
+                  "    else if (amount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "34b1502e-7920-410d-baf0-536d30cd918a",
+                "exec": [
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -12532,7 +13029,7 @@
       ]
     },
     {
-      "name": "Settlement -RENEW-OPEN Subscription(Current )Payment Method Id",
+      "name": "Settlement -RENEW-OPEN Subscription(Current )Payment Method Id_Bug",
       "item": [
         {
           "name": "CreateSubscription_Renew_Type_TERM",
@@ -12697,7 +13194,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
+                  "   postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -12738,7 +13235,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId}}\"],\n\"accountId\": \"{{paymentMethodIdP}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{today}}\", \"renewFrequency\": \"DAILY\", \"renewType\": \"OPEN\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{today}}\" }\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId4}}\"],\n\"accountId\": \"{{paymentMethodIdP4}}\",\n\"planVersion\": 11,\n\"start\": \"{{today}}\",\n\"invoiceDate\": \"{{today}}\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{today}}\", \"renewFrequency\": \"DAILY\", \"renewType\": \"OPEN\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{today}}\" }\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -12762,25 +13259,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (price != statementAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == statementAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "c3e6461e-03ea-4428-abb2-5a16bb97f34c",
+                "exec": [
+                  "setTimeout(function(){}, [60000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -12808,14 +13327,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP4}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
+                "{{paymentMethodIdP4}}"
               ]
             }
           },
@@ -12830,28 +13349,47 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (price != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "5b8eb14a-9b16-4cfd-ba78-981ff055848b",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -12873,7 +13411,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP4}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -12896,26 +13434,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(price);",
+                  "    }",
                   "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "31fb22b5-9cda-4898-8b3e-89ced59cc682",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -12965,25 +13524,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "6f6ce729-3c1c-470a-921b-d7da15514d78",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13044,7 +13625,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    ",
+                  "    postman.setEnvironmentVariable(\"amount\", jsonData.totalAmount);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct totalNetPrice\"] = responseBody.has(\"totalNetPrice\");",
                   "   tests[\"Response Body has totalDiscountAmount\"] = responseBody.has(\"totalDiscountAmount\");",
@@ -13083,7 +13664,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n   \"locationId\":\"{{locationId}}\",\r\n   \"memberId\": \"{{memberId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c74\",\r\n\"totalTax\": 0,\r\n\"totalAmount\": 963,\r\n\"totalDiscountAmount\": 0,\r\n\"totalNetPrice\": 0,\r\n\"items\": [\r\n\r\n{ \"itemName\": \"{{randName}}\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c12\" }\r\n]\r\n}"
+              "raw": "{\r\n   \"locationId\":\"{{locationId}}\",\r\n   \"memberId\": \"{{memberId5}}\",\r\n  \"accountId\": \"{{paymentMethodIdP5}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c74\",\r\n\"totalTax\": 0,\r\n\"totalAmount\": 963,\r\n\"totalDiscountAmount\": 0,\r\n\"totalNetPrice\": 0,\r\n\"items\": [\r\n\r\n{ \"itemName\": \"{{randName}}\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c12\" }\r\n]\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor/invoice",
@@ -13108,25 +13689,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var amount=postman.getEnvironmentVariable(\"amount\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (amount != statementAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount);",
+                  "    }",
+                  "    ",
+                  "    else if (amount == statementAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d341648d-fd7d-4266-addf-4314f4a3d0c1",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13154,14 +13757,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP5}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
+                "{{paymentMethodIdP5}}"
               ]
             }
           },
@@ -13176,28 +13779,47 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var amount=postman.getEnvironmentVariable(\"amount\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (amount != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount);",
+                  "    }",
+                  "    ",
+                  "    else if (amount == totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13219,7 +13841,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP5}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -13242,26 +13864,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"stamount\",jsonData.amount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var stamount=postman.getEnvironmentVariable(\"stamount\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (stamount != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(stamount!= totalAmount);",
+                  "    }",
                   "    ",
+                  "    else if (stamount == totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(stamount);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "dcf612ab-1d49-47aa-9740-55ff2f61190b",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13311,25 +13954,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"stamount\",jsonData.amount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var stamount=postman.getEnvironmentVariable(\"stamount\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (stamount != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(stamount!= totalAmount);",
+                  "    }",
+                  "    ",
+                  "    else if (stamount == totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(stamount);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e9ff68ea-6de9-48de-9daf-f9a088607b39",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13401,6 +14066,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
+                  "        postman.setEnvironmentVariable(\"price\",jsonData.subscriptionList[0].items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -13441,7 +14107,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ \"{{memberId}}\"  ],\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{paymentMethodIdP}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{RfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{RfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n\r\n}\r\n\r\n\r\n]\r\n\r\n}"
+              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ \"{{memberId6}}\"  ],\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId6}}\"],\r\n\"accountId\": \"{{paymentMethodIdP6}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{RfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{RfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n\r\n}\r\n\r\n\r\n]\r\n\r\n}"
             },
             "url": {
               "raw": "{{URL}}/agreement",
@@ -13464,25 +14130,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (price != statementAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == statementAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "d0ebbd68-c3e9-4490-a36c-d3df12611c2e",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13510,14 +14198,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP}}",
+              "raw": "{{URL}}/evaluate-statement/account/{{paymentMethodIdP6}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "evaluate-statement",
                 "account",
-                "{{paymentMethodIdP}}"
+                "{{paymentMethodIdP6}}"
               ]
             }
           },
@@ -13532,28 +14220,47 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (price != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price!= totalAmount);",
+                  "    }",
+                  "    ",
+                  "    else if (price == totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "2d3979fd-8f2e-47f5-8353-746651378c9e",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13575,7 +14282,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP}}\"\r\n}"
+              "raw": "{     \"locationId\":\"{{locationId}}\",\r\n  \"accountId\": \"{{paymentMethodIdP6}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/statement",
@@ -13598,26 +14305,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(price!= amount);",
+                  "    }",
                   "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1dc96a55-6172-48d3-9e66-258d30788de9",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13667,25 +14395,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(price!= amount);",
+                  "    }",
+                  "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "cafe687c-de76-46be-b76e-6a8ec21f7958",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13732,19 +14482,9 @@
           "name": "CreateAgreement Single",
           "event": [
             {
-              "listen": "prerequest",
-              "script": {
-                "id": "7a5c849f-1892-432f-9b72-a07da50776b0",
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
               "listen": "test",
               "script": {
-                "id": "f6605cb7-22f4-41aa-9904-3cf8fb89b2ed",
+                "id": "089b018d-196f-4ff4-bb29-a793bc49511b",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
                   "",
@@ -13757,6 +14497,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
+                  "     postman.setEnvironmentVariable(\"price\",jsonData.subscriptionList[0].items[0].price);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -13781,6 +14522,16 @@
                 ],
                 "type": "text/javascript"
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "18d01568-2b8b-4159-99cd-2c9f0e39159d",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
             }
           ],
           "request": {
@@ -13797,7 +14548,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ \"{{memberId}}\",\"{{memberId2}} \",\" {{memberId3}}\",\"{{memberId4}}\",\"{{memberId5}}\" ],\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{paymentMethodIdP}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{RfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{RfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n\r\n}\r\n\r\n\r\n]\r\n\r\n}"
+              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ \"{{memberId}}\",\"{{memberId7}} \",\" {{memberId8}}\",\"{{memberId9}}\",\"{{memberId10}}\" ],\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{paymentMethodIdP}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{RfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{RfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n\r\n}\r\n\r\n\r\n]\r\n\r\n}"
             },
             "url": {
               "raw": "{{URL}}/agreement",
@@ -13815,26 +14566,48 @@
           "name": "Evaluate Statement_Payment method_Id",
           "event": [
             {
+              "listen": "prerequest",
+              "script": {
+                "id": "b9ee20f8-4232-446d-a3ff-79ab5edb8c8a",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
               "listen": "test",
               "script": {
-                "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
+                "id": "6b5347ef-55bf-4eb1-b457-99f6cd59c096",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (price != statementAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price);",
+                  "    }",
+                  "    ",
+                  "    else if (price == statementAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
@@ -13883,32 +14656,51 @@
           "name": "Generate Statement_Payment Method_id",
           "event": [
             {
+              "listen": "prerequest",
+              "script": {
+                "id": "549382fb-c9aa-41cc-9584-4f839f887657",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
               "listen": "test",
               "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
+                "id": "ceadf879-bc36-4cf8-8264-b369e2cf90e1",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (price != totalAmount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price!= totalAmount);",
+                  "    }",
+                  "    ",
+                  "    else if (price == totalAmount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
                 ],
                 "type": "text/javascript"
@@ -13949,27 +14741,48 @@
           "name": "Evaluate Settlement",
           "event": [
             {
+              "listen": "prerequest",
+              "script": {
+                "id": "c732bddd-62c7-4673-b011-7ef515323186",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
               "listen": "test",
               "script": {
-                "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
+                "id": "1ad02aba-af9c-437c-9f74-d6bfca808aa8",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(price!= amount);",
+                  "    }",
                   "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
@@ -14023,25 +14836,47 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
+                  "var price=postman.getEnvironmentVariable(\"price\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (price != amount)",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(price!= amount);",
+                  "    }",
+                  "    ",
+                  "    else if (price == amount)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(price);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "63583b51-6e87-4023-a92f-a363e0f966dd",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -14176,25 +15011,46 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (statementAmount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=10);",
+                  "    }",
+                  "    ",
+                  "    else if (statementAmount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=10);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "cef3143e-7acc-421a-ad68-d5ab9c107d2a",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -14244,28 +15100,46 @@
                 "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"totalAmount\",jsonData.totalAmount);",
+                  "var totalAmount = postman.getEnvironmentVariable(\"totalAmount\");",
                   "",
-                  "if ( responseCode.code!=200)",
+                  "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "postman.setEnvironmentVariable(\"statementIdA\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has correct locationId id\"] = responseBody.has(\"locationId\");",
-                  "tests[\"Response Body has correct Statement id\"] = responseBody.has(\"\\\"statementId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"statementId\")+\"\\\"\");",
-                  "tests[\"Response Body has correct accountId id\"] = responseBody.has(\"accountId\");",
-                  "tests[\"Response Body has correct totalAmount\"] = responseBody.has(\"totalAmount\");",
-                  "",
+                  "    if (totalAmount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount=10);",
+                  "    }",
+                  "    ",
+                  "    else if (totalAmount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount!=10);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
+                  "    ",
                   "}",
-                  "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "4995f847-a3aa-43fe-acbc-86bbc8618e62",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -14310,26 +15184,46 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "    if (amount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=10);",
+                  "    }",
                   "    ",
+                  "    else if (amount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=10);",
+                  "    ",
+                  "    }",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "8e64f95e-183c-43eb-8024-fbefc5646513",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -14379,25 +15273,46 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
-                  "postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
+                  "postman.setEnvironmentVariable(\"amount\",jsonData.amount);",
+                  "var amount = postman.getEnvironmentVariable(\"amount\");",
                   "",
                   "if (responseCode.code != 201)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 201)",
                   "{",
+                  "    if (amount !==0)",
+                  "    {",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=10);",
+                  "    }",
+                  "    ",
+                  "    else if (amount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=10);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has settlementId\"] = responseBody.has(\"settlementId\");",
-                  "    tests[\"Response Body has locationId\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has accountId\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has amount\"] = responseBody.has(\"amount\");",
+                  "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "987936fc-53b1-41f4-9627-70c2559ce3e7",
+                "exec": [
+                  "setTimeout(function(){}, [25000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -14459,6 +15374,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   "     postman.setEnvironmentVariable(\"invId\",jsonData.id);",
+                  "     postman.setEnvironmentVariable(\"invamt\",jsonData.totalAmount);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct totalNetPrice\"] = responseBody.has(\"totalNetPrice\");",
                   "   tests[\"Response Body has totalDiscountAmount\"] = responseBody.has(\"totalDiscountAmount\");",
@@ -14497,7 +15413,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n   \"locationId\":\"{{locationId}}\",\r\n   \"memberId\": \"{{memberId}}\",\r\n  \"accountId\": \"{{accountIdpayor}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c74\",\r\n\"totalTax\": 0,\r\n\"totalAmount\": 400,\r\n\"totalDiscountAmount\": 0,\r\n\"totalNetPrice\": 0,\r\n\"items\": [\r\n\r\n{ \"itemName\": \"{{randName}}\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c12\" }\r\n]\r\n}"
+              "raw": "{\r\n   \"locationId\":\"{{locationId}}\",\r\n   \"memberId\": \"{{memberId11}}\",\r\n  \"accountId\": \"{{accountIdpayor11}}\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c74\",\r\n\"totalTax\": 0,\r\n\"totalAmount\": 400,\r\n\"totalDiscountAmount\": 0,\r\n\"totalNetPrice\": 0,\r\n\"items\": [\r\n\r\n{ \"itemName\": \"{{randName}}\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 200, \"discountCode\": 1234, \"discountAmount\": 10, \"amountRemaining\": 200, \"taxAmount\": 20, \"type\": \"PRODUCT\", \"quantity\": \"1\", \"itemCategoryId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c12\" }\r\n]\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor/invoice",
@@ -14554,7 +15470,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\"payAmount\" : \"400\" \r\n}"
+              "raw": "{\r\n\"payAmount\" : \"{{invamt}}\" \r\n}"
             },
             "url": {
               "raw": "{{URL}}/apply-payment/account/{{accountIdpayor}}",
@@ -14579,21 +15495,33 @@
                 "id": "ed4b5185-448d-4850-b0d9-3e1f13c4240d",
                 "exec": [
                   "var jsonData = JSON.parse(responseBody);",
+                  "postman.setEnvironmentVariable(\"statementAmount\",jsonData.statementAmount);",
+                  "var statementAmount = postman.getEnvironmentVariable(\"statementAmount\");",
+                  "var invamt=postman.getEnvironmentVariable(\"invamt\");",
                   "",
                   "if (responseCode.code != 200)",
                   "{",
+                  "    ",
                   "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
                   "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
                   "}",
                   "",
                   "else if (responseCode.code === 200)",
                   "{",
+                  "    if (statementAmount !=0 )",
+                  "    {",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=0);",
+                  "    }",
+                  "    ",
+                  "    else if (statementAmount ==0)",
+                  "    {",
+                  "        ",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=0);",
+                  "    ",
+                  "    }",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"statementId\", jsonData.statementId);",
-                  "",
-                  "tests[\"Response Body has statementAmount\"] = responseBody.has(\"statementAmount\");",
-                  " ",
                   "   ",
+                  " ",
                   "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
