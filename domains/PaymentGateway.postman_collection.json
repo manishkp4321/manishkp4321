@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "b445800c-e123-4b78-99b5-aa8fd326a6af",
+    "_postman_id": "11a38111-62a9-4f8a-9a71-18582600598e",
     "name": "E2E Payment_Gateway_Scenarios",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -466,103 +466,6 @@
           "name": "Processor",
           "item": [
             {
-              "name": "CreateProcessor",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "0ee46a4e-c41f-4d80-b7a9-fd17bb6cb48a",
-                    "exec": [
-                      "",
-                      "if ( responseCode.code!=201)",
-                      "{",
-                      "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                      "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                      "}",
-                      "else if (responseCode.code === 201)",
-                      "{",
-                      "   var jsonData = JSON.parse(responseBody);",
-                      "   ",
-                      "postman.setEnvironmentVariable(\"processorId\", jsonData.id);",
-                      "postman.setEnvironmentVariable(\"processorForId\", jsonData.processorFormatDetail.id);",
-                      "postman.setEnvironmentVariable(\"processorIDQA\",\"45977ad9-ac1b-476a-b2f4-cf2604ddd6ee\");",
-                      "",
-                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct processor format id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorForId\")+\"\\\"\");",
-                      "",
-                      " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                      "  tests[\"Response Body has Correct country\"] = responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"countryName\")+\"\\\"\");",
-                      "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
-                      "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
-                      "   tests[\"Response Body has correct File Format\"] = responseBody.has(\"nacha\");",
-                      "   tests[\"Response Body has correct File Extention\"] = responseBody.has(\"ach\");",
-                      "   tests[\"Response Body has correct batch count\"] = responseBody.has(\"5\");",
-                      "   tests[\"Response Body has correct transaction count\"] = responseBody.has(\"20\");",
-                      "   ",
-                      "}",
-                      "tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                      "",
-                      "",
-                      "",
-                      "",
-                      "",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                },
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "3c089b6e-d0e5-4758-86c8-763cacb44b8c",
-                    "exec": [
-                      "function stringGen(len) {",
-                      "var text = \"\";",
-                      "",
-                      "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                      "",
-                      "for (var i = 0; i < len; i++)",
-                      " text += charset.charAt(Math.floor(Math.random() * charset.length));",
-                      "",
-                      "return text;",
-                      "}",
-                      "var countryName= stringGen(3)",
-                      "postman.setEnvironmentVariable(\"countryName\", countryName);",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token_super_user}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"name\" : \"{{randName}}\",\r\n  \"paymentMethod\" : \"EFT\",\r\n  \"country\" : \"{{countryName}}\",\r\n  \"processorFormatDetail\" : {\r\n    \"fileType\" : \"NACHA\",\r\n    \"fileFormat\" : \"nacha\",\r\n    \"batchCount\" : 5,\r\n    \"fileExtention\" : \"ach\",\r\n    \"transactionCount\" : 20\r\n  }\r\n}"
-                },
-                "url": {
-                  "raw": "{{URL}}/processors",
-                  "host": [
-                    "{{URL}}"
-                  ],
-                  "path": [
-                    "processors"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
               "name": "Get_List_Of_Processor",
               "event": [
                 {
@@ -580,11 +483,8 @@
                       "{",
                       "   var jsonData = JSON.parse(responseBody);",
                       "",
-                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct processor format id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorForId\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
                       "",
-                      " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                      "  tests[\"Response Body has Correct country\"] = responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"countryName\")+\"\\\"\");",
                       "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
                       "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
                       "   tests[\"Response Body has correct File Format\"] = responseBody.has(\"nacha\");",
@@ -651,18 +551,19 @@
                       "else if (responseCode.code === 200)",
                       "{",
                       "   var jsonData = JSON.parse(responseBody);",
+                      "postman.setEnvironmentVariable(\"origId\",\"52303bcc-c815-42cb-a991-bb076e1a118e\");",
+                      "postman.setEnvironmentVariable(\"destId\",\"7ffc7386-c3f1-437c-95e9-ef44ada02dc8\");",
                       "",
-                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct processor format id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorForId\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
                       "",
-                      " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                      "  tests[\"Response Body has Correct country\"] = responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"countryName\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct name\"] = responseBody.has(\"Regions Bank\");",
+                      "  tests[\"Response Body has Correct country\"] = responseBody.has(\"US\");",
                       "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
                       "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
-                      "   tests[\"Response Body has correct File Format\"] = responseBody.has(\"nacha\");",
+                      "   tests[\"Response Body has correct File Format\"] = responseBody.has(\"NACHA\");",
                       "   tests[\"Response Body has correct File Extention\"] = responseBody.has(\"ach\");",
                       "   tests[\"Response Body has correct batch count\"] = responseBody.has(\"5\");",
-                      "   tests[\"Response Body has correct transaction count\"] = responseBody.has(\"20\");",
+                      "   tests[\"Response Body has correct transaction count\"] = responseBody.has(\"50\");",
                       "   ",
                       "}",
                       "tests[\"Response code should be 200\"] = responseCode.code === 200;",
@@ -694,13 +595,13 @@
                   "raw": ""
                 },
                 "url": {
-                  "raw": "{{URL}}/processors/{{processorId}}",
+                  "raw": "{{URL}}/processors/{{processor_id}}",
                   "host": [
                     "{{URL}}"
                   ],
                   "path": [
                     "processors",
-                    "{{processorId}}"
+                    "{{processor_id}}"
                   ]
                 }
               },
@@ -735,82 +636,12 @@
           "name": "Destination",
           "item": [
             {
-              "name": "Create_Destination",
+              "name": "GetDestinationById",
               "event": [
                 {
                   "listen": "test",
                   "script": {
-                    "id": "61c625f2-3187-4fb5-ae7e-003310103895",
-                    "exec": [
-                      "if ( responseCode.code!=201)",
-                      "{",
-                      "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                      "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                      "}",
-                      "else if (responseCode.code === 201)",
-                      "{",
-                      "",
-                      "var jsonData = JSON.parse(responseBody);",
-                      "postman.setEnvironmentVariable(\"destination_Id\", jsonData.id);",
-                      " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destination_Id\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                      "",
-                      " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"destinationBankName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                      "   tests[\"Response Body has correct File Id modifier\"] = responseBody.has(\"R\");",
-                      "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
-                      "   tests[\"Response Body has correct Blocking Factor\"] = responseBody.has(\"10\");",
-                      "   tests[\"Response Body has correct Priority Code\"] = responseBody.has(\"01\");",
-                      "   tests[\"Response Body has correct Immediate Destination\"] = responseBody.has(\"620000199\");",
-                      "   tests[\"Response Body has correct Reference Code\"] = responseBody.has(\"XXXXXXXX\");",
-                      "   tests[\"Response Body has correct Destination Status active\"] = responseBody.has(\"true\");",
-                      "   ",
-                      "}",
-                      "tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                      "",
-                      "",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token_super_user}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"fileIdModifier\" : \"R\",\r\n  \"formatCode\" : \"1\",\r\n  \"blockingFactor\" : \"10\",\r\n  \"priorityCode\" : \"01\",\r\n  \"immediateDestination\" : \"620000199\",\r\n  \"destinationBankName\" : \"{{randName}}\",\r\n  \"referenceCode\" : \"XXXXXXXX\",\r\n  \"processor\" : {\r\n    \"id\" : \"{{processorId}}\"\r\n  }\r\n}"
-                },
-                "url": {
-                  "raw": "{{URL}}/processors/nacha-info/destinations",
-                  "host": [
-                    "{{URL}}"
-                  ],
-                  "path": [
-                    "processors",
-                    "nacha-info",
-                    "destinations"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update_Destination",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "5048b069-0385-460d-9dc3-e7f4239c6335",
+                    "id": "181fc03f-966c-4340-bcb4-887aa0c3e50f",
                     "exec": [
                       "if ( responseCode.code!=200)",
                       "{",
@@ -821,14 +652,9 @@
                       "{",
                       "",
                       "var jsonData = JSON.parse(responseBody);",
-                      "postman.setEnvironmentVariable(\"destination_IdNew\", jsonData.id);",
-                      " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destination_IdNew\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destId\")+\"\\\"\");",
                       "",
-                      " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                      " ",
-                      "   tests[\"Response Body has correct Country\"] =  responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"countryName\")+\"\\\"\");",
-                      "     tests[\"Response Body has correct Payment Method\"] = responseBody.has(\"EFT\");",
+                      "",
                       "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
                       "   tests[\"Response Body has correct File Id modifier\"] = responseBody.has(\"R\");",
                       "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
@@ -849,7 +675,7 @@
                 }
               ],
               "request": {
-                "method": "PUT",
+                "method": "GET",
                 "header": [
                   {
                     "key": "Content-Type",
@@ -862,10 +688,10 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"fileIdModifier\" : \"R\",\r\n  \"formatCode\" : \"1\",\r\n  \"blockingFactor\" : \"10\",\r\n  \"priorityCode\" : \"01\",\r\n  \"immediateDestination\" : \"620000199\",\r\n  \"destinationBankName\" : \"REGIONS BANK\",\r\n  \"referenceCode\" : \"XXXXXXXX\",\r\n  \"processor\" : {\r\n    \"id\" : \"{{processorId}}\"\r\n  }\r\n}"
+                  "raw": ""
                 },
                 "url": {
-                  "raw": "{{URL}}/processors/nacha-info/destinations/{{destination_Id}}",
+                  "raw": "{{URL}}/processors/nacha-info/destinations/{{destId}}",
                   "host": [
                     "{{URL}}"
                   ],
@@ -873,7 +699,7 @@
                     "processors",
                     "nacha-info",
                     "destinations",
-                    "{{destination_Id}}"
+                    "{{destId}}"
                   ]
                 }
               },
@@ -896,12 +722,12 @@
                       "{",
                       "",
                       "var jsonData = JSON.parse(responseBody);",
-                      " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destination_Id\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destId\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
                       "",
-                      " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct name\"] = responseBody.has(\"Regions Bank\");",
                       " ",
-                      "   tests[\"Response Body has correct Country\"] =  responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"countryName\")+\"\\\"\");",
+                      "   tests[\"Response Body has correct Country\"] =  responseBody.has(\"US\");",
                       "     tests[\"Response Body has correct Payment Method\"] = responseBody.has(\"EFT\");",
                       "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
                       "   tests[\"Response Body has correct File Id modifier\"] = responseBody.has(\"R\");",
@@ -951,76 +777,6 @@
                 }
               },
               "response": []
-            },
-            {
-              "name": "GetDestinationById",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "181fc03f-966c-4340-bcb4-887aa0c3e50f",
-                    "exec": [
-                      "if ( responseCode.code!=200)",
-                      "{",
-                      "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                      "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                      "}",
-                      "else if (responseCode.code === 200)",
-                      "{",
-                      "",
-                      "var jsonData = JSON.parse(responseBody);",
-                      " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destination_Id\")+\"\\\"\");",
-                      "",
-                      "",
-                      "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
-                      "   tests[\"Response Body has correct File Id modifier\"] = responseBody.has(\"R\");",
-                      "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
-                      "   tests[\"Response Body has correct Blocking Factor\"] = responseBody.has(\"10\");",
-                      "   tests[\"Response Body has correct Priority Code\"] = responseBody.has(\"01\");",
-                      "   tests[\"Response Body has correct Immediate Destination\"] = responseBody.has(\"620000199\");",
-                      "   tests[\"Response Body has correct Reference Code\"] = responseBody.has(\"XXXXXXXX\");",
-                      "   tests[\"Response Body has correct Destination Status active\"] = responseBody.has(\"true\");",
-                      "   ",
-                      "}",
-                      "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                      "",
-                      "",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token_super_user}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{URL}}/processors/nacha-info/destinations/{{destination_Id}}",
-                  "host": [
-                    "{{URL}}"
-                  ],
-                  "path": [
-                    "processors",
-                    "nacha-info",
-                    "destinations",
-                    "{{destination_Id}}"
-                  ]
-                }
-              },
-              "response": []
             }
           ],
           "_postman_isSubFolder": true
@@ -1028,70 +784,6 @@
         {
           "name": "Originator",
           "item": [
-            {
-              "name": "Create_Originator",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "36f8e22c-f0f3-421e-95f9-945ca7662a0f",
-                    "exec": [
-                      "if ( responseCode.code!=201)",
-                      "{",
-                      "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                      "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                      "}",
-                      "else if (responseCode.code === 201)",
-                      "{",
-                      "",
-                      "var jsonData = JSON.parse(responseBody);",
-                      "postman.setEnvironmentVariable(\"originator_Id\", jsonData.id);",
-                      "",
-                      "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"originator_Id\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                      "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"710602711\");",
-                      "   tests[\"Response Body has correct Immediate Origin Name\"] = responseBody.has(\"ABC FINANCIAL\");",
-                      "   tests[\"Response Body has correct Originator Dfi Identifier\"] = responseBody.has(\"11\");",
-                      "   tests[\"Response Body has correct Originator Status Code\"] = responseBody.has(\"1\");",
-                      "    tests[\"Response Body has correct Originator Status active\"] = responseBody.has(\"true\");",
-                      "   ",
-                      "}",
-                      "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token_super_user}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n      \"immediateOriginBankAssignedId\": \"710602711\",\n      \"immediateOriginName\": \"ABC FINANCIAL\",\n      \"originatorDfiIdentifier\": \"11\",\n      \"originatorStatusCode\":\"1\",\n       \"processor\": {\n          \"id\":\"{{processorId}}\"\n        }\n  }"
-                },
-                "url": {
-                  "raw": "{{URL}}/processors/nacha-info/originators",
-                  "host": [
-                    "{{URL}}"
-                  ],
-                  "path": [
-                    "processors",
-                    "nacha-info",
-                    "originators"
-                  ]
-                }
-              },
-              "response": []
-            },
             {
               "name": "GetOriginatorById",
               "event": [
@@ -1111,8 +803,8 @@
                       "var jsonData = JSON.parse(responseBody);",
                       "",
                       "",
-                      "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"originator_Id\")+\"\\\"\");",
-                      "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"710602711\");",
+                      "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"origId\")+\"\\\"\");",
+                      "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"060271145\");",
                       "   tests[\"Response Body has correct Immediate Origin Name\"] = responseBody.has(\"ABC FINANCIAL\");",
                       "   tests[\"Response Body has correct Originator Dfi Identifier\"] = responseBody.has(\"11\");",
                       "   tests[\"Response Body has correct Originator Status Code\"] = responseBody.has(\"1\");",
@@ -1143,7 +835,7 @@
                   "raw": ""
                 },
                 "url": {
-                  "raw": "{{URL}}/processors/nacha-info/originators/{{originator_Id}}",
+                  "raw": "{{URL}}/processors/nacha-info/originators/{{origId}}",
                   "host": [
                     "{{URL}}"
                   ],
@@ -1151,7 +843,7 @@
                     "processors",
                     "nacha-info",
                     "originators",
-                    "{{originator_Id}}"
+                    "{{origId}}"
                   ]
                 }
               },
@@ -1176,7 +868,7 @@
                       "var jsonData = JSON.parse(responseBody);",
                       "",
                       "",
-                      "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"originator_Id\")+\"\\\"\");",
+                      "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"origId\")+\"\\\"\");",
                       "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"710602711\");",
                       "   tests[\"Response Body has correct Immediate Origin Name\"] = responseBody.has(\"ABC FINANCIAL\");",
                       "   tests[\"Response Body has correct Originator Dfi Identifier\"] = responseBody.has(\"11\");",
@@ -1216,76 +908,6 @@
                     "processors",
                     "nacha-info",
                     "originators"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update_Originator_By_Id",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "53ba959e-4f2b-438b-ad4a-2fdb614d2ff8",
-                    "exec": [
-                      "if ( responseCode.code!=200)",
-                      "{",
-                      "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                      "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                      "}",
-                      "else if (responseCode.code === 200)",
-                      "{",
-                      "",
-                      "var jsonData = JSON.parse(responseBody);",
-                      "postman.setEnvironmentVariable(\"originator_IdNew\", jsonData.id);",
-                      " tests[\"Response Body has Correct originator id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"originator_IdNew\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                      "",
-                      " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                      " ",
-                      "   tests[\"Response Body has correct Country\"] =  responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"countryName\")+\"\\\"\");",
-                      "     tests[\"Response Body has correct Payment Method\"] = responseBody.has(\"EFT\");",
-                      "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"060271145\");",
-                      "   tests[\"Response Body has correct Immediate Origin Name\"] = responseBody.has(\"ABC FINANCIAL\");",
-                      "   tests[\"Response Body has correct Originator Dfi Identifier\"] = responseBody.has(\"11459698\");",
-                      "   tests[\"Response Body has correct Originator Status Code\"] = responseBody.has(\"1\");",
-                      "   tests[\"Response Body has correct Originator Status active\"] = responseBody.has(\"true\");",
-                      "   ",
-                      "   ",
-                      "}",
-                      "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token_super_user}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n      \"immediateOriginBankAssignedId\": \"060271145\",\n      \"immediateOriginName\": \"ABC FINANCIAL\",\n      \"originatorDfiIdentifier\": \"11459698\",\n      \"originatorStatusCode\":\"1\",\n       \"processor\": {\n          \"id\":\"45977ad9-ac1b-476a-b2f4-cf2604ddd6ee\"\n        }\n  }"
-                },
-                "url": {
-                  "raw": "{{URL}}/processors/nacha-info/originators/{{originator_Id}}",
-                  "host": [
-                    "{{URL}}"
-                  ],
-                  "path": [
-                    "processors",
-                    "nacha-info",
-                    "originators",
-                    "{{originator_Id}}"
                   ]
                 }
               },
@@ -1590,7 +1212,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorId}}\"]\n }\n}\n\n"
+                  "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                 },
                 "url": {
                   "raw": "{{URL}}/merchant",
@@ -2290,8 +1912,8 @@
                           "   postman.setEnvironmentVariable(\"merchant_rule_id\", jsonData.id);",
                           "    tests[\"Response Body has Correct merchant rule id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_rule_id\")+\"\\\"\");",
                           " tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct rule id\"] = responseBody.has(\"\\\"ruleId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"rule_id\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct action id\"] = responseBody.has(\"\\\"actionId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"action_rule_id\")+\"\\\"\");",
+                          "// tests[\"Response Body has Correct rule id\"] = responseBody.has(\"\\\"ruleId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"rule_id\")+\"\\\"\");",
+                          " //tests[\"Response Body has Correct action id\"] = responseBody.has(\"\\\"actionId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"action_rule_id\")+\"\\\"\");",
                           " tests[\"Response Body has Correct config value\"] = responseBody.has(\"1\");",
                           " ",
                           " ",
@@ -2326,7 +1948,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"merchantId\" : \"{{merchant_ID}}\",\n \"rules\" : [\n {\n   \"ruleId\" : \"{{rule_id}}\",\n   \"configValue\" : \"1\",\n   \"actionId\" : \"{{action_rule_id}}\"\n }]\n}"
+                      "raw": "{\n \"merchantId\" : \"{{merchant_ID}}\",\n \"rules\" : [\n {\n   \"ruleId\" : \"c1accb94-e83c-4b4c-a726-4b22b845a2f3\",\n   \"configValue\" : \"100\",\n   \"actionId\" : \"7d8fd7d1-1ae1-4e78-8dc5-54d4ea639748\"\n }]\n}"
                     },
                     "url": {
                       "raw": "{{URL}}/merchant-rule",
@@ -2442,6 +2064,97 @@
               "response": []
             },
             {
+              "name": "Payment_Method AMEX",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "940d67a0-c2e7-4982-8eca-18b72e502572",
+                    "exec": [
+                      "if (responseCode.code != 201)",
+                      "{",
+                      "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                      "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                      "}",
+                      "",
+                      "else if (responseCode.code === 201)",
+                      "{",
+                      "   var jsonData = JSON.parse(responseBody);",
+                      "",
+                      "",
+                      "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
+                      " tests[\"Response Body has Correct bank routing\"] =responseBody.has(\"082000072\");",
+                      "  tests[\"Response Body has correct Payment method Status\"] = responseBody.has(\"NEW\");",
+                      " ",
+                      "   tests[\"Response Body has correct Payment method active Status\"] = responseBody.has(\"true\");",
+                      "   ",
+                      "",
+                      "   ",
+                      "}",
+                      "",
+                      "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "77681eda-e215-4596-9ec8-aca70aaa60fa",
+                    "exec": [
+                      "function stringGen(len) {",
+                      "var text = \"\";",
+                      "",
+                      "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
+                      "",
+                      "for (var i = 0; i < len; i++)",
+                      " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                      "",
+                      "return text;",
+                      "}",
+                      "var paymentMethod= stringGen(10)",
+                      "postman.setEnvironmentVariable(\"paymentMethod\", paymentMethod);",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token_super_user}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"companyId\" : \"{{company_ID}}\",\r\n \"type\" : \"AMEX\",\r\n  \"accountHolderName\" : \"{{paymentMethod}}\",\r\n \"expiration\":\"2019-4\",\r\n  \"accountNumber\" : \"373083634595479\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "{{URL}}/payment-method",
+                  "host": [
+                    "{{URL}}"
+                  ],
+                  "path": [
+                    "payment-method"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
               "name": "Get_Payment_Method_By_ID",
               "event": [
                 {
@@ -2461,7 +2174,7 @@
                       "",
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
+                      "",
                       " tests[\"Response Body has Correct bank routing\"] =responseBody.has(\"082000072\");",
                       "  tests[\"Response Body has correct Payment method Status\"] = responseBody.has(\"NEW\");",
                       " ",
@@ -2498,7 +2211,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"companyId\" : \"f2322522-b2cf-46d4-b2c0-39f3cd0b639a\",\r\n  \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"Bobby Boucher\",\r\n  \"bankRouting\" : \"082000073\",\r\n  \"accountNumber\" : \"852937164973\"\r\n}"
+                  "raw": ""
                 },
                 "url": {
                   "raw": "{{URL}}/payment-method/{{paymentMethod_ID}}",
@@ -2534,7 +2247,7 @@
                       "",
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
+                      "",
                       " tests[\"Response Body has Correct bank routing\"] =responseBody.has(\"082000072\");",
                       "  tests[\"Response Body has correct Payment method Status\"] = responseBody.has(\"NEW\");",
                       " ",
@@ -2739,7 +2452,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n\"accountHolderName\":\"paymentMethod\"\r\n}"
+                  "raw": "{\n\"accountHolderName\":\"paymentMethod\"\n}"
                 },
                 "url": {
                   "raw": "{{URL}}/payment-method/{{cardPaymentMethod_ID}}",
@@ -2830,87 +2543,6 @@
                 }
               },
               "response": []
-            },
-            {
-              "name": "Get_Payment_Method",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "2724a7f9-c930-43af-97c4-44d0849a720d",
-                    "exec": [
-                      "if (responseCode.code != 200)",
-                      "{",
-                      "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                      "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                      "}",
-                      "",
-                      "else if (responseCode.code === 200)",
-                      "{",
-                      "   var jsonData = JSON.parse(responseBody);",
-                      "",
-                      "tests[\"Response Body has Correct card payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"UpdatecardPaymentMethod_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
-                      "//  tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct type\"] =responseBody.has(\"VISA\");",
-                      " ",
-                      "   tests[\"Response Body has correct card active Status\"] = responseBody.has(\"false\");",
-                      "   ",
-                      "",
-                      "   ",
-                      "}",
-                      "",
-                      "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                },
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "c46a262d-b5cc-4e8c-ad83-ea66ead090be",
-                    "exec": [
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "name": "Content-Type",
-                    "type": "text",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Authorization",
-                    "type": "text",
-                    "value": "Bearer {{access_token_super_user}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{URL}}/payment-method/{{cardPaymentMethod_ID}}",
-                  "host": [
-                    "{{URL}}"
-                  ],
-                  "path": [
-                    "payment-method",
-                    "{{cardPaymentMethod_ID}}"
-                  ]
-                }
-              },
-              "response": []
             }
           ],
           "_postman_isSubFolder": true
@@ -2937,18 +2569,13 @@
                       "   var jsonData = JSON.parse(responseBody);",
                       "",
                       "postman.setEnvironmentVariable(\"charge_ID\", jsonData.id);",
-                      "postman.setEnvironmentVariable(\"client_ID\", jsonData.metadata.clientId);",
-                      "postman.setEnvironmentVariable(\"payor_ID\", jsonData.metadata.payorId);",
-                      "postman.setEnvironmentVariable(\"reference_ID\", jsonData.referenceId);",
+                      "",
                       "",
                       "",
                       "tests[\"Response Body has Correct charge id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"charge_ID\")+\"\\\"\");",
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
-                      " ",
-                      " tests[\"Response Body has Correct client id\"] = responseBody.has(\"\\\"clientId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"client_ID\")+\"\\\"\");",
-                      "  tests[\"Response Body has Correct payor id\"] = responseBody.has(\"\\\"payorId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payor_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct reference id\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"reference_ID\")+\"\\\"\");",
+                      "",
                       "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"\\\"source\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"source\")+\"\\\"\");",
                       "  ",
                       " //tests[\"Response Body has Correct charge amount\"] = responseBody.has(\"\\\"amount\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"amount1\")+\"\\\"\");",
@@ -3053,9 +2680,7 @@
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
                       " ",
-                      " tests[\"Response Body has Correct client id\"] = responseBody.has(\"\\\"clientId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"client_ID\")+\"\\\"\");",
-                      "  tests[\"Response Body has Correct payor id\"] = responseBody.has(\"\\\"payorId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payor_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct reference id\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"reference_ID\")+\"\\\"\");",
+                      "",
                       "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"\\\"source\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"source\")+\"\\\"\");",
                       "  ",
                       "  tests[\"Response Body has correct charge amount\"] = responseBody.has(\"1\");",
@@ -3603,13 +3228,9 @@
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
                       " ",
-                      " tests[\"Response Body has Correct client id\"] = responseBody.has(\"\\\"clientId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"client_ID\")+\"\\\"\");",
-                      "  tests[\"Response Body has Correct payor id\"] = responseBody.has(\"\\\"payorId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payor_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct reference id\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"reference_ID\")+\"\\\"\");",
-                      "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"\\\"source\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"source\")+\"\\\"\");",
-                      "  ",
                       "",
-                      "   tests[\"Response Body has correct charge Status\"] = responseBody.has(\"NEW\");",
+                      "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"BILLING\");",
+                      "",
                       "   ",
                       "",
                       "   ",
@@ -3659,7 +3280,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n   \"merchantId\": \"{{merchant_ID}}\",\r\n   \"paymentMethodId\": \"{{paymentMethod_ID}}\",\r\n   \"amount\": \"{{amount1}}\",\r\n   \"source\": \"{{source}}\",\r\n   \"referenceId\": \"{{reference_ID}}\",\r\n   \"metadata\": {\r\n       \"clientId\": \"{{client_ID}}\",\r\n       \"payorId\": \"{{payor_ID}}\"\r\n   }\r\n}"
+                  "raw": "{\r\n   \"merchantId\": \"{{merchant_ID}}\",\r\n   \"paymentMethodId\": \"{{paymentMethod_ID}}\",\r\n   \"amount\": \"105\",\r\n   \"source\": \"BILLING\",\r\n   \"referenceId\": \"{{$guid}}\",\r\n   \"metadata\": {\r\n       \"clientId\": \"{{$guid}}\",\r\n       \"payorId\": \"{{$guid}}\"\r\n   }\r\n}"
                 },
                 "url": {
                   "raw": "{{URL}}/deposit/",
@@ -3669,6 +3290,174 @@
                   "path": [
                     "deposit",
                     ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create_Deposit BUG",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "4c611e58-5ede-441c-8963-2d90ebd84543",
+                    "exec": [
+                      "if (responseCode.code != 201)",
+                      "{",
+                      "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                      "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                      "}",
+                      "",
+                      "else if (responseCode.code === 201)",
+                      "{",
+                      "   var jsonData = JSON.parse(responseBody);",
+                      "   postman.setEnvironmentVariable(\"referenceId\", jsonData.referenceId)",
+                      "   var referenceId=postman.getEnvironmentVariable(\"referenceId\");;",
+                      "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"BILLING\");",
+                      "",
+                      "   ",
+                      "    if (referenceId !== \"{{$guid}}\" )",
+                      "    {",
+                      "       tests[\"Response Body has Wrong Reference Id\"] = responseBody.has",
+                      "       (referenceId!=\"{{$guid}}\");",
+                      "    }",
+                      "    ",
+                      "    else if (referenceId ===\"{{$guid}}\")",
+                      "    {",
+                      "        ",
+                      "       tests[\"Response Body has Correct Refrence Id\"] = responseBody.has(referenceId);",
+                      "    ",
+                      "    }",
+                      "",
+                      "   ",
+                      "}",
+                      "",
+                      "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "eb4eafc7-4e64-436b-89b1-6a443ffc89e7",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{access_token_super_user}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n   \"merchantId\": \"{{merchant_ID}}\",\r\n   \"paymentMethodId\": \"{{paymentMethod_ID}}\",\r\n   \"amount\": \"105\",\r\n   \"source\": \"BILLING\",\r\n   \"referenceId\": \"Monika Phoughat\",\r\n   \"metadata\": {\r\n       \"clientId\": \"{{$guid}}\",\r\n       \"payorId\": \"{{$guid}}\"\r\n   }\r\n}"
+                },
+                "url": {
+                  "raw": "{{URL}}/deposit/",
+                  "host": [
+                    "{{URL}}"
+                  ],
+                  "path": [
+                    "deposit",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Deposit Status",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "4c611e58-5ede-441c-8963-2d90ebd84543",
+                    "exec": [
+                      "if (responseCode.code != 201)",
+                      "{",
+                      "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                      "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                      "}",
+                      "",
+                      "else if (responseCode.code === 200)",
+                      "{",
+                      "   var jsonData = JSON.parse(responseBody);",
+                      "",
+                      "",
+                      "   ",
+                      "}",
+                      "",
+                      "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "eb4eafc7-4e64-436b-89b1-6a443ffc89e7",
+                    "exec": [
+                      "function stringGen(len) {",
+                      "var text = \"\";",
+                      "",
+                      "var charset = \"0123456789\";",
+                      "",
+                      "for (var i = 0; i < len; i++)",
+                      " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                      "",
+                      "return text;",
+                      "}",
+                      "var amount= stringGen(3)",
+                      "postman.setEnvironmentVariable(\"amount1\", amount);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{access_token_super_user}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"status\" : \"APPROVED\",\r\n  \"reason\" : \"any acceptable reason\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{URL}}/deposit/update-deposit-status/{{depositID}}",
+                  "host": [
+                    "{{URL}}"
+                  ],
+                  "path": [
+                    "deposit",
+                    "update-deposit-status",
+                    "{{depositID}}"
                   ]
                 }
               },
@@ -3696,10 +3485,8 @@
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       " tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
                       " ",
-                      " tests[\"Response Body has Correct client id\"] = responseBody.has(\"\\\"clientId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"client_ID\")+\"\\\"\");",
-                      "  tests[\"Response Body has Correct payor id\"] = responseBody.has(\"\\\"payorId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payor_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct reference id\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"reference_ID\")+\"\\\"\");",
-                      "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"\\\"source\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"source\")+\"\\\"\");",
+                      "",
+                      "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"BILLING\");",
                       "  ",
                       "",
                       "}",
@@ -3768,10 +3555,8 @@
                       "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                       "tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
                       " ",
-                      " tests[\"Response Body has Correct client id\"] = responseBody.has(\"\\\"clientId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"client_ID\")+\"\\\"\");",
-                      "  tests[\"Response Body has Correct payor id\"] = responseBody.has(\"\\\"payorId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payor_ID\")+\"\\\"\");",
-                      " tests[\"Response Body has Correct reference id\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"reference_ID\")+\"\\\"\");",
-                      "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"\\\"source\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"source\")+\"\\\"\");",
+                      "",
+                      "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"BILLING\");",
                       "  ",
                       "}",
                       "",
@@ -3892,7 +3677,7 @@
               "response": []
             },
             {
-              "name": "Get_List_Of_Valid_File_By_Processor_Id",
+              "name": "Get_List_Of_File_By_Processor_Id",
               "event": [
                 {
                   "listen": "test",
@@ -3940,7 +3725,7 @@
                   "raw": ""
                 },
                 "url": {
-                  "raw": "{{URL}}/payment-file/information/?page=3&status=FAILED",
+                  "raw": "{{URL}}/payment-file/information/?page=3&processorId={{processor_id}}",
                   "host": [
                     "{{URL}}"
                   ],
@@ -3955,8 +3740,8 @@
                       "value": "3"
                     },
                     {
-                      "key": "status",
-                      "value": "FAILED"
+                      "key": "processorId",
+                      "value": "{{processor_id}}"
                     }
                   ]
                 }
@@ -4014,6 +3799,70 @@
                     ""
                   ],
                   "query": [
+                    {
+                      "key": "status",
+                      "value": "SUCCESS"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "List_Valid_Batch_File_for_Specific_processor",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "3fa0cd1c-c217-4815-8c05-c590893a0d1a",
+                    "exec": [
+                      "if (responseCode.code != 200)",
+                      "{",
+                      "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                      "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                      "}",
+                      "",
+                      "else if (responseCode.code === 200)",
+                      "{",
+                      "   var jsonData = JSON.parse(responseBody);",
+                      "",
+                      "}",
+                      "",
+                      "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{access_token_super_user}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{URL}}/payment-file/information/?processorId={{processor_id}}&status=SUCCESS",
+                  "host": [
+                    "{{URL}}"
+                  ],
+                  "path": [
+                    "payment-file",
+                    "information",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "processorId",
+                      "value": "{{processor_id}}"
+                    },
                     {
                       "key": "status",
                       "value": "SUCCESS"
@@ -4359,10 +4208,9 @@
                           "{",
                           "   var jsonData = JSON.parse(responseBody);",
                           "",
-                          "postman.setEnvironmentVariable(\"origId\",\"52303bcc-c815-42cb-a991-bb076e1a118e\");",
-                          "postman.setEnvironmentVariable(\"destId\",\"7ffc7386-c3f1-437c-95e9-ef44ada02dc8\");",
                           "",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorIDQA\")+\"\\\"\");",
+                          "",
+                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
                           "",
                           "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
                           "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
@@ -4401,13 +4249,13 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{URL}}/processors/{{processorIDQA}}",
+                      "raw": "{{URL}}/processors/{{processor_id}}",
                       "host": [
                         "{{URL}}"
                       ],
                       "path": [
                         "processors",
-                        "{{processorIDQA}}"
+                        "{{processor_id}}"
                       ]
                     }
                   },
@@ -4725,7 +4573,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorIDQA}}\"]\n }\n}\n\n"
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                     },
                     "url": {
                       "raw": "{{URL}}/merchant",
@@ -4915,22 +4763,16 @@
                           "{",
                           "   var jsonData = JSON.parse(responseBody);",
                           "",
-                          "postman.setEnvironmentVariable(\"charge_ID\", jsonData.id);",
-                          "postman.setEnvironmentVariable(\"client_ID\", jsonData.metadata.clientId);",
-                          "postman.setEnvironmentVariable(\"payor_ID\", jsonData.metadata.payorId);",
-                          "postman.setEnvironmentVariable(\"reference_ID\", jsonData.referenceId);",
+                          "postman.setEnvironmentVariable(\"charge_IDE\", jsonData.id);",
                           "",
                           "",
-                          "tests[\"Response Body has Correct charge id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"charge_ID\")+\"\\\"\");",
+                          "tests[\"Response Body has Correct charge id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"charge_IDE\")+\"\\\"\");",
                           "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                           " tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
-                          " ",
-                          " tests[\"Response Body has Correct client id\"] = responseBody.has(\"\\\"clientId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"client_ID\")+\"\\\"\");",
-                          "  tests[\"Response Body has Correct payor id\"] = responseBody.has(\"\\\"payorId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payor_ID\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct reference id\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"reference_ID\")+\"\\\"\");",
-                          "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"\\\"source\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"source\")+\"\\\"\");",
+                          "",
+                          "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"BILLING\");",
                           "  ",
-                          " tests[\"Response Body has Correct charge amount\"] = responseBody.has(\"\\\"amount\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"amount\")+\"\\\"\");",
+                          " ",
                           "   tests[\"Response Body has correct charge Status\"] = responseBody.has(\"NEW\");",
                           "   ",
                           "",
@@ -4996,7 +4838,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\r\n   \"merchantId\": \"{{merchant_ID}}\",\r\n   \"paymentMethodId\": \"{{paymentMethod_ID}}\",\r\n   \"amount\": \"{{amount}}\",\r\n   \"source\": \"{{source}}\",\r\n   \"referenceId\": \"{{$guid}}\",\r\n   \"metadata\": {\r\n       \"clientId\": \"{{$guid}}\",\r\n       \"payorId\": \"{{$guid}}\"\r\n   }\r\n}"
+                      "raw": "{\r\n   \"merchantId\": \"{{merchant_ID}}\",\r\n   \"paymentMethodId\": \"{{paymentMethod_ID}}\",\r\n   \"amount\": \"{{amount}}\",\r\n   \"source\": \"BILLING\",\r\n   \"referenceId\": \"{{$guid}}\",\r\n   \"metadata\": {\r\n       \"clientId\": \"{{$guid}}\",\r\n       \"payorId\": \"{{$guid}}\"\r\n   }\r\n}"
                     },
                     "url": {
                       "raw": "{{URL}}/charge",
@@ -5014,7 +4856,7 @@
               "_postman_isSubFolder": true
             },
             {
-              "name": "E2E Flow for DEPOSIT",
+              "name": "E2E Flow for CHARGE with Updating Merchant_BUG",
               "item": [
                 {
                   "name": "GetProcessorById",
@@ -5034,8 +4876,10 @@
                           "{",
                           "   var jsonData = JSON.parse(responseBody);",
                           "",
+                          "postman.setEnvironmentVariable(\"origId\",\"52303bcc-c815-42cb-a991-bb076e1a118e\");",
+                          "postman.setEnvironmentVariable(\"destId\",\"7ffc7386-c3f1-437c-95e9-ef44ada02dc8\");",
                           "",
-                          "  tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorIDQA\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
                           "",
                           "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
                           "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
@@ -5074,13 +4918,13 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{URL}}/processors/{{processorIDQA}}",
+                      "raw": "{{URL}}/processors/{{processor_id}}",
                       "host": [
                         "{{URL}}"
                       ],
                       "path": [
                         "processors",
-                        "{{processorIDQA}}"
+                        "{{processor_id}}"
                       ]
                     }
                   },
@@ -5398,7 +5242,756 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorIDQA}}\"]\n }\n}\n\n"
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
+                    },
+                    "url": {
+                      "raw": "{{URL}}/merchant",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "merchant"
+                      ]
+                    },
+                    "description": "Create Merchant"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "ActivateMerchant",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "61d4aeb1-ff12-4c08-9eb3-62001b8646cc",
+                        "exec": [
+                          "if ( responseCode.code!=200)",
+                          "{",
+                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "else if (responseCode.code === 200)",
+                          "{",
+                          "",
+                          "var jsonData = JSON.parse(responseBody);",
+                          "",
+                          "tests[\"Response Body has Correct merchant Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
+                          " ",
+                          "  tests[\"Response Body has Correct merchant name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant\")+\"\\\"\");",
+                          "   tests[\"Response Body has Correct company merchant name\"] = responseBody.has(\"\\\"companyName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_company\")+\"\\\"\");",
+                          "     tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct merchant access token\"] = responseBody.has(\"\\\"merchantAccountToken\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_access_token\")+\"\\\"\");",
+                          "  tests[\"Response Body has correct Merchant Status active\"] = responseBody.has(\"true\");",
+                          " ",
+                          "   ",
+                          "   ",
+                          "}",
+                          "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": {
+                      "raw": "{{URL}}/merchants/activate/{{merchant_ID}}",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        "activate",
+                        "{{merchant_ID}}"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "UpdateMerchant",
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "5ec04dc9-ad2a-4ca1-973d-5b420ee51c67",
+                        "exec": [
+                          "// function stringGen(len) {",
+                          "// var text = \"\";",
+                          "",
+                          "// var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
+                          "",
+                          "// for (var i = 0; i < len; i++)",
+                          "//  text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                          "",
+                          "// return text;",
+                          "// }",
+                          "// var merchant= stringGen(10)",
+                          "// postman.setEnvironmentVariable(\"merchant1\", merchant);"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "6ab544a1-a6d9-4456-8cb1-c963f4c64380",
+                        "exec": [
+                          "if ( responseCode.code!=200)",
+                          "{",
+                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "else if (responseCode.code === 200)",
+                          "{",
+                          "",
+                          "var jsonData = JSON.parse(responseBody);",
+                          "postman.setEnvironmentVariable(\"merchant_IDNew\", jsonData.id);",
+                          "",
+                          "tests[\"Response Body has Correct merchant Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_IDNew\")+\"\\\"\");",
+                          " ",
+                          "   tests[\"Response Body has Correct company merchant name\"] = responseBody.has(\"\\\"companyName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_company\")+\"\\\"\");",
+                          "     tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
+                          "",
+                          " ",
+                          "   ",
+                          "   ",
+                          "}",
+                          "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorId}}\"]\n }\n}\n\n"
+                    },
+                    "url": {
+                      "raw": "{{URL}}/merchants/{{merchant_ID}}",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        "{{merchant_ID}}"
+                      ]
+                    },
+                    "description": "Get Merchant By Id"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Payment_Method",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "940d67a0-c2e7-4982-8eca-18b72e502572",
+                        "exec": [
+                          "if (responseCode.code != 201)",
+                          "{",
+                          "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "",
+                          "else if (responseCode.code === 201)",
+                          "{",
+                          "   var jsonData = JSON.parse(responseBody);",
+                          "",
+                          "postman.setEnvironmentVariable(\"paymentMethod_ID\", jsonData.id);",
+                          "",
+                          "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct account holder name\"] = responseBody.has(\"\\\"accountHolderName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct bank routing\"] =responseBody.has(\"082000072\");",
+                          "  tests[\"Response Body has correct Payment method Status\"] = responseBody.has(\"NEW\");",
+                          " ",
+                          "   tests[\"Response Body has correct Payment method active Status\"] = responseBody.has(\"true\");",
+                          "   ",
+                          "",
+                          "   ",
+                          "}",
+                          "",
+                          "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "77681eda-e215-4596-9ec8-aca70aaa60fa",
+                        "exec": [
+                          "function stringGen(len) {",
+                          "var text = \"\";",
+                          "",
+                          "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
+                          "",
+                          "for (var i = 0; i < len; i++)",
+                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                          "",
+                          "return text;",
+                          "}",
+                          "var paymentMethod= stringGen(10)",
+                          "postman.setEnvironmentVariable(\"paymentMethod\", paymentMethod);",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "name": "Content-Type",
+                        "type": "text",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "type": "text",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"companyId\" : \"{{company_ID}}\",\r\n \"type\" : \"CHECKING_ACH\",\r\n  \"accountHolderName\" : \"{{paymentMethod}}\",\r\n  \"bankRouting\" : \"082000072\",\r\n  \"accountNumber\" : \"85293716497312158\"\r\n}\r\n"
+                    },
+                    "url": {
+                      "raw": "{{URL}}/payment-method",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "payment-method"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Create_Charge",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "937cb1e8-0f96-4604-8756-6b844d8d8b2d",
+                        "exec": [
+                          "if (responseCode.code != 201)",
+                          "{",
+                          "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "",
+                          "else if (responseCode.code === 201)",
+                          "{",
+                          "   var jsonData = JSON.parse(responseBody);",
+                          "",
+                          "",
+                          "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
+                          " ",
+                          "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"BILLING\");",
+                          "  ",
+                          "",
+                          "   tests[\"Response Body has correct charge Status\"] = responseBody.has(\"NEW\");",
+                          "   ",
+                          "",
+                          "   ",
+                          "}",
+                          "",
+                          "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "046ad53e-7f48-445e-a8e5-167eb575fe79",
+                        "exec": [
+                          "function stringGen(len) {",
+                          "var text = \"\";",
+                          "",
+                          "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
+                          "",
+                          "for (var i = 0; i < len; i++)",
+                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                          "",
+                          "return text;",
+                          "}",
+                          "var source= stringGen(10)",
+                          "postman.setEnvironmentVariable(\"source\", source);",
+                          "",
+                          "function stringGen(len) {",
+                          "var text = \"\";",
+                          "",
+                          "var charset = \"0123456789\";",
+                          "",
+                          "for (var i = 0; i < len; i++)",
+                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                          "",
+                          "return text;",
+                          "}",
+                          "var amount= stringGen(3)",
+                          "postman.setEnvironmentVariable(\"amount\", amount);",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "type": "text",
+                        "value": "Bearer {{access_token_super_user}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "name": "Content-Type",
+                        "type": "text",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n   \"merchantId\": \"{{merchant_ID}}\",\r\n   \"paymentMethodId\": \"{{paymentMethod_ID}}\",\r\n   \"amount\": \"{{amount}}\",\r\n   \"source\": \"BILLING\",\r\n   \"referenceId\": \"{{$guid}}\",\r\n   \"metadata\": {\r\n       \"clientId\": \"{{$guid}}\",\r\n       \"payorId\": \"{{$guid}}\"\r\n   }\r\n}"
+                    },
+                    "url": {
+                      "raw": "{{URL}}/charge",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "charge"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "name": "E2E Flow for DEPOSIT",
+              "item": [
+                {
+                  "name": "GetProcessorById",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "f7cb8e5c-5800-4fd4-a381-7b77752e167b",
+                        "exec": [
+                          "",
+                          "if ( responseCode.code!=200)",
+                          "{",
+                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "else if (responseCode.code === 200)",
+                          "{",
+                          "   var jsonData = JSON.parse(responseBody);",
+                          "",
+                          "",
+                          "  tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
+                          "",
+                          "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
+                          "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
+                          "   tests[\"Response Body has correct File Format\"] = responseBody.has(\"NACHA\");",
+                          "   tests[\"Response Body has correct File Extention\"] = responseBody.has(\"ach\");",
+                          "   tests[\"Response Body has correct batch count\"] = responseBody.has(\"5\");",
+                          "   tests[\"Response Body has correct transaction count\"] = responseBody.has(\"50\");",
+                          "   ",
+                          "}",
+                          "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": {
+                      "raw": "{{URL}}/processors/{{processor_id}}",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "processors",
+                        "{{processor_id}}"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "GetDestinationById",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "181fc03f-966c-4340-bcb4-887aa0c3e50f",
+                        "exec": [
+                          "if ( responseCode.code!=200)",
+                          "{",
+                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "else if (responseCode.code === 200)",
+                          "{",
+                          "",
+                          "var jsonData = JSON.parse(responseBody);",
+                          " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destId\")+\"\\\"\");",
+                          "",
+                          "",
+                          "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
+                          "   tests[\"Response Body has correct File Id modifier\"] = responseBody.has(\"R\");",
+                          "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
+                          "   tests[\"Response Body has correct Blocking Factor\"] = responseBody.has(\"10\");",
+                          "   tests[\"Response Body has correct Priority Code\"] = responseBody.has(\"01\");",
+                          "   tests[\"Response Body has correct Immediate Destination\"] = responseBody.has(\"620000199\");",
+                          "   tests[\"Response Body has correct Reference Code\"] = responseBody.has(\"XXXXXXXX\");",
+                          "   tests[\"Response Body has correct Destination Status active\"] = responseBody.has(\"true\");",
+                          "   ",
+                          "}",
+                          "tests[\"Response code should be 200\"] = responseCode.code === 200;",
+                          "",
+                          "",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "8520f7b3-b708-411b-8d91-0e8827d1cc05",
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": {
+                      "raw": "{{URL}}/processors/nacha-info/destinations/{{destId}}",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "processors",
+                        "nacha-info",
+                        "destinations",
+                        "{{destId}}"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "GetOriginatorById",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "ffde4c0c-5a82-4ced-baa4-0027842308ed",
+                        "exec": [
+                          "if ( responseCode.code!=200)",
+                          "{",
+                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "else if (responseCode.code === 200)",
+                          "{",
+                          "",
+                          "var jsonData = JSON.parse(responseBody);",
+                          "",
+                          "",
+                          "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"origId\")+\"\\\"\");",
+                          "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"060271145\");",
+                          "   tests[\"Response Body has correct Immediate Origin Name\"] = responseBody.has(\"ABC FINANCIAL\");",
+                          "   tests[\"Response Body has correct Originator Dfi Identifier\"] = responseBody.has(\"11\");",
+                          "   tests[\"Response Body has correct Originator Status Code\"] = responseBody.has(\"1\");",
+                          "   tests[\"Response Body has correct Originator Status active\"] = responseBody.has(\"true\");",
+                          "   ",
+                          "   ",
+                          "}",
+                          "tests[\"Response code should be 200\"] = responseCode.code === 200;"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": {
+                      "raw": "{{URL}}/processors/nacha-info/originators/{{origId}}",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "processors",
+                        "nacha-info",
+                        "originators",
+                        "{{origId}}"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "CreateComapny",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "5e773ca9-6ac1-4c15-89b7-d73b11ed1a99",
+                        "exec": [
+                          "if ( responseCode.code!=201)",
+                          "{",
+                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "else if (responseCode.code === 201)",
+                          "{",
+                          "",
+                          "    var jsonData = JSON.parse(responseBody);",
+                          "    postman.setEnvironmentVariable(\"company_ID\", jsonData.id);",
+                          "    ",
+                          "     tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"companyName\")+\"\\\"\");",
+                          "   tests[\"Response Body has correct Company Status active\"] = responseBody.has(\"true\");",
+                          "   ",
+                          "   ",
+                          "}",
+                          "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "4b9e0e5d-2919-447e-b47d-96eaedc1be5a",
+                        "exec": [
+                          "function stringGen(len) {",
+                          "var text = \"\";",
+                          "",
+                          "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
+                          "",
+                          "for (var i = 0; i < len; i++)",
+                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                          "",
+                          "return text;",
+                          "}",
+                          "var companyName= stringGen(10)",
+                          "postman.setEnvironmentVariable(\"companyName\", companyName);"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"name\" : \"{{companyName}}\",\r\n  \"accountNumber\" : \"3665863\",\r\n  \"accountHolderName\" : \"Mr Test Account Holder\",\r\n  \"routing\" : \"087654321\"\r\n}"
+                    },
+                    "url": {
+                      "raw": "{{URL}}/company",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "company"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "CreateMerchant",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "4bf23d0d-d5b8-4c97-9ac1-6329f923fc45",
+                        "exec": [
+                          "if ( responseCode.code!=201)",
+                          "{",
+                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "else if (responseCode.code === 201)",
+                          "{",
+                          "",
+                          "var jsonData = JSON.parse(responseBody);",
+                          "postman.setEnvironmentVariable(\"merchant_ID\", jsonData.id);",
+                          "postman.setEnvironmentVariable(\"merchant_access_token\", jsonData.merchantAccountToken);",
+                          "",
+                          "tests[\"Response Body has Correct merchant Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
+                          " ",
+                          "  tests[\"Response Body has Correct merchant name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant\")+\"\\\"\");",
+                          "   tests[\"Response Body has Correct company merchant name\"] = responseBody.has(\"\\\"companyName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_company\")+\"\\\"\");",
+                          "     tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct merchant access token\"] = responseBody.has(\"\\\"merchantAccountToken\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_access_token\")+\"\\\"\");",
+                          "  tests[\"Response Body has correct Originator Status active\"] = responseBody.has(\"false\");",
+                          "   ",
+                          "   ",
+                          "}",
+                          "tests[\"Response code should be 201\"] = responseCode.code === 201;"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "e2f2e303-ad09-4cdc-aee1-641940989adc",
+                        "exec": [
+                          "function stringGen(len) {",
+                          "var text = \"\";",
+                          "",
+                          "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
+                          "",
+                          "for (var i = 0; i < len; i++)",
+                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                          "",
+                          "return text;",
+                          "}",
+                          "var merchant= stringGen(10)",
+                          "postman.setEnvironmentVariable(\"merchant\", merchant);",
+                          "",
+                          "",
+                          "function stringGen(len) {",
+                          "var text = \"\";",
+                          "",
+                          "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\";",
+                          "",
+                          "for (var i = 0; i < len; i++)",
+                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                          "",
+                          "return text;",
+                          "}",
+                          "var merchant= stringGen(10)",
+                          "postman.setEnvironmentVariable(\"merchant_company\", merchant);",
+                          "",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                     },
                     "url": {
                       "raw": "{{URL}}/merchant",
@@ -5593,11 +6186,8 @@
                           "tests[\"Response Body has Correct deposit id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"depositID\")+\"\\\"\");",
                           "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                           " tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
-                          " ",
-                          " tests[\"Response Body has Correct client id\"] = responseBody.has(\"\\\"clientId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"client_ID\")+\"\\\"\");",
-                          "  tests[\"Response Body has Correct payor id\"] = responseBody.has(\"\\\"payorId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payor_ID\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct reference id\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"reference_ID\")+\"\\\"\");",
-                          "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"\\\"source\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"source\")+\"\\\"\");",
+                          "",
+                          "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"BILLING\");",
                           "  ",
                           " ",
                           "   tests[\"Response Body has correct charge Status\"] = responseBody.has(\"NEW\");",
@@ -5650,7 +6240,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\r\n   \"merchantId\": \"{{merchant_ID}}\",\r\n   \"paymentMethodId\": \"{{paymentMethod_ID}}\",\r\n   \"amount\": \"{{amount1}}\",\r\n   \"source\": \"{{source}}\",\r\n   \"referenceId\": \"{{reference_ID}}\",\r\n   \"metadata\": {\r\n       \"clientId\": \"{{client_ID}}\",\r\n       \"payorId\": \"{{payor_ID}}\"\r\n   }\r\n}"
+                      "raw": "{\r\n   \"merchantId\": \"{{merchant_ID}}\",\r\n   \"paymentMethodId\": \"{{paymentMethod_ID}}\",\r\n   \"amount\": \"{{amount1}}\",\r\n   \"source\": \"BILLING\",\r\n   \"referenceId\": \"{{$guid}}\",\r\n   \"metadata\": {\r\n       \"clientId\": \"{{$guid}}\",\r\n       \"payorId\": \"{{$guid}}\"\r\n   }\r\n}"
                     },
                     "url": {
                       "raw": "{{URL}}/deposit/",
@@ -5689,7 +6279,7 @@
                           "{",
                           "   var jsonData = JSON.parse(responseBody);",
                           "",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorIDQA\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
                           "",
                           "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
                           "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
@@ -5727,13 +6317,13 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{URL}}/processors/{{processorIDQA}}",
+                      "raw": "{{URL}}/processors/{{processor_id}}",
                       "host": [
                         "{{URL}}"
                       ],
                       "path": [
                         "processors",
-                        "{{processorIDQA}}"
+                        "{{processor_id}}"
                       ]
                     }
                   },
@@ -6051,7 +6641,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorIDQA}}\"]\n }\n}\n\n"
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                     },
                     "url": {
                       "raw": "{{URL}}/merchant",
@@ -6241,17 +6831,10 @@
                           "{",
                           "   var jsonData = JSON.parse(responseBody);",
                           "",
-                          "postman.setEnvironmentVariable(\"client_ID\", jsonData.metadata.clientId);",
-                          "postman.setEnvironmentVariable(\"payor_ID\", jsonData.metadata.payorId);",
-                          "",
-                          "",
                           "tests[\"Response Body has Correct payment method id\"] = responseBody.has(\"\\\"paymentMethodId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"paymentMethod_ID\")+\"\\\"\");",
                           " tests[\"Response Body has Correct merchant id\"] = responseBody.has(\"\\\"merchantId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
-                          " ",
-                          " tests[\"Response Body has Correct client id\"] = responseBody.has(\"\\\"clientId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"client_ID\")+\"\\\"\");",
-                          "  tests[\"Response Body has Correct payor id\"] = responseBody.has(\"\\\"payorId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"payor_ID\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct reference id\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"reference_ID\")+\"\\\"\");",
-                          "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"\\\"source\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"source\")+\"\\\"\");",
+                          "",
+                          "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"BILLING\");",
                           "  ",
                           " ",
                           "   tests[\"Response Body has correct charge Status\"] = responseBody.has(\"NEW\");",
@@ -6304,7 +6887,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\r\n  \"merchantId\" : \"{{merchant_ID}}\",\r\n \"amount\": \"{{amount1}}\",\r\n   \"source\": \"{{source}}\",\r\n   \"referenceId\": \"{{reference_ID}}\",\r\n  \"paymentMethodId\" : \"{{paymentMethod_ID}}\",\r\n  \"metadata\" : {\r\n    \"clientId\" : \"{{$guid}}\",\r\n    \"payorId\" : \"{{$guid}}\"\r\n  }\r\n}"
+                      "raw": "{\r\n  \"merchantId\" : \"{{merchant_ID}}\",\r\n \"amount\": \"{{amount1}}\",\r\n   \"source\": \"BILLING\",\r\n   \"referenceId\": \"{{$guid}}\",\r\n  \"paymentMethodId\" : \"{{paymentMethod_ID}}\",\r\n  \"metadata\" : {\r\n    \"clientId\" : \"{{$guid}}\",\r\n    \"payorId\" : \"{{$guid}}\"\r\n  }\r\n}"
                     },
                     "url": {
                       "raw": "{{URL}}/refund",
@@ -6342,7 +6925,7 @@
                           "{",
                           "   var jsonData = JSON.parse(responseBody);",
                           "",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorIDQA\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
                           "",
                           "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
                           "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
@@ -6381,13 +6964,13 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{URL}}/processors/{{processorIDQA}}",
+                      "raw": "{{URL}}/processors/{{processor_id}}",
                       "host": [
                         "{{URL}}"
                       ],
                       "path": [
                         "processors",
-                        "{{processorIDQA}}"
+                        "{{processor_id}}"
                       ]
                     }
                   },
@@ -6705,7 +7288,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorIDQA}}\"]\n }\n}\n\n"
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                     },
                     "url": {
                       "raw": "{{URL}}/merchant",
@@ -6887,7 +7470,7 @@
                           " tests[\"Response Body has Correct reference id\"] = responseBody.has(\"\\\"referenceId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"reference_ID\")+\"\\\"\");",
                           "tests[\"Response Body has Correct charge source\"] = responseBody.has(\"\\\"source\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"source\")+\"\\\"\");",
                           "  ",
-                          " tests[\"Response Body has Correct charge amount\"] = responseBody.has(\"\\\"amount\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"amount\")+\"\\\"\");",
+                          "",
                           "   tests[\"Response Body has correct charge Status\"] = responseBody.has(\"NEW\");",
                           "   ",
                           "",
@@ -6991,7 +7574,7 @@
                           "{",
                           "   var jsonData = JSON.parse(responseBody);",
                           "",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorIDQA\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
                           "",
                           "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
                           "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
@@ -7030,13 +7613,13 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{URL}}/processors/{{processorIDQA}}",
+                      "raw": "{{URL}}/processors/{{processor_id}}",
                       "host": [
                         "{{URL}}"
                       ],
                       "path": [
                         "processors",
-                        "{{processorIDQA}}"
+                        "{{processor_id}}"
                       ]
                     }
                   },
@@ -7354,7 +7937,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorIDQA}}\"]\n }\n}\n\n"
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                     },
                     "url": {
                       "raw": "{{URL}}/merchant",
@@ -7611,234 +8194,6 @@
               "name": "Create Payment Method Negative",
               "item": [
                 {
-                  "name": "CreateProcessor",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "0ee46a4e-c41f-4d80-b7a9-fd17bb6cb48a",
-                        "exec": [
-                          "",
-                          "if ( responseCode.code!=201)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 201)",
-                          "{",
-                          "   var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"processorId\", jsonData.id);",
-                          "postman.setEnvironmentVariable(\"processorForId\", jsonData.processorFormatDetail.id);",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct processor format id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorForId\")+\"\\\"\");",
-                          "",
-                          " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                          "  tests[\"Response Body has Correct country\"] = responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"countryName\")+\"\\\"\");",
-                          "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
-                          "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
-                          "   tests[\"Response Body has correct File Format\"] = responseBody.has(\"nacha\");",
-                          "   tests[\"Response Body has correct File Extention\"] = responseBody.has(\"ach\");",
-                          "   tests[\"Response Body has correct batch count\"] = responseBody.has(\"5\");",
-                          "   tests[\"Response Body has correct transaction count\"] = responseBody.has(\"20\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                          "",
-                          "",
-                          "",
-                          "",
-                          "",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    },
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "id": "3c089b6e-d0e5-4758-86c8-763cacb44b8c",
-                        "exec": [
-                          "function stringGen(len) {",
-                          "var text = \"\";",
-                          "",
-                          "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                          "",
-                          "for (var i = 0; i < len; i++)",
-                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
-                          "",
-                          "return text;",
-                          "}",
-                          "var countryName= stringGen(3)",
-                          "postman.setEnvironmentVariable(\"countryName\", countryName);",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"name\" : \"{{randName}}\",\r\n  \"paymentMethod\" : \"EFT\",\r\n  \"country\" : \"{{countryName}}\",\r\n  \"processorFormatDetail\" : {\r\n    \"fileType\" : \"NACHA\",\r\n    \"fileFormat\" : \"nacha\",\r\n    \"batchCount\" : 5,\r\n    \"fileExtention\" : \"ach\",\r\n    \"transactionCount\" : 20\r\n  }\r\n}"
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Create_Destination",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "61c625f2-3187-4fb5-ae7e-003310103895",
-                        "exec": [
-                          "if ( responseCode.code!=201)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 201)",
-                          "{",
-                          "",
-                          "var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"destination_Id\", jsonData.id);",
-                          " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destination_Id\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                          "",
-                          " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"destinationBankName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                          "   tests[\"Response Body has correct File Id modifier\"] = responseBody.has(\"R\");",
-                          "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
-                          "   tests[\"Response Body has correct Blocking Factor\"] = responseBody.has(\"10\");",
-                          "   tests[\"Response Body has correct Priority Code\"] = responseBody.has(\"01\");",
-                          "   tests[\"Response Body has correct Immediate Destination\"] = responseBody.has(\"620000199\");",
-                          "   tests[\"Response Body has correct Reference Code\"] = responseBody.has(\"XXXXXXXX\");",
-                          "   tests[\"Response Body has correct Destination Status active\"] = responseBody.has(\"true\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                          "",
-                          "",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"fileIdModifier\" : \"R\",\r\n  \"formatCode\" : \"1\",\r\n  \"blockingFactor\" : \"10\",\r\n  \"priorityCode\" : \"01\",\r\n  \"immediateDestination\" : \"620000199\",\r\n  \"destinationBankName\" : \"{{randName}}\",\r\n  \"referenceCode\" : \"XXXXXXXX\",\r\n  \"processor\" : {\r\n    \"id\" : \"{{processorId}}\"\r\n  }\r\n}"
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors/nacha-info/destinations",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors",
-                        "nacha-info",
-                        "destinations"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Create_Originator",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "36f8e22c-f0f3-421e-95f9-945ca7662a0f",
-                        "exec": [
-                          "if ( responseCode.code!=201)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 201)",
-                          "{",
-                          "",
-                          "var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"originator_Id\", jsonData.id);",
-                          "",
-                          "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"originator_Id\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                          "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"710602711\");",
-                          "   tests[\"Response Body has correct Immediate Origin Name\"] = responseBody.has(\"ABC FINANCIAL\");",
-                          "   tests[\"Response Body has correct Originator Dfi Identifier\"] = responseBody.has(\"11\");",
-                          "   tests[\"Response Body has correct Originator Status Code\"] = responseBody.has(\"1\");",
-                          "    tests[\"Response Body has correct Originator Status active\"] = responseBody.has(\"true\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n      \"immediateOriginBankAssignedId\": \"710602711\",\n      \"immediateOriginName\": \"ABC FINANCIAL\",\n      \"originatorDfiIdentifier\": \"11\",\n      \"originatorStatusCode\":\"1\",\n       \"processor\": {\n          \"id\":\"{{processorId}}\"\n        }\n  }"
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors/nacha-info/originators",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors",
-                        "nacha-info",
-                        "originators"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
                   "name": "CreateComapny",
                   "event": [
                     {
@@ -8005,7 +8360,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorId}}\"]\n }\n}\n\n"
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                     },
                     "url": {
                       "raw": "{{URL}}/merchant",
@@ -8191,7 +8546,7 @@
                           "{",
                           "   var jsonData = JSON.parse(responseBody);",
                           "",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorIDQA\")+\"\\\"\");",
+                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processor_id\")+\"\\\"\");",
                           "",
                           "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
                           "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
@@ -8230,13 +8585,13 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{URL}}/processors/{{processorIDQA}}",
+                      "raw": "{{URL}}/processors/{{processor_id}}",
                       "host": [
                         "{{URL}}"
                       ],
                       "path": [
                         "processors",
-                        "{{processorIDQA}}"
+                        "{{processor_id}}"
                       ]
                     }
                   },
@@ -8554,7 +8909,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorIDQA}}\"]\n }\n}\n\n"
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                     },
                     "url": {
                       "raw": "{{URL}}/merchant",
@@ -9120,6 +9475,173 @@
                 }
               ],
               "_postman_isSubFolder": true
+            },
+            {
+              "name": "Rule Duplicate Name_BUG",
+              "item": [
+                {
+                  "name": "Create Rule1",
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "129d5a26-7c16-42bb-b01e-8f60cc769a56",
+                        "exec": [
+                          "function stringGen(len) {",
+                          "var text = \"\";",
+                          "",
+                          "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";",
+                          "",
+                          "for (var i = 0; i < len; i++)",
+                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
+                          "",
+                          "return text;",
+                          "}",
+                          "var rule= stringGen(10)",
+                          "postman.setEnvironmentVariable(\"rulefirst\", rule);"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "9275a914-6e98-47c0-90cd-24bf35b54e3a",
+                        "exec": [
+                          "",
+                          "if (responseCode.code != 201)",
+                          "{",
+                          "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "",
+                          "else if (responseCode.code === 201)",
+                          "{",
+                          "   var jsonData = JSON.parse(responseBody);",
+                          "",
+                          "  ",
+                          "",
+                          " tests[\"Response Body has Correct rule name\"] = responseBody.has(\"\\\"name\\\":\");",
+                          "  tests[\"Response Body has correct Rule Status active\"] = responseBody.has(\"true\");",
+                          "   ",
+                          "}",
+                          "",
+                          "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                          "",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "name": "Content-Type",
+                        "type": "text",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "type": "text",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"name\" : \"{{rulefirst}}\"\r\n}"
+                    },
+                    "url": {
+                      "raw": "{{URL}}/rule",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "rule"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Create Rule2",
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "129d5a26-7c16-42bb-b01e-8f60cc769a56",
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "9275a914-6e98-47c0-90cd-24bf35b54e3a",
+                        "exec": [
+                          "",
+                          "if (responseCode.code != 201)",
+                          "{",
+                          "   tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+                          "   tests[\"[INFO] Response Body: \" + responseBody] = true;",
+                          "}",
+                          "",
+                          "else if (responseCode.code === 201)",
+                          "{",
+                          "   var jsonData = JSON.parse(responseBody);",
+                          "  ",
+                          "   ",
+                          "",
+                          " tests[\"Response Body has Correct rule name\"] = responseBody.has(\"\\\"name\\\":\");",
+                          "  tests[\"Response Body has correct Rule Status active\"] = responseBody.has(\"true\");",
+                          "   ",
+                          "}",
+                          "",
+                          "tests[\"Response code should be 201\"] = responseCode.code === 201;",
+                          "",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "name": "Content-Type",
+                        "type": "text",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "type": "text",
+                        "value": "Bearer {{access_token_super_user}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"name\" : \"{{rulefirst}}\"\r\n}"
+                    },
+                    "url": {
+                      "raw": "{{URL}}/rule",
+                      "host": [
+                        "{{URL}}"
+                      ],
+                      "path": [
+                        "rule"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_isSubFolder": true
             }
           ],
           "_postman_isSubFolder": true
@@ -9127,687 +9649,6 @@
         {
           "name": "Update and Get Scenarios ",
           "item": [
-            {
-              "name": "Processor",
-              "item": [
-                {
-                  "name": "CreateProcessor",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "0ee46a4e-c41f-4d80-b7a9-fd17bb6cb48a",
-                        "exec": [
-                          "",
-                          "if ( responseCode.code!=201)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 201)",
-                          "{",
-                          "   var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"processorId\", jsonData.id);",
-                          "postman.setEnvironmentVariable(\"processorForId\", jsonData.processorFormatDetail.id);",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct processor format id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorForId\")+\"\\\"\");",
-                          "",
-                          " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"name\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                          "  tests[\"Response Body has Correct country\"] = responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"countryName\")+\"\\\"\");",
-                          "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
-                          "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
-                          "   tests[\"Response Body has correct File Format\"] = responseBody.has(\"nacha\");",
-                          "   tests[\"Response Body has correct File Extention\"] = responseBody.has(\"ach\");",
-                          "   tests[\"Response Body has correct batch count\"] = responseBody.has(\"5\");",
-                          "   tests[\"Response Body has correct transaction count\"] = responseBody.has(\"20\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                          "",
-                          "",
-                          "",
-                          "",
-                          "",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    },
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "id": "3c089b6e-d0e5-4758-86c8-763cacb44b8c",
-                        "exec": [
-                          "function stringGen(len) {",
-                          "var text = \"\";",
-                          "",
-                          "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                          "",
-                          "for (var i = 0; i < len; i++)",
-                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
-                          "",
-                          "return text;",
-                          "}",
-                          "var countryName= stringGen(3)",
-                          "postman.setEnvironmentVariable(\"countryName\", countryName);",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"name\" : \"{{randName}}\",\r\n  \"paymentMethod\" : \"EFT\",\r\n  \"country\" : \"{{countryName}}\",\r\n  \"processorFormatDetail\" : {\r\n    \"fileType\" : \"NACHA\",\r\n    \"fileFormat\" : \"nacha\",\r\n    \"batchCount\" : 5,\r\n    \"fileExtention\" : \"ach\",\r\n    \"transactionCount\" : 20\r\n  }\r\n}"
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Update Processor",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "0ee46a4e-c41f-4d80-b7a9-fd17bb6cb48a",
-                        "exec": [
-                          "",
-                          "if ( responseCode.code!=200)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 200)",
-                          "{",
-                          "   var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"processorId\", jsonData.id);",
-                          "postman.setEnvironmentVariable(\"processorForId\", jsonData.processorFormatDetail.id);",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct processor format id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorForId\")+\"\\\"\");",
-                          "",
-                          "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
-                          "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
-                          "   tests[\"Response Body has correct File Format\"] = responseBody.has(\"nacha\");",
-                          "   tests[\"Response Body has correct File Extention\"] = responseBody.has(\"ach\");",
-                          "   tests[\"Response Body has correct batch count\"] = responseBody.has(\"5\");",
-                          "   tests[\"Response Body has correct transaction count\"] = responseBody.has(\"20\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                          "",
-                          "",
-                          "",
-                          "",
-                          "",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    },
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "id": "3c089b6e-d0e5-4758-86c8-763cacb44b8c",
-                        "exec": [
-                          "function stringGen(len) {",
-                          "var text = \"\";",
-                          "",
-                          "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                          "",
-                          "for (var i = 0; i < len; i++)",
-                          " text += charset.charAt(Math.floor(Math.random() * charset.length));",
-                          "",
-                          "return text;",
-                          "}",
-                          "var countryName= stringGen(3)",
-                          "postman.setEnvironmentVariable(\"countryName\", countryName);",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "PUT",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"name\" : \"Regions Bank\"\r\n  \r\n}"
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processor/{{processorId}}",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processor",
-                        "{{processorId}}"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "GetProcessorById",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "f7cb8e5c-5800-4fd4-a381-7b77752e167b",
-                        "exec": [
-                          "",
-                          "if ( responseCode.code!=200)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 200)",
-                          "{",
-                          "   var jsonData = JSON.parse(responseBody);",
-                          "",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct processor format id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorForId\")+\"\\\"\");",
-                          "   tests[\"Response Body has correct payment method\"] = responseBody.has(\"EFT\");",
-                          "   tests[\"Response Body has correct File Type\"] = responseBody.has(\"NACHA\");",
-                          "   tests[\"Response Body has correct File Format\"] = responseBody.has(\"nacha\");",
-                          "   tests[\"Response Body has correct File Extention\"] = responseBody.has(\"ach\");",
-                          "   tests[\"Response Body has correct batch count\"] = responseBody.has(\"5\");",
-                          "   tests[\"Response Body has correct transaction count\"] = responseBody.has(\"20\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                          "",
-                          "",
-                          "",
-                          "",
-                          "",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "GET",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": ""
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors/{{processorId}}",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors",
-                        "{{processorId}}"
-                      ]
-                    }
-                  },
-                  "response": []
-                }
-              ],
-              "_postman_isSubFolder": true
-            },
-            {
-              "name": "Originator",
-              "item": [
-                {
-                  "name": "Create_Originator",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "36f8e22c-f0f3-421e-95f9-945ca7662a0f",
-                        "exec": [
-                          "if ( responseCode.code!=201)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 201)",
-                          "{",
-                          "",
-                          "var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"originator_Id\", jsonData.id);",
-                          "",
-                          "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"originator_Id\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                          "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"710602711\");",
-                          "   tests[\"Response Body has correct Immediate Origin Name\"] = responseBody.has(\"ABC FINANCIAL\");",
-                          "   tests[\"Response Body has correct Originator Dfi Identifier\"] = responseBody.has(\"11\");",
-                          "   tests[\"Response Body has correct Originator Status Code\"] = responseBody.has(\"1\");",
-                          "    tests[\"Response Body has correct Originator Status active\"] = responseBody.has(\"true\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 201\"] = responseCode.code === 201;"
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n      \"immediateOriginBankAssignedId\": \"710602711\",\n      \"immediateOriginName\": \"ABC FINANCIAL\",\n      \"originatorDfiIdentifier\": \"11\",\n      \"originatorStatusCode\":\"1\",\n       \"processor\": {\n          \"id\":\"{{processorId}}\"\n        }\n  }"
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors/nacha-info/originators/",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors",
-                        "nacha-info",
-                        "originators",
-                        ""
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Update_Originator",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "36f8e22c-f0f3-421e-95f9-945ca7662a0f",
-                        "exec": [
-                          "if ( responseCode.code!=200)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 200)",
-                          "{",
-                          "",
-                          "var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"originator_Id\", jsonData.id);",
-                          "",
-                          "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"originator_Id\")+\"\\\"\");",
-                          "",
-                          "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"1710602737\");",
-                          "   tests[\"Response Body has correct Immediate Origin Name\"] = responseBody.has(\"ABC FINANCIAL\");",
-                          "   tests[\"Response Body has correct Originator Dfi Identifier\"] = responseBody.has(\"06200019\");",
-                          "   tests[\"Response Body has correct Originator Status Code\"] = responseBody.has(\"1\");",
-                          "    tests[\"Response Body has correct Originator Status active\"] = responseBody.has(\"true\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "PUT",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"id\" : \"2369debc-8372-40e9-8bcd-61348f4cb9ab\",\r\n  \"immediateOriginBankAssignedId\" : \"1710602737\",\r\n  \"immediateOriginName\" : \"ABC FINANCIAL SVCSXXXXX\",\r\n  \"originatorDfiIdentifier\" : \"06200019\",\r\n  \"originatorStatusCode\" : \"2\",\r\n  \"processor\" : {\r\n    \"id\" : \"ef86425e-fa86-473b-9ad3-2d3fa46db3e9\"\r\n  }\r\n}"
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors/nacha-info/originators/{{originator_Id}}",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors",
-                        "nacha-info",
-                        "originators",
-                        "{{originator_Id}}"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "GetOriginatorById",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "ffde4c0c-5a82-4ced-baa4-0027842308ed",
-                        "exec": [
-                          "if ( responseCode.code!=200)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 200)",
-                          "{",
-                          "",
-                          "var jsonData = JSON.parse(responseBody);",
-                          "",
-                          "",
-                          "tests[\"Response Body has Correct originator Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"originator_Id\")+\"\\\"\");",
-                          "   tests[\"Response Body has correct Immediate Origin Bank AssignedId\"] = responseBody.has(\"1710602737\");",
-                          "   tests[\"Response Body has correct Immediate Origin Name\"] = responseBody.has(\"ABC FINANCIAL\");",
-                          "   tests[\"Response Body has correct Originator Dfi Identifier\"] = responseBody.has(\"06200019\");",
-                          "   tests[\"Response Body has correct Originator Status Code\"] = responseBody.has(\"1\");",
-                          "   tests[\"Response Body has correct Originator Status active\"] = responseBody.has(\"true\");",
-                          "   ",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 200\"] = responseCode.code === 200;"
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "GET",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": ""
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors/nacha-info/originators/{{originator_Id}}",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors",
-                        "nacha-info",
-                        "originators",
-                        "{{originator_Id}}"
-                      ]
-                    }
-                  },
-                  "response": []
-                }
-              ],
-              "_postman_isSubFolder": true
-            },
-            {
-              "name": "Destination",
-              "item": [
-                {
-                  "name": "Create_Destination",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "61c625f2-3187-4fb5-ae7e-003310103895",
-                        "exec": [
-                          "if ( responseCode.code!=201)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 201)",
-                          "{",
-                          "",
-                          "var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"destination_Id\", jsonData.id);",
-                          " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destination_Id\")+\"\\\"\");",
-                          " tests[\"Response Body has Correct processor id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"processorId\")+\"\\\"\");",
-                          "",
-                          " tests[\"Response Body has Correct name\"] = responseBody.has(\"\\\"destinationBankName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"randName\")+\"\\\"\");",
-                          "   tests[\"Response Body has correct File Id modifier\"] = responseBody.has(\"R\");",
-                          "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
-                          "   tests[\"Response Body has correct Blocking Factor\"] = responseBody.has(\"10\");",
-                          "   tests[\"Response Body has correct Priority Code\"] = responseBody.has(\"01\");",
-                          "   tests[\"Response Body has correct Immediate Destination\"] = responseBody.has(\"620000199\");",
-                          "   tests[\"Response Body has correct Reference Code\"] = responseBody.has(\"XXXXXXXX\");",
-                          "   tests[\"Response Body has correct Destination Status active\"] = responseBody.has(\"true\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                          "",
-                          "",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"fileIdModifier\" : \"R\",\r\n  \"formatCode\" : \"1\",\r\n  \"blockingFactor\" : \"10\",\r\n  \"priorityCode\" : \"01\",\r\n  \"immediateDestination\" : \"620000199\",\r\n  \"destinationBankName\" : \"{{randName}}\",\r\n  \"referenceCode\" : \"XXXXXXXX\",\r\n  \"processor\" : {\r\n    \"id\" : \"{{processorId}}\"\r\n  }\r\n}"
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors/nacha-info/destinations",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors",
-                        "nacha-info",
-                        "destinations"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Update_Destination",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "5048b069-0385-460d-9dc3-e7f4239c6335",
-                        "exec": [
-                          "if ( responseCode.code!=200)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 200)",
-                          "{",
-                          "",
-                          "var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"destination_IdNew\", jsonData.id);",
-                          " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destination_IdNew\")+\"\\\"\");",
-                          "",
-                          "",
-                          "     tests[\"Response Body has correct Payment Method\"] = responseBody.has(\"EFT\");",
-                          "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
-                          "   tests[\"Response Body has correct File Id modifier\"] = responseBody.has(\"R\");",
-                          "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
-                          "   tests[\"Response Body has correct Blocking Factor\"] = responseBody.has(\"10\");",
-                          "   tests[\"Response Body has correct Priority Code\"] = responseBody.has(\"01\");",
-                          "   tests[\"Response Body has correct Immediate Destination\"] = responseBody.has(\"620000199\");",
-                          "   tests[\"Response Body has correct Reference Code\"] = responseBody.has(\"XXXXXXXX\");",
-                          "   tests[\"Response Body has correct Destination Status active\"] = responseBody.has(\"true\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                          "",
-                          "",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "PUT",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"fileIdModifier\" : \"R\",\r\n  \"formatCode\" : \"1\",\r\n  \"blockingFactor\" : \"10\",\r\n  \"priorityCode\" : \"01\",\r\n  \"immediateDestination\" : \"620000199\",\r\n  \"destinationBankName\" : \"REGIONS BANK\",\r\n  \"referenceCode\" : \"XXXXXXXX\",\r\n  \"processor\" : {\r\n    \"id\" : \"{{processorId}}\"\r\n  }\r\n}"
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors/nacha-info/destinations/{{destination_Id}}",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors",
-                        "nacha-info",
-                        "destinations",
-                        "{{destination_Id}}"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "GetDestinationById",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "181fc03f-966c-4340-bcb4-887aa0c3e50f",
-                        "exec": [
-                          "if ( responseCode.code!=200)",
-                          "{",
-                          "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                          "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                          "}",
-                          "else if (responseCode.code === 200)",
-                          "{",
-                          "",
-                          "var jsonData = JSON.parse(responseBody);",
-                          " tests[\"Response Body has Correct destination id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"destination_Id\")+\"\\\"\");",
-                          "",
-                          "",
-                          "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
-                          "   tests[\"Response Body has correct File Id modifier\"] = responseBody.has(\"R\");",
-                          "   tests[\"Response Body has correct Format Code\"] = responseBody.has(\"1\");",
-                          "   tests[\"Response Body has correct Blocking Factor\"] = responseBody.has(\"10\");",
-                          "   tests[\"Response Body has correct Priority Code\"] = responseBody.has(\"01\");",
-                          "   tests[\"Response Body has correct Immediate Destination\"] = responseBody.has(\"620000199\");",
-                          "   tests[\"Response Body has correct Reference Code\"] = responseBody.has(\"XXXXXXXX\");",
-                          "   tests[\"Response Body has correct Destination Status active\"] = responseBody.has(\"true\");",
-                          "   ",
-                          "}",
-                          "tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                          "",
-                          "",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "GET",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer {{access_token_super_user}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": ""
-                    },
-                    "url": {
-                      "raw": "{{URL}}/processors/nacha-info/destinations/{{destination_Id}}",
-                      "host": [
-                        "{{URL}}"
-                      ],
-                      "path": [
-                        "processors",
-                        "nacha-info",
-                        "destinations",
-                        "{{destination_Id}}"
-                      ]
-                    }
-                  },
-                  "response": []
-                }
-              ],
-              "_postman_isSubFolder": true
-            },
             {
               "name": "Merchant",
               "item": [
@@ -9898,7 +9739,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorId}}\"]\n }\n}\n\n"
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                     },
                     "url": {
                       "raw": "{{URL}}/merchant",
@@ -9979,7 +9820,7 @@
                   "response": []
                 },
                 {
-                  "name": "UpdateMerchant",
+                  "name": "UpdateMerchant BUG",
                   "event": [
                     {
                       "listen": "prerequest",
@@ -10016,16 +9857,26 @@
                           "{",
                           "",
                           "var jsonData = JSON.parse(responseBody);",
-                          "postman.setEnvironmentVariable(\"merchant_IDNew\", jsonData.id);",
+                          "postman.setEnvironmentVariable(\"activeF\", jsonData.merchantDetails.active);",
+                          "var activeF=postman.getEnvironmentVariable(\"activeF\");",
                           "",
-                          "tests[\"Response Body has Correct merchant Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_IDNew\")+\"\\\"\");",
+                          "tests[\"Response Body has Correct merchant Id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_ID\")+\"\\\"\");",
                           " ",
                           "   tests[\"Response Body has Correct company merchant name\"] = responseBody.has(\"\\\"companyName\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"merchant_company\")+\"\\\"\");",
                           "     tests[\"Response Body has Correct company id\"] = responseBody.has(\"\\\"companyId\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"company_ID\")+\"\\\"\");",
-                          "",
                           " ",
-                          "   ",
-                          "   ",
+                          "    if (activeF !== true)",
+                          "    {",
+                          "       tests[\"Response Body has Wrong Status\"] = responseBody.has",
+                          "       (activeF!==true);",
+                          "    }",
+                          "    ",
+                          "    else if (activeF === true)",
+                          "    {",
+                          "        ",
+                          "       tests[\"Response Body has Correct Status\"] = responseBody.has(activeF);",
+                          "    ",
+                          "    }",
                           "}",
                           "tests[\"Response code should be 200\"] = responseCode.code === 200;"
                         ],
@@ -10047,7 +9898,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processorId}}\"]\n }\n}\n\n"
+                      "raw": "{\n \"companyId\": \"{{company_ID}}\",\n \"name\": \"{{merchant}}\",\n \"merchantDetails\": {\n   \"companyName\": \"{{merchant_company}}\",\n   \"processors\": [\"{{processor_id}}\"]\n }\n}\n\n"
                     },
                     "url": {
                       "raw": "{{URL}}/merchants/{{merchant_ID}}",
