@@ -256,7 +256,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"Admin/Owner\",\r\n  \"description\" : \"Owner\",\r\n  \"permissions\" : [ {\r\n    \"key\" : \"role:write\"\r\n  }, {\r\n    \"key\" : \"role:read\"\r\n  }, {\r\n    \"key\" : \"user:write\"\r\n  }, {\r\n    \"key\" : \"user:read\"\r\n  }, {\r\n    \"key\" : \"user:protected\"\r\n  }, {\r\n    \"key\" : \"catalog-item:read\"\r\n  }, {\r\n    \"key\" : \"catalog-item:write\"\r\n  }, {\r\n    \"key\" : \"subscription-plan:read\"\r\n  }, {\r\n    \"key\" : \"subscription-plan:write\"\r\n  }, {\r\n    \"key\" : \"application:write\"\r\n  }, {\r\n    \"key\" : \"application:read\"\r\n  }, {\r\n    \"key\" : \"developer:write\"\r\n  }, {\r\n    \"key\" : \"developer:read\"\r\n  }, {\r\n    \"key\" : \"organization:read\"\r\n  }, {\r\n    \"key\" : \"organization:write\"\r\n  }, {\r\n    \"key\" : \"employee:read\"\r\n  }, {\r\n    \"key\" : \"employee:write\"\r\n  }, {\r\n    \"key\" : \"location:read\"\r\n  }, {\r\n    \"key\" : \"location:write\"\r\n  }, {\r\n    \"key\" : \"member:read\"\r\n  }, {\r\n    \"key\" : \"member:write\"\r\n  }, {\r\n    \"key\" : \"checkin:read\"\r\n  }, {\r\n    \"key\" : \"checkin:write\"\r\n  }, {\r\n    \"key\" : \"webhook:read\"\r\n  }, {\r\n    \"key\" : \"webhook:write\"\r\n  }, {\r\n    \"key\" : \"email-template:write\"\r\n  }, {\r\n    \"key\" : \"account:write\"\r\n  }, {\r\n    \"key\" : \"subscription:write\"\r\n  }, {\r\n    \"key\" : \"subscription:read\"\r\n  }, {\r\n    \"key\" : \"role:protected\"\r\n  }, {\r\n    \"key\" : \"catalog-item:protected\"\r\n  }, {\r\n    \"key\" : \"subscription-plan:protected\"\r\n  }, {\r\n    \"key\" : \"application:protected\"\r\n  }, {\r\n    \"key\" : \"developer:protected\"\r\n  }, {\r\n    \"key\" : \"employee:protected\"\r\n  }, {\r\n    \"key\" : \"location:protected\"\r\n  }, {\r\n    \"key\" : \"member:protected\"\r\n  }, {\r\n    \"key\" : \"checkin:protected\"\r\n  }, {\r\n    \"key\" : \"webhook:protected\"\r\n  }, {\r\n    \"key\" : \"organization-search:read\"\r\n  } ]\r\n}"
+              "raw": "{\r\n  \"name\" : \"Admin/Owner\",\r\n  \"description\" : \"Owner\",\r\n  \"permissions\" : [ {\r\n    \"key\" : \"role:write\"\r\n  }, {\r\n    \"key\" : \"role:read\"\r\n  }, {\r\n    \"key\" : \"user:write\"\r\n  }, {\r\n    \"key\" : \"user:read\"\r\n  }, {\r\n    \"key\" : \"user:protected\"\r\n  }, {\r\n    \"key\" : \"catalog-item:read\"\r\n  }, {\r\n    \"key\" : \"catalog-item:write\"\r\n  }, {\r\n    \"key\" : \"subscription-plan:read\"\r\n  }, {\r\n    \"key\" : \"subscription-plan:write\"\r\n  }, {\r\n    \"key\" : \"application:write\"\r\n  }, {\r\n    \"key\" : \"application:read\"\r\n  }, {\r\n    \"key\" : \"developer:write\"\r\n  }, {\r\n    \"key\" : \"developer:read\"\r\n  }, {\r\n    \"key\" : \"organization:read\"\r\n  }, {\r\n    \"key\" : \"organization:write\"\r\n  }, {\r\n    \"key\" : \"employee:read\"\r\n  }, {\r\n    \"key\" : \"employee:write\"\r\n  }, {\r\n    \"key\" : \"location:read\"\r\n  }, {\r\n    \"key\" : \"location:write\"\r\n  }, {\r\n    \"key\" : \"member:read\"\r\n  }, {\r\n    \"key\" : \"member:write\"\r\n  }, {\r\n    \"key\" : \"checkin:read\"\r\n  }, {\r\n    \"key\" : \"checkin:write\"\r\n  },  {\r\n    \"key\" : \"email-template:write\"\r\n  }, {\r\n    \"key\" : \"account:write\"\r\n  }, {\r\n    \"key\" : \"subscription:write\"\r\n  }, {\r\n    \"key\" : \"subscription:read\"\r\n  }, {\r\n    \"key\" : \"role:protected\"\r\n  }, {\r\n    \"key\" : \"catalog-item:protected\"\r\n  }, {\r\n    \"key\" : \"subscription-plan:protected\"\r\n  }, {\r\n    \"key\" : \"application:protected\"\r\n  }, {\r\n    \"key\" : \"developer:protected\"\r\n  }, {\r\n    \"key\" : \"employee:protected\"\r\n  }, {\r\n    \"key\" : \"location:protected\"\r\n  }, {\r\n    \"key\" : \"member:protected\"\r\n  }, {\r\n    \"key\" : \"checkin:protected\"\r\n  },  {\r\n    \"key\" : \"organization-search:read\"\r\n  } ]\r\n}"
             },
             "url": {
               "raw": "{{URL}}/role",
@@ -5323,7 +5323,7 @@
                   "  dd = '0'+dd;",
                   "}",
                   "",
-                  "mm=mm+9;",
+                  "mm=mm+7;",
                   "if(mm>12)",
                   "{",
                   "   mm=mm-12;",
@@ -5619,15 +5619,15 @@
                 "id": "7a5c849f-1892-432f-9b72-a07da50776b0",
                 "exec": [
                   "var Ptoday = new Date();",
-                  "var dd = Ptoday.getDate()-1;",
+                  "var dd = Ptoday.getDate();",
                   "var mm = Ptoday.getMonth()+1; //January is 0!",
                   "var yyyy = Ptoday.getFullYear();",
                   "",
-                  "if(dd<10) {",
+                  "if(dd<20) {",
                   "    dd = '0'+dd",
                   "} ",
                   "",
-                  "if(mm<10) {",
+                  "if(mm<8) {",
                   "    mm = '0'+mm",
                   "} ",
                   "",
@@ -5837,7 +5837,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{accountIdpayor2}}\",\n\"planVersion\": 11,\n\"start\": \"{{Ptoday}}\",\n\"invoiceDate\": \"{{Ptoday}}\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"DAILY\",\n\"duration\": \"2\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{Ptoday}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"2\", \"renewType\": \"TERM\", \"renewAmount\": 4000, \"renewInvoiceDate\" : \"{{Ptoday}}\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{accountIdpayor2}}\",\n\"planVersion\": 11,\n\"start\": \"03-31-2019\",\n\"invoiceDate\": \"03-31-2019\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"DAILY\",\n\"duration\": \"1\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{Ptoday}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"2\", \"renewType\": \"TERM\", \"renewAmount\": 4000, \"renewInvoiceDate\" : \"{{Ptoday}}\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -7566,13 +7566,13 @@
                   "{",
                   "    if (statementAmount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=8);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=9);",
                   "    }",
                   "    ",
                   "    else if (statementAmount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=8);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=9);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -7962,7 +7962,7 @@
                   "  dd = '0'+dd;",
                   "}",
                   "",
-                  "mm=mm+9;",
+                  "mm=mm+5;",
                   "if(mm>12)",
                   "{",
                   "   mm=mm-12;",
@@ -11754,7 +11754,7 @@
                   "  dd = '0'+dd;",
                   "}",
                   "",
-                  "mm=mm+9;",
+                  "mm=mm+8;",
                   "if(mm>12)",
                   "{",
                   "   mm=mm-12;",
@@ -12529,7 +12529,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{paymentMethodIdP2}}\",\n\"planVersion\": 11,\n\"start\": \"03-04-2019\",\n\"invoiceDate\": \"03-04-2019\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"WEEKLY\",\n\"duration\": \"4\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"03-04-2019\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"03-04-2019\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 400, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{paymentMethodIdP2}}\",\n\"planVersion\": 11,\n\"start\": \"03-31-2019\",\n\"invoiceDate\": \"03-31-2019\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"DAILY\",\n\"duration\": \"1\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{Ptoday}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"2\", \"renewType\": \"TERM\", \"renewAmount\": 4000, \"renewInvoiceDate\" : \"{{Ptoday}}\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -12659,13 +12659,13 @@
                   "   ",
                   " if (price != totalAmount)",
                   "    {",
-                  "       tests[\"Response Body has Wrong Settlement Amount\"] = responseBody.has(price!= totalAmount);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(price!= totalAmount);",
                   "    }",
                   "    ",
                   "    else if (price== totalAmount)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Correct Settlement Amount\"] = responseBody.has(price);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(price);",
                   "    ",
                   "    }",
                   "",
@@ -14862,7 +14862,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ \"{{memberId6}}\"  ],\r\n\"agreementNumber\" : \"{{agreementNumber}}\",\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId6}}\"],\r\n\"accountId\": \"{{paymentMethodIdP6}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{RfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{RfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n\r\n}\r\n\r\n\r\n]\r\n\r\n}"
+              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ \"{{memberId6}}\"  ],\r\n\"agreementNumber\" : \"{{agreementNumber}}\",\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId6}}\"],\r\n\"accountId\": \"{{paymentMethodIdP6}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"4\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"false\",\r\n\"openEnded\": false,\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]}]}"
             },
             "url": {
               "raw": "{{URL}}/agreement",
@@ -15389,7 +15389,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ \"{{memberId}}\",\"{{memberId7}} \",\" {{memberId8}}\",\"{{memberId9}}\",\"{{memberId10}}\" ],\r\n\"agreementNumber\" : \"{{agreementNumber}}\",\r\n\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{paymentMethodIdP}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{RfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{RfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n\r\n}\r\n\r\n\r\n]\r\n\r\n}"
+              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ \"{{memberId}}\",\"{{memberId7}} \",\" {{memberId8}}\",\"{{memberId9}}\",\"{{memberId10}}\" ],\r\n\"agreementNumber\" : \"{{agreementNumber}}\",\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{paymentMethodIdP}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"4\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"false\",\r\n\"openEnded\": false,\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]}]}"
             },
             "url": {
               "raw": "{{URL}}/agreement",
@@ -15952,13 +15952,13 @@
                   "{",
                   "    if (statementAmount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=8);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=9);",
                   "    }",
                   "    ",
                   "    else if (statementAmount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=8);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=9);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -16042,13 +16042,13 @@
                   "{",
                   "    if (totalAmount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount=8);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount=9);",
                   "    }",
                   "    ",
                   "    else if (totalAmount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount!=8);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount!=9);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -16198,13 +16198,13 @@
                   "{",
                   "    if (amount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=8);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=9);",
                   "    }",
                   "    ",
                   "    else if (amount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=8);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=9);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -16287,13 +16287,13 @@
                   "{",
                   "    if (amount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=8);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=9);",
                   "    }",
                   "    ",
                   "    else if (amount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=8);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=9);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -16803,13 +16803,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/fee/{{feeId}}",
+              "raw": "{{URL}}/fee/account/{{accountIdClient}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "fee",
-                "{{feeId}}"
+                "account",
+                "{{accountIdClient}}"
               ]
             }
           },
@@ -17653,7 +17654,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\r\n  \"account\" : {\r\n    \"name\" : \"{{randName}}\",\r\n    \"phone\" : \"8009578015\",\r\n    \"sevaluation\" : \"{{seval}}\",\r\n    \"paymentMethod\" : { \"type\":\"BANK_ACCOUNT\" }\r\n  }\r\n}"
+              "raw": "{\r\n\r\n  \"account\" : {\r\n    \"name\" : \"{{randName}}\",\r\n    \"phone\" : \"8009578015\",\r\n    \"sevaluation\" : \"{{seval}}\",\r\n    \"paymentMethod\" : { \"type\":\"BANK_ACCOUNT\" }\r\n  }\r\n}\r\n\r\n"
             },
             "url": {
               "raw": "{{URL}}/account/{{accountIdClient}}",
@@ -17858,14 +17859,14 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/account/payor/{{payorId}}",
+              "raw": "{{URL}}/account/payor/{{accountIdpayor}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "account",
                 "payor",
-                "{{payorId}}"
+                "{{accountIdpayor}}"
               ]
             }
           },
@@ -18339,11 +18340,6 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
-                  "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
-                  "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
                   "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -18545,10 +18541,9 @@
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   ",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+                  " ",
                   "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+                  "   ",
                   "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -18617,10 +18612,8 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
+                  "",
                   "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
                   "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -18727,11 +18720,8 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
                   "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
-                  "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+                  "       tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
                   "    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
@@ -18837,10 +18827,7 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
-                  "    ",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
+                  "",
                   "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "",
@@ -18904,10 +18891,7 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
                   "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
                   "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -19014,10 +18998,7 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   " ",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
                   "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
                   "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -19269,11 +19250,6 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
-                  "",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
-                  "",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
                   "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -19510,10 +19486,6 @@
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
-                  "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
                   "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -19587,10 +19559,6 @@
                   "  tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
-                  "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
                   "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                   "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                   "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -19652,7 +19620,7 @@
       ]
     },
     {
-      "name": "Subscription",
+      "name": "Subscription_Negative Scenarios",
       "item": [
         {
           "name": "Cancel Subn which is Already Expired",
@@ -19931,10 +19899,7 @@
                       "    var jsonData = JSON.parse(responseBody);",
                       " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                       "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                      "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
                       "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                      "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                      "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
                       "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                       "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                       "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -20563,10 +20528,7 @@
                       "    var jsonData = JSON.parse(responseBody);",
                       " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                       "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                      "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
                       "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                      "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                      "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
                       "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
                       "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
                       "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
@@ -22625,11 +22587,8 @@
               " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
               "   ",
               "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-              "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
-              "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-              "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-              "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
-              "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
+              "     tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
+              "       tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
               "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
               "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
               "    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
