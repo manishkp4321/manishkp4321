@@ -256,7 +256,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\" : \"Admin/Owner\",\r\n  \"description\" : \"Owner\",\r\n  \"permissions\" : [ {\r\n    \"key\" : \"role:write\"\r\n  }, {\r\n    \"key\" : \"role:read\"\r\n  }, {\r\n    \"key\" : \"user:write\"\r\n  }, {\r\n    \"key\" : \"user:read\"\r\n  }, {\r\n    \"key\" : \"user:protected\"\r\n  }, {\r\n    \"key\" : \"catalog-item:read\"\r\n  }, {\r\n    \"key\" : \"catalog-item:write\"\r\n  }, {\r\n    \"key\" : \"subscription-plan:read\"\r\n  }, {\r\n    \"key\" : \"subscription-plan:write\"\r\n  }, {\r\n    \"key\" : \"application:write\"\r\n  }, {\r\n    \"key\" : \"application:read\"\r\n  }, {\r\n    \"key\" : \"developer:write\"\r\n  }, {\r\n    \"key\" : \"developer:read\"\r\n  }, {\r\n    \"key\" : \"organization:read\"\r\n  }, {\r\n    \"key\" : \"organization:write\"\r\n  }, {\r\n    \"key\" : \"employee:read\"\r\n  }, {\r\n    \"key\" : \"employee:write\"\r\n  }, {\r\n    \"key\" : \"location:read\"\r\n  }, {\r\n    \"key\" : \"location:write\"\r\n  }, {\r\n    \"key\" : \"member:read\"\r\n  }, {\r\n    \"key\" : \"member:write\"\r\n  }, {\r\n    \"key\" : \"checkin:read\"\r\n  }, {\r\n    \"key\" : \"checkin:write\"\r\n  },  {\r\n    \"key\" : \"email-template:write\"\r\n  }, {\r\n    \"key\" : \"account:write\"\r\n  }, {\r\n    \"key\" : \"subscription:write\"\r\n  }, {\r\n    \"key\" : \"subscription:read\"\r\n  }, {\r\n    \"key\" : \"role:protected\"\r\n  }, {\r\n    \"key\" : \"catalog-item:protected\"\r\n  }, {\r\n    \"key\" : \"subscription-plan:protected\"\r\n  }, {\r\n    \"key\" : \"application:protected\"\r\n  }, {\r\n    \"key\" : \"developer:protected\"\r\n  }, {\r\n    \"key\" : \"employee:protected\"\r\n  }, {\r\n    \"key\" : \"location:protected\"\r\n  }, {\r\n    \"key\" : \"member:protected\"\r\n  }, {\r\n    \"key\" : \"checkin:protected\"\r\n  },  {\r\n    \"key\" : \"organization-search:read\"\r\n  } ]\r\n}"
+              "raw": "{\n  \"name\" : \"Admin/Owner\",\n  \"description\" : \"Owner\",\n  \"permissions\" : [ {\n    \"key\" : \"role:write\"\n  }, {\n    \"key\" : \"role:read\"\n  }, {\n    \"key\" : \"user:write\"\n  }, {\n    \"key\" : \"user:read\"\n  }, {\n    \"key\" : \"user:protected\"\n  }, {\n    \"key\" : \"catalog-item:read\"\n  }, {\n    \"key\" : \"catalog-item:write\"\n  }, {\n    \"key\" : \"application:write\"\n  }, {\n    \"key\" : \"application:read\"\n  }, {\n    \"key\" : \"developer:write\"\n  }, {\n    \"key\" : \"developer:read\"\n  }, {\n    \"key\" : \"organization:read\"\n  }, {\n    \"key\" : \"organization:write\"\n  }, {\n    \"key\" : \"employee:read\"\n  }, {\n    \"key\" : \"employee:write\"\n  }, {\n    \"key\" : \"location:read\"\n  }, {\n    \"key\" : \"location:write\"\n  }, {\n    \"key\" : \"member:read\"\n  }, {\n    \"key\" : \"member:write\"\n  },  {\n    \"key\" : \"email-template:write\"\n  }, {\n    \"key\" : \"account:write\"\n  },  {\n    \"key\" : \"role:protected\"\n  }, {\n    \"key\" : \"catalog-item:protected\"\n  }, {\n    \"key\" : \"application:protected\"\n  }, {\n    \"key\" : \"developer:protected\"\n  }, {\n    \"key\" : \"employee:protected\"\n  }, {\n    \"key\" : \"location:protected\"\n  }, {\n    \"key\" : \"member:protected\"\n  }, {\n    \"key\" : \"organization-search:read\"\n  } ]\n}"
             },
             "url": {
               "raw": "{{URL}}/role",
@@ -5507,7 +5507,7 @@
               "script": {
                 "id": "aecbad6a-60b6-4167-a337-06fb87a21d79",
                 "exec": [
-                  "setTimeout(function(){}, [25000]);"
+                  "setTimeout(function(){}, [75000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -5619,11 +5619,11 @@
                 "id": "7a5c849f-1892-432f-9b72-a07da50776b0",
                 "exec": [
                   "var Ptoday = new Date();",
-                  "var dd = Ptoday.getDate();",
+                  "var dd = Ptoday.getDate()-5;",
                   "var mm = Ptoday.getMonth()+1; //January is 0!",
                   "var yyyy = Ptoday.getFullYear();",
                   "",
-                  "if(dd<20) {",
+                  "if(dd<10) {",
                   "    dd = '0'+dd",
                   "} ",
                   "",
@@ -5837,7 +5837,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{accountIdpayor2}}\",\n\"planVersion\": 11,\n\"start\": \"03-31-2019\",\n\"invoiceDate\": \"03-31-2019\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"DAILY\",\n\"duration\": \"1\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{Ptoday}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"2\", \"renewType\": \"TERM\", \"renewAmount\": 4000, \"renewInvoiceDate\" : \"{{Ptoday}}\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{accountIdpayor2}}\",\n\"planVersion\": 11,\n\"start\": \"03-31-2019\",\n\"invoiceDate\": \"03-31-2019\",\n\"expirationDate\": \"03-31-2019\",\n\"frequency\": \"DAILY\",\n\"duration\": \"1\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{Ptoday}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"1\", \"renewType\": \"TERM\", \"renewAmount\": 4000, \"renewInvoiceDate\" : \"{{Ptoday}}\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -7566,13 +7566,13 @@
                   "{",
                   "    if (statementAmount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=9);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=10);",
                   "    }",
                   "    ",
                   "    else if (statementAmount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=9);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=10);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -8613,78 +8613,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -8735,7 +8663,7 @@
               "script": {
                 "id": "fe5d6cfa-c4f3-44af-b650-f27966168052",
                 "exec": [
-                  "setTimeout(function(){}, [5000]);"
+                  "setTimeout(function(){}, [250000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -8827,7 +8755,7 @@
               "script": {
                 "id": "9f98873f-d2ed-4bfb-8359-2afeab995680",
                 "exec": [
-                  "setTimeout(function(){}, [5000]);"
+                  "setTimeout(function(){}, [15000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -9232,78 +9160,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -9354,7 +9210,7 @@
               "script": {
                 "id": "4a4f69b4-e166-4383-ba1e-e6563404ba81",
                 "exec": [
-                  "setTimeout(function(){}, [15000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -9893,78 +9749,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 404)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 404)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 404\"] = responseCode.code === 404;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -10013,7 +9797,7 @@
               "script": {
                 "id": "5efd31f6-9d3f-4e79-8556-3da243adb6dd",
                 "exec": [
-                  "setTimeout(function(){}, [15000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10409,78 +10193,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -10531,7 +10243,7 @@
               "script": {
                 "id": "00750e7e-9d6c-4d54-b979-e78bd9ab46f8",
                 "exec": [
-                  "setTimeout(function(){}, [15000]);"
+                  "setTimeout(function(){}, [250000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -10928,78 +10640,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -11007,7 +10647,7 @@
               "script": {
                 "id": "0b8e4b2a-61f9-4e96-82a5-ea344f8efade",
                 "exec": [
-                  "setTimeout(function(){}, [5000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -11449,78 +11089,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 404)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 404)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 404\"] = responseCode.code === 404;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -11569,7 +11137,7 @@
               "script": {
                 "id": "9eddcbd8-8cf3-4e4f-a71f-a76b55d005c6",
                 "exec": [
-                  "setTimeout(function(){}, [15000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -12067,78 +11635,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -12189,7 +11685,7 @@
               "script": {
                 "id": "504e197b-ecbb-4695-83e9-476cba4fe1ac",
                 "exec": [
-                  "setTimeout(function(){}, [15000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -12529,7 +12025,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{paymentMethodIdP2}}\",\n\"planVersion\": 11,\n\"start\": \"03-31-2019\",\n\"invoiceDate\": \"03-31-2019\",\n\"expirationDate\": \"{{BFfutureDate}}\",\n\"frequency\": \"DAILY\",\n\"duration\": \"1\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{Ptoday}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"2\", \"renewType\": \"TERM\", \"renewAmount\": 4000, \"renewInvoiceDate\" : \"{{Ptoday}}\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
+              "raw": "{\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\n\"locationId\": \"{{locationId}}\",\n\"memberIdList\": [\"{{memberId2}}\"],\n\"accountId\": \"{{paymentMethodIdP2}}\",\n\"planVersion\": 11,\n\"start\": \"03-31-2019\",\n\"invoiceDate\": \"03-31-2019\",\n\"expirationDate\": \"03-31-2019\",\n\"frequency\": \"DAILY\",\n\"duration\": \"1\",\n\"name\": \"ankit\",\n\"autoRenew\": \"true\",\n\"renewalOptions\":\n\n{ \"renewDate\": \"{{Ptoday}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"1\", \"renewType\": \"TERM\", \"renewAmount\": 4000, \"renewInvoiceDate\" : \"{{Ptoday}}\" , \"renewExpireDate\": \"01-01-2020\"}\n,\n\"openEnded\": false,\n\"renewType\": \"TERM\",\n\"items\": [\n\n\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 4000, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\n]\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/",
@@ -12721,78 +12217,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -12800,7 +12224,7 @@
               "script": {
                 "id": "0b8e4b2a-61f9-4e96-82a5-ea344f8efade",
                 "exec": [
-                  "setTimeout(function(){}, [5000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -13374,78 +12798,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 404)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 404)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 404\"] = responseCode.code === 404;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -13494,7 +12846,7 @@
               "script": {
                 "id": "1e3c253a-36e0-4c87-9c40-01b697190e4f",
                 "exec": [
-                  "setTimeout(function(){}, [15000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -14024,78 +13376,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -14144,7 +13424,7 @@
               "script": {
                 "id": "31fb22b5-9cda-4898-8b3e-89ced59cc682",
                 "exec": [
-                  "setTimeout(function(){}, [25000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -14526,78 +13806,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -14646,7 +13854,7 @@
               "script": {
                 "id": "dcf612ab-1d49-47aa-9740-55ff2f61190b",
                 "exec": [
-                  "//setTimeout(function(){}, [25000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -15054,78 +14262,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -15174,7 +14310,7 @@
               "script": {
                 "id": "1dc96a55-6172-48d3-9e66-258d30788de9",
                 "exec": [
-                  "setTimeout(function(){}, [25000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -15581,78 +14717,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -15660,7 +14724,7 @@
               "script": {
                 "id": "c732bddd-62c7-4673-b011-7ef515323186",
                 "exec": [
-                  "setTimeout(function(){}, [25000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -15952,13 +15016,13 @@
                   "{",
                   "    if (statementAmount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=9);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=10);",
                   "    }",
                   "    ",
                   "    else if (statementAmount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=9);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=10);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -16042,13 +15106,13 @@
                   "{",
                   "    if (totalAmount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount=9);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount=10);",
                   "    }",
                   "    ",
                   "    else if (totalAmount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount!=9);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount!=10);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -16104,78 +15168,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -16198,13 +15190,13 @@
                   "{",
                   "    if (amount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=9);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=10);",
                   "    }",
                   "    ",
                   "    else if (amount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=9);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=10);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -16223,7 +15215,7 @@
               "script": {
                 "id": "8e64f95e-183c-43eb-8024-fbefc5646513",
                 "exec": [
-                  "setTimeout(function(){}, [25000]);"
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
@@ -16287,13 +15279,13 @@
                   "{",
                   "    if (amount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=9);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=10);",
                   "    }",
                   "    ",
                   "    else if (amount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=9);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=10);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -17146,78 +16138,6 @@
           "response": []
         },
         {
-          "name": "Create payment Status_Statement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a6fae571-bcf6-4939-9d48-8baf53615a6a",
-                "exec": [
-                  "var jsonData = JSON.parse(responseBody);",
-                  "",
-                  "if (responseCode.code != 201)",
-                  "{",
-                  "    ",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 201)",
-                  "{",
-                  "   ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "   ",
-                  " ",
-                  "    ",
-                  "}",
-                  "  tests[\"Response code should be 201\"] = responseCode.code === 201;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "40c1f698-5474-4834-861f-088e5eb3a134",
-                "exec": [
-                  "//setTimeout(function(){}, [25000]);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "type": "text",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{companyId}}\",\r\n  \"eventTime\" : \"03-08-2019 09:00:01\",\r\n  \"eventId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n  \"payloadList\" : [ {\r\n    \"status\" : \"SUCCESS\",\r\n    \"message\" : \"payment has been successed\",\r\n    \"messageCode\" : \"200\",\r\n    \"transactionType\" : \"DEBIT\",\r\n    \"transactionId\" : \"f0745bdf-2c9d-4f01-a9d5-e4bb25d26524\",\r\n    \"referencedId\" : \"{{statementId}}\",\r\n    \"requested\" : \"03-08-2019 09:00:01\",\r\n    \"source\" : \"BILLING\",\r\n    \"merchantId\" : \"96d18cd8-eb6d-4393-a04f-628d15795657\"\r\n  } ]\r\n}"
-            },
-            "url": {
-              "raw": "{{URL}}/payment-status",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "payment-status"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Evaluate Settlement",
           "event": [
             {
@@ -17246,6 +16166,16 @@
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "a3ffbcea-e4a0-4378-9971-5f7fb41f60b6",
+                "exec": [
+                  "setTimeout(function(){}, [200000]);"
                 ],
                 "type": "text/javascript"
               }
