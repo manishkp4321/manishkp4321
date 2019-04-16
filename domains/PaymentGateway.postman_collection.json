@@ -10949,7 +10949,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"companyId\" : \"{{company_ID}}\",\r\n \"type\" : \"VANTIV\",\r\n   \"mid\":\"00000002\",\r\n   \"zipCode\":\"25145-2548\",\r\n   \"description\":\"abcd\",\r\n   \"preAuthorizationKey\":\"hjjj\",\r\n   \"phoneNumber\":\"545-425-4887\" ,\r\n   \"chargedPartially\": false\r\n}\r\n"
+              "raw": "{\r\n  \"companyId\" : \"{{company_ID}}\",\r\n \"type\" : \"VANTIV\",\r\n   \"mid\":\"{{Mid_V}}\",\r\n   \"zipCode\":\"25145-2548\",\r\n   \"description\":\"abcd\",\r\n   \"preAuthorizationKey\":\"hjjj\",\r\n   \"phoneNumber\":\"545-425-4887\" ,\r\n   \"chargedPartially\": false\r\n}\r\n"
             },
             "url": {
               "raw": "{{URL}}/payment-method",
@@ -11040,7 +11040,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "\r\n{\r\n  \"type\" : \"VANTIV\",\r\n  \"mid\":\"00000002\",\r\n     \"zipCode\":\"25145 2547\",\r\n     \"preAuthorizationKey\":\"abjh\",\r\n \"phoneNumber\":\"545-425-8887\",\r\n  \"description\":\"mgfhfgh\"\r\n}"
+              "raw": "\r\n{\r\n  \"type\" : \"VANTIV\",\r\n  \"mid\":\"{{Mid_V}}\",\r\n     \"zipCode\":\"25145 2547\",\r\n     \"preAuthorizationKey\":\"abjh\",\r\n \"phoneNumber\":\"545-425-8887\",\r\n  \"description\":\"mgfhfgh\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/payment-method/{{paymentMethod_ID_V}}",
