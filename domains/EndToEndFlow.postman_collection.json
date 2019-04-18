@@ -964,7 +964,7 @@
           "_postman_isSubFolder": true
         },
         {
-          "name": "Create/Update Payment Method Client",
+          "name": "Create Payment Method Client",
           "item": [
             {
               "name": "Create_Payment_Method_Client",
@@ -1072,64 +1072,6 @@
                   "body": ""
                 }
               ]
-            },
-            {
-              "name": "Update_Client_Payment_Method",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "757ab54d-2c1c-44ac-b894-0be5ea9ce0a4",
-                    "exec": [
-                      "if (responseCode.code != 200)",
-                      "{",
-                      "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                      "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                      "}",
-                      "",
-                      "else if (responseCode.code === 200)",
-                      "{",
-                      "    var jsonData = JSON.parse(responseBody);",
-                      "",
-                      "    tests[\"Response Body has Payment Method ID\"] = responseBody.has(\"id\");",
-                      "    tests[\"Response Body has Payment Method type\"] = responseBody.has(\"type\");",
-                      "   ",
-                      "}",
-                      "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{    \"type\" : \"BANK_ACCOUNT\",\n     \"tokenId\":\"{{payment_method_id_client}}\"\n   }"
-                },
-                "url": {
-                  "raw": "{{URL}}/paymentMethod/{{paymentMethodIdC}}",
-                  "host": [
-                    "{{URL}}"
-                  ],
-                  "path": [
-                    "paymentMethod",
-                    "{{paymentMethodIdC}}"
-                  ]
-                }
-              },
-              "response": []
             }
           ],
           "_postman_isSubFolder": true
@@ -1581,7 +1523,7 @@
           "_postman_isSubFolder": true
         },
         {
-          "name": "Create/Update Payor Payment Method",
+          "name": "Create Payor Payment Method",
           "item": [
             {
               "name": "Create_Payment_Method_Payor",
@@ -1687,64 +1629,6 @@
                   "body": ""
                 }
               ]
-            },
-            {
-              "name": "Update_ Payor_Payment _Method",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "757ab54d-2c1c-44ac-b894-0be5ea9ce0a4",
-                    "exec": [
-                      "if (responseCode.code != 200)",
-                      "{",
-                      "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                      "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                      "}",
-                      "",
-                      "else if (responseCode.code === 200)",
-                      "{",
-                      "    var jsonData = JSON.parse(responseBody);",
-                      "tests[\"Response Body has Payor Payment Method Id\"] = responseBody.has(\"id\");",
-                      "    tests[\"Response Body has Payor Payment Method Type\"] = responseBody.has(\"type\");",
-                      "",
-                      "",
-                      "}",
-                      "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id}}\"\r\n\r\n   }"
-                },
-                "url": {
-                  "raw": "{{URL}}/paymentMethod/{{paymentMethodIdP}}",
-                  "host": [
-                    "{{URL}}"
-                  ],
-                  "path": [
-                    "paymentMethod",
-                    "{{paymentMethodIdP}}"
-                  ]
-                }
-              },
-              "response": []
             }
           ],
           "_postman_isSubFolder": true
