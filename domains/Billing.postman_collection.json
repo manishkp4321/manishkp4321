@@ -2709,7 +2709,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n \"locationId\" : \"{{locationId}}\",\n \"clientId\" : \"{{$guid}}\",\n \"account\" : {\n   \"name\" : \"{{UniqueClient}}\",\n   \"email\" : \"{{randName}}@qa4life.com\",\n   \"phone\" : \"1234567890\",\n   \"sevaluation\" : \"{{seval}}\",\n   \"billingDate\" : \"{{today}}\",\n   \"paymentMethod\" : {    \"type\" : \"BANK_ACCOUNT\",\n     \"tokenId\":\"{{payment_method_id_client}}\"\n   }\n }\n}"
+              "raw": "{\n \"locationId\" : \"{{locationId}}\",\n \"clientId\" : \"{{$guid}}\",\n \"account\" : {\n   \"name\" : \"{{UniqueClient}}\",\n   \"email\" : \"{{randName}}@qa4life.com\",\n   \"phone\" : \"1234567890\",\n   \"sevaluation\" : \"{{seval}}\",\n   \"billingDate\" : \"{{today}}\",\n   \"paymentMethod\" : {    \"type\" : \"BANK_ACCOUNT\",\n     \"tokenId\":\"{{payment_method_id_client}}\",\n     \t\"sevaluation\" : \"DAILY\",\n  \"billingDate\" : \"{{today}}\"\n   }\n }\n}"
             },
             "url": {
               "raw": "{{URL}}/account/client",
@@ -2819,7 +2819,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id}}\"\r\n\r\n   }\r\n   }\r\n}"
+              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id}}\",\r\n     \t\"sevaluation\" : \"DAILY\",\r\n  \"billingDate\" : \"{{today}}\"\r\n\r\n   }\r\n   }\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor",
@@ -2929,7 +2929,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId2}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id2}}\"\r\n\r\n   }\r\n   }\r\n}"
+              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId2}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id2}}\",\r\n     \t\"sevaluation\" : \"DAILY\",\r\n  \"billingDate\" : \"{{today}}\"\r\n\r\n   }\r\n   }\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor",
@@ -3039,7 +3039,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId3}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id3}}\"\r\n\r\n   }\r\n   }\r\n}"
+              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId3}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id3}}\",\r\n     \t\"sevaluation\" : \"DAILY\",\r\n  \"billingDate\" : \"{{today}}\"\r\n\r\n   }\r\n   }\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor",
@@ -3149,7 +3149,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId4}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id4}}\"\r\n\r\n   }\r\n   }\r\n}"
+              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId4}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id4}}\",\r\n     \t\"sevaluation\" : \"DAILY\",\r\n  \"billingDate\" : \"{{today}}\"\r\n\r\n   }\r\n   }\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor",
@@ -3259,7 +3259,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId5}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id5}}\"\r\n\r\n   }\r\n   }\r\n}"
+              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId5}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id5}}\",\r\n     \t\"sevaluation\" : \"DAILY\",\r\n  \"billingDate\" : \"{{today}}\"\r\n\r\n   }\r\n   }\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor",
@@ -3369,7 +3369,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId6}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id6}}\"\r\n\r\n   }\r\n   }\r\n}"
+              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId6}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id6}}\",\r\n     \t\"sevaluation\" : \"DAILY\",\r\n  \"billingDate\" : \"{{today}}\"\r\n\r\n   }\r\n   }\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor",
@@ -3479,7 +3479,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId11}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id11}}\"\r\n\r\n   }\r\n   }\r\n}"
+              "raw": "{  \r\n   \"locationId\":\"{{locationId}}\",\r\n   \"payorId\":\"{{$guid}}\",\r\n   \"memberId\": \"{{memberId11}}\",\r\n   \"account\":{  \r\n      \"name\":\"{{UniqueClient}}\",\r\n      \"phone\":\"8009578010\",\r\n      \"sevaluation\":\"WEEKLY\",\r\n     \"billingDate\" : \"{{today}}\",\r\n      \"paymentMethod\":{\r\n     \"type\" : \"BANK_ACCOUNT\",\r\n     \"tokenId\":\"{{payment_method_id11}}\",\r\n     \t\"sevaluation\" : \"DAILY\",\r\n  \"billingDate\" : \"{{today}}\"\r\n\r\n   }\r\n   }\r\n}"
             },
             "url": {
               "raw": "{{URL}}/account/payor",
@@ -3649,7 +3649,6 @@
                   "    ",
                   "   ",
                   "",
-                  "tests[\"Response Body has Correct itemCategoryId\"] = responseBody.has(\"itemCategoryId\");",
                   "   tests[\"Response Body has Correct totalTax\"] = responseBody.has(\"totalTax\");",
                   "   tests[\"Response Body has items\"] = responseBody.has(\"items\");",
                   "   tests[\"Response Body has totalAmount\"] = responseBody.has(\"totalAmount\");",
@@ -4744,7 +4743,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    postman.setEnvironmentVariable(\"subIdopen\",jsonData.subId);",
+                  "   ",
                   "    postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
                   "",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
@@ -4984,6 +4983,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   " postman.setEnvironmentVariable(\"price\",jsonData.items[0].price);",
+                  " ",
                   "",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
@@ -7630,7 +7630,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ {  \"memberId\" :\"{{memberId}}\" ,\r\n\"primary\" : true} ],\r\n\"agreementNumber\" : \"{{agreementNumber}}\",\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 9,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"DAILY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{renewfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{renewfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 9, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"false\",\r\n\"openEnded\": false,\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\t\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"03-04-2019\",\r\n\"invoiceDate\": \"03-04-2019\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"DAILY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"false\",\r\n\"openEnded\": false,\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"name\": \"ankit\",\r\n\r\n\"openEnded\": true,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"03-27-2019\",\r\n\"invoiceDate\": \"03-27-2019\",\r\n\"frequency\": \"WEEKLY\",\r\n\"name\": \"ankit\",\r\n\r\n\"openEnded\": true,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\t\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{subfutureDate}}\",\r\n\"invoiceDate\": \"{{subfutureDate}}\",\r\n\"frequency\": \"MONTHLY\",\r\n\"name\": \"ankit\",\r\n\r\n\"openEnded\": true,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\t\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"MONTHLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{renewfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{renewfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"03-04-2019\",\r\n\"invoiceDate\": \"03-04-2019\",\r\n\"expirationDate\": \"{{BFfutureDate}}\",\r\n\"frequency\": \"ANNUALLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{renewfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{renewfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{subfutureDate}}\",\r\n\"invoiceDate\": \"{{subfutureDate}}\",\r\n\"expirationDate\": \"{{BFfutureDate}}\",\r\n\"frequency\": \"SEMIANNUALLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{renewfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{renewfutureDate}}\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{BFfutureDate}}\",\r\n\"frequency\": \"QUARTERLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"{{renewfutureDate}}\", \"renewFrequency\": \"DAILY\", \"renewType\": \"OPEN\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"{{renewfutureDate}}\" }\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n}\r\n\r\n\r\n\r\n]\r\n}"
+              "raw": "{\r\n\"locationId\": \"{{locationId}}\",\r\n\"documentIdList\" : [ \"eaca4410-3686-4eda-87c3-1320d15e4b94\" ],\r\n\"memberIdList\" : [ {  \"memberId\" :\"{{memberId}}\" ,\r\n\"primary\" : true} ],\r\n\"agreementNumber\" : \"{{agreementNumber}}\",\r\n\"subscriptionList\" : [ {\r\n\"primary\" : true,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"DAILY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"01-01-2020\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"01-01-2020\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 9, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"false\",\r\n\"openEnded\": false,\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\t\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"DAILY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"false\",\r\n\"openEnded\": false,\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"name\": \"ankit\",\r\n\r\n\"openEnded\": true,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"frequency\": \"WEEKLY\",\r\n\"name\": \"ankit\",\r\n\r\n\"openEnded\": true,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\t\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"frequency\": \"MONTHLY\",\r\n\"name\": \"ankit\",\r\n\r\n\"openEnded\": true,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\t\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"MONTHLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"01-01-2020\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"01-01-2020\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{futureDate}}\",\r\n\"frequency\": \"ANNUALLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"01-01-2020\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"01-01-2020\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{BFfutureDate}}\",\r\n\"frequency\": \"SEMIANNUALLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"01-01-2020\", \"renewFrequency\": \"DAILY\", \"renewDuration\": \"4\", \"renewType\": \"TERM\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"01-01-2020\" , \"renewExpireDate\": \"01-01-2020\"}\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n},\r\n{\r\n\"primary\" : false,\r\n\"planId\": \"fd8ebc9e-5fab-440f-879f-9e930cc35c87\",\r\n\"salesEmployeeId\": \"ad8ebc9e-5fab-140f-879f-9e930cc35c79\",\r\n\"locationId\": \"{{locationId}}\",\r\n\"memberIdList\": [\"{{memberId}}\"],\r\n\"accountId\": \"{{accountIdpayor}}\",\r\n\"planVersion\": 11,\r\n\"start\": \"{{today}}\",\r\n\"invoiceDate\": \"{{today}}\",\r\n\"expirationDate\": \"{{BFfutureDate}}\",\r\n\"frequency\": \"QUARTERLY\",\r\n\"duration\": \"1\",\r\n\"name\": \"ankit\",\r\n\"autoRenew\": \"true\",\r\n\"renewalOptions\":\r\n\r\n{ \"renewDate\": \"01-01-2020\", \"renewFrequency\": \"DAILY\", \"renewType\": \"OPEN\", \"renewAmount\": 100, \"renewInvoiceDate\" : \"01-01-2020\" }\r\n,\r\n\"openEnded\": false,\r\n\"renewType\": \"TERM\",\r\n\"items\": [\r\n\r\n\r\n{ \"itemName\": \"adcds\", \"itemId\": \"fd1ebc5e-1fab-120f-879f-4e930cc25c11\", \"version\": 1, \"price\": 1, \"quantity\": \"1\", \"expirationStart\": \"PURCHASE\", \"type\": \"PRODUCT\", \"unlimited\": \"false\" }\r\n]\r\n}\r\n\r\n\r\n\r\n]\r\n}"
             },
             "url": {
               "raw": "{{URL}}/agreement",
@@ -15117,13 +15117,13 @@
                   "{",
                   "    if (statementAmount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=10);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(statementAmount=12);",
                   "    }",
                   "    ",
                   "    else if (statementAmount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=10);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(statementAmount!=12);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -15207,13 +15207,13 @@
                   "{",
                   "    if (totalAmount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount=10);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(totalAmount=12);",
                   "    }",
                   "    ",
                   "    else if (totalAmount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount!=10);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(totalAmount!=12);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -15291,13 +15291,13 @@
                   "{",
                   "    if (amount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=10);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=12);",
                   "    }",
                   "    ",
                   "    else if (amount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=10);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=12);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -15380,13 +15380,13 @@
                   "{",
                   "    if (amount !==0)",
                   "    {",
-                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=10);",
+                  "       tests[\"Response Body has Correct Statement Amount\"] = responseBody.has(amount=12);",
                   "    }",
                   "    ",
                   "    else if (amount ==0)",
                   "    {",
                   "        ",
-                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=10);",
+                  "       tests[\"Response Body has Wrong Statement Amount\"] = responseBody.has(amount!=12);",
                   "    ",
                   "    }",
                   "    var jsonData = JSON.parse(responseBody);",
@@ -16038,7 +16038,7 @@
                   "else if (responseCode.code === 201)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    ",
+                  "     postman.setEnvironmentVariable(\"subIdopen\",jsonData.subId);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
                   "   tests[\"Response Body has Correct Member Id\"] = responseBody.has(\"memberId\");",
                   "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
@@ -18105,10 +18105,7 @@
                   "else if (responseCode.code === 200)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has Correct locationId\"] = responseBody.has(\"locationId\");",
-                  " ",
-                  "   tests[\"Response Body has subId\"] = responseBody.has(\"subId\");",
-                  "    tests[\"Response Body has memberId\"] = responseBody.has(\"memberId\");",
+                  "",
                   "    tests[\"Response Body has  expirationDate\"] = responseBody.has(\"expirationDate\");",
                   "   ",
                   "   ",
@@ -18144,7 +18141,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n \r\n  \"expirationDate\" : \"{{CfutureDate}}\"\r\n}"
+              "raw": "{\r\n \r\n  \"expirationDate\" : \"{{today}}\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/{{subIdopen}}/expire",
@@ -18247,7 +18244,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n\t\"freezeStartDate\" : \"{{today}}\",\r\n  \"freezeEndDate\" : \"{{FfutureDate}}\"\r\n}"
+              "raw": "{\r\n\t\"freezeStartDate\" : \"{{today}}\",\r\n  \"freezeEndDate\" : \"{{FfutureDate}}\",\r\n  \"subExpirationDate\" : \"04-27-2020\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/freeze/{{subIdFreeze}}",
@@ -18258,74 +18255,6 @@
                 "subscription",
                 "freeze",
                 "{{subIdFreeze}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GetFreezeSubscription",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "33cf1ec9-7def-4c3b-8efb-9511bdb14f14",
-                "exec": [
-                  "if (responseCode.code != 200)",
-                  "{",
-                  "    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
-                  "    tests[\"[INFO] Response Body: \" + responseBody] = true;",
-                  "}",
-                  "",
-                  "else if (responseCode.code === 200)",
-                  "{",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
-                  "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
-                  "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
-                  "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
-                  "    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
-                  "    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
-                  "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
-                  "    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
-                  "    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
-                  "    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
-                  "",
-                  "     tests[\"Response Body has Freeze id\"] = responseBody.has(\"id\");",
-                  "    tests[\"Response Body has freezeStartDate\"] = responseBody.has(\"freezeStartDate\");",
-                  "    tests[\"Response Body has freezeEndDate\"] = responseBody.has(\"freezeEndDate\");",
-                  "    tests[\"Response Body has freezeAmount\"] = responseBody.has(\"freezeAmount\");",
-                  "}",
-                  "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{URL}}/subscription/freeze/{{freezeid}}/location/{{locationId}}",
-              "host": [
-                "{{URL}}"
-              ],
-              "path": [
-                "subscription",
-                "freeze",
-                "{{freezeid}}",
-                "location",
-                "{{locationId}}"
               ]
             }
           },
@@ -18348,10 +18277,9 @@
                   "else if (responseCode.code === 200)",
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
-                  " tests[\"Response Body has subId\"] = responseBody.has(\"subId\");",
-                  "    tests[\"Response Body has freezeStartDate\"] = responseBody.has(\"freezeStartDate\");",
+                  "",
                   "    tests[\"Response Body has freezeEndDate\"] = responseBody.has(\"freezeEndDate\");",
-                  "    tests[\"Response Body has freezeAmount\"] = responseBody.has(\"freezeAmount\");",
+                  "    ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
@@ -18413,7 +18341,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"freezeEndDate\" : \"{{FFfutureDate}}\"\r\n}"
+              "raw": "{\r\n  \"freezeEndDate\" : \"{{FFfutureDate}}\",\r\n   \"subExpirationDate\" : \"04-27-2020\"\r\n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/freeze/{{freezeid}}",
@@ -18472,7 +18400,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n\t \n}"
+              "raw": "{\n\t\"subExpirationDate\" : \"04-27-2020\" \n}"
             },
             "url": {
               "raw": "{{URL}}/subscription/unfreeze/{{freezeid}}",
@@ -21898,21 +21826,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
-                  "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
-                  "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
-                  "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
-                  "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
-                  "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
-                  "    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
-                  "    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
-                  "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
-                  "    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
-                  "    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
-                  "    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
-                  "    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+                  " ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""
@@ -22007,21 +21921,7 @@
                   "{",
                   "    var jsonData = JSON.parse(responseBody);",
                   " tests[\"Response Body has Correct Location Id\"] = responseBody.has(\"locationId\");",
-                  "   tests[\"Response Body has Subscription Id\"] = responseBody.has(\"subId\");",
-                  "   tests[\"Response Body has Plan Id\"] = responseBody.has(\"planId\");",
-                  "    tests[\"Response Body has Payor Account Id\"] = responseBody.has(\"accountId\");",
-                  "    tests[\"Response Body has  Name\"] = responseBody.has(\"name\");",
-                  "    tests[\"Response Body has planVersion\"] = responseBody.has(\"planVersion\");",
-                  "    tests[\"Response Body has start Date\"] = responseBody.has(\"start\");",
-                  "    tests[\"Response Body has ExpirationDate\"] = responseBody.has(\"expirationDate\");",
-                  "    tests[\"Response Body has Frequency\"] = responseBody.has(\"frequency\");",
-                  "    tests[\"Response Body has duration\"] = responseBody.has(\"duration\");",
-                  "    tests[\"Response Body has itemId\"] = responseBody.has(\"itemId\");",
-                  "    tests[\"Response Body has version\"] = responseBody.has(\"version\");",
-                  "    tests[\"Response Body has itemName\"] = responseBody.has(\"itemName\");",
-                  "    tests[\"Response Body has salesEmployeeId\"] = responseBody.has(\"salesEmployeeId\");",
-                  "    tests[\"Response Body has price\"] = responseBody.has(\"price\");",
-                  "    tests[\"Response Body has Payment Method invoiceDate\"] = responseBody.has(\"invoiceDate\");",
+                  "   ",
                   "}",
                   "  tests[\"Response code should be 200\"] = responseCode.code === 200;",
                   ""

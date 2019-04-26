@@ -516,7 +516,7 @@
                       "function stringGen(len) {",
                       "var text = \"\";",
                       "",
-                      "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                      "var charset = \"ABCDEFGHIJKLMNOPQRSTUVWXYZfhfghfghfhfhfhfhdfhfhsfgdfhfcherasaewxwadfshgfdhnvdfhgjgdhjkgghdughdfjkmhnfmggheuirhewijhkwnerjmsnfmdbgjrnjjerfejbnfjsnfmsdgjkdfjgdfhgbjdfhjghedsehfjksdhgjkdfhgguiehsfsdgdhdfhdh\";",
                       "",
                       "for (var i = 0; i < len; i++)",
                       " text += charset.charAt(Math.floor(Math.random() * charset.length));",
@@ -11043,13 +11043,13 @@
               "raw": "\r\n{\r\n  \"type\" : \"VANTIV\",\r\n  \"mid\":\"{{Mid_V}}\",\r\n     \"zipCode\":\"25145 2547\",\r\n     \"preAuthorizationKey\":\"abjh\",\r\n \"phoneNumber\":\"545-425-8887\",\r\n  \"description\":\"mgfhfgh\"\r\n}"
             },
             "url": {
-              "raw": "{{URL}}/payment-method/{{paymentMethod_ID_V}}",
+              "raw": "{{URL}}/payment-method/{{paymentMethod_ID}}",
               "host": [
                 "{{URL}}"
               ],
               "path": [
                 "payment-method",
-                "{{paymentMethod_ID_V}}"
+                "{{paymentMethod_ID}}"
               ]
             }
           },
