@@ -1,0 +1,28 @@
+{
+  "id": "3ff1cfd8-6cb6-4550-a67c-909362a10471",
+  "name": "SP8_qa",
+  "values": [
+    {
+      "key": "URL",
+      "value": "https://qa.30preprod.com/api",
+      "description": "",
+      "enabled": true
+    },
+    {
+      "key": "companyId",
+      "value": "729ce711-91a2-4e8b-9147-bd69c1ceff30",
+      "description": "",
+      "enabled": true
+    },
+    {
+      "key": "processor_id",
+      "value": "6ffe2393-3825-4758-9cf5-75f25d428e0d",
+      "type": "text",
+      "description": "",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2019-03-19T11:30:07.217Z",
+  "_postman_exported_using": "Postman/6.7.4"
+}

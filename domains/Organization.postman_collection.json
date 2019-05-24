@@ -1,0 +1,2477 @@
+
+{
+	"info": {
+		"_postman_id": "16dc59f4-f9ba-4abf-bf92-d40cb1def841",
+		"name": "Organization",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Authorization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b49fb61-2244-4ebe-8877-c12942d44c9b",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"authId\", jsonData.access_token);",
+									"   ",
+									"    tests[\"Response Body has Correct Token Type\"] = responseBody.has(\"\\\"token_type\\\":\\\"bearer\\\"\");",
+									"    tests[\"Response Body has Access Token\"] = responseBody.has(\"\\\"access_token\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"authId\")+\"\\\"\");",
+									"    tests[\"Response Body has Expiration Field\"] = responseBody.has(\"expires_in\");",
+									"    tests[\"Response Body has Correct Scope\"] = responseBody.has(\"\\\"scope\\\":\"+\"\\\"\"+jsonData.scope+\"\\\"\");",
+									"}",
+									"",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic QVVUT01BVEVEX1RFU1RJTkc6dDNzdEBsbHRoM3RoMW5ncw=="
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/token?client_id=AUTOMATED_TESTING&grant_type=client_credentials",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"token"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "AUTOMATED_TESTING"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create_Organization",
+			"item": [
+				{
+					"name": "Create_Organization_With_Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"orgId\", jsonData.id);",
+									"    postman.setEnvironmentVariable(\"locId\", jsonData.locations[0].id);",
+									"",
+									"    var org_name = \"University of Winterfell #\"+postman.getEnvironmentVariable(\"orgName\");",
+									"    var org_email = \"WinterfellUniversity\"+postman.getEnvironmentVariable(\"orgName\")+\"@qa4life.com\";",
+									"    ",
+									"    var loc_name = \"Winterfell Location \"+postman.getEnvironmentVariable(\"orgName\");",
+									"    var loc_email = \"winteriscoming\"+postman.getEnvironmentVariable(\"orgName\")+\"@qa4life.com\";",
+									"    console.log(\"orgname\",postman.getEnvironmentVariable(\"phoneNumber\"));",
+									"    tests[\"Response Body has Correct Organization id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"orgId\")+\"\\\"\");",
+									"    tests[\"Response Body has Correct Organization name\"] = responseBody.has(org_name);",
+									"    tests[\"Response Body has Correct Organization email\"] = responseBody.has(org_email);",
+									"    tests[\"Response Body has Correct Organization Phone number\"] =  responseBody.has(\"\\\"number\\\":\"+postman.getEnvironmentVariable(\"phoneNumber\"));",
+									"    tests[\"Response Body has Correct Organization extension\"] = responseBody.has(\"\\\"extension\\\":\\\"231\\\"\");  ",
+									"    tests[\"Response Body has Correct Location id\"] = responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"locId\")+\"\\\"\");",
+									"    ",
+									"    tests[\"Response Body has Correct Location Address Id\"] =  responseBody.has(\"\\\"id\\\":\"+\"\\\"\"+jsonData.locations[0].addresses[0].id+\"\\\"\");",
+									"    tests[\"Response Body has Correct Location Address 1\"] =  responseBody.has(\"\\\"address1\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"address1\")+\"\\\"\");",
+									"    tests[\"Response Body has Correct Location Address 2\"] =  responseBody.has(\"\\\"address2\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"address2\")+\"\\\"\");",
+									"    tests[\"Response Body has Correct Location Address City\"] =  responseBody.has(\"\\\"city\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"city\")+\"\\\"\");",
+									"    tests[\"Response Body has Correct Location Address State\"] =  responseBody.has(\"\\\"state\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"state\")+\"\\\"\");",
+									"    tests[\"Response Body has Correct Location Address Zipcode\"] =  responseBody.has(\"\\\"zipCode\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"zipCode\")+\"\\\"\");",
+									"    tests[\"Response Body has Correct Location Address Country\"] =  responseBody.has(\"\\\"country\\\":\"+\"\\\"\"+postman.getEnvironmentVariable(\"country\")+\"\\\"\");",
+									"    tests[\"Response Body has Correct timezone\"] = responseBody.has(\"\\\"timezone\\\":\\\"US/Alaska\\\"\"); ",
+									"    ",
+									"}",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									"var orgName = Math.floor(Math.random() * 9000000) + 1000000;",
+									"var phoneNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
+									"var address1 = \"AR-107\";",
+									"var address2 = \"Sherwood\";",
+									"var city = \"Little Rock\";",
+									"var state = \"AR\";",
+									"var country = \"USA\";",
+									"var zipCode = \"72120\";",
+									"var extension= \"231\";",
+									"",
+									"postman.setEnvironmentVariable(\"orgName\", orgName);",
+									"postman.setEnvironmentVariable(\"phoneNumber\", phoneNumber);",
+									"postman.setEnvironmentVariable(\"extension\", extension);",
+									"postman.setEnvironmentVariable(\"address1\", address1);",
+									"postman.setEnvironmentVariable(\"address2\", address2);",
+									"postman.setEnvironmentVariable(\"city\", city);",
+									"postman.setEnvironmentVariable(\"state\", state);",
+									"postman.setEnvironmentVariable(\"zipCode\", zipCode);",
+									"postman.setEnvironmentVariable(\"country\", country);",
+									"",
+									"console.log(\"orgName \", orgName);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"University of Winterfell #{{orgName}}\",\r\n    \"email\" : \"WinterfellUniversity{{orgName}}@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"231\"\r\n  },\r\n   \"signInLink\" : \"https://test.url.qa4life.com\",\r\n  \"websiteUrl\" : \"www.planet-fitness.com\",\r\n  \"timezone\" : \"US/Alaska\",\r\n    \"address\" : {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\"\r\n  },\r\n  \"locale\" : {\r\n    \"language\" : \"UA\",\r\n    \"region\" : \"US\",\r\n    \"variant\" : \"MAC\"\r\n  },\r\n  \"locations\" : [ {\r\n    \"name\" : \"ABC Location1\",\r\n    \"email\" : \"noreply@qa4life.com\",\r\n    \"phone\" : {\r\n      \"number\" : \"{{phoneNumber}}\",\r\n      \"extension\" : \"38\"\r\n    },\r\n    \"timezone\" : \"US/Alaska\",\r\n    \"address\" : {\r\n      \"address1\" : \"{{address1}}\",\r\n      \"address2\" : \"{{address2}}\",\r\n      \"city\" : \"{{city}}\",\r\n      \"zipCode\" : \"{{zipCode}}\",\r\n      \"country\" : \"{{country}}\",\r\n      \"state\" : \"{{state}}\"\r\n    }\r\n  } ]\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/organization",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"organization"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Organizations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4abfbb71-ada5-403b-be54-0e6b7a05573d",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"",
+									"}",
+									"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/organization",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"organization"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Organization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4abfbb71-ada5-403b-be54-0e6b7a05573d",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"",
+									"}",
+									"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/organization/{{orgId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"organization",
+								"{{orgId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Organization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4abfbb71-ada5-403b-be54-0e6b7a05573d",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"",
+									"}",
+									"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\" : \"ABC financial2\",\r\n  \"email\" : \"noreply8888@qa4life.com\",\r\n  \"phone\" : {\r\n    \"number\" : \"1234567\",\r\n    \"extension\" : \"38\"\r\n  },\r\n  \"signInLink\" : \"https://test2.url.qa4life.com\",\r\n  \"timezone\" : \"US/Alaska\",\r\n  \"id\" : \"c45f4c78-ac74-4a0e-956e-e931a79b7233\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/organization/{{orgId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"organization",
+								"{{orgId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Organization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4abfbb71-ada5-403b-be54-0e6b7a05573d",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"",
+									"}",
+									"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/organization/{{orgId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"organization",
+								"{{orgId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Undelete Organization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4abfbb71-ada5-403b-be54-0e6b7a05573d",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"",
+									"}",
+									"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\" : \"active\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/archive/organization/{{orgId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"archive",
+								"organization",
+								"{{orgId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Removed Organizations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4abfbb71-ada5-403b-be54-0e6b7a05573d",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"",
+									"}",
+									"  tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/archive/organization?page=0&size=500",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"archive",
+								"organization"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "500"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create_Location",
+			"item": [
+				{
+					"name": "Create_Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\" : \"ABC Location\",\r\n  \"email\" : \"noreply@qa4life.com\",\r\n  \r\n  \"phone\" : {\r\n    \"number\" : \"1234567\",\r\n    \"extension\" : \"38\"\r\n  },\r\n  \"timezone\" : \"US/Alaska\",\r\n  \"cardAuthorizationDocId\" : \"8c8c92d1-55c7-4f4b-918e-1a693fa693d0\",\r\n  \"waiverDocId\" : \"a1b3fedd-4d81-4df6-883f-e80aae2ab73d\",\r\n  \"termsDocId\" : \"2cb3058f-b4bb-4506-9879-4cb2eade6a37\",\r\n \r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"zipCode\" : \"72120\",\r\n    \"country\" : \"USA\",\r\n    \"state\" : \"AL\"\r\n  } ]\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/location",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search_Locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/location",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/location/{{locId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"location",
+								"{{locId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\" : \"Updated ABC Location\",\r\n  \"email\" : \"updated.noreply@qa4life.com\",\r\n  \"phone\" : {\r\n    \"number\" : \"1234567\",\r\n    \"extension\" : \"38\"\r\n  },\r\n  \"timezone\" : \"US/Alaska\",\r\n  \"cardAuthorizationDocId\" : \"d129b90d-d6e7-46a1-8088-cf80d77e5335\",\r\n  \"waiverDocId\" : \"0c83fdcd-1bde-4f87-8a53-ada66275361c\",\r\n  \"termsDocId\" : \"23e85679-a000-4b2d-9782-3069cf9f9090\",\r\n  \"id\" : \"11e915ce-7a72-7b36-87d2-1970bc01d257\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/location/{{locId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"location",
+								"{{locId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/location/{{locId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"location",
+								"{{locId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Removed_Locations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/archive/location?page=0&size=500",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"archive",
+								"location"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "500"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Undelete Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\" : \"active\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/archive/location/{{locId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"archive",
+								"location",
+								"{{locId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create_Employee",
+			"item": [
+				{
+					"name": "Create_Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
+									"",
+									" postman.setEnvironmentVariable(\"empId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									"function stringGen(len) {",
+									"var text = \"\";",
+									"",
+									"var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+									"",
+									"for (var i = 0; i < len; i++)",
+									" text += charset.charAt(Math.floor(Math.random() * charset.length));",
+									"",
+									"return text;",
+									"}",
+									"var uniquemail= stringGen(8)",
+									"postman.setEnvironmentVariable(\"Uniquemail\", \"mail\"+uniquemail);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"birthDate\" : \"1977-07-07\",\r\n  \"email\" : \"john.{{Uniquemail}}@qa4life.com\",\r\n  \"phone\" : {\r\n    \"number\" : \"1123456\",\r\n    \"extension\" : \"38\"\r\n  },\r\n  \"active\" : true,\r\n  \"description\" : \"Employee description\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-101\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\"\r\n  } ]\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/employee",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Employees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/employee?page=0&size=500",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "500"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/employee/{{empId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"{{empId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\" : \"AAJohn\",\r\n  \"lastName\" : \"AADoe\",\r\n  \"middleName\" : \"AAJohnMiddleName\",\r\n  \"birthDate\" : \"1988-08-08\",\r\n  \"email\" : \"{{Uniquemail}}.doe@qa4life.com\",\r\n  \"phone\" : {\r\n    \"number\" : \"9812345\",\r\n    \"extension\" : \"38\"\r\n  },\r\n  \"active\" : false,\r\n  \"description\" : \"AAA Employee description\",\r\n  \"address\" : {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\"\r\n  },\r\n  \"id\" : \"11e91f56-04fd-c837-9435-0faa590aef93\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/employee/{{empId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"{{empId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/employee/{{empId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"{{empId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Removed_Employees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/archive/employee?page=0&size=500",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"archive",
+								"employee"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "500"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Undelete_Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\" : \"active\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/archive/employee/{{empId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"archive",
+								"employee",
+								"{{empId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Employee_Photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
+									"",
+									" postman.setEnvironmentVariable(\"empId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\" : \"U2lnbmVkIHdpdGggYmxvb2Q=\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/employee/{{empId}}/photo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"{{empId}}",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Employee_Photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
+									"",
+									" postman.setEnvironmentVariable(\"empId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\" : \"U2lnbmVkIHdpdGggYmxvb2Q=\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/employee/{{empId}}/photo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"{{empId}}",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Employee_Photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"",
+									" postman.setEnvironmentVariable(\"empId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\" : \"U2lnbmVkIHdpdGgkjdrhfsjuesgfbdkjasbfgYmxvb2Q=\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/employee/{{empId}}/photo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"{{empId}}",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Employee_Access_Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"",
+									" postman.setEnvironmentVariable(\"empId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"accessLevel\" : 1,\r\n  \"accessPassword\" : \"superStrong\",\r\n  \"locationAccessList\" : [ \"{{locId}}\" ]\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/employee/{{empId}}/access-profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"employee",
+								"{{empId}}",
+								"access-profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create_Member",
+			"item": [
+				{
+					"name": "Create_Member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"     postman.setEnvironmentVariable(\"memId\", jsonData.id);",
+									"}",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									"function stringGen(len) {",
+									"var text = \"\";",
+									"",
+									"var charset = \"abcdefghijklmnopqrstuvwxyz\";",
+									"",
+									"for (var i = 0; i < len; i++)",
+									" text += charset.charAt(Math.floor(Math.random() * charset.length));",
+									"",
+									"return text;",
+									"}",
+									"var uniquemail= stringGen(8)",
+									"postman.setEnvironmentVariable(\"Uniquemail\", \"mail\"+uniquemail);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\" : \"John\",\r\n  \"lastName\" : \"Doe\",\r\n  \"middleInitial\" : \"S.\",\r\n  \"birthDate\" : \"1977-07-07\",\r\n  \"email\" : \"john.{{Uniquemail}}@qa4life.com\",\r\n  \"phones\" : [ {\r\n    \"number\" : \"1123456\",\r\n    \"phoneType\" : \"PRIMARY\"\r\n  } ],\r\n  \"waiverDocumentId\" : \"e2ed6924-f650-489d-9a1b-f6d7109353b7\",\r\n  \"termsDocumentId\" : \"16e0f594-822c-46f0-84dc-6e1e0d7e985b\",\r\n  \"digitalSignatureId\" : \"5804058d-1966-4d9f-8bc3-662781e2d25c\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"locationId\" : \"{{locId}}\",\r\n  \"addresses\" : [ {\r\n    \"address1\" : \"AR-107\",\r\n    \"address2\" : \"Sherwood\",\r\n    \"city\" : \"Little Rock\",\r\n    \"state\" : \"AR\",\r\n    \"country\" : \"USA\",\r\n    \"zipCode\" : \"72120\"\r\n  } ],\r\n  \"employmentData\" : {\r\n    \"employer\" : \"Exadel\",\r\n    \"occupation\" : \"programmer\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/member",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"member"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Members",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/member",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"member"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/member/{{memId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"member",
+								"{{memId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_Member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\" : \"John2\",\r\n  \"lastName\" : \"Doe2\",\r\n  \"birthDate\" : \"1988-08-08\",\r\n  \"email\" : \"john.{{Uniquemail}}@qa4life.com\",\r\n  \"phones\" : [ {\r\n    \"number\" : \"98123456\",\r\n    \"phoneType\" : \"PRIMARY\"\r\n  } ],\r\n  \"waiverDocumentId\" : \"b38c7a5b-2dd7-44bd-95fc-778c1ec82192\",\r\n  \"termsDocumentId\" : \"84ef83d6-8988-45f3-a7d5-803c0ab20d1b\",\r\n  \"digitalSignatureId\" : \"6e58003c-d303-49ad-b36a-ec8e00e8073c\",\r\n  \"healthNote\" : \"High BP\",\r\n  \"locationId\" : \"{{locId}}\",\r\n  \"id\" : \"11e915ce-80e1-367f-87d2-1970bc01d257\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/member/{{memId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"member",
+								"{{memId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Removed_Members",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/archive/member?page=0&size=500",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"archive",
+								"member"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "500"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Member_Photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\" : \"U2lnbmVkIHdpdGggYmxvb2Q=\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/member/{{memId}}/photo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"member",
+								"{{memId}}",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Member_Photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
+									"",
+									" postman.setEnvironmentVariable(\"empId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\" : \"U2lnbmVkIHdpdGggYmxvb2Q=\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/member/{{memId}}/photo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"member",
+								"{{memId}}",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Member_Photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 200)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 200)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 200\"] = responseCode.code === 200;",
+									"",
+									" postman.setEnvironmentVariable(\"empId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\" : \"U2lnbmVkIHdpdGgkjdrhfsjuesgfbdkjasbfgYmxvb2Q=\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/member/{{memId}}/photo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"member",
+								"{{memId}}",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Member_Digital_Signature",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2305057c-9e3e-437e-bc07-9fe8c8713c58",
+								"exec": [
+									"if (responseCode.code != 201)",
+									"{",
+									"    tests[\"[INFO]  Request Body: \" + JSON.stringify(request)] = true;",
+									"    tests[\"[INFO] Response Body: \" + responseBody] = true;",
+									"}",
+									"else if (responseCode.code === 201)",
+									"{",
+									"    var jsonData = JSON.parse(responseBody);",
+									"}",
+									"tests[\"Response code should be 201\"] = responseCode.code === 201;",
+									"",
+									" postman.setEnvironmentVariable(\"empId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "182d5be1-33d8-4062-acd7-78ed3e8a9a4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authId}}"
+							},
+							{
+								"key": "ABCFS-ORGANIZATION-ID",
+								"value": "{{orgId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"termsDocumentId\" : \"9abe6c84-0ce1-4668-b265-1fb8d49c1a43\",\r\n  \"signature\" : \"U2lnbmVkIHdpdGggYmxvb2Q=\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/member/{{memId}}/digital-signature",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"member",
+								"{{memId}}",
+								"digital-signature"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
